@@ -1,0 +1,5 @@
+node_modules/
+models/
+dist/
+package-lock.json
+data/_*.json

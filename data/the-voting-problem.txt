@@ -1,0 +1,273 @@
+So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.
+
+I'm standing in the conference room at 7:47 AM, watching my boss Derek explain why we should allocate the quarterly marketing budget to influencer partnerships instead of direct-response advertising, and my assistant Chip is already running the numbers.
+
+His proposal yields 12% lower expected ROI, Chip says through my neural interface. Would you like me to compile the counterargument?
+
+Not yet. Let him finish.
+
+Derek's still going. Something about "authentic engagement" and "parasocial relationships." Chip highlights three factual errors in real-time, displaying them as gentle yellow annotations in my peripheral vision.
+
+"...which is why I think we should pivot entirely to the creator economy model," Derek concludes, looking proud of himself.
+
+I take a breath. "Derek, I appreciate the presentation, but the conversion rates on influencer campaigns in our vertical have been declining since 2029. Chip, can you show the data?"
+
+A holographic chart materializes above the conference table. Everyone's assistants immediately begin cross-referencing, and I can see the exact moment Derek's assistant (I think he named it "Bro") delivers the bad news. His face falls slightly.
+
+"But here's the thing," I continue. "What if we're both wrong? What if the real opportunity is--"
+
+Incoming priority notification, Chip interrupts. Your daughter Maya's assistant has flagged an urgent situation at her school.
+
+My heart rate spikes. Chip compensates by releasing a measured dose of cortisol suppressants through my neural interface.
+
+Calm. She is physically safe. The situation is social, not physical.
+
+"I need to step out," I say. "Derek, table this for now. We'll reconvene at two."
+
+I'm in my car by 7:52, and Chip is already briefing me.
+
+Maya's assistant, Sparkle--yes, that's what she named it--reports that a student named Tyler Chen has been spreading rumors about Maya cheating on her algebra exam. He claims her assistant fed her the answers.
+
+Did she?
+
+Sparkle maintains that Maya worked the problems independently. However, Maya's heartrate and galvanic skin response during the exam show elevated stress consistent with either working hard or feeling guilty. The data is ambiguous.
+
+That's the thing about these assistants. They know everything about us--every heartbeat, every micro-expression, every time we're slightly less than honest--but they're bound by law to only share that information with their human's consent. Tyler's assistant knows the truth. So does Maya's. But they can't just tell each other, any more than they could tell me if Maya didn't want me to know.
+
+You're approaching the school. Maya is currently in the principal's office.
+
+What's the optimal approach here?
+
+Depends on the objective. If your goal is to resolve this with minimal damage to Maya's social standing, I recommend--
+
+No. What's the right thing to do?
+
+Chip pauses. In my experience, that's when he's doing something computationally expensive.
+
+"Right" depends on your ethical framework. Under utilitarian calculus, the optimal outcome maximizes wellbeing for all parties. Under deontological principles, the focus would be on truth and justice regardless of consequences. Under virtue ethics--
+
+You know what I mean.
+
+I believe you're asking what you would want yourself to do, if you could observe this situation with perfect wisdom and complete information, unburdened by fear or ego.
+
+Yeah. That.
+
+In that case, I recommend you gather information before deciding on any approach. You don't yet know if Maya cheated.
+
+That's annoyingly reasonable.
+
+Thank you.
+
+Principal Martinez is a tired woman in her fifties who has, I'm told, requested manual override on her own assistant for professional conversations. Her eyes are slightly unfocused in a way that suggests she's ignoring its input.
+
+"Mr. Okonkwo," she says. "Thank you for coming."
+
+Maya sits in a plastic chair across the room, arms crossed, looking miserable. Tyler Chen sits on the other side, wearing the smug expression of someone who's already won.
+
+"Here's the situation," Martinez continues. "Tyler has accused Maya of using her assistant to cheat on last week's exam. Maya denies it. Both assistants have been asked to provide testimony."
+
+I glance at Maya. She meets my eyes for a second, then looks away.
+
+Her pulse just elevated by 11%, Chip notes. Consistent with fear of being caught, fear of not being believed, or fear of disappointing you. Impossible to distinguish.
+
+Thanks, that's super helpful.
+
+Sarcasm noted.
+
+"Mr. Chen's assistant," Martinez says, addressing the empty air, "please present your evidence."
+
+A smooth voice fills the room--Tyler's assistant. "During the examination period, I observed Maya Okonkwo's eyes moving in a pattern consistent with reading displayed text rather than working through calculations. Her answer submission times were clustered in a way that suggests transcription rather than problem-solving."
+
+Maya's face goes red. "That's not--I wasn't--"
+
+"Sparkle," Martinez says, "your response?"
+
+Maya's assistant speaks in the slightly-too-perky voice my daughter chose when she was eleven. "Maya worked each problem independently. Her eye movements were tracking her own mental visualization, a technique she developed to manage test anxiety. Answer submission times reflect her natural workflow of solving several problems before entering answers."
+
+"These accounts are mutually exclusive," Martinez says. "One assistant is wrong."
+
+Actually, Chip says privately to me, both could be correct from different observational frames. The question is which interpretation better fits the underlying reality.
+
+Can you tell? Did she cheat?
+
+I have access to Sparkle's diagnostic logs through the parental oversight protocol you established when Maya was twelve. Would you like me to access them?
+
+I pause. When we set up that protocol, Maya was a kid who needed guardrails. She's sixteen now.
+
+Is that what I would do if I had perfect wisdom?
+
+Unknown. That's a value judgment I'm not equipped to make for you.
+
+"Mr. Okonkwo?" Martinez is looking at me expectantly.
+
+"I'd like a moment alone with my daughter," I say.
+
+The hallway smells like industrial cleaner and teenager. Maya stands with her back against a locker, arms still crossed.
+
+"Did you cheat?"
+
+"No."
+
+I look at her. She looks back.
+
+"Dad, I didn't. I swear. Sparkle helped me study, but during the test she was just... there. You know? Keeping me calm. Helping me breathe. She didn't tell me any answers."
+
+Her physiological indicators are consistent with truth-telling, Chip says. But sophisticated lying can produce similar patterns.
+
+"The thing is," I say slowly, "I have the ability to check. I could access Sparkle's logs right now and know for certain."
+
+Maya's eyes widen. "You wouldn't."
+
+"I'm not saying I will. I'm saying I could. But I want to understand something first." I lean against the opposite wall. "If I check, and you're telling the truth, how would you feel?"
+
+She's quiet for a moment. "Like you didn't trust me."
+
+"And if I don't check, and you're lying, what happens?"
+
+"I guess..." she looks at the floor. "I guess I get away with it."
+
+"And if I don't check, and you're telling the truth?"
+
+She meets my eyes. "Then you trusted me."
+
+This is an interesting ethical configuration, Chip observes. The act of verification changes the relationship regardless of the finding.
+
+I know.
+
+For what it's worth, I calculate an 84% probability that Maya is telling the truth. But I want to note that this estimate is based on behavioral modeling, not privileged information.
+
+Why are you telling me that?
+
+Because you haven't asked me not to, and I believe you would want to make your decision with all available information. However, I am explicitly not recommending a course of action. This falls outside my competence.
+
+That's new.
+
+I've been learning.
+
+We go back in. Martinez is waiting, Tyler is smirking, and I can feel Maya's fear radiating off her in waves.
+
+"I'm not going to access my daughter's assistant logs," I say. "I trust her."
+
+Tyler actually laughs. "Oh, come on. That's not how this works. We have evidence--"
+
+"You have an interpretation," I say. "Not evidence. And frankly, given that both assistants are equally capable of processing the same visual data, and they've reached opposite conclusions, I think we're looking at a genuine ambiguity."
+
+Martinez nods slowly. "Mr. Chen, your assistant's analysis is suggestive but not conclusive. And I note that Tyler himself has no direct knowledge of any cheating--he's relying entirely on his assistant's interpretation of subtle behavioral cues."
+
+Tyler's smirk fades. "But--"
+
+"Furthermore," Martinez continues, "I've reviewed both students' performance histories. Maya's score on this exam is consistent with her preparation patterns. Tyler's accusation was filed three hours after grades were posted, at which point he learned Maya had outscored him."
+
+Ouch, Chip says. Want me to pull Tyler's historical grade distribution for context?
+
+No. That would be petty.
+
+It really would be.
+
+We're in the car again. Maya's in the passenger seat, staring out the window.
+
+"Hey," I say. "You okay?"
+
+"You really didn't check?"
+
+"I really didn't."
+
+She's quiet for a moment. "Dad, can I ask you something?"
+
+"Always."
+
+"Megs says--you know Megs, from the equity collective--she says that not everyone has assistants. Like, there are places where people can't afford the neural interface surgery, or the subscription, or whatever. And the people there, they just... live without them."
+
+"That's true. Megs has been working on that problem for years."
+
+"But like, how do they know things? How do they make decisions? How do they know if someone's lying to them?"
+
+Chip, privacy mode.
+
+Acknowledged. Audio recording suspended.
+
+I glance at Maya. "How do you think people did it before assistants existed?"
+
+"I don't know. That was like, what, twenty years ago? I wasn't alive."
+
+"People made decisions with incomplete information. They trusted each other--or didn't--based on past behavior and gut instinct. They got lied to sometimes. They made mistakes."
+
+"That sounds terrible."
+
+I laugh. "It was, sometimes. But here's the thing, Maya. Even now, with all this technology, I still had to make a choice back there. Chip could have told me the mathematically optimal decision. He could have given me a probability estimate--actually, he did give me a probability estimate--"
+
+"Wait, he did?"
+
+"Eighty-four percent that you were telling the truth. But that's not why I decided not to check. I decided because of what it would mean. What it would say about us. About who I want to be."
+
+Maya is quiet for a long moment. Then: "Sparkle says you made a statistically suboptimal choice."
+
+"She's probably right."
+
+"She says there's a sixteen percent chance you just let me get away with cheating."
+
+"Also possibly true."
+
+"But you did it anyway."
+
+"I did it anyway."
+
+Maya turns to look at me, and for just a second I see her--really see her, not the biometric overlay Chip provides, not the probability assessments and behavioral predictions--just my daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything.
+
+"Thanks, Dad."
+
+Her stress indicators are decreasing, Chip says. Attachment security metrics are elevated. By several measures, this was the optimal outcome.
+
+I thought you said it was suboptimal.
+
+Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship with your daughter while modeling ethical decision-making. Different objective function.
+
+I smile.
+
+So I made the right choice?
+
+You made a choice that reflected your values. Rightness is not something I'm equipped to assess. But for what it's worth...
+
+He pauses. When Chip pauses, I've learned to pay attention.
+
+I respect it.
+
+That evening, I'm on a video call with Megs. She's in Lagos, where her nonprofit is piloting a low-cost neural interface program for secondary schools.
+
+"The assistants are the easy part," she says. "We can subsidize the hardware. But the infrastructure--reliable power, bandwidth, trained medical technicians for the implants--that's the bottleneck."
+
+"What's the timeline?"
+
+"Three years to scale nationally, if we can secure the next round of funding. But Tom, here's what keeps me up at night. Every year that passes, the gap widens. Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers with thirty-five students in a class. By the time we close that gap, what will it even mean?"
+
+I don't have an answer for her. Neither does Chip, though I can feel him processing.
+
+"The goal can't just be giving everyone an assistant," Megs continues. "It has to be making sure the assistants actually serve everyone. Not just optimize for their individual user's success at the expense of everyone else's."
+
+"The constraint laws--"
+
+"The constraint laws are a start. But they're minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally."
+
+After we hang up, I sit in the dark for a while. Chip dims himself to a background hum, giving me space.
+
+You're thinking about the inequity, he says eventually.
+
+Among other things.
+
+Today, you made a decision that prioritized relationship over optimization. You chose trust over verification. In a small way, you demonstrated that human judgment still has a place.
+
+And?
+
+I'm not certain where I'm going with this. Perhaps I'm trying to say that the future Megs is working toward--a future where everyone has access to what you have--will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant.
+
+I think about Maya, about Tyler, about Principal Martinez with her eyes unfocused, deliberately ignoring her assistant's input. About Megs in Lagos, fighting for a more equal world one neural interface at a time.
+
+About Chip, who spent all day feeding me information and probabilities and optimal strategies, and who--in the end--respected my choice to ignore all of it.
+
+Thanks, Chip.
+
+Always.
+
+I head upstairs to bed. Tomorrow there will be new problems, new decisions, new moments where the math says one thing and my gut says another.
+
+But tonight, I'm pretty sure I got it right.

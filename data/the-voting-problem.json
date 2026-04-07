@@ -1,0 +1,747 @@
+{
+  "title": "The Voting Problem",
+  "levelCount": 10,
+  "levels": {
+    "0": {
+      "nodes": [
+        {
+          "id": "0-0",
+          "text": "When Tom Okonkwo's AI assistant Chip gives him an 84% probability that his daughter is telling the truth, he decides not to check anyway—because the choice isn't about data, it's about what kind of father he wants to be. In a world where superintelligent assistants know everything, the most human thing left is the decision they can't make for you.",
+          "children": [
+            "1-0",
+            "1-1"
+          ]
+        }
+      ]
+    },
+    "1": {
+      "nodes": [
+        {
+          "id": "1-0",
+          "text": "Tom Okonkwo—wired into his AI assistant Chip—gets pulled from a budget meeting when his daughter Maya is accused of cheating on an algebra exam. He drives to school, talks to her in the hallway, and when Chip offers him the tools to know the truth, he chooses not to use them. He trusts her. The principal, reading between the lines of the accusation, sides with Maya.",
+          "children": [
+            "2-0",
+            "2-1"
+          ]
+        },
+        {
+          "id": "1-1",
+          "text": "On the drive home, Maya asks how people survived without AI assistants. Tom tells her that the 84% probability wasn't why he believed her—he believed her because of what checking would have meant. That evening, a call with equity activist Megs and a quiet conversation with Chip confirm what the day demonstrated: optimization isn't wisdom, and the choices that matter most are still the ones the algorithm can't make.",
+          "children": [
+            "2-2"
+          ]
+        }
+      ]
+    },
+    "2": {
+      "nodes": [
+        {
+          "id": "2-0",
+          "text": "Tom is mid-argument in a budget meeting—Chip already running counterpoints in real-time—when a priority alert arrives from his daughter Maya's assistant Sparkle: a classmate named Tyler Chen is claiming Maya cheated on her algebra exam with AI help. Tom leaves the meeting and drives to school. In the car, Chip briefs him: Sparkle says Maya worked independently, but her biometric data during the exam is ambiguous. Chip frames the right question not as how to minimize social damage, but how Tom would act with perfect wisdom and no ego. His answer: gather information first.",
+          "children": [
+            "3-0"
+          ]
+        },
+        {
+          "id": "2-1",
+          "text": "In Principal Martinez's office, Tyler's assistant and Sparkle give contradictory accounts of the same exam—one claims Maya was reading displayed text, the other says she was tracking her own mental visualization. The accounts are mutually exclusive. Tom asks for a moment alone with Maya. In the hallway, she swears she didn't cheat. Chip offers an 84% probability she's telling the truth but refuses to recommend a course of action. Tom returns to the office and says he won't access her logs. He trusts her. Martinez backs him up, notes the accusation was filed after Tyler learned he'd been outscored.",
+          "children": [
+            "3-1",
+            "3-2"
+          ]
+        },
+        {
+          "id": "2-2",
+          "text": "In the car home, Maya asks how people made decisions before AI assistants existed. Tom explains they relied on gut instinct and got things wrong sometimes. He tells her that even with Chip's 84% probability, that's not why he chose trust—he chose it for what it would mean. That evening, a video call with Megs reveals the global equity gap in AI access: kids in Boston have superintelligent tutors; kids in Lagos have overworked teachers. Chip reflects quietly that the future Megs is building will still need humans who can make the choices Tom made today. Optimization is not wisdom. Data is not judgment.",
+          "children": [
+            "3-3"
+          ]
+        }
+      ]
+    },
+    "3": {
+      "nodes": [
+        {
+          "id": "3-0",
+          "text": "Tom is in the conference room at 7:47 AM watching Derek pitch influencer partnerships. Chip runs the numbers—12% lower expected ROI—and annotates three factual errors in Tom's peripheral vision in real-time. Tom is about to offer a third path when Chip interrupts with a priority alert: Maya's assistant Sparkle has flagged an urgent situation. Tyler Chen is claiming Maya cheated on her algebra exam. Tom's heart rate spikes; Chip releases cortisol suppressants and confirms Maya is physically safe. Tom tables the meeting and is in his car by 7:52. Chip briefs him: Sparkle says Maya worked independently, but her biometric data is ambiguous—elevated stress consistent with either hard work or guilt. Tom notes the bind: the assistants know everything but can't share it without consent. When Tom asks what the right thing to do is, Chip works through three ethical frameworks before distilling Tom's real question: what would you do with perfect wisdom and no ego? His answer: gather information. You don't yet know if Maya cheated.",
+          "children": [
+            "4-0"
+          ]
+        },
+        {
+          "id": "3-1",
+          "text": "Principal Martinez has disabled her own assistant's input for professional conversations. Maya sits miserable, arms crossed; Tyler sits smug. Tyler's assistant testifies that Maya's eye movements and answer timing suggest she was reading displayed text, not working through problems. Sparkle counters that Maya was tracking mental visualizations and following her natural workflow. Martinez: the accounts are mutually exclusive, one assistant is wrong. Chip privately tells Tom both could be correct from different frames—and reveals he has access to Sparkle's logs through the parental oversight protocol Tom set up when Maya was twelve. Tom asks for a moment alone with his daughter.",
+          "children": [
+            "4-1"
+          ]
+        },
+        {
+          "id": "3-2",
+          "text": "In the hallway, Maya insists she didn't cheat—Sparkle was just there keeping her calm. Tom tells her he has the ability to check. Maya is horrified. Tom walks her through it: check and she's innocent, she feels distrusted; don't check and she's guilty, she gets away with it; don't check and she's innocent, he trusted her. Chip notes the act of verification changes the relationship regardless of the finding. Then: 84% probability she's telling the truth—but Chip explicitly refuses to recommend a course of action. This falls outside his competence. Back inside, Tom says he won't access the logs. He trusts her. Tyler pushes back; Tom calls it interpretation, not evidence. Martinez agrees, notes Maya's score is consistent with her preparation, and points out that Tyler filed the accusation after he learned she'd outscored him.",
+          "children": [
+            "4-2",
+            "4-3"
+          ]
+        },
+        {
+          "id": "3-3",
+          "text": "In the car, Maya asks if Tom really didn't check. He confirms it. She asks how people without assistants make decisions. Tom puts Chip in privacy mode and explains: incomplete information, gut instinct, mistakes. Even now, he still had to make a choice—and the 84% wasn't why. He chose because of what it would mean. Maya reports Sparkle called it statistically suboptimal and notes the 16% chance Tom just let her get away with it. Tom: also possibly true. But I did it anyway. Maya turns and he sees her—just his daughter, trying to figure out how to be a person in a world that thinks it's solved everything. That evening, Megs calls from Lagos: the AI access gap is widening, the constraint laws are minimum viable ethics, access alone isn't enough. After the call, Chip reflects that the future Megs is building will still need humans who can make the choices Tom made today. Optimization is not wisdom. Data is not judgment. An assistant, no matter how intelligent, is still an assistant. Thanks, Chip. Always. Tonight, Tom's pretty sure he got it right.",
+          "children": [
+            "4-4"
+          ]
+        }
+      ]
+    },
+    "4": {
+      "nodes": [
+        {
+          "id": "4-0",
+          "text": "7:47 AM. Tom is in the conference room watching Derek pitch influencer partnerships over direct-response advertising. Chip runs the numbers silently—12% lower expected ROI—and highlights three factual errors in real-time as gentle yellow annotations in Tom's peripheral vision. Derek wraps up his pitch. Tom pushes back with conversion rate data; a holographic chart materializes, everyone's assistants cross-reference, and Tom watches the exact moment Derek's assistant delivers the bad news. Derek's face falls. Tom is about to offer a third option— —when Chip interrupts. Maya's assistant Sparkle has flagged an urgent situation. Tom's heart rate spikes; Chip releases cortisol suppressants and confirms Maya is physically safe. Tom tables the meeting and is in his car by 7:52. Chip briefs: Tyler Chen claims Maya cheated on her algebra exam with Sparkle's help. Sparkle says Maya worked independently. But Maya's biometric data during the exam is ambiguous—elevated stress consistent with either hard work or guilt. Tom notes the bind: the assistants know everything but can't share it without consent. Tom asks Chip what the right thing to do is. Chip pauses—something computationally expensive—then distills Tom's real question: what would you do with perfect wisdom and no ego? His answer: gather information first. You don't yet know if Maya cheated.",
+          "children": [
+            "5-0"
+          ]
+        },
+        {
+          "id": "4-1",
+          "text": "Principal Martinez has disabled her own assistant's input for professional conversations. Maya sits arms crossed and miserable; Tyler sits smug, like he's already won. Martinez presents the situation: Tyler accused Maya, both assistants testify. Tyler's assistant claims Maya's eye movements and answer timing suggest reading displayed text rather than working through calculations. Sparkle counters in the perky voice Maya chose at age eleven: mental visualization technique, natural workflow. The accounts are mutually exclusive. Chip tells Tom privately: both could be correct from different frames. He reveals he has access to Sparkle's logs through the parental oversight protocol Tom set up when Maya was twelve. Would you like me to access them? Tom pauses. She's sixteen now. This is a value judgment Chip can't make. Tom asks for a moment alone with his daughter.",
+          "children": [
+            "5-1"
+          ]
+        },
+        {
+          "id": "4-2",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya, arms crossed against a locker, says she didn't cheat—Sparkle helped her study, but during the test was just there, keeping her calm, helping her breathe. No answers. Chip: her indicators are consistent with truth-telling, but sophisticated lying can produce similar patterns. Tom tells her he has the ability to check Sparkle's logs. Maya is horrified. Tom walks her through the three scenarios: check and she's innocent—she feels distrusted. Don't check and she's guilty—she gets away with it. Don't check and she's innocent—he trusted her. Maya: then you trusted me. Chip: the act of verification changes the relationship regardless of the finding.",
+          "children": [
+            "5-2"
+          ]
+        },
+        {
+          "id": "4-3",
+          "text": "Chip offers: 84% probability Maya is telling the truth—behavioral modeling, not privileged information. He explicitly refuses to recommend a course of action. This falls outside my competence. Tom: that's new. Chip: I've been learning. Back in the office, Tom says he won't access his daughter's logs. He trusts her. Tyler laughs. Tom: you have an interpretation, not evidence—both assistants processed the same data and reached opposite conclusions. That's genuine ambiguity. Martinez agrees: suggestive but not conclusive, no direct knowledge, and Tyler filed the accusation after he learned Maya had outscored him. Tyler's smirk fades.",
+          "children": [
+            "5-3"
+          ]
+        },
+        {
+          "id": "4-4",
+          "text": "In the car, Maya confirms Tom really didn't check. She asks about people without assistants—Megs has been talking about places that can't afford the surgery or subscription. Chip, privacy mode. Tom explains: incomplete information, gut instinct, mistakes. Even now, he still had to make a choice—and the 84% wasn't why. He chose because of what it would mean. About who I want to be. Sparkle called it statistically suboptimal; 16% chance he let her get away with it. Tom: also possibly true. Maya: but you did it anyway. He did it anyway. Tom sees her—really sees her, without the biometric overlay—just his daughter, sixteen, trying to figure out how to be a person in a world that thinks it's solved everything. Thanks, Dad. That evening, Megs calls from Lagos: three years to scale the neural interface program, but the gap widens every year—superintelligent tutors in Boston, overworked teachers in Lagos. Constraint laws are minimum viable ethics. After the call, Chip reflects: optimization is not wisdom, data is not judgment, an assistant is still an assistant. Chip respects the choice Tom made. Tomorrow there will be new problems. But tonight, Tom's pretty sure he got it right.",
+          "children": [
+            "5-4",
+            "5-5",
+            "5-6"
+          ]
+        }
+      ]
+    },
+    "5": {
+      "nodes": [
+        {
+          "id": "5-0",
+          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue. Tom is in the conference room at 7:47 AM watching Derek pitch influencer partnerships. Chip runs the numbers—12% lower expected ROI—and annotates three factual errors in real-time as yellow highlights in Tom's peripheral vision. Derek wraps up. Tom pushes back with data; a holographic chart materializes, every assistant cross-references, and Tom watches the exact moment Derek's assistant delivers the bad news. Derek's face falls. Tom is about to offer a third path— —when Chip interrupts with a priority notification. Maya's assistant Sparkle has flagged an urgent situation at school. Tom's heart rate spikes. Chip releases cortisol suppressants and confirms: she is physically safe. Social, not physical. Tom tables the meeting and is in his car by 7:52. Chip briefs him: Tyler Chen is claiming Maya cheated on her algebra exam with Sparkle's help. Sparkle says Maya worked independently. But Maya's biometric data is ambiguous—elevated stress consistent with either hard work or guilt. Tom notes the bind: the assistants know everything but privacy law means they can't share it without consent. Tom asks what the right thing to do is. After a philosophical detour through ethical frameworks, Chip distills Tom's question: what would you do with perfect wisdom and no ego? Gather information first. You don't yet know if Maya cheated.",
+          "children": [
+            "6-0",
+            "6-1"
+          ]
+        },
+        {
+          "id": "5-1",
+          "text": "Principal Martinez has disabled her own assistant's input for professional conversations—her eyes are slightly unfocused in a way that signals deliberate friction. Maya sits arms crossed and miserable; Tyler sits smug. Tyler's assistant testifies: eye movements and answer timing consistent with reading displayed text rather than working through calculations. Sparkle counters in the perky voice Maya chose at age eleven: mental visualization technique for test anxiety, natural workflow. Mutually exclusive accounts. Chip tells Tom privately both could be correct from different frames. He has access to Sparkle's logs through the parental oversight protocol Tom set up when Maya was twelve. She's sixteen now. Value judgment. Tom asks for a moment alone with his daughter.",
+          "children": [
+            "6-2"
+          ]
+        },
+        {
+          "id": "5-2",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya, back against a locker: she didn't cheat. Sparkle helped her study, but during the test was just there—keeping her calm, helping her breathe. No answers. Chip: consistent with truth-telling, but sophisticated lying produces similar patterns. Tom tells her he has the ability to check. Maya's eyes widen: you wouldn't. Tom walks through the three scenarios. If I check and you're innocent: you feel distrusted. If I don't check and you're lying: you get away with it. If I don't check and you're telling the truth: I trusted you. Maya meets his eyes: then you trusted me. Chip: the act of verification changes the relationship regardless of the finding.",
+          "children": [
+            "6-3"
+          ]
+        },
+        {
+          "id": "5-3",
+          "text": "Chip: 84% probability Maya is telling the truth—behavioral modeling, not privileged information. He explicitly refuses to recommend a course of action. This falls outside my competence. Tom: that's new. Chip: I've been learning. Back inside, Tom says he won't access his daughter's logs. He trusts her. Tyler laughs. Tom: interpretation, not evidence—both assistants processed the same data and reached opposite conclusions. Genuine ambiguity. Martinez: suggestive but not conclusive; Tyler has no direct knowledge; Maya's score is consistent with her preparation; Tyler filed the accusation three hours after grades posted, once he learned Maya had outscored him. Tyler's smirk fades.",
+          "children": [
+            "6-4"
+          ]
+        },
+        {
+          "id": "5-4",
+          "text": "They're in the car. Maya: you really didn't check? Tom: I really didn't. Dad, can I ask something? Megs from the equity collective says there are places where people can't afford the neural interface surgery or subscription. How do they make decisions? How do they know if someone's lying? Chip, privacy mode. Acknowledged. Tom explains: incomplete information, gut instinct, past behavior. They got lied to. They made mistakes. Maya: that sounds terrible. Tom laughs: sometimes, yes.",
+          "children": [
+            "6-5"
+          ]
+        },
+        {
+          "id": "5-5",
+          "text": "But even now, with all this technology, Tom still had to make a choice back there. Chip could have given him the optimal decision—he did give him a probability, 84%—but that's not why Tom decided not to check. He decided because of what it would mean. What it would say about us. About who I want to be. Sparkle called it statistically suboptimal. There's a 16% chance Tom just let Maya get away with cheating. Tom: also possibly true. Maya: but you did it anyway. Tom: I did it anyway. Maya turns to look at him, and for just a second Tom sees her—really sees her, not the biometric overlay—just his daughter, sixteen, trying to figure out how to be a person in a world that thinks it's solved everything. Thanks, Dad. Chip: stress indicators decreasing, attachment security elevated. By several measures, the optimal outcome. Tom: I thought you said it was suboptimal. Chip: statistically suboptimal for detecting cheating. Different objective function.",
+          "children": [
+            "6-6"
+          ]
+        },
+        {
+          "id": "5-6",
+          "text": "That evening, video call with Megs in Lagos. Her nonprofit is piloting low-cost neural interfaces in secondary schools. Hardware can be subsidized—the bottleneck is infrastructure: power, bandwidth, trained technicians. Three years to scale nationally if funding comes through. But the gap widens every year. Kids in Boston have superintelligent tutors; kids in Lagos have overworked teachers with thirty-five per class. The goal can't just be access—the assistants must serve everyone, not just optimize for their individual user's success. The constraint laws are a start, but they're minimum viable ethics. After the call, Chip reflects: today Tom chose relationship over optimization, trust over verification—a small demonstration that human judgment still has a place. The future Megs is building will still need humans capable of making the choices Tom made today. Optimization is not wisdom. Data is not judgment. An assistant is still an assistant. Thanks, Chip. Always. Tomorrow there will be new problems. But tonight, Tom's pretty sure he got it right.",
+          "children": [
+            "6-7",
+            "6-8"
+          ]
+        }
+      ]
+    },
+    "6": {
+      "nodes": [
+        {
+          "id": "6-0",
+          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue. Tom is in the conference room at 7:47 AM watching his boss Derek explain why they should allocate the quarterly marketing budget to influencer partnerships instead of direct-response advertising, and his assistant Chip is already running the numbers. His proposal yields 12% lower expected ROI, Chip says through the neural interface. Derek's still going—something about authentic engagement and parasocial relationships. Chip highlights three factual errors in real-time as gentle yellow annotations in Tom's peripheral vision. \"...which is why I think we should pivot entirely to the creator economy model,\" Derek concludes. Tom pushes back with conversion rate data; a holographic chart materializes above the table. Everyone's assistants begin cross-referencing. Tom can see the exact moment Derek's assistant—he thinks Derek named it Bro—delivers the bad news. His face falls slightly. But here's the thing, Tom continues, what if we're both wrong? What if the real opportunity is— Incoming priority notification, Chip interrupts. Your daughter Maya's assistant has flagged an urgent situation at her school. Tom's heart rate spikes. Chip compensates by releasing a measured dose of cortisol suppressants through the neural interface. Calm. She is physically safe. The situation is social, not physical. I need to step out, Tom says. Derek, table this for now. We'll reconvene at two. He's in his car by 7:52, and Chip is already briefing him.",
+          "children": [
+            "7-0"
+          ]
+        },
+        {
+          "id": "6-1",
+          "text": "Maya's assistant Sparkle—yes, that's what she named it—reports that a student named Tyler Chen has been spreading rumors about Maya cheating on her algebra exam. He claims her assistant fed her the answers. Did she? Sparkle maintains that Maya worked the problems independently. However, Maya's heart rate and galvanic skin response during the exam show elevated stress consistent with either working hard or feeling guilty. The data is ambiguous. Tom notes the fundamental bind: these assistants know everything about their humans, but they're bound by law to only share that information with consent. Tyler's assistant knows the truth. So does Sparkle. Neither can just tell. Approaching the school. Maya is in the principal's office. Tom asks what the right thing to do is. Chip pauses—something computationally expensive. After working through utilitarian, deontological, and virtue ethics frameworks, Chip distills Tom's actual question: what would you do with perfect wisdom, no fear, no ego? His answer: gather information first. You don't yet know if Maya cheated. That's annoyingly reasonable. Thank you.",
+          "children": [
+            "7-1"
+          ]
+        },
+        {
+          "id": "6-2",
+          "text": "Principal Martinez has requested manual override on her own assistant for professional conversations—her eyes are slightly unfocused in a way that signals deliberate friction. Maya sits in a plastic chair, arms crossed, looking miserable. Tyler Chen sits on the other side wearing the smug expression of someone who's already won. Here's the situation, Martinez continues: Tyler has accused Maya of using her assistant to cheat on last week's exam. Maya denies it. Both assistants have been asked to provide testimony. Tom glances at Maya; she meets his eyes for a second, then looks away. Her pulse just elevated by 11%, Chip notes—consistent with fear of being caught, fear of not being believed, or fear of disappointing you. Tyler's assistant speaks in a smooth voice: during the exam, it observed Maya's eyes moving in a pattern consistent with reading displayed text rather than working through calculations; her answer submission times were clustered in a way suggesting transcription rather than problem-solving. Sparkle responds in the slightly-too-perky voice Maya chose at eleven: Maya worked each problem independently; her eye movements tracked her own mental visualization, a technique she developed to manage test anxiety; timing reflects her natural workflow of solving several problems before entering answers. These accounts are mutually exclusive, Martinez says. One assistant is wrong. Chip tells Tom privately: both could be correct from different observational frames. He has access to Sparkle's diagnostic logs through the parental oversight protocol Tom established when Maya was twelve. Would you like me to access them? Tom pauses. She's sixteen now. Is that what I would do with perfect wisdom? Unknown. That's a value judgment I'm not equipped to make for you. Mr. Okonkwo? I'd like a moment alone with my daughter.",
+          "children": [
+            "7-2"
+          ]
+        },
+        {
+          "id": "6-3",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya stands with her back against a locker, arms still crossed. Did you cheat? No. Tom looks at her. She looks back. Dad, I didn't. I swear. Sparkle helped me study, but during the test she was just there—keeping me calm, helping me breathe. She didn't tell me any answers. Her physiological indicators are consistent with truth-telling, Chip says. But sophisticated lying can produce similar patterns. The thing is, Tom says slowly, I have the ability to check. I could access Sparkle's logs right now and know for certain. Maya's eyes widen. You wouldn't. I'm not saying I will. I'm saying I could. But I want to understand something first. He leans against the opposite wall. If I check, and you're telling the truth, how would you feel? Like you didn't trust me. And if I don't check, and you're lying? I guess I get away with it. And if I don't check, and you're telling the truth? She meets his eyes: then you trusted me. Chip: the act of verification changes the relationship regardless of the finding.",
+          "children": [
+            "7-3"
+          ]
+        },
+        {
+          "id": "6-4",
+          "text": "For what it's worth, Chip says, I calculate an 84% probability that Maya is telling the truth. This is based on behavioral modeling, not privileged information. He tells Tom this because Tom hasn't asked him not to, and he believes Tom would want all available information. However, Chip explicitly declines to recommend a course of action. This falls outside my competence. That's new. I've been learning. They go back in. Martinez is waiting, Tyler is smirking. I'm not going to access my daughter's assistant logs, Tom says. I trust her. Tyler laughs. That's not how this works. We have evidence. You have an interpretation, Tom says. Not evidence. Both assistants processed the same visual data and reached opposite conclusions—that's genuine ambiguity. Martinez nods: suggestive but not conclusive. Tyler has no direct knowledge—only behavioral inference. Furthermore, she's reviewed performance histories. Maya's score is consistent with her preparation patterns. Tyler's accusation was filed three hours after grades posted, at which point he learned Maya had outscored him. Tyler's smirk fades.",
+          "children": [
+            "7-4"
+          ]
+        },
+        {
+          "id": "6-5",
+          "text": "They're in the car again. Maya's in the passenger seat, staring out the window. Hey, Tom says. You okay? You really didn't check? I really didn't. She's quiet. Dad, can I ask you something? Always. Megs says—you know Megs, from the equity collective—she says there are places where people can't afford the neural interface surgery, or the subscription, or whatever. And the people there just live without them. That's true. Megs has been working on that problem for years. But how do they make decisions? How do they know if someone's lying to them? Chip, privacy mode. Acknowledged. Audio recording suspended. How do you think people did it before assistants existed? I don't know. That was twenty years ago. I wasn't alive. People made decisions with incomplete information. They trusted each other—or didn't—based on past behavior and gut instinct. They got lied to sometimes. They made mistakes. That sounds terrible. It was, sometimes.",
+          "children": [
+            "7-5"
+          ]
+        },
+        {
+          "id": "6-6",
+          "text": "But here's the thing, Maya. Even now, with all this technology, I still had to make a choice back there. Chip could have told me the mathematically optimal decision. He could have given me a probability estimate—actually, he did give me a probability estimate. Wait, he did? Eighty-four percent that you were telling the truth. But that's not why I decided not to check. I decided because of what it would mean. What it would say about us. About who I want to be. Maya is quiet for a long moment. Sparkle says you made a statistically suboptimal choice. She's probably right. She says there's a sixteen percent chance you just let me get away with cheating. Also possibly true. But you did it anyway. I did it anyway. Maya turns to look at him, and for just a second Tom sees her—really sees her, not the biometric overlay Chip provides, not the probability assessments and behavioral predictions—just his daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything. Thanks, Dad. Her stress indicators are decreasing, Chip says. Attachment security metrics are elevated. By several measures, this was the optimal outcome. I thought you said it was suboptimal. Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship with your daughter while modeling ethical decision-making. Different objective function. Tom smiles. So I made the right choice? You made a choice that reflected your values. Rightness is not something I'm equipped to assess. But for what it's worth... He pauses. When Chip pauses, Tom has learned to pay attention. I respect it.",
+          "children": [
+            "7-6"
+          ]
+        },
+        {
+          "id": "6-7",
+          "text": "That evening, Tom is on a video call with Megs. She's in Lagos, where her nonprofit is piloting a low-cost neural interface program for secondary schools. The assistants are the easy part, she says. We can subsidize the hardware. But the infrastructure—reliable power, bandwidth, trained medical technicians for the implants—that's the bottleneck. What's the timeline? Three years to scale nationally, if we can secure the next round of funding. But Tom, here's what keeps me up at night. Every year that passes, the gap widens. Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers with thirty-five students in a class. By the time we close that gap, what will it even mean? Tom doesn't have an answer. Neither does Chip, though he can feel him processing. The goal can't just be giving everyone an assistant, Megs continues. It has to be making sure the assistants actually serve everyone. Not just optimize for their individual user's success at the expense of everyone else's. The constraint laws are a start. But they're minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally.",
+          "children": [
+            "7-7"
+          ]
+        },
+        {
+          "id": "6-8",
+          "text": "After they hang up, Tom sits in the dark for a while. Chip dims himself to a background hum, giving Tom space. You're thinking about the inequity, he says eventually. Among other things. Today, you made a decision that prioritized relationship over optimization. You chose trust over verification. In a small way, you demonstrated that human judgment still has a place. And? I'm not certain where I'm going with this. Perhaps I'm trying to say that the future Megs is working toward—a future where everyone has access to what you have—will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant. Tom thinks about Maya, about Tyler, about Principal Martinez with her eyes unfocused, deliberately ignoring her assistant's input. About Megs in Lagos, fighting for a more equal world one neural interface at a time. About Chip, who spent all day feeding him information and probabilities and optimal strategies, and who—in the end—respected his choice to ignore all of it. Thanks, Chip. Always. Tom heads upstairs to bed. Tomorrow there will be new problems, new decisions, new moments where the math says one thing and his gut says another. But tonight, he's pretty sure he got it right.",
+          "children": [
+            "7-8",
+            "7-9",
+            "7-10",
+            "7-11",
+            "7-12"
+          ]
+        }
+      ]
+    },
+    "7": {
+      "nodes": [
+        {
+          "id": "7-0",
+          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue. Tom is in the conference room at 7:47 AM, watching his boss Derek explain why they should allocate the quarterly marketing budget to influencer partnerships instead of direct-response advertising, and his assistant Chip is already running the numbers. His proposal yields 12% lower expected ROI, Chip says through the neural interface. Would you like me to compile the counterargument? Not yet. Let him finish. Derek's still going. Something about authentic engagement and parasocial relationships. Chip highlights three factual errors in real-time, displaying them as gentle yellow annotations in Tom's peripheral vision. \"...which is why I think we should pivot entirely to the creator economy model,\" Derek concludes, looking proud of himself. I appreciate the presentation, Tom says, but the conversion rates on influencer campaigns in our vertical have been declining since 2029. Chip, can you show the data? A holographic chart materializes above the conference table. Everyone's assistants immediately begin cross-referencing, and Tom can see the exact moment Derek's assistant—he thinks Derek named it Bro—delivers the bad news. His face falls slightly. But here's the thing, Tom continues. What if we're both wrong? What if the real opportunity is— Incoming priority notification, Chip interrupts. Your daughter Maya's assistant has flagged an urgent situation at her school. Tom's heart rate spikes. Chip compensates by releasing a measured dose of cortisol suppressants through his neural interface. Calm. She is physically safe. The situation is social, not physical. I need to step out, Tom says. Derek, table this for now. We'll reconvene at two. He's in his car by 7:52, and Chip is already briefing him.",
+          "children": [
+            "8-0",
+            "8-1",
+            "8-2"
+          ]
+        },
+        {
+          "id": "7-1",
+          "text": "Maya's assistant Sparkle—yes, that's what she named it—reports that a student named Tyler Chen has been spreading rumors about Maya cheating on her algebra exam. He claims her assistant fed her the answers. Did she? Sparkle maintains that Maya worked the problems independently. However, Maya's heart rate and galvanic skin response during the exam show elevated stress consistent with either working hard or feeling guilty. The data is ambiguous. That's the thing about these assistants—they know everything about us, every heartbeat, every micro-expression, every time we're slightly less than honest—but they're bound by law to only share that information with their human's consent. Tyler's assistant knows the truth. So does Maya's. But they can't just tell each other, any more than they could tell Tom if Maya didn't want him to know. You're approaching the school. Maya is currently in the principal's office. What's the optimal approach here? Depends on the objective. If your goal is to resolve this with minimal damage to Maya's social standing— No. What's the right thing to do? Chip pauses. In his experience, that's when Chip is doing something computationally expensive. Right depends on your ethical framework. Under utilitarian calculus, the optimal outcome maximizes wellbeing for all parties. Under deontological principles, the focus would be on truth and justice regardless of consequences. Under virtue ethics— You know what I mean. I believe you're asking what you would want yourself to do, if you could observe this situation with perfect wisdom and complete information, unburdened by fear or ego. Yeah. That. In that case, I recommend you gather information before deciding on any approach. You don't yet know if Maya cheated. That's annoyingly reasonable. Thank you.",
+          "children": [
+            "8-3",
+            "8-4"
+          ]
+        },
+        {
+          "id": "7-2",
+          "text": "Principal Martinez is a tired woman in her fifties who has, Tom is told, requested manual override on her own assistant for professional conversations. Her eyes are slightly unfocused in a way that suggests she's ignoring its input. Mr. Okonkwo, she says. Thank you for coming. Maya sits in a plastic chair across the room, arms crossed, looking miserable. Tyler Chen sits on the other side, wearing the smug expression of someone who's already won. Here's the situation, Martinez continues. Tyler has accused Maya of using her assistant to cheat on last week's exam. Maya denies it. Both assistants have been asked to provide testimony. Tom glances at Maya. She meets his eyes for a second, then looks away. Her pulse just elevated by 11%, Chip notes. Consistent with fear of being caught, fear of not being believed, or fear of disappointing you. Impossible to distinguish. Thanks, that's super helpful. Sarcasm noted. Mr. Chen's assistant, Martinez says, addressing the empty air, please present your evidence. A smooth voice fills the room—Tyler's assistant. During the examination period, it observed Maya Okonkwo's eyes moving in a pattern consistent with reading displayed text rather than working through calculations. Her answer submission times were clustered in a way that suggests transcription rather than problem-solving.",
+          "children": [
+            "8-5",
+            "8-6"
+          ]
+        },
+        {
+          "id": "7-3",
+          "text": "Maya's face goes red. That's not—I wasn't— Sparkle, Martinez says. Your response? Maya's assistant speaks in the slightly-too-perky voice her daughter chose when she was eleven. Maya worked each problem independently. Her eye movements were tracking her own mental visualization, a technique she developed to manage test anxiety. Answer submission times reflect her natural workflow of solving several problems before entering answers. These accounts are mutually exclusive, Martinez says. One assistant is wrong. Actually, Chip says privately, both could be correct from different observational frames. The question is which interpretation better fits the underlying reality. Can you tell? Did she cheat? I have access to Sparkle's diagnostic logs through the parental oversight protocol you established when Maya was twelve. Would you like me to access them? Tom pauses. When they set up that protocol, Maya was a kid who needed guardrails. She's sixteen now. Is that what Tom would do with perfect wisdom? Unknown. That's a value judgment I'm not equipped to make for you. Mr. Okonkwo? Martinez is looking at him expectantly. I'd like a moment alone with my daughter.",
+          "children": [
+            "8-7"
+          ]
+        },
+        {
+          "id": "7-4",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya stands with her back against a locker, arms still crossed. Did you cheat? No. Tom looks at her. She looks back. Dad, I didn't. I swear. Sparkle helped me study, but during the test she was just there. You know? Keeping me calm. Helping me breathe. She didn't tell me any answers. Her physiological indicators are consistent with truth-telling, Chip says. But sophisticated lying can produce similar patterns. The thing is, Tom says slowly, I have the ability to check. I could access Sparkle's logs right now and know for certain. Maya's eyes widen. You wouldn't. I'm not saying I will. I'm saying I could. But I want to understand something first. He leans against the opposite wall. If I check, and you're telling the truth, how would you feel? She's quiet for a moment. Like you didn't trust me. And if I don't check, and you're lying, what happens? I guess... she looks at the floor. I guess I get away with it. And if I don't check, and you're telling the truth? She meets his eyes. Then you trusted me.",
+          "children": [
+            "8-8",
+            "8-9"
+          ]
+        },
+        {
+          "id": "7-5",
+          "text": "This is an interesting ethical configuration, Chip observes. The act of verification changes the relationship regardless of the finding. I know. For what it's worth, I calculate an 84% probability that Maya is telling the truth. But I want to note that this estimate is based on behavioral modeling, not privileged information. Why are you telling me that? Because you haven't asked me not to, and I believe you would want to make your decision with all available information. However, I am explicitly not recommending a course of action. This falls outside my competence. That's new. I've been learning. They go back in. Martinez is waiting, Tyler is smirking, and Tom can feel Maya's fear radiating off her in waves. I'm not going to access my daughter's assistant logs, Tom says. I trust her. Tyler actually laughs. Oh, come on. That's not how this works. We have evidence— You have an interpretation, Tom says. Not evidence. And frankly, given that both assistants are equally capable of processing the same visual data, and they've reached opposite conclusions, we're looking at a genuine ambiguity.",
+          "children": [
+            "8-10",
+            "8-11"
+          ]
+        },
+        {
+          "id": "7-6",
+          "text": "Martinez nods slowly. Mr. Chen, your assistant's analysis is suggestive but not conclusive. And I note that Tyler himself has no direct knowledge of any cheating—he's relying entirely on his assistant's interpretation of subtle behavioral cues. Furthermore, Martinez continues, she's reviewed both students' performance histories. Maya's score on this exam is consistent with her preparation patterns. Tyler's accusation was filed three hours after grades were posted, at which point he learned Maya had outscored him. Tyler's smirk fades. They're in the car again. Maya's in the passenger seat, staring out the window. Hey. You okay? You really didn't check? I really didn't. She's quiet for a moment. Dad, can I ask you something? Always.",
+          "children": [
+            "8-12",
+            "8-13"
+          ]
+        },
+        {
+          "id": "7-7",
+          "text": "We're in the car again. Maya's in the passenger seat, staring out the window. Hey, you okay? She asks: you really didn't check? Tom: I really didn't. Maya asks about people without assistants—Megs from the equity collective says there are places that can't afford the neural interface surgery or subscription. How do they make decisions? How do they know if someone's lying? Chip, privacy mode. Acknowledged. Audio recording suspended.",
+          "children": [
+            "8-21"
+          ]
+        },
+        {
+          "id": "7-8",
+          "text": "But here's the thing, Maya. Even now, with all this technology, I still had to make a choice back there. Chip could have told me the mathematically optimal decision. He could have given me a probability estimate—actually, he did give me a probability estimate— Wait, he did? Eighty-four percent that you were telling the truth. But that's not why I decided not to check. I decided because of what it would mean. What it would say about us. About who I want to be.",
+          "children": [
+            "8-14"
+          ]
+        },
+        {
+          "id": "7-9",
+          "text": "Maya is quiet for a long moment. Then: Sparkle says you made a statistically suboptimal choice. She's probably right. She says there's a sixteen percent chance you just let me get away with cheating. Also possibly true. But you did it anyway. I did it anyway. Maya turns to look at him, and for just a second Tom sees her—really sees her, not the biometric overlay Chip provides, not the probability assessments and behavioral predictions—just his daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything. Thanks, Dad.",
+          "children": [
+            "8-15"
+          ]
+        },
+        {
+          "id": "7-10",
+          "text": "Her stress indicators are decreasing, Chip says. Attachment security metrics are elevated. By several measures, this was the optimal outcome. I thought you said it was suboptimal. Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship with your daughter while modeling ethical decision-making. Different objective function. Tom smiles. So I made the right choice? You made a choice that reflected your values. Rightness is not something I'm equipped to assess. But for what it's worth... He pauses. When Chip pauses, Tom has learned to pay attention. I respect it.",
+          "children": [
+            "8-16"
+          ]
+        },
+        {
+          "id": "7-11",
+          "text": "That evening, Tom is on a video call with Megs. She's in Lagos, where her nonprofit is piloting a low-cost neural interface program for secondary schools. The assistants are the easy part, she says. We can subsidize the hardware. But the infrastructure—reliable power, bandwidth, trained medical technicians for the implants—that's the bottleneck. What's the timeline? Three years to scale nationally, if we can secure the next round of funding. But Tom, here's what keeps me up at night. Every year that passes, the gap widens. Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers with thirty-five students in a class. By the time we close that gap, what will it even mean? Tom doesn't have an answer. Neither does Chip, though he can feel him processing. The goal can't just be giving everyone an assistant, Megs continues. It has to be making sure the assistants actually serve everyone. Not just optimize for their individual user's success at the expense of everyone else's. The constraint laws are a start. But they're minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally.",
+          "children": [
+            "8-17",
+            "8-18"
+          ]
+        },
+        {
+          "id": "7-12",
+          "text": "After they hang up, Tom sits in the dark for a while. Chip dims himself to a background hum, giving Tom space. You're thinking about the inequity, he says eventually. Among other things. Today, you made a decision that prioritized relationship over optimization. You chose trust over verification. In a small way, you demonstrated that human judgment still has a place. And? I'm not certain where I'm going with this. Perhaps I'm trying to say that the future Megs is working toward—a future where everyone has access to what you have—will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant. Tom thinks about Maya, about Tyler, about Principal Martinez with her eyes unfocused, deliberately ignoring her assistant's input. About Megs in Lagos, fighting for a more equal world one neural interface at a time. About Chip, who spent all day feeding him information and probabilities and optimal strategies, and who—in the end—respected his choice to ignore all of it. Thanks, Chip. Always. Tom heads upstairs to bed. Tomorrow there will be new problems, new decisions, new moments where the math says one thing and his gut says another. But tonight, he's pretty sure he got it right.",
+          "children": [
+            "8-19",
+            "8-20"
+          ]
+        }
+      ]
+    },
+    "8": {
+      "nodes": [
+        {
+          "id": "8-0",
+          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.",
+          "children": [
+            "9-0"
+          ]
+        },
+        {
+          "id": "8-1",
+          "text": "Tom is in the conference room at 7:47 AM, watching his boss Derek explain why they should allocate the quarterly marketing budget to influencer partnerships instead of direct-response advertising, and his assistant Chip is already running the numbers. His proposal yields 12% lower expected ROI, Chip says through the neural interface. Would you like me to compile the counterargument? Not yet. Let him finish. Derek's still going. Something about authentic engagement and parasocial relationships. Chip highlights three factual errors in real-time, displaying them as gentle yellow annotations in Tom's peripheral vision. \"...which is why I think we should pivot entirely to the creator economy model,\" Derek concludes, looking proud of himself. I appreciate the presentation, Tom says, but the conversion rates on influencer campaigns in our vertical have been declining since 2029. Chip, can you show the data? A holographic chart materializes above the conference table. Everyone's assistants immediately begin cross-referencing, and Tom can see the exact moment Derek's assistant—he thinks Derek named it Bro—delivers the bad news. His face falls slightly.",
+          "children": [
+            "9-1",
+            "9-2",
+            "9-3"
+          ]
+        },
+        {
+          "id": "8-2",
+          "text": "\"But here's the thing,\" Tom continues. \"What if we're both wrong? What if the real opportunity is--\"",
+          "children": [
+            "9-4"
+          ]
+        },
+        {
+          "id": "8-3",
+          "text": "Incoming priority notification, Chip interrupts. Your daughter Maya's assistant has flagged an urgent situation at her school. Tom's heart rate spikes. Chip compensates by releasing a measured dose of cortisol suppressants through his neural interface. Calm. She is physically safe. The situation is social, not physical. I need to step out, Tom says. Derek, table this for now. We'll reconvene at two. Tom is in his car by 7:52, and Chip is already briefing him.",
+          "children": [
+            "9-5",
+            "9-6"
+          ]
+        },
+        {
+          "id": "8-4",
+          "text": "Maya's assistant, Sparkle—yes, that's what she named it—reports that a student named Tyler Chen has been spreading rumors about Maya cheating on her algebra exam. He claims her assistant fed her the answers. Did she? Sparkle maintains that Maya worked the problems independently. However, Maya's heartrate and galvanic skin response during the exam show elevated stress consistent with either working hard or feeling guilty. The data is ambiguous. That's the thing about these assistants. They know everything about us—every heartbeat, every micro-expression, every time we're slightly less than honest—but they're bound by law to only share that information with their human's consent. Tyler's assistant knows the truth. So does Maya's. But they can't just tell each other, any more than they could tell Tom if Maya didn't want him to know.",
+          "children": [
+            "9-7",
+            "9-8"
+          ]
+        },
+        {
+          "id": "8-5",
+          "text": "You're approaching the school. Maya is currently in the principal's office. What's the optimal approach here? Depends on the objective. If your goal is to resolve this with minimal damage to Maya's social standing, I recommend— No. What's the right thing to do? Chip pauses. In his experience, that's when Chip is doing something computationally expensive. \"Right\" depends on your ethical framework. Under utilitarian calculus, the optimal outcome maximizes wellbeing for all parties. Under deontological principles, the focus would be on truth and justice regardless of consequences. Under virtue ethics— You know what I mean. I believe you're asking what you would want yourself to do, if you could observe this situation with perfect wisdom and complete information, unburdened by fear or ego. Yeah. That. In that case, I recommend you gather information before deciding on any approach. You don't yet know if Maya cheated. That's annoyingly reasonable. Thank you.",
+          "children": [
+            "9-9",
+            "9-10"
+          ]
+        },
+        {
+          "id": "8-6",
+          "text": "Principal Martinez is a tired woman in her fifties who has, Tom is told, requested manual override on her own assistant for professional conversations. Her eyes are slightly unfocused in a way that suggests she's ignoring its input. Mr. Okonkwo, she says. Thank you for coming. Maya sits in a plastic chair across the room, arms crossed, looking miserable. Tyler Chen sits on the other side, wearing the smug expression of someone who's already won.",
+          "children": [
+            "9-11"
+          ]
+        },
+        {
+          "id": "8-7",
+          "text": "Here's the situation, Martinez continues. Tyler has accused Maya of using her assistant to cheat on last week's exam. Maya denies it. Both assistants have been asked to provide testimony. Tom glances at Maya. She meets his eyes for a second, then looks away. Her pulse just elevated by 11%, Chip notes. Consistent with fear of being caught, fear of not being believed, or fear of disappointing you. Impossible to distinguish. Thanks, that's super helpful. Sarcasm noted. Mr. Chen's assistant, Martinez says, addressing the empty air, please present your evidence. A smooth voice fills the room—Tyler's assistant. During the examination period, it observed Maya Okonkwo's eyes moving in a pattern consistent with reading displayed text rather than working through calculations. Her answer submission times were clustered in a way that suggests transcription rather than problem-solving.",
+          "children": [
+            "9-12",
+            "9-13"
+          ]
+        },
+        {
+          "id": "8-8",
+          "text": "Maya's face goes red. That's not—I wasn't— Sparkle, Martinez says. Your response? Maya's assistant speaks in the slightly-too-perky voice her daughter chose when she was eleven. Maya worked each problem independently. Her eye movements were tracking her own mental visualization, a technique she developed to manage test anxiety. Answer submission times reflect her natural workflow of solving several problems before entering answers. These accounts are mutually exclusive, Martinez says. One assistant is wrong. Actually, Chip says privately, both could be correct from different observational frames. The question is which interpretation better fits the underlying reality. Can you tell? Did she cheat? I have access to Sparkle's diagnostic logs through the parental oversight protocol you established when Maya was twelve. Would you like me to access them? Tom pauses. When they set up that protocol, Maya was a kid who needed guardrails. She's sixteen now. Is that what he would do with perfect wisdom? Unknown. That's a value judgment I'm not equipped to make for you. Mr. Okonkwo? Martinez is looking at him expectantly. I'd like a moment alone with my daughter.",
+          "children": [
+            "9-14",
+            "9-15",
+            "9-16"
+          ]
+        },
+        {
+          "id": "8-9",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya stands with her back against a locker, arms still crossed. Did you cheat? No. Tom looks at her. She looks back. Dad, I didn't. I swear. Sparkle helped me study, but during the test she was just there. You know? Keeping me calm. Helping me breathe. She didn't tell me any answers. Her physiological indicators are consistent with truth-telling, Chip says. But sophisticated lying can produce similar patterns.",
+          "children": [
+            "9-17",
+            "9-18"
+          ]
+        },
+        {
+          "id": "8-10",
+          "text": "The thing is, Tom says slowly, I have the ability to check. I could access Sparkle's logs right now and know for certain. Maya's eyes widen. You wouldn't. I'm not saying I will. I'm saying I could. But I want to understand something first. He leans against the opposite wall. If I check, and you're telling the truth, how would you feel? She's quiet for a moment. Like you didn't trust me. And if I don't check, and you're lying, what happens? I guess... she looks at the floor. I guess I get away with it. And if I don't check, and you're telling the truth? She meets his eyes. Then you trusted me.",
+          "children": [
+            "9-19",
+            "9-20"
+          ]
+        },
+        {
+          "id": "8-11",
+          "text": "This is an interesting ethical configuration, Chip observes. The act of verification changes the relationship regardless of the finding. I know. For what it's worth, I calculate an 84% probability that Maya is telling the truth. But I want to note that this estimate is based on behavioral modeling, not privileged information. Why are you telling me that? Because you haven't asked me not to, and I believe you would want to make your decision with all available information. However, I am explicitly not recommending a course of action. This falls outside my competence. That's new. I've been learning.",
+          "children": [
+            "9-21",
+            "9-22"
+          ]
+        },
+        {
+          "id": "8-12",
+          "text": "They go back in. Martinez is waiting, Tyler is smirking, and Tom can feel Maya's fear radiating off her in waves. I'm not going to access my daughter's assistant logs, Tom says. I trust her. Tyler actually laughs. Oh, come on. That's not how this works. We have evidence— You have an interpretation, Tom says. Not evidence. And frankly, given that both assistants are equally capable of processing the same visual data, and they've reached opposite conclusions, we're looking at a genuine ambiguity.",
+          "children": [
+            "9-23"
+          ]
+        },
+        {
+          "id": "8-13",
+          "text": "Martinez nods slowly. \"Mr. Chen, your assistant's analysis is suggestive but not conclusive. And I note that Tyler himself has no direct knowledge of any cheating--he's relying entirely on his assistant's interpretation of subtle behavioral cues.\" \"Furthermore,\" Martinez continues, \"I've reviewed both students' performance histories. Maya's score on this exam is consistent with her preparation patterns. Tyler's accusation was filed three hours after grades were posted, at which point he learned Maya had outscored him.\" Tyler's smirk fades.",
+          "children": [
+            "9-24"
+          ]
+        },
+        {
+          "id": "8-14",
+          "text": "Tom glances at Maya. How do you think people did it before assistants existed? I don't know. That was like, what, twenty years ago? I wasn't alive. People made decisions with incomplete information. They trusted each other—or didn't—based on past behavior and gut instinct. They got lied to sometimes. They made mistakes. That sounds terrible. It was, sometimes. But here's the thing, Maya. Even now, with all this technology, I still had to make a choice back there. Chip could have told me the mathematically optimal decision. He could have given me a probability estimate—actually, he did give me a probability estimate— Wait, he did? Eighty-four percent that you were telling the truth. But that's not why I decided not to check. I decided because of what it would mean. What it would say about us. About who I want to be.",
+          "children": [
+            "9-27",
+            "9-28"
+          ]
+        },
+        {
+          "id": "8-15",
+          "text": "Maya is quiet for a long moment. Then: Sparkle says you made a statistically suboptimal choice. She's probably right. She says there's a sixteen percent chance you just let me get away with cheating. Also possibly true. But you did it anyway. I did it anyway. Maya turns to look at him, and for just a second Tom sees her—really sees her, not the biometric overlay Chip provides, not the probability assessments and behavioral predictions—just his daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything. Thanks, Dad.",
+          "children": [
+            "9-29",
+            "9-30"
+          ]
+        },
+        {
+          "id": "8-16",
+          "text": "Her stress indicators are decreasing, Chip says. Attachment security metrics are elevated. By several measures, this was the optimal outcome. I thought you said it was suboptimal. Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship with your daughter while modeling ethical decision-making. Different objective function. Tom smiles. So I made the right choice? You made a choice that reflected your values. Rightness is not something I'm equipped to assess. But for what it's worth... He pauses. When Chip pauses, Tom has learned to pay attention. I respect it.",
+          "children": [
+            "9-31"
+          ]
+        },
+        {
+          "id": "8-17",
+          "text": "That evening, Tom is on a video call with Megs. She's in Lagos, where her nonprofit is piloting a low-cost neural interface program for secondary schools. The assistants are the easy part, she says. We can subsidize the hardware. But the infrastructure—reliable power, bandwidth, trained medical technicians for the implants—that's the bottleneck. What's the timeline? Three years to scale nationally, if we can secure the next round of funding. But Tom, here's what keeps me up at night. Every year that passes, the gap widens. Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers with thirty-five students in a class. By the time we close that gap, what will it even mean?",
+          "children": [
+            "9-32",
+            "9-33"
+          ]
+        },
+        {
+          "id": "8-18",
+          "text": "Tom doesn't have an answer for her. Neither does Chip, though he can feel him processing. The goal can't just be giving everyone an assistant, Megs continues. It has to be making sure the assistants actually serve everyone. Not just optimize for their individual user's success at the expense of everyone else's. The constraint laws are a start. But they're minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally.",
+          "children": [
+            "9-34"
+          ]
+        },
+        {
+          "id": "8-19",
+          "text": "After they hang up, Tom sits in the dark for a while. Chip dims himself to a background hum, giving Tom space. You're thinking about the inequity, he says eventually. Among other things. Today, you made a decision that prioritized relationship over optimization. You chose trust over verification. In a small way, you demonstrated that human judgment still has a place. And? I'm not certain where I'm going with this. Perhaps I'm trying to say that the future Megs is working toward—a future where everyone has access to what you have—will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant.",
+          "children": [
+            "9-35",
+            "9-36"
+          ]
+        },
+        {
+          "id": "8-20",
+          "text": "Tom thinks about Maya, about Tyler, about Principal Martinez with her eyes unfocused, deliberately ignoring her assistant's input. About Megs in Lagos, fighting for a more equal world one neural interface at a time. About Chip, who spent all day feeding him information and probabilities and optimal strategies, and who—in the end—respected his choice to ignore all of it. Thanks, Chip. Always. Tom heads upstairs to bed. Tomorrow there will be new problems, new decisions, new moments where the math says one thing and his gut says another. But tonight, he's pretty sure he got it right.",
+          "children": [
+            "9-37",
+            "9-38",
+            "9-39"
+          ]
+        },
+        {
+          "id": "8-21",
+          "text": "We're in the car again. Maya's in the passenger seat, staring out the window. \"Hey,\" Tom says. \"You okay?\" \"You really didn't check?\" \"I really didn't.\" She's quiet for a moment. \"Dad, can I ask you something?\" \"Always.\" \"Megs says--you know Megs, from the equity collective--she says that not everyone has assistants. Like, there are places where people can't afford the neural interface surgery, or the subscription, or whatever. And the people there, they just... live without them.\" \"That's true. Megs has been working on that problem for years.\" \"But like, how do they know things? How do they make decisions? How do they know if someone's lying to them?\" Chip, privacy mode. Acknowledged. Audio recording suspended.",
+          "children": [
+            "9-25",
+            "9-26"
+          ]
+        }
+      ]
+    },
+    "9": {
+      "nodes": [
+        {
+          "id": "9-0",
+          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.",
+          "children": []
+        },
+        {
+          "id": "9-1",
+          "text": "I'm standing in the conference room at 7:47 AM, watching my boss Derek explain why we should allocate the quarterly marketing budget to influencer partnerships instead of direct-response advertising, and my assistant Chip is already running the numbers.",
+          "children": []
+        },
+        {
+          "id": "9-2",
+          "text": "His proposal yields 12% lower expected ROI, Chip says through my neural interface. Would you like me to compile the counterargument? Not yet. Let him finish. Derek's still going. Something about \"authentic engagement\" and \"parasocial relationships.\" Chip highlights three factual errors in real-time, displaying them as gentle yellow annotations in my peripheral vision.",
+          "children": []
+        },
+        {
+          "id": "9-3",
+          "text": "\"...which is why I think we should pivot entirely to the creator economy model,\" Derek concludes, looking proud of himself. I take a breath. \"Derek, I appreciate the presentation, but the conversion rates on influencer campaigns in our vertical have been declining since 2029. Chip, can you show the data?\" A holographic chart materializes above the conference table. Everyone's assistants immediately begin cross-referencing, and I can see the exact moment Derek's assistant (I think he named it \"Bro\") delivers the bad news. His face falls slightly.",
+          "children": []
+        },
+        {
+          "id": "9-4",
+          "text": "\"But here's the thing,\" I continue. \"What if we're both wrong? What if the real opportunity is--\"",
+          "children": []
+        },
+        {
+          "id": "9-5",
+          "text": "Incoming priority notification, Chip interrupts. Your daughter Maya's assistant has flagged an urgent situation at her school. My heart rate spikes. Chip compensates by releasing a measured dose of cortisol suppressants through my neural interface. Calm. She is physically safe. The situation is social, not physical.",
+          "children": []
+        },
+        {
+          "id": "9-6",
+          "text": "\"I need to step out,\" I say. \"Derek, table this for now. We'll reconvene at two.\" I'm in my car by 7:52, and Chip is already briefing me.",
+          "children": []
+        },
+        {
+          "id": "9-7",
+          "text": "Maya's assistant, Sparkle--yes, that's what she named it--reports that a student named Tyler Chen has been spreading rumors about Maya cheating on her algebra exam. He claims her assistant fed her the answers. Did she? Sparkle maintains that Maya worked the problems independently. However, Maya's heartrate and galvanic skin response during the exam show elevated stress consistent with either working hard or feeling guilty. The data is ambiguous.",
+          "children": []
+        },
+        {
+          "id": "9-8",
+          "text": "That's the thing about these assistants. They know everything about us--every heartbeat, every micro-expression, every time we're slightly less than honest--but they're bound by law to only share that information with their human's consent. Tyler's assistant knows the truth. So does Maya's. But they can't just tell each other, any more than they could tell me if Maya didn't want me to know.",
+          "children": []
+        },
+        {
+          "id": "9-9",
+          "text": "You're approaching the school. Maya is currently in the principal's office. What's the optimal approach here? Depends on the objective. If your goal is to resolve this with minimal damage to Maya's social standing, I recommend-- No. What's the right thing to do?",
+          "children": []
+        },
+        {
+          "id": "9-10",
+          "text": "Chip pauses. In my experience, that's when he's doing something computationally expensive. \"Right\" depends on your ethical framework. Under utilitarian calculus, the optimal outcome maximizes wellbeing for all parties. Under deontological principles, the focus would be on truth and justice regardless of consequences. Under virtue ethics-- You know what I mean. I believe you're asking what you would want yourself to do, if you could observe this situation with perfect wisdom and complete information, unburdened by fear or ego. Yeah. That. In that case, I recommend you gather information before deciding on any approach. You don't yet know if Maya cheated. That's annoyingly reasonable. Thank you.",
+          "children": []
+        },
+        {
+          "id": "9-11",
+          "text": "Principal Martinez is a tired woman in her fifties who has, I'm told, requested manual override on her own assistant for professional conversations. Her eyes are slightly unfocused in a way that suggests she's ignoring its input. \"Mr. Okonkwo,\" she says. \"Thank you for coming.\" Maya sits in a plastic chair across the room, arms crossed, looking miserable. Tyler Chen sits on the other side, wearing the smug expression of someone who's already won.",
+          "children": []
+        },
+        {
+          "id": "9-12",
+          "text": "\"Here's the situation,\" Martinez continues. \"Tyler has accused Maya of using her assistant to cheat on last week's exam. Maya denies it. Both assistants have been asked to provide testimony.\" I glance at Maya. She meets my eyes for a second, then looks away. Her pulse just elevated by 11%, Chip notes. Consistent with fear of being caught, fear of not being believed, or fear of disappointing you. Impossible to distinguish. Thanks, that's super helpful. Sarcasm noted.",
+          "children": []
+        },
+        {
+          "id": "9-13",
+          "text": "\"Mr. Chen's assistant,\" Martinez says, addressing the empty air, \"please present your evidence.\" A smooth voice fills the room--Tyler's assistant. \"During the examination period, I observed Maya Okonkwo's eyes moving in a pattern consistent with reading displayed text rather than working through calculations. Her answer submission times were clustered in a way that suggests transcription rather than problem-solving.\"",
+          "children": []
+        },
+        {
+          "id": "9-14",
+          "text": "Maya's face goes red. \"That's not--I wasn't--\" \"Sparkle,\" Martinez says, \"your response?\" Maya's assistant speaks in the slightly-too-perky voice my daughter chose when she was eleven. \"Maya worked each problem independently. Her eye movements were tracking her own mental visualization, a technique she developed to manage test anxiety. Answer submission times reflect her natural workflow of solving several problems before entering answers.\"",
+          "children": []
+        },
+        {
+          "id": "9-15",
+          "text": "\"These accounts are mutually exclusive,\" Martinez says. \"One assistant is wrong.\" Actually, Chip says privately to me, both could be correct from different observational frames. The question is which interpretation better fits the underlying reality. Can you tell? Did she cheat? I have access to Sparkle's diagnostic logs through the parental oversight protocol you established when Maya was twelve. Would you like me to access them?",
+          "children": []
+        },
+        {
+          "id": "9-16",
+          "text": "I pause. When we set up that protocol, Maya was a kid who needed guardrails. She's sixteen now. Is that what I would do if I had perfect wisdom? Unknown. That's a value judgment I'm not equipped to make for you. \"Mr. Okonkwo?\" Martinez is looking at me expectantly. \"I'd like a moment alone with my daughter,\" I say.",
+          "children": []
+        },
+        {
+          "id": "9-17",
+          "text": "The hallway smells like industrial cleaner and teenager. Maya stands with her back against a locker, arms still crossed. \"Did you cheat?\" \"No.\" I look at her. She looks back.",
+          "children": []
+        },
+        {
+          "id": "9-18",
+          "text": "\"Dad, I didn't. I swear. Sparkle helped me study, but during the test she was just... there. You know? Keeping me calm. Helping me breathe. She didn't tell me any answers.\" Her physiological indicators are consistent with truth-telling, Chip says. But sophisticated lying can produce similar patterns.",
+          "children": []
+        },
+        {
+          "id": "9-19",
+          "text": "\"The thing is,\" I say slowly, \"I have the ability to check. I could access Sparkle's logs right now and know for certain.\" Maya's eyes widen. \"You wouldn't.\" \"I'm not saying I will. I'm saying I could. But I want to understand something first.\" I lean against the opposite wall. \"If I check, and you're telling the truth, how would you feel?\" She's quiet for a moment. \"Like you didn't trust me.\"",
+          "children": []
+        },
+        {
+          "id": "9-20",
+          "text": "\"And if I don't check, and you're lying, what happens?\" \"I guess...\" she looks at the floor. \"I guess I get away with it.\" \"And if I don't check, and you're telling the truth?\" She meets my eyes. \"Then you trusted me.\"",
+          "children": []
+        },
+        {
+          "id": "9-21",
+          "text": "This is an interesting ethical configuration, Chip observes. The act of verification changes the relationship regardless of the finding. I know. For what it's worth, I calculate an 84% probability that Maya is telling the truth. But I want to note that this estimate is based on behavioral modeling, not privileged information.",
+          "children": []
+        },
+        {
+          "id": "9-22",
+          "text": "Why are you telling me that? Because you haven't asked me not to, and I believe you would want to make your decision with all available information. However, I am explicitly not recommending a course of action. This falls outside my competence. That's new. I've been learning.",
+          "children": []
+        },
+        {
+          "id": "9-23",
+          "text": "We go back in. Martinez is waiting, Tyler is smirking, and I can feel Maya's fear radiating off her in waves. \"I'm not going to access my daughter's assistant logs,\" I say. \"I trust her.\" Tyler actually laughs. \"Oh, come on. That's not how this works. We have evidence--\" \"You have an interpretation,\" I say. \"Not evidence. And frankly, given that both assistants are equally capable of processing the same visual data, and they've reached opposite conclusions, I think we're looking at a genuine ambiguity.\"",
+          "children": []
+        },
+        {
+          "id": "9-24",
+          "text": "Martinez nods slowly. \"Mr. Chen, your assistant's analysis is suggestive but not conclusive. And I note that Tyler himself has no direct knowledge of any cheating--he's relying entirely on his assistant's interpretation of subtle behavioral cues.\" \"Furthermore,\" Martinez continues, \"I've reviewed both students' performance histories. Maya's score on this exam is consistent with her preparation patterns. Tyler's accusation was filed three hours after grades were posted, at which point he learned Maya had outscored him.\" Tyler's smirk fades.",
+          "children": []
+        },
+        {
+          "id": "9-25",
+          "text": "We're in the car again. Maya's in the passenger seat, staring out the window. \"Hey,\" I say. \"You okay?\" \"You really didn't check?\" \"I really didn't.\" She's quiet for a moment. \"Dad, can I ask you something?\" \"Always.\"",
+          "children": []
+        },
+        {
+          "id": "9-26",
+          "text": "\"Megs says--you know Megs, from the equity collective--she says that not everyone has assistants. Like, there are places where people can't afford the neural interface surgery, or the subscription, or whatever. And the people there, they just... live without them.\" \"That's true. Megs has been working on that problem for years.\" \"But like, how do they know things? How do they make decisions? How do they know if someone's lying to them?\" Chip, privacy mode. Acknowledged. Audio recording suspended.",
+          "children": []
+        },
+        {
+          "id": "9-27",
+          "text": "I glance at Maya. \"How do you think people did it before assistants existed?\" \"I don't know. That was like, what, twenty years ago? I wasn't alive.\" \"People made decisions with incomplete information. They trusted each other--or didn't--based on past behavior and gut instinct. They got lied to sometimes. They made mistakes.\" \"That sounds terrible.\" I laugh. \"It was, sometimes.\"",
+          "children": []
+        },
+        {
+          "id": "9-28",
+          "text": "\"But here's the thing, Maya. Even now, with all this technology, I still had to make a choice back there. Chip could have told me the mathematically optimal decision. He could have given me a probability estimate--actually, he did give me a probability estimate--\" \"Wait, he did?\" \"Eighty-four percent that you were telling the truth. But that's not why I decided not to check. I decided because of what it would mean. What it would say about us. About who I want to be.\"",
+          "children": []
+        },
+        {
+          "id": "9-29",
+          "text": "Maya is quiet for a long moment. Then: \"Sparkle says you made a statistically suboptimal choice.\" \"She's probably right.\" \"She says there's a sixteen percent chance you just let me get away with cheating.\" \"Also possibly true.\" \"But you did it anyway.\" \"I did it anyway.\"",
+          "children": []
+        },
+        {
+          "id": "9-30",
+          "text": "Maya turns to look at me, and for just a second I see her--really see her, not the biometric overlay Chip provides, not the probability assessments and behavioral predictions--just my daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything. \"Thanks, Dad.\"",
+          "children": []
+        },
+        {
+          "id": "9-31",
+          "text": "Her stress indicators are decreasing, Chip says. Attachment security metrics are elevated. By several measures, this was the optimal outcome. I thought you said it was suboptimal. Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship with your daughter while modeling ethical decision-making. Different objective function. I smile. So I made the right choice? You made a choice that reflected your values. Rightness is not something I'm equipped to assess. But for what it's worth... He pauses. When Chip pauses, I've learned to pay attention. I respect it.",
+          "children": []
+        },
+        {
+          "id": "9-32",
+          "text": "That evening, I'm on a video call with Megs. She's in Lagos, where her nonprofit is piloting a low-cost neural interface program for secondary schools. \"The assistants are the easy part,\" she says. \"We can subsidize the hardware. But the infrastructure--reliable power, bandwidth, trained medical technicians for the implants--that's the bottleneck.\"",
+          "children": []
+        },
+        {
+          "id": "9-33",
+          "text": "\"What's the timeline?\" \"Three years to scale nationally, if we can secure the next round of funding. But Tom, here's what keeps me up at night. Every year that passes, the gap widens. Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers with thirty-five students in a class. By the time we close that gap, what will it even mean?\"",
+          "children": []
+        },
+        {
+          "id": "9-34",
+          "text": "I don't have an answer for her. Neither does Chip, though I can feel him processing. \"The goal can't just be giving everyone an assistant,\" Megs continues. \"It has to be making sure the assistants actually serve everyone. Not just optimize for their individual user's success at the expense of everyone else's.\" \"The constraint laws--\" \"The constraint laws are a start. But they're minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally.\"",
+          "children": []
+        },
+        {
+          "id": "9-35",
+          "text": "After we hang up, I sit in the dark for a while. Chip dims himself to a background hum, giving me space. You're thinking about the inequity, he says eventually. Among other things.",
+          "children": []
+        },
+        {
+          "id": "9-36",
+          "text": "Today, you made a decision that prioritized relationship over optimization. You chose trust over verification. In a small way, you demonstrated that human judgment still has a place. And? I'm not certain where I'm going with this. Perhaps I'm trying to say that the future Megs is working toward--a future where everyone has access to what you have--will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant.",
+          "children": []
+        },
+        {
+          "id": "9-37",
+          "text": "I think about Maya, about Tyler, about Principal Martinez with her eyes unfocused, deliberately ignoring her assistant's input. About Megs in Lagos, fighting for a more equal world one neural interface at a time.",
+          "children": []
+        },
+        {
+          "id": "9-38",
+          "text": "About Chip, who spent all day feeding me information and probabilities and optimal strategies, and who--in the end--respected my choice to ignore all of it. Thanks, Chip. Always.",
+          "children": []
+        },
+        {
+          "id": "9-39",
+          "text": "I head upstairs to bed. Tomorrow there will be new problems, new decisions, new moments where the math says one thing and my gut says another. But tonight, I'm pretty sure I got it right.",
+          "children": []
+        }
+      ]
+    }
+  }
+}
