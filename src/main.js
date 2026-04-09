@@ -25,6 +25,7 @@ let scrollAccum = 0
 
 let hoveredConcept = null
 let hoveredWord = null
+let phrasesAtLevel = {}
 
 const canvas = document.getElementById('viewport')
 const renderer = createRenderer(canvas)
@@ -41,6 +42,91 @@ function measureAllLevels(tree) {
     heights[i] = nodes.length > 0 ? nodes[nodes.length - 1].y + nodes[nodes.length - 1].height : 0
   }
   return { measured, heights }
+}
+
+// ========== PHRASE INDEX (semantic zoom anchoring) ==========
+
+function phraseYFromLines(mNode, charStart) {
+  let acc = 0
+  for (let i = 0; i < mNode.lines.length; i++) {
+    if (acc + mNode.lines[i].text.length > charStart) {
+      return mNode.y + i * LINE_HEIGHT
+    }
+    acc += mNode.lines[i].text.length
+  }
+  return mNode.y + (mNode.lines.length - 1) * LINE_HEIGHT
+}
+
+function buildPhraseIndex(tree, measured) {
+  phrasesAtLevel = {}
+  for (let L = 0; L <= MAX_LEVEL; L++) {
+    const levelData = tree.levels[String(L)]
+    if (!levelData) continue
+    const phrases = []
+    for (const node of levelData.nodes) {
+      if (!node.phrases) continue
+      const mNode = measured[L]?.find(n => n.nodeId === node.id)
+      for (const p of node.phrases) {
+        phrases.push({
+          ...p,
+          nodeId: node.id,
+          y: mNode ? phraseYFromLines(mNode, p.charStart) : 0
+        })
+      }
+    }
+    phrasesAtLevel[L] = phrases
+  }
+}
+
+function findPhraseAtCursor(level, contentY, contentX) {
+  const phrases = phrasesAtLevel[level]
+  if (!phrases || phrases.length === 0) return null
+
+  // Step 1: find which node and line the cursor is on
+  const nodes = measuredLevels[level]
+  if (!nodes) return null
+
+  let cursorNode = null
+  for (const node of nodes) {
+    if (contentY >= node.y && contentY < node.y + node.height) { cursorNode = node; break }
+  }
+  if (!cursorNode) {
+    // Snap to nearest node
+    let bestDist = Infinity
+    for (const node of nodes) {
+      const mid = node.y + node.height / 2
+      const dist = Math.abs(contentY - mid)
+      if (dist < bestDist) { bestDist = dist; cursorNode = node }
+    }
+  }
+  if (!cursorNode) return null
+
+  const lineIdx = Math.max(0, Math.min(cursorNode.lines.length - 1,
+    Math.floor((contentY - cursorNode.y) / LINE_HEIGHT)))
+
+  // Step 2: estimate character position from line + X
+  let lineStartChar = 0
+  for (let i = 0; i < lineIdx; i++) lineStartChar += cursorNode.lines[i].text.length
+  const line = cursorNode.lines[lineIdx]
+  const xFrac = line.width > 0 ? Math.max(0, Math.min(1, contentX / line.width)) : 0
+  const cursorChar = lineStartChar + Math.floor(xFrac * line.text.length)
+
+  // Step 3: find the phrase whose charStart-charEnd range contains cursorChar
+  const nodeId = cursorNode.nodeId
+  let best = null, bestDist = Infinity
+  for (const p of phrases) {
+    if (p.nodeId !== nodeId) continue
+    // Distance: 0 if cursor is inside the phrase range, else distance to nearest edge
+    let dist
+    if (cursorChar >= p.charStart && cursorChar <= p.charEnd) {
+      dist = 0
+    } else {
+      dist = Math.min(Math.abs(cursorChar - p.charStart), Math.abs(cursorChar - p.charEnd))
+    }
+    if (dist < bestDist) { bestDist = dist; best = p }
+  }
+
+  return best
 }
 
 // ========== CONCEPT LOOKUP ==========
@@ -245,7 +331,6 @@ function drawWordHighlight() {
 // ========== INPUT ==========
 
 let mouseDown = false, cursorInTextArea = false
-let conceptLocked = false  // After zoom, keep concept until mouse moves
 
 function isInTextArea(x, y) {
   const bx = (renderer.width - COLUMN_WIDTH) / 2
@@ -275,16 +360,17 @@ canvas.addEventListener('wheel', (e) => {
     const zoomingIn = currentLevel > prevLevel
     spawnZoomIndicator(zoomingIn ? 1 : -1)
 
-    if (zoomingIn && hoveredConcept) {
-      const pos = getConceptPosition(hoveredConcept, currentLevel)
-      if (pos) {
-        // Y-anchor: place the concept's line under the cursor
-        // X: always 0 (centered column) — no horizontal shift
-        const newOffset = { x: 0, y: mouseY - pos.contentY }
-        levelOffsets[currentLevel] = clampOffset(currentLevel, newOffset)
-      }
-      // Lock concept through transition — don't re-detect until mouse moves
-      conceptLocked = true
+    // Semantic zoom anchoring — pure lookup
+    const oldOff = levelOffsets[prevLevel] ?? defaultOffset(prevLevel)
+    const contentY = mouseY - oldOff.y
+    const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+    const contentX = mouseX - baseLeftX - oldOff.x
+    const phrase = findPhraseAtCursor(prevLevel, contentY, contentX)
+    const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
+    const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
+
+    if (target) {
+      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
     }
 
     offsetsLocked = true
@@ -296,9 +382,6 @@ canvas.addEventListener('mousemove', (e) => {
   mouseX = e.clientX; mouseY = e.clientY
   cursorInTextArea = isInTextArea(mouseX, mouseY)
   if (isFrozen() || offsetsLocked) return
-
-  // Unlock concept when user physically moves the mouse
-  conceptLocked = false
 
   const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
   hoveredWord = hitTestWord(currentLevel, off)
@@ -374,7 +457,7 @@ function frame() {
     else if (off) off.x = 0
     hoveredWord = hitTestWord(currentLevel, off)
     // Only re-detect concept if not locked (concept stays locked through zoom until mouse moves)
-    if (!conceptLocked) hoveredConcept = findConceptAtCursor(currentLevel, off)
+    hoveredConcept = findConceptAtCursor(currentLevel, off)
   }
 
   if (!isFrozen() && !offsetsLocked && !isTransitioning) {
@@ -388,7 +471,7 @@ function frame() {
         const off = levelOffsets[currentLevel]
         off.y = clampOffset(currentLevel, { x: off.x, y: off.y + sd }).y
         hoveredWord = hitTestWord(currentLevel, off)
-        if (!conceptLocked) hoveredConcept = findConceptAtCursor(currentLevel, off)
+        hoveredConcept = findConceptAtCursor(currentLevel, off)
       }
     }
   }
@@ -430,6 +513,7 @@ async function loadTree(jsonPath) {
 
   const r = measureAllLevels(treeData)
   measuredLevels = r.measured; levelHeights = r.heights
+  buildPhraseIndex(treeData, measuredLevels)
 
   for (let i = 0; i <= MAX_LEVEL; i++) levelOffsets[i] = defaultOffset(i)
   currentLevel = 0; displayLevel = 0
@@ -491,8 +575,10 @@ window._sz = {
   get hoveredConcept() { return hoveredConcept },
   get hoveredWord() { return hoveredWord },
   get levelOffsets() { return levelOffsets },
+  get phrasesAtLevel() { return phrasesAtLevel },
   findConceptAtCursor,
   getConceptPosition,
+  findPhraseAtCursor,
   hitTestWord,
   defaultOffset
 }
