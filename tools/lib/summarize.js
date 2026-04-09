@@ -1,8 +1,51 @@
 /**
  * Summarization adapter.
  * Extractive mode: picks the most representative sentences from each cluster.
- * Claude mode: placeholder for future Claude Code skill integration.
+ * Claude mode: calls Claude CLI for abstractive summarization.
  */
+
+import { execSync } from 'child_process'
+
+/**
+ * Abstractive summarization via Claude CLI.
+ * Uses `claude -p` (Pro Max subscription, no API key needed).
+ *
+ * @param {Array<{ text: string }>} members - Nodes in the cluster
+ * @param {number} targetWords - Approximate target word count
+ * @returns {string|null} - Summary text, or null on failure
+ */
+export function claudeSummarize(members, targetWords) {
+  const combinedText = members.map(m => m.text).join('\n\n')
+
+  const prompt = `You are compressing a passage for a semantic zoom interface.
+
+CRITICAL RULES:
+- Cover the ENTIRE passage from start to end. Every scene, every beat, every character action.
+- This is COMPRESSION, not summarization. Don't extract themes. Compress the PLOT.
+- Preserve reading order. Events appear in the same sequence as the original.
+- Proportional representation: a scene that's 20% of the input should be ~20% of your output.
+- Preserve character names, key dialogue phrases, and pivotal decisions.
+- Write flowing prose. No bullet points, no headers, no meta-commentary.
+
+Compress the following passage to approximately ${targetWords} words:
+
+---
+${combinedText}
+---
+
+Compressed version (~${targetWords} words):`
+
+  try {
+    const result = execSync(
+      'claude -p --output-format text',
+      { input: prompt, encoding: 'utf8', maxBuffer: 2 * 1024 * 1024, timeout: 60000 }
+    ).trim()
+    return result || null
+  } catch (e) {
+    console.error('  Claude summarization failed:', e.message?.substring(0, 100))
+    return null
+  }
+}
 
 /**
  * Cosine similarity between two vectors.
@@ -97,10 +140,11 @@ export function extractiveSummarize(members, targetWords) {
  * @returns {number} - Target word count
  */
 export function targetWordCount(memberWordCount, currentLevel, totalLevels) {
-  // At the level just above leaves, keep ~60% of content
-  // Each level up compresses further
+  // Each level up compresses further — 55% of previous level's content
   const compressionPerLevel = 0.55
   const levelsAboveLeaves = currentLevel
   const ratio = Math.pow(compressionPerLevel, levelsAboveLeaves + 1)
-  return Math.max(20, Math.round(memberWordCount * ratio))
+  // Floor: 2.5% of the cluster's own word count — proportional, not arbitrary.
+  // A 2000-word cluster never goes below ~50 words. A 200,000-word cluster below ~5000.
+  return Math.max(Math.round(memberWordCount * 0.025), Math.round(memberWordCount * ratio))
 }

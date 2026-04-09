@@ -22,20 +22,53 @@ import fs from 'fs'
 import path from 'path'
 import { pipeline } from '@huggingface/transformers'
 import { clusterNodes, targetClusterCount } from './lib/cluster.js'
-import { extractiveSummarize, targetWordCount } from './lib/summarize.js'
+import { extractiveSummarize, claudeSummarize, targetWordCount } from './lib/summarize.js'
 import { validateTree } from './lib/schema.js'
+
+// ------ Phrase map utilities ------
+
+function phraseWindows(text, windowSize = 12, stride = 6) {
+  const words = []
+  const regex = /\S+/g
+  let m
+  while ((m = regex.exec(text)) !== null) {
+    words.push({ start: m.index, end: m.index + m[0].length })
+  }
+  const phrases = []
+  for (let i = 0; i < words.length; i += stride) {
+    const win = words.slice(i, i + windowSize)
+    if (win.length === 0) break
+    phrases.push({
+      text: text.substring(win[0].start, win[win.length - 1].end),
+      charStart: win[0].start,
+      charEnd: win[win.length - 1].end
+    })
+  }
+  return phrases
+}
+
+function cosineSim(a, b) {
+  let dot = 0, magA = 0, magB = 0
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i]; magA += a[i] * a[i]; magB += b[i] * b[i]
+  }
+  return dot / (Math.sqrt(magA) * Math.sqrt(magB) + 1e-10)
+}
 
 // Parse CLI arguments
 const args = process.argv.slice(2)
 let inputFile = null
 let outputFile = null
 let maxTokenSize = 200
+let useExtractive = false
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--output' && args[i + 1]) {
     outputFile = args[++i]
   } else if (args[i] === '--max-tokens' && args[i + 1]) {
     maxTokenSize = parseInt(args[++i])
+  } else if (args[i] === '--extractive') {
+    useExtractive = true
   } else if (!args[i].startsWith('--')) {
     inputFile = args[i]
   }
@@ -161,19 +194,24 @@ while (currentNodes.length > 1) {
     const memberWordCount = members.reduce((s, m) => s + m.text.split(/\s+/).length, 0)
     const targetWords = targetWordCount(memberWordCount, levelIdx, 0) // totalLevels unknown yet
 
-    const summaryText = extractiveSummarize(members, targetWords)
-
-    // Compute centroid embedding for the parent
-    const dim = members[0].embedding.length
-    const centroid = new Array(dim).fill(0)
-    for (const m of members) {
-      for (let i = 0; i < dim; i++) centroid[i] += m.embedding[i]
+    let summaryText
+    if (useExtractive) {
+      summaryText = extractiveSummarize(members, targetWords)
+    } else {
+      console.log(`    Summarizing cluster (${members.length} members → ~${targetWords} words)...`)
+      summaryText = claudeSummarize(members, targetWords)
+      if (!summaryText) {
+        console.log('    Falling back to extractive')
+        summaryText = extractiveSummarize(members, targetWords)
+      }
     }
-    for (let i = 0; i < dim; i++) centroid[i] /= members.length
+
+    // Embed the actual summary text (not centroid) for accurate phrase matching
+    const summaryEmbedding = await embedText(summaryText)
 
     parentNodes.push({
       text: summaryText,
-      embedding: centroid,
+      embedding: summaryEmbedding,
       childIndices: cluster.members // indices into currentNodes
     })
   }
@@ -254,6 +292,97 @@ if (errors.length > 0) {
 } else {
   console.log('  → Valid!\n')
 }
+
+// ------ Step 7: Build phrase maps ------
+
+console.log('Step 7: Building phrase maps...\n')
+
+// Phase A: Generate phrases and embed them for every node at every level
+const phrasesByLevel = []
+
+for (let L = 0; L < totalLevels; L++) {
+  const flatPhrases = []
+  for (const node of tree.levels[String(L)].nodes) {
+    const windows = phraseWindows(node.text)
+    for (const w of windows) {
+      const embedding = await embedText(w.text)
+      flatPhrases.push({ ...w, embedding, nodeId: node.id })
+    }
+    if ((flatPhrases.length) % 20 === 0) process.stdout.write(`  ${flatPhrases.length} phrases embedded\r`)
+  }
+  phrasesByLevel.push(flatPhrases)
+  console.log(`  Level ${L}: ${flatPhrases.length} phrases`)
+}
+
+// Phase B: Compute tree-constrained cross-level matches
+console.log('\n  Computing tree-constrained cross-level matches...')
+
+// Build parent/children lookup from tree
+const childrenOf = {}  // nodeId → [childNodeIds]
+const parentOf = {}    // nodeId → parentNodeId
+for (let L = 0; L < totalLevels - 1; L++) {
+  for (const node of tree.levels[String(L)].nodes) {
+    childrenOf[node.id] = node.children || []
+    for (const childId of node.children || []) {
+      parentOf[childId] = node.id
+    }
+  }
+}
+
+for (let L = 0; L < totalLevels; L++) {
+  for (const phrase of phrasesByLevel[L]) {
+    // Zoom-in: only match against phrases in this node's CHILDREN
+    if (L < totalLevels - 1) {
+      const allowedChildren = new Set(childrenOf[phrase.nodeId] || [])
+      let bestIdx = -1, bestSim = -Infinity
+      for (let i = 0; i < phrasesByLevel[L + 1].length; i++) {
+        if (!allowedChildren.has(phrasesByLevel[L + 1][i].nodeId)) continue
+        const sim = cosineSim(phrase.embedding, phrasesByLevel[L + 1][i].embedding)
+        if (sim > bestSim) { bestSim = sim; bestIdx = i }
+      }
+      phrase.matchIn = bestIdx
+    } else {
+      phrase.matchIn = -1
+    }
+
+    // Zoom-out: only match against phrases in this node's PARENT
+    if (L > 0) {
+      const parentId = parentOf[phrase.nodeId]
+      let bestIdx = -1, bestSim = -Infinity
+      for (let i = 0; i < phrasesByLevel[L - 1].length; i++) {
+        if (phrasesByLevel[L - 1][i].nodeId !== parentId) continue
+        const sim = cosineSim(phrase.embedding, phrasesByLevel[L - 1][i].embedding)
+        if (sim > bestSim) { bestSim = sim; bestIdx = i }
+      }
+      phrase.matchOut = bestIdx
+    } else {
+      phrase.matchOut = -1
+    }
+  }
+  console.log(`  Level ${L}: matched (tree-constrained)`)
+}
+
+// Phase C: Attach to tree nodes (without embeddings)
+for (let L = 0; L < totalLevels; L++) {
+  let flatIdx = 0
+  for (const node of tree.levels[String(L)].nodes) {
+    node.phrases = []
+    while (flatIdx < phrasesByLevel[L].length && phrasesByLevel[L][flatIdx].nodeId === node.id) {
+      const p = phrasesByLevel[L][flatIdx]
+      node.phrases.push({
+        text: p.text,
+        charStart: p.charStart,
+        charEnd: p.charEnd,
+        matchIn: p.matchIn,
+        matchOut: p.matchOut
+      })
+      flatIdx++
+    }
+  }
+}
+
+const totalPhrases = phrasesByLevel.reduce((s, l) => s + l.length, 0)
+console.log(`\n  ${totalPhrases} total phrases mapped.\n`)
 
 // ------ Write ------
 
