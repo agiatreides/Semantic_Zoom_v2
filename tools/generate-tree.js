@@ -76,22 +76,56 @@ function findNearestStrongNeighbor(phrases, idx, scoreField, threshold) {
 
 // ------ Phrase map utilities ------
 
-function phraseWindows(text, windowSize = 12, stride = 6) {
+function phraseWindows(text, windowSize = 6, stride = 3) {
   const words = []
-  const regex = /\S+/g
+  const regex = /[^\s\u2014\u2013]+/g  // split at whitespace and em/en-dashes
   let m
   while ((m = regex.exec(text)) !== null) {
     words.push({ start: m.index, end: m.index + m[0].length })
   }
+  if (words.length === 0) return []
+
+  // Find clause boundaries: break after words ending in punctuation
+  // or when gap between words contains em-dash/newline
+  const breakAfter = new Set()
+  for (let i = 0; i < words.length - 1; i++) {
+    const wordText = text.substring(words[i].start, words[i].end)
+    // Strip trailing quotes/parens to find punctuation underneath
+    const stripped = wordText.replace(/["'\u201d\u2019\u201c\u2018)]+$/, '')
+    if (/[,;:.!?]$/.test(stripped)) {
+      breakAfter.add(i)
+      continue
+    }
+    const gap = text.substring(words[i].end, words[i + 1].start)
+    if (/[\u2014\u2013\n]/.test(gap)) {
+      breakAfter.add(i)
+    }
+  }
+
+  // Build clauses (groups of words between break points)
+  const clauses = []
+  let clauseStart = 0
+  for (let i = 0; i < words.length; i++) {
+    if (breakAfter.has(i) || i === words.length - 1) {
+      if (i >= clauseStart) clauses.push({ from: clauseStart, to: i })
+      clauseStart = i + 1
+    }
+  }
+
+  // Generate windows within each clause (never crossing clause boundaries)
   const phrases = []
-  for (let i = 0; i < words.length; i += stride) {
-    const win = words.slice(i, i + windowSize)
-    if (win.length === 0) break
-    phrases.push({
-      text: text.substring(win[0].start, win[win.length - 1].end),
-      charStart: win[0].start,
-      charEnd: win[win.length - 1].end
-    })
+  for (const clause of clauses) {
+    for (let i = clause.from; i <= clause.to; i += stride) {
+      const end = Math.min(i + windowSize - 1, clause.to)
+      const win = words.slice(i, end + 1)
+      if (win.length === 0) break
+      phrases.push({
+        text: text.substring(win[0].start, win[win.length - 1].end),
+        charStart: win[0].start,
+        charEnd: win[win.length - 1].end
+      })
+      if (end >= clause.to) break
+    }
   }
   return phrases
 }
