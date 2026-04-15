@@ -25,6 +25,55 @@ import { clusterNodes, targetClusterCount } from './lib/cluster.js'
 import { extractiveSummarize, claudeSummarize, targetWordCount } from './lib/summarize.js'
 import { validateTree } from './lib/schema.js'
 
+// ------ Importance scoring ------
+
+import { execSync } from 'child_process'
+
+function claudeScoreImportance(fullText, phrases) {
+  const phraseList = phrases.map((p, i) => `[${i}] "${p.text}"`).join('\n')
+
+  const prompt = `You are scoring the narrative importance of text segments for a semantic zoom interface.
+
+For each numbered segment below, rate its importance to the overall narrative on a scale of 1-10:
+- 10: Core plot turning point, essential to understanding the story
+- 7-9: Important scene, character development, or key dialogue
+- 4-6: Supporting detail that enriches the narrative
+- 1-3: Atmospheric detail, minor action, could be cut without losing the plot
+
+FULL TEXT:
+---
+${fullText}
+---
+
+SEGMENTS TO SCORE:
+${phraseList}
+
+Return ONLY a JSON array of scores in order, e.g. [8, 3, 7, 5, ...].
+No commentary.`
+
+  try {
+    const result = execSync('claude -p --output-format text',
+      { input: prompt, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024, timeout: 120000 }).trim()
+    return JSON.parse(result)
+  } catch (e) {
+    console.error('  Importance scoring failed:', e.message?.substring(0, 100))
+    return null
+  }
+}
+
+function findNearestStrongNeighbor(phrases, idx, scoreField, threshold) {
+  const nodeId = phrases[idx].nodeId
+  // Scan outward from idx, preferring closer neighbors
+  for (let dist = 1; dist < phrases.length; dist++) {
+    for (const j of [idx - dist, idx + dist]) {
+      if (j < 0 || j >= phrases.length) continue
+      if (phrases[j].nodeId !== nodeId) continue
+      if ((phrases[j][scoreField] || 0) >= threshold) return phrases[j]
+    }
+  }
+  return null
+}
+
 // ------ Phrase map utilities ------
 
 function phraseWindows(text, windowSize = 12, stride = 6) {
@@ -163,6 +212,55 @@ for (let i = 0; i < paragraphs.length; i++) {
 
 console.log(`  → ${leafNodes.length} embedded paragraphs\n`)
 
+// ------ Step 2c: Score importance of leaf text ------
+
+console.log('Step 2c: Scoring importance of leaf phrases...')
+
+// Generate phrase windows for leaves and score them
+const leafPhraseWindows = []
+for (const node of leafNodes) {
+  for (const w of phraseWindows(node.text)) {
+    leafPhraseWindows.push({ ...w, nodeText: node.text })
+  }
+}
+
+let leafImportanceScores = null
+if (!useExtractive) {
+  leafImportanceScores = claudeScoreImportance(rawText, leafPhraseWindows)
+  if (leafImportanceScores && leafImportanceScores.length === leafPhraseWindows.length) {
+    for (let i = 0; i < leafPhraseWindows.length; i++) {
+      leafPhraseWindows[i].importance = leafImportanceScores[i]
+    }
+    const avg = leafImportanceScores.reduce((a, b) => a + b, 0) / leafImportanceScores.length
+    console.log(`  → ${leafPhraseWindows.length} phrases scored (avg importance: ${avg.toFixed(1)})`)
+  } else {
+    console.log('  → Importance scoring failed or length mismatch, proceeding without')
+    leafImportanceScores = null
+  }
+} else {
+  console.log('  → Skipped (extractive mode)')
+}
+
+// Attach importance to leaf nodes for use during compression
+if (leafImportanceScores) {
+  let phraseIdx = 0
+  for (const node of leafNodes) {
+    node.importantConcepts = []
+    const nodeWindows = phraseWindows(node.text)
+    for (const w of nodeWindows) {
+      const imp = leafPhraseWindows[phraseIdx]?.importance || 5
+      if (imp >= 6) {
+        node.importantConcepts.push({ text: w.text, importance: imp })
+      }
+      phraseIdx++
+    }
+    // Sort by importance desc
+    node.importantConcepts.sort((a, b) => b.importance - a.importance)
+  }
+}
+
+console.log()
+
 // ------ Step 3-5: Build tree bottom-up ------
 
 console.log('Step 3-5: Building tree (cluster → summarize → repeat)...\n')
@@ -192,14 +290,20 @@ while (currentNodes.length > 1) {
   for (const cluster of clusters) {
     const members = cluster.members.map(i => currentNodes[i])
     const memberWordCount = members.reduce((s, m) => s + m.text.split(/\s+/).length, 0)
-    const targetWords = targetWordCount(memberWordCount, levelIdx, 0) // totalLevels unknown yet
+    const targetWords = targetWordCount(memberWordCount, levelIdx, 0, totalWords)
+
+    // Gather importance data from members
+    const clusterConcepts = members
+      .flatMap(m => m.importantConcepts || [])
+      .sort((a, b) => b.importance - a.importance)
+      .slice(0, 20) // top 20 for prompt size
 
     let summaryText
     if (useExtractive) {
       summaryText = extractiveSummarize(members, targetWords)
     } else {
-      console.log(`    Summarizing cluster (${members.length} members → ~${targetWords} words)...`)
-      summaryText = claudeSummarize(members, targetWords)
+      console.log(`    Compressing cluster (${members.length} members → ~${targetWords} words, ${clusterConcepts.length} priority concepts)...`)
+      summaryText = claudeSummarize(members, targetWords, clusterConcepts)
       if (!summaryText) {
         console.log('    Falling back to extractive')
         summaryText = extractiveSummarize(members, targetWords)
@@ -212,7 +316,8 @@ while (currentNodes.length > 1) {
     parentNodes.push({
       text: summaryText,
       embedding: summaryEmbedding,
-      childIndices: cluster.members // indices into currentNodes
+      childIndices: cluster.members,
+      importantConcepts: clusterConcepts // propagate up for next compression level
     })
   }
 
@@ -341,8 +446,10 @@ for (let L = 0; L < totalLevels; L++) {
         if (sim > bestSim) { bestSim = sim; bestIdx = i }
       }
       phrase.matchIn = bestIdx
+      phrase.matchInScore = bestSim
     } else {
       phrase.matchIn = -1
+      phrase.matchInScore = 0
     }
 
     // Zoom-out: only match against phrases in this node's PARENT
@@ -355,12 +462,77 @@ for (let L = 0; L < totalLevels; L++) {
         if (sim > bestSim) { bestSim = sim; bestIdx = i }
       }
       phrase.matchOut = bestIdx
+      phrase.matchOutScore = bestSim
     } else {
       phrase.matchOut = -1
+      phrase.matchOutScore = 0
     }
   }
   console.log(`  Level ${L}: matched (tree-constrained)`)
 }
+
+// Phase B2: Propagate importance from leaves to root
+console.log('\n  Propagating importance...')
+if (leafImportanceScores) {
+  // Assign importance to leaf-level phrases from scored windows
+  const leafLevel = totalLevels - 1
+  let leafPhraseIdx = 0
+  for (const phrase of phrasesByLevel[leafLevel]) {
+    // Match by charStart/text to find the right importance score
+    const match = leafPhraseWindows.find(w => w.text === phrase.text && w.charStart === phrase.charStart)
+    phrase.importance = match?.importance || 5
+  }
+
+  // Walk matchOut chains from leaves to root
+  for (const leafPhrase of phrasesByLevel[leafLevel]) {
+    let current = leafPhrase
+    let L = leafLevel
+    while (L > 0 && current.matchOut >= 0) {
+      const target = phrasesByLevel[L - 1][current.matchOut]
+      if (target) {
+        target.importance = Math.max(target.importance || 0, leafPhrase.importance || 5)
+      }
+      current = target
+      L--
+    }
+  }
+  console.log('  Done.')
+} else {
+  // Default all phrases to importance 5
+  for (const level of phrasesByLevel) {
+    for (const p of level) p.importance = 5
+  }
+  console.log('  Skipped (no importance data), defaulting to 5.')
+}
+
+// Phase B3: Sandwich — replace weak matches with nearest strong neighbor's target
+console.log('  Computing sandwich fallbacks...')
+let sandwichCount = 0
+for (let L = 0; L < totalLevels; L++) {
+  const phrases = phrasesByLevel[L]
+  if (phrases.length === 0) continue
+
+  // Data-driven threshold: median score * 0.8
+  const inScores = phrases.filter(p => p.matchInScore > 0).map(p => p.matchInScore).sort((a, b) => a - b)
+  const outScores = phrases.filter(p => p.matchOutScore > 0).map(p => p.matchOutScore).sort((a, b) => a - b)
+  const inThreshold = inScores.length > 0 ? inScores[Math.floor(inScores.length / 2)] * 0.8 : 0
+  const outThreshold = outScores.length > 0 ? outScores[Math.floor(outScores.length / 2)] * 0.8 : 0
+
+  for (let i = 0; i < phrases.length; i++) {
+    const p = phrases[i]
+
+    if (p.matchIn >= 0 && p.matchInScore < inThreshold) {
+      const neighbor = findNearestStrongNeighbor(phrases, i, 'matchInScore', inThreshold)
+      if (neighbor) { p.matchIn = neighbor.matchIn; p.sandwiched = true; sandwichCount++ }
+    }
+
+    if (p.matchOut >= 0 && p.matchOutScore < outThreshold) {
+      const neighbor = findNearestStrongNeighbor(phrases, i, 'matchOutScore', outThreshold)
+      if (neighbor) { p.matchOut = neighbor.matchOut; p.sandwiched = true; sandwichCount++ }
+    }
+  }
+}
+console.log(`  ${sandwichCount} weak matches sandwiched.\n`)
 
 // Phase C: Attach to tree nodes (without embeddings)
 for (let L = 0; L < totalLevels; L++) {
@@ -369,13 +541,16 @@ for (let L = 0; L < totalLevels; L++) {
     node.phrases = []
     while (flatIdx < phrasesByLevel[L].length && phrasesByLevel[L][flatIdx].nodeId === node.id) {
       const p = phrasesByLevel[L][flatIdx]
-      node.phrases.push({
+      const entry = {
         text: p.text,
         charStart: p.charStart,
         charEnd: p.charEnd,
         matchIn: p.matchIn,
-        matchOut: p.matchOut
-      })
+        matchOut: p.matchOut,
+        importance: Math.round((p.importance || 5) * 10) / 10
+      }
+      if (p.sandwiched) entry.sandwiched = true
+      node.phrases.push(entry)
       flatIdx++
     }
   }
