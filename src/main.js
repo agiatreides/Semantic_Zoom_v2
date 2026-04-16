@@ -26,6 +26,7 @@ let scrollAccum = 0
 let hoveredConcept = null
 let hoveredWord = null
 let phrasesAtLevel = {}
+let trackedConcept = null    // locked during a continuous wheel-zoom session; cleared on mousemove
 
 const canvas = document.getElementById('viewport')
 const renderer = createRenderer(canvas)
@@ -360,17 +361,40 @@ canvas.addEventListener('wheel', (e) => {
     const zoomingIn = currentLevel > prevLevel
     spawnZoomIndicator(zoomingIn ? 1 : -1)
 
-    // Semantic zoom anchoring — pure lookup
+    // Semantic zoom anchoring — concept first, phrase-chain fallback.
+    // Concepts carry per-level anchors and preserve identity by construction.
+    // The phrase chain (matchIn/matchOut) is a per-phrase forward index that
+    // can drift across many levels.
     const oldOff = levelOffsets[prevLevel] ?? defaultOffset(prevLevel)
-    const contentY = mouseY - oldOff.y
-    const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
-    const contentX = mouseX - baseLeftX - oldOff.x
-    const phrase = findPhraseAtCursor(prevLevel, contentY, contentX)
-    const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
-    const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
+    let placed = false
 
-    if (target) {
-      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
+    // Track ONE concept across a continuous zoom session. The user moves
+    // the cursor to a word, then scrolls without moving — that whole session
+    // is "I want to track THIS concept." Re-resolving the concept on every
+    // wheel event lets neighboring concepts grab the cursor as line-wrap
+    // shifts. So: lock the concept on the first wheel of a session, reuse
+    // until the cursor moves (mousemove handler clears trackedConcept).
+    if (!trackedConcept) {
+      trackedConcept = findConceptAtCursor(prevLevel, oldOff)
+    }
+    if (trackedConcept && trackedConcept.anchors[String(currentLevel)]) {
+      const pos = getConceptPosition(trackedConcept, currentLevel)
+      if (pos) {
+        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - pos.contentY })
+        placed = true
+      }
+    }
+
+    if (!placed) {
+      const contentY = mouseY - oldOff.y
+      const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+      const contentX = mouseX - baseLeftX - oldOff.x
+      const phrase = findPhraseAtCursor(prevLevel, contentY, contentX)
+      const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
+      const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
+      if (target) {
+        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
+      }
     }
 
     offsetsLocked = true
@@ -379,7 +403,11 @@ canvas.addEventListener('wheel', (e) => {
 }, { passive: false })
 
 canvas.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX; mouseY = e.clientY
+  const movedX = e.clientX, movedY = e.clientY
+  // Real cursor motion (>2px) ends the current zoom-tracking session so the
+  // next wheel re-acquires whatever concept is now under the cursor.
+  if (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2) trackedConcept = null
+  mouseX = movedX; mouseY = movedY
   cursorInTextArea = isInTextArea(mouseX, mouseY)
   if (isFrozen() || offsetsLocked) return
 
@@ -388,7 +416,7 @@ canvas.addEventListener('mousemove', (e) => {
   hoveredConcept = findConceptAtCursor(currentLevel, off)
 })
 
-canvas.addEventListener('mouseleave', () => { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null })
+canvas.addEventListener('mouseleave', () => { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null })
 window.addEventListener('resize', () => renderer.resize())
 
 // ========== HUD ==========
