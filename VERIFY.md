@@ -24,17 +24,18 @@ B=~/.claude/skills/gstack/browse/dist/browse
 
 The Pretext server uses `import.meta.url` to fetch data files relative to `src/main.js`. Use `?file=…` query param to switch corpora.
 
-## Test corpora
+## Test corpus
 
 | File | Levels | Purpose |
 |------|--------|---------|
-| `the-voting-problem.json`           | 10 (0–9) | Hand-crafted; canonical regression target |
-| `the-voting-problem-auto.json`      | 6  (0–5) | Auto-generated; default in `index.html` |
-| `the-voting-problem-auto-concepts.json` | n/a   | Concept anchors for the auto file |
+| `the-voting-problem-auto.json`          | 6 (0–5) | Pipeline output (`generate-tree.js`) |
+| `the-voting-problem-auto-concepts.json` | n/a     | Concept anchors (`extract-concepts.js`) |
 
-URLs:
-- `http://localhost:5181/?file=the-voting-problem-auto.json` (auto, 6 levels, has concepts)
-- `http://localhost:5181/?file=the-voting-problem.json` (hand-crafted, 10 levels)
+URL: `http://localhost:5181/?file=the-voting-problem-auto.json`
+
+To add a new corpus: drop a `.txt` in `data/`, run
+`generate-tree.js <file.txt>` then `extract-concepts.js <out.json>`,
+add the option to `index.html`.
 
 ---
 
@@ -314,4 +315,5 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-04-16 | Initial VERIFY.md. Project added to verify_registry. Canonical six-concept regression set defined. |
 | 2026-04-16 | Pre-fix matrix captured: 0/5 tracked concepts preserved across L0→L5. Drift bug confirmed. |
 | 2026-04-16 | Fix shipped in `src/main.js` wheel handler: concept-anchored zoom with `trackedConcept` locked across a continuous wheel session, cleared on cursor motion (>2px). Phrase-chain fallback preserved. Post-fix matrix: 6/6 preserved. Anti-reward-hacking checklist passes. |
-| 2026-04-16 | `tools/extract-concepts.js` shipped — produces a sibling `<basename>-concepts.json` for any tree from `generate-tree.js`. One Claude CLI call to identify concepts + L_max anchors, then deterministic upward propagation via `tree.children` + literal/fuzzy substring match. Auto file regenerated (was stale, anchors out of range). 10-level hand-crafted file got its first concepts file. Matrix on regenerated auto file: 5/5 preserved. Matrix on 10-level file with auto-extracted concepts: 4/4 preserved across L0→L9. The protocol now works on any prose; no hand-curation required. Coverage drops at the most-compressed levels (L0/L1) for some concepts — that's a data-quality follow-up (extract-concepts could merge granular concepts into thesis-level parents), not a wheel-handler bug. |
+| 2026-04-16 | `tools/extract-concepts.js` shipped — produces a sibling `<basename>-concepts.json` for any tree from `generate-tree.js`. One Claude CLI call to identify concepts + L_max anchors, then deterministic upward propagation via `tree.children` + literal/fuzzy substring match. Auto-concepts file regenerated (was stale, anchors out of range). Matrix on regenerated file: 5/5 preserved. The protocol now works on any prose; no hand-curation required. Coverage drops at the most-compressed levels (L0/L1) for some concepts — data-quality follow-up (extract-concepts could merge granular concepts into thesis-level parents), not a wheel-handler bug. |
+| 2026-04-16 | Removed legacy 10-level `the-voting-problem.json` and its concepts file. They were experimental artifacts from before the pipeline existed; pipeline is now the single source of truth. |
