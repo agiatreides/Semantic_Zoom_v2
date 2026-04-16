@@ -1,780 +1,737 @@
 [
   {
-    "id": "opening_ai_ruins_arguing",
-    "label": "AI ruins your ability to argue",
+    "id": "chip_real_time_roi_analysis",
+    "label": "Chip running real-time ROI numbers",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 30,
-        "charEnd": 114
+        "charStart": 77,
+        "charEnd": 146
       },
       "1": {
         "nodeId": "1-0",
-        "charStart": 89,
-        "charEnd": 184
+        "charStart": 157,
+        "charEnd": 197
       },
       "2": {
         "nodeId": "2-0",
-        "charStart": 117,
-        "charEnd": 252
+        "charStart": 323,
+        "charEnd": 363
       },
       "3": {
         "nodeId": "3-0",
-        "charStart": 114,
-        "charEnd": 237
-      },
-      "4": {
-        "nodeId": "4-1",
-        "charStart": 0,
-        "charEnd": 101
-      },
-      "5": {
-        "nodeId": "5-1",
-        "charStart": 0,
-        "charEnd": 103
-      },
-      "6": {
-        "nodeId": "6-0",
-        "charStart": 76,
-        "charEnd": 106
-      }
-    }
-  },
-  {
-    "id": "budget_meeting_derek",
-    "label": "Budget meeting with Derek",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 0,
-        "charEnd": 24
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 24,
-        "charEnd": 87
-      },
-      "2": {
-        "nodeId": "2-0",
-        "charStart": 49,
-        "charEnd": 115
-      },
-      "3": {
-        "nodeId": "3-0",
-        "charStart": 32,
-        "charEnd": 112
+        "charStart": 327,
+        "charEnd": 367
       },
       "4": {
         "nodeId": "4-0",
-        "charStart": 43,
-        "charEnd": 122
+        "charStart": 338,
+        "charEnd": 420
       },
       "5": {
         "nodeId": "5-0",
-        "charStart": 56,
-        "charEnd": 144
-      },
-      "6": {
-        "nodeId": "6-0",
-        "charStart": 157,
-        "charEnd": 241
+        "charStart": 362,
+        "charEnd": 444
       }
     }
   },
   {
-    "id": "chip_runs_numbers",
-    "label": "Chip calculates ROI and flags Derek's errors",
+    "id": "derek_influencer_budget_proposal",
+    "label": "Derek's influencer partnership pitch",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 30,
-        "charEnd": 62
+        "charStart": 19,
+        "charEnd": 89
       },
       "1": {
         "nodeId": "1-0",
-        "charStart": 129,
-        "charEnd": 184
+        "charStart": 82,
+        "charEnd": 154
       },
       "2": {
         "nodeId": "2-0",
-        "charStart": 117,
-        "charEnd": 252
+        "charStart": 156,
+        "charEnd": 235
       },
       "3": {
         "nodeId": "3-0",
+        "charStart": 161,
+        "charEnd": 239
+      },
+      "4": {
+        "nodeId": "4-0",
+        "charStart": 173,
+        "charEnd": 251
+      },
+      "5": {
+        "nodeId": "5-0",
+        "charStart": 201,
+        "charEnd": 306
+      }
+    }
+  },
+  {
+    "id": "chip_yellow_annotation_errors",
+    "label": "Chip annotating factual errors in peripheral vision",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 0,
+        "charEnd": 95
+      },
+      "1": {
+        "nodeId": "1-0",
         "charStart": 114,
-        "charEnd": 237
-      },
-      "4": {
-        "nodeId": "4-1",
-        "charStart": 170,
-        "charEnd": 229
-      },
-      "5": {
-        "nodeId": "5-1",
-        "charStart": 0,
-        "charEnd": 103
-      },
-      "6": {
-        "nodeId": "6-1",
-        "charStart": 0,
-        "charEnd": 81
-      }
-    }
-  },
-  {
-    "id": "chip_interrupts_maya_alert",
-    "label": "Chip interrupts with Maya alert",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 47,
-        "charEnd": 102
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 186,
-        "charEnd": 285
-      },
-      "2": {
-        "nodeId": "2-0",
-        "charStart": 420,
-        "charEnd": 475
-      },
-      "3": {
-        "nodeId": "3-1",
-        "charStart": 220,
-        "charEnd": 314
-      },
-      "4": {
-        "nodeId": "4-3",
-        "charStart": 133,
-        "charEnd": 212
-      },
-      "5": {
-        "nodeId": "5-3",
-        "charStart": 134,
-        "charEnd": 215
-      },
-      "6": {
-        "nodeId": "6-3",
-        "charStart": 99,
-        "charEnd": 146
-      }
-    }
-  },
-  {
-    "id": "drive_to_school_chip_briefs",
-    "label": "Drive to school / Chip briefs on Tyler's accusation",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 127,
-        "charEnd": 150
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 287,
-        "charEnd": 319
+        "charEnd": 206
       },
       "2": {
         "nodeId": "2-1",
-        "charStart": 0,
-        "charEnd": 81
+        "charStart": 45,
+        "charEnd": 129
       },
       "3": {
-        "nodeId": "3-2",
-        "charStart": 0,
-        "charEnd": 97
+        "nodeId": "3-1",
+        "charStart": 45,
+        "charEnd": 129
       },
       "4": {
-        "nodeId": "4-4",
-        "charStart": 0,
-        "charEnd": 38
+        "nodeId": "4-1",
+        "charStart": 55,
+        "charEnd": 139
       },
       "5": {
-        "nodeId": "5-4",
-        "charStart": 0,
-        "charEnd": 100
-      },
-      "6": {
-        "nodeId": "6-4",
-        "charStart": 0,
-        "charEnd": 123
+        "nodeId": "5-1",
+        "charStart": 92,
+        "charEnd": 212
       }
     }
   },
   {
-    "id": "principals_office_assistants_testify",
-    "label": "Principal's office / assistants testify",
+    "id": "maya_urgent_school_alert",
+    "label": "Maya's urgent school situation flagged",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 152,
-        "charEnd": 225
+        "charStart": 137,
+        "charEnd": 176
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 379,
+        "charEnd": 419
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 35,
+        "charEnd": 86
+      },
+      "3": {
+        "nodeId": "3-2",
+        "charStart": 147,
+        "charEnd": 224
+      },
+      "4": {
+        "nodeId": "4-2",
+        "charStart": 147,
+        "charEnd": 224
+      },
+      "5": {
+        "nodeId": "5-2",
+        "charStart": 147,
+        "charEnd": 224
+      }
+    }
+  },
+  {
+    "id": "tyler_cheating_accusation",
+    "label": "Tyler accuses Maya of AI-assisted cheating",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 137,
+        "charEnd": 199
       },
       "1": {
         "nodeId": "1-1",
         "charStart": 0,
-        "charEnd": 59
+        "charEnd": 64
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 77,
+        "charEnd": 143
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 33,
+        "charEnd": 93
+      },
+      "4": {
+        "nodeId": "4-3",
+        "charStart": 56,
+        "charEnd": 125
+      },
+      "5": {
+        "nodeId": "5-3",
+        "charStart": 71,
+        "charEnd": 163
+      }
+    }
+  },
+  {
+    "id": "biometric_data_ambiguity",
+    "label": "Heartrate data proves nothing either way",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 66,
+        "charEnd": 176
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 0,
+        "charEnd": 87
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 42,
+        "charEnd": 143
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 157,
+        "charEnd": 268
+      },
+      "4": {
+        "nodeId": "4-3",
+        "charStart": 266,
+        "charEnd": 377
+      },
+      "5": {
+        "nodeId": "5-3",
+        "charStart": 291,
+        "charEnd": 426
+      }
+    }
+  },
+  {
+    "id": "assistants_bound_by_consent_laws",
+    "label": "AI assistants legally bound by consent",
+    "anchors": {
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 184,
+        "charEnd": 240
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 422,
+        "charEnd": 456
+      },
+      "4": {
+        "nodeId": "4-3",
+        "charStart": 533,
+        "charEnd": 571
+      },
+      "5": {
+        "nodeId": "5-3",
+        "charStart": 611,
+        "charEnd": 689
+      }
+    }
+  },
+  {
+    "id": "chip_ethical_frameworks_response",
+    "label": "Chip recites three competing ethical frameworks",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 25,
+        "charEnd": 95
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 198,
+        "charEnd": 244
       },
       "2": {
         "nodeId": "2-2",
         "charStart": 0,
-        "charEnd": 78
+        "charEnd": 76
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 1198,
+        "charEnd": 1261
+      },
+      "4": {
+        "nodeId": "4-4",
+        "charStart": 168,
+        "charEnd": 234
+      },
+      "5": {
+        "nodeId": "5-4",
+        "charStart": 397,
+        "charEnd": 481
+      }
+    }
+  },
+  {
+    "id": "martinez_manual_override",
+    "label": "Principal deliberately ignores her assistant",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 177,
+        "charEnd": 217
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 549,
+        "charEnd": 591
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 0,
+        "charEnd": 62
       },
       "3": {
         "nodeId": "3-3",
         "charStart": 0,
-        "charEnd": 60
+        "charEnd": 48
       },
       "4": {
-        "nodeId": "4-7",
-        "charStart": 99,
-        "charEnd": 149
+        "nodeId": "4-4",
+        "charStart": 621,
+        "charEnd": 680
       },
       "5": {
-        "nodeId": "5-7",
-        "charStart": 0,
-        "charEnd": 139
-      },
-      "6": {
-        "nodeId": "6-7",
-        "charStart": 137,
-        "charEnd": 189
+        "nodeId": "5-5",
+        "charStart": 432,
+        "charEnd": 509
       }
     }
   },
   {
-    "id": "tylers_assistant_eye_evidence",
-    "label": "Tyler's assistant: eye movement evidence",
+    "id": "tyler_assistant_eye_evidence",
+    "label": "Tyler's assistant presents eye-movement evidence",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 179,
-        "charEnd": 225
+        "charStart": 133,
+        "charEnd": 217
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 107,
-        "charEnd": 152
+        "charStart": 0,
+        "charEnd": 83
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 32,
-        "charEnd": 129
+        "charStart": 0,
+        "charEnd": 114
       },
       "3": {
-        "nodeId": "3-4",
-        "charStart": 54,
-        "charEnd": 163
+        "nodeId": "3-3",
+        "charStart": 130,
+        "charEnd": 245
       },
       "4": {
-        "nodeId": "4-8",
-        "charStart": 104,
-        "charEnd": 174
+        "nodeId": "4-4",
+        "charStart": 1183,
+        "charEnd": 1300
       },
       "5": {
-        "nodeId": "5-8",
-        "charStart": 105,
-        "charEnd": 184
-      },
-      "6": {
-        "nodeId": "6-8",
-        "charStart": 191,
-        "charEnd": 269
+        "nodeId": "5-7",
+        "charStart": 391,
+        "charEnd": 522
       }
     }
   },
   {
     "id": "sparkle_counter_testimony",
-    "label": "Sparkle's counter-testimony: visualization technique",
+    "label": "Sparkle defends Maya's visualization technique",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 179,
-        "charEnd": 225
+        "charStart": 107,
+        "charEnd": 176
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 154,
-        "charEnd": 168
+        "charStart": 0,
+        "charEnd": 64
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 155,
-        "charEnd": 206
+        "charStart": 35,
+        "charEnd": 111
       },
       "3": {
-        "nodeId": "3-5",
+        "nodeId": "3-3",
         "charStart": 0,
-        "charEnd": 81
+        "charEnd": 73
       },
       "4": {
-        "nodeId": "4-9",
-        "charStart": 0,
-        "charEnd": 79
+        "nodeId": "4-4",
+        "charStart": 1381,
+        "charEnd": 1463
+      },
+      "5": {
+        "nodeId": "5-8",
+        "charStart": 226,
+        "charEnd": 337
+      }
+    }
+  },
+  {
+    "id": "parental_oversight_protocol_dilemma",
+    "label": "Accessing Sparkle's parental oversight logs",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 304,
+        "charEnd": 394
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 114,
+        "charEnd": 190
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 330,
+        "charEnd": 401
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 753,
+        "charEnd": 853
+      },
+      "4": {
+        "nodeId": "4-4",
+        "charStart": 1733,
+        "charEnd": 1773
       },
       "5": {
         "nodeId": "5-9",
-        "charStart": 0,
-        "charEnd": 79
-      },
-      "6": {
-        "nodeId": "6-9",
-        "charStart": 49,
-        "charEnd": 89
+        "charStart": 29,
+        "charEnd": 149
       }
     }
   },
   {
-    "id": "hallway_conversation_maya",
-    "label": "Hallway conversation with Maya",
+    "id": "maya_hallway_denial",
+    "label": "Maya swears she didn't cheat",
     "anchors": {
       "0": {
         "nodeId": "0-0",
+        "charStart": 119,
+        "charEnd": 176
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 0,
+        "charEnd": 55
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 42,
+        "charEnd": 111
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 0,
+        "charEnd": 64
+      },
+      "4": {
+        "nodeId": "4-4",
+        "charStart": 2072,
+        "charEnd": 2127
+      },
+      "5": {
+        "nodeId": "5-10",
         "charStart": 227,
-        "charEnd": 258
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 154,
-        "charEnd": 194
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 0,
-        "charEnd": 36
-      },
-      "3": {
-        "nodeId": "3-6",
-        "charStart": 0,
-        "charEnd": 52
-      },
-      "4": {
-        "nodeId": "4-11",
-        "charStart": 0,
-        "charEnd": 52
-      },
-      "5": {
-        "nodeId": "5-11",
-        "charStart": 0,
-        "charEnd": 65
-      },
-      "6": {
-        "nodeId": "6-11",
-        "charStart": 56,
-        "charEnd": 96
+        "charEnd": 318
       }
     }
   },
   {
-    "id": "did_you_cheat_maya_no",
-    "label": "\"Did you cheat?\" — Maya says no",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 260,
-        "charEnd": 285
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 154,
-        "charEnd": 168
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 38,
-        "charEnd": 116
-      },
-      "3": {
-        "nodeId": "3-6",
-        "charStart": 54,
-        "charEnd": 102
-      },
-      "4": {
-        "nodeId": "4-11",
-        "charStart": 166,
-        "charEnd": 202
-      },
-      "5": {
-        "nodeId": "5-11",
-        "charStart": 176,
-        "charEnd": 235
-      },
-      "6": {
-        "nodeId": "6-11",
-        "charStart": 230,
-        "charEnd": 251
-      }
-    }
-  },
-  {
-    "id": "tom_could_check_logs",
-    "label": "Tom could check Sparkle's diagnostic logs",
+    "id": "verification_changes_relationship",
+    "label": "Verification changes the relationship regardless",
     "anchors": {
       "0": {
         "nodeId": "0-0",
         "charStart": 287,
-        "charEnd": 337
+        "charEnd": 339
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 170,
-        "charEnd": 257
+        "charStart": 286,
+        "charEnd": 338
       },
       "2": {
-        "nodeId": "2-3",
-        "charStart": 132,
-        "charEnd": 222
+        "nodeId": "2-2",
+        "charStart": 575,
+        "charEnd": 626
       },
       "3": {
-        "nodeId": "3-6",
-        "charStart": 260,
-        "charEnd": 364
+        "nodeId": "3-3",
+        "charStart": 1279,
+        "charEnd": 1330
       },
       "4": {
-        "nodeId": "4-12",
-        "charStart": 15,
-        "charEnd": 83
+        "nodeId": "4-4",
+        "charStart": 2785,
+        "charEnd": 2860
       },
       "5": {
         "nodeId": "5-12",
-        "charStart": 0,
-        "charEnd": 83
-      },
-      "6": {
-        "nodeId": "6-12",
-        "charStart": 31,
-        "charEnd": 99
+        "charStart": 224,
+        "charEnd": 299
       }
     }
   },
   {
-    "id": "three_choices",
-    "label": "The three choices: verify or trust",
+    "id": "chip_84_percent_probability",
+    "label": "Chip calculates 84% truth probability",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 491,
-        "charEnd": 518
+        "charStart": 147,
+        "charEnd": 176
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 262,
-        "charEnd": 316
+        "charStart": 235,
+        "charEnd": 271
+      },
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 427,
+        "charEnd": 455
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 1364,
+        "charEnd": 1395
+      },
+      "4": {
+        "nodeId": "4-4",
+        "charStart": 2882,
+        "charEnd": 2922
+      },
+      "5": {
+        "nodeId": "5-12",
+        "charStart": 329,
+        "charEnd": 391
+      }
+    }
+  },
+  {
+    "id": "martinez_dismisses_tyler",
+    "label": "Martinez exposes Tyler's grade-envy motive",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 96,
+        "charEnd": 176
+      },
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 0,
+        "charEnd": 74
       },
       "2": {
         "nodeId": "2-3",
-        "charStart": 227,
-        "charEnd": 277
+        "charStart": 57,
+        "charEnd": 136
       },
       "3": {
-        "nodeId": "3-7",
-        "charStart": 0,
-        "charEnd": 49
+        "nodeId": "3-5",
+        "charStart": 96,
+        "charEnd": 212
       },
       "4": {
-        "nodeId": "4-13",
-        "charStart": 0,
-        "charEnd": 90
-      },
-      "5": {
-        "nodeId": "5-13",
-        "charStart": 0,
-        "charEnd": 84
-      },
-      "6": {
-        "nodeId": "6-13",
-        "charStart": 0,
-        "charEnd": 52
-      }
-    }
-  },
-  {
-    "id": "84_percent_chip_refuses",
-    "label": "84% probability / Chip refuses to recommend",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 360,
-        "charEnd": 448
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 318,
-        "charEnd": 359
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 389,
-        "charEnd": 498
-      },
-      "3": {
-        "nodeId": "3-7",
-        "charStart": 238,
-        "charEnd": 397
-      },
-      "4": {
-        "nodeId": "4-14",
-        "charStart": 18,
-        "charEnd": 76
-      },
-      "5": {
-        "nodeId": "5-14",
-        "charStart": 0,
-        "charEnd": 55
-      },
-      "6": {
-        "nodeId": "6-14",
-        "charStart": 21,
-        "charEnd": 82
-      }
-    }
-  },
-  {
-    "id": "tom_trusts_wont_check",
-    "label": "Tom trusts Maya / won't check logs",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 450,
-        "charEnd": 489
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 262,
-        "charEnd": 316
-      },
-      "2": {
-        "nodeId": "2-4",
-        "charStart": 0,
-        "charEnd": 84
-      },
-      "3": {
-        "nodeId": "3-8",
-        "charStart": 0,
-        "charEnd": 70
-      },
-      "4": {
-        "nodeId": "4-15",
-        "charStart": 52,
-        "charEnd": 124
+        "nodeId": "4-7",
+        "charStart": 134,
+        "charEnd": 250
       },
       "5": {
         "nodeId": "5-15",
-        "charStart": 52,
-        "charEnd": 124
-      },
-      "6": {
-        "nodeId": "6-15",
-        "charStart": 112,
-        "charEnd": 186
+        "charStart": 188,
+        "charEnd": 304
       }
     }
   },
   {
-    "id": "martinez_dismisses_tyler_filed",
-    "label": "Martinez dismisses: Tyler filed after being outscored",
+    "id": "pre_assistant_decision_making",
+    "label": "Life before AI assistants existed",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 491,
-        "charEnd": 518
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 318,
-        "charEnd": 359
-      },
-      "2": {
-        "nodeId": "2-4",
-        "charStart": 106,
-        "charEnd": 266
-      },
-      "3": {
-        "nodeId": "3-8",
-        "charStart": 88,
-        "charEnd": 174
-      },
-      "4": {
-        "nodeId": "4-16",
         "charStart": 346,
-        "charEnd": 409
-      },
-      "5": {
-        "nodeId": "5-16",
-        "charStart": 370,
-        "charEnd": 488
-      },
-      "6": {
-        "nodeId": "6-16",
-        "charStart": 438,
-        "charEnd": 553
-      }
-    }
-  },
-  {
-    "id": "car_ride_statistically_suboptimal",
-    "label": "Car ride home / \"statistically suboptimal\"",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 450,
-        "charEnd": 489
+        "charEnd": 424
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 262,
-        "charEnd": 359
+        "charStart": 154,
+        "charEnd": 234
       },
       "2": {
-        "nodeId": "2-4",
-        "charStart": 450,
-        "charEnd": 554
+        "nodeId": "2-3",
+        "charStart": 559,
+        "charEnd": 658
       },
       "3": {
-        "nodeId": "3-8",
-        "charStart": 448,
-        "charEnd": 499
+        "nodeId": "3-6",
+        "charStart": 178,
+        "charEnd": 268
       },
       "4": {
-        "nodeId": "4-17",
-        "charStart": 76,
-        "charEnd": 134
+        "nodeId": "4-9",
+        "charStart": 155,
+        "charEnd": 195
       },
       "5": {
         "nodeId": "5-17",
-        "charStart": 116,
-        "charEnd": 174
-      },
-      "6": {
-        "nodeId": "6-20",
-        "charStart": 40,
-        "charEnd": 95
+        "charStart": 211,
+        "charEnd": 338
       }
     }
   },
   {
-    "id": "megs_lagos_equity_gap",
-    "label": "Megs video call from Lagos / AI equity gap",
+    "id": "chip_different_objective_function",
+    "label": "Different objectives redefine what is optimal",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 534,
-        "charEnd": 588
+        "charStart": 147,
+        "charEnd": 199
       },
       "1": {
-        "nodeId": "1-2",
-        "charStart": 14,
-        "charEnd": 101
+        "nodeId": "1-1",
+        "charStart": 0,
+        "charEnd": 50
       },
       "2": {
-        "nodeId": "2-5",
-        "charStart": 14,
-        "charEnd": 101
+        "nodeId": "2-3",
+        "charStart": 501,
+        "charEnd": 570
       },
       "3": {
-        "nodeId": "3-10",
-        "charStart": 14,
-        "charEnd": 99
+        "nodeId": "3-6",
+        "charStart": 829,
+        "charEnd": 897
       },
       "4": {
-        "nodeId": "4-19",
-        "charStart": 14,
-        "charEnd": 111
+        "nodeId": "4-11",
+        "charStart": 0,
+        "charEnd": 40
       },
       "5": {
-        "nodeId": "5-19",
-        "charStart": 14,
-        "charEnd": 117
+        "nodeId": "5-20",
+        "charStart": 0,
+        "charEnd": 91
+      }
+    }
+  },
+  {
+    "id": "megs_global_ai_equity",
+    "label": "Global AI access gap widening yearly",
+    "anchors": {
+      "0": {
+        "nodeId": "0-0",
+        "charStart": 0,
+        "charEnd": 76
       },
-      "6": {
-        "nodeId": "6-19",
-        "charStart": 14,
-        "charEnd": 59
+      "1": {
+        "nodeId": "1-1",
+        "charStart": 505,
+        "charEnd": 578
+      },
+      "2": {
+        "nodeId": "2-3",
+        "charStart": 859,
+        "charEnd": 929
+      },
+      "3": {
+        "nodeId": "3-7",
+        "charStart": 77,
+        "charEnd": 194
+      },
+      "4": {
+        "nodeId": "4-12",
+        "charStart": 286,
+        "charEnd": 403
+      },
+      "5": {
+        "nodeId": "5-21",
+        "charStart": 383,
+        "charEnd": 500
+      }
+    }
+  },
+  {
+    "id": "minimum_viable_ethics_critique",
+    "label": "Constraint laws are minimum viable ethics",
+    "anchors": {
+      "2": {
+        "nodeId": "2-3",
+        "charStart": 837,
+        "charEnd": 890
+      },
+      "3": {
+        "nodeId": "3-7",
+        "charStart": 201,
+        "charEnd": 248
+      },
+      "4": {
+        "nodeId": "4-12",
+        "charStart": 574,
+        "charEnd": 646
+      },
+      "5": {
+        "nodeId": "5-22",
+        "charStart": 337,
+        "charEnd": 409
       }
     }
   },
   {
     "id": "optimization_not_wisdom",
-    "label": "Chip's reflection: optimization is not wisdom",
+    "label": "Optimization is not wisdom or judgment",
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 594,
-        "charEnd": 636
+        "charStart": 432,
+        "charEnd": 489
       },
       "1": {
-        "nodeId": "1-2",
-        "charStart": 148,
-        "charEnd": 233
+        "nodeId": "1-1",
+        "charStart": 529,
+        "charEnd": 591
       },
       "2": {
-        "nodeId": "2-5",
-        "charStart": 326,
-        "charEnd": 419
+        "nodeId": "2-3",
+        "charStart": 986,
+        "charEnd": 1026
       },
       "3": {
-        "nodeId": "3-10",
-        "charStart": 387,
-        "charEnd": 438
+        "nodeId": "3-7",
+        "charStart": 593,
+        "charEnd": 710
       },
       "4": {
-        "nodeId": "4-20",
-        "charStart": 294,
-        "charEnd": 387
+        "nodeId": "4-12",
+        "charStart": 1150,
+        "charEnd": 1267
       },
       "5": {
-        "nodeId": "5-22",
-        "charStart": 291,
-        "charEnd": 403
-      },
-      "6": {
-        "nodeId": "6-22",
-        "charStart": 603,
-        "charEnd": 719
-      }
-    }
-  },
-  {
-    "id": "closing_got_it_right",
-    "label": "Closing: Tom goes to bed, \"got it right\"",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 594,
-        "charEnd": 636
-      },
-      "1": {
-        "nodeId": "1-2",
-        "charStart": 235,
-        "charEnd": 315
-      },
-      "2": {
-        "nodeId": "2-5",
-        "charStart": 421,
-        "charEnd": 460
-      },
-      "3": {
-        "nodeId": "3-10",
-        "charStart": 487,
-        "charEnd": 528
-      },
-      "4": {
-        "nodeId": "4-20",
-        "charStart": 490,
-        "charEnd": 541
-      },
-      "5": {
-        "nodeId": "5-22",
-        "charStart": 506,
-        "charEnd": 608
-      },
-      "6": {
-        "nodeId": "6-23",
-        "charStart": 396,
-        "charEnd": 455
+        "nodeId": "5-23",
+        "charStart": 598,
+        "charEnd": 715
       }
     }
   }
