@@ -26,15 +26,22 @@ text is replaced with a coarser/finer rendition. The intent is that the
 That invariant is the entire product.
 
 Stack: vite, vanilla JS, canvas 2D context. Data is pre-baked as JSON.
-The pipeline:
+The pipeline (three steps; the second pass is what gives L0 a real thesis):
 
 1. `tools/generate-tree.js <text.txt>` → builds the multi-level tree
-   (semantic chunking → contiguous clustering → Claude CLI summarization,
+   (semantic chunking → contiguous clustering → Claude CLI reduction,
    bottom-up RAPTOR style). Currently produces ~6 levels.
-2. `tools/extract-concepts.js <tree.json>` → produces a sibling
-   `<basename>-concepts.json` with per-level anchors for each major
-   concept. Required for zoom-without-drift; the renderer auto-loads it
-   if it exists.
+2. `tools/extract-concepts.js <tree.json>` → identifies major events
+   (verb-driven, e.g. *"Tom refuses to access Maya's logs"*), assigns
+   each one a `min_visible_level` via the poker-nuts framing, and emits
+   per-level anchors in `<basename>-concepts.json`. Anchors are emitted
+   ONLY at levels >= a concept's `min_visible_level`; above that, the
+   concept is intentionally invisible.
+3. `tools/generate-tree.js <text.txt> --concepts <concepts.json>` →
+   re-runs the tree build, then **re-reduces upper levels using only
+   the events whose `min_visible_level <= L`**. This is what fixes the
+   "12% lower ROI" garbage at L0; the L0 reduction is built FROM the
+   nuts only. Re-run `extract-concepts.js` after this to refresh anchors.
 
 Both tools must be runnable on any prose input with no manual editing.
 
@@ -60,6 +67,20 @@ Sources of truth:
    was that ALL words zoomed toward `not`. Any fix must be a generic
    mechanism that treats every concept symmetrically. The anti-reward-
    hacking checklist in `VERIFY.md` is mandatory before declaring done.
+
+2a. **Reduction, not summary.** Every level's text is the SAME story
+   told tighter — same voice, same tense, same perspective, same
+   character agency. The reader is reading the work, not a description
+   of it. *"Maya is accused. He could check the logs. He doesn't."* —
+   not *"The story explores parental oversight."* The `claudeSummarize`
+   prompt enforces this; do not weaken it.
+
+2b. **The poker nuts rule.** L0 contains only the events the story
+   collapses without — usually 1-3 events for a short story. Most
+   concepts are intentionally INVISIBLE at L0 (no anchor, not in the
+   reduction). Coverage at L0 is supposed to be sparse. The renderer
+   gracefully re-tracks when the user zooms past a concept's
+   `min_visible_level` boundary.
 
 3. **Concepts vs phrases.** The data file ships two separate anchor
    structures:

@@ -144,6 +144,10 @@ let inputFile = null
 let outputFile = null
 let maxTokenSize = 200
 let useExtractive = false
+let conceptsFile = null  // --concepts <path>: when given, the upper levels are
+                         // re-reduced after the bottom-up build using only the
+                         // events whose min_visible_level <= L. Drops the "12% ROI"
+                         // problem at L0/L1 and gives the renderer a real signal.
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--output' && args[i + 1]) {
@@ -152,6 +156,8 @@ for (let i = 0; i < args.length; i++) {
     maxTokenSize = parseInt(args[++i])
   } else if (args[i] === '--extractive') {
     useExtractive = true
+  } else if (args[i] === '--concepts' && args[i + 1]) {
+    conceptsFile = args[++i]
   } else if (!args[i].startsWith('--')) {
     inputFile = args[i]
   }
@@ -400,6 +406,76 @@ for (let L = 0; L < totalLevels - 1; L++) {
 // Leaf nodes have no children
 for (const node of topDownLevels[totalLevels - 1]) {
   node.children = []
+}
+
+// ------ Step 6.5: Re-reduce upper levels with concept guidance ------
+//
+// If --concepts <path> was given, walk the tree top-down (excluding the leaves)
+// and re-reduce each non-leaf node using ONLY the events whose
+// min_visible_level <= L. This forces L0/L1 to drop atmospheric detail
+// ("12% lower ROI") and contain only the load-bearing plot beats.
+//
+// We re-embed each new node text after reduction so the phrase-map step
+// (next) operates on the actual rendered text.
+
+if (conceptsFile) {
+  const conceptsPath = path.resolve(projectRoot, conceptsFile)
+  console.log(`\nStep 6.5: Re-reducing upper levels using ${path.relative(projectRoot, conceptsPath)}`)
+  let allConcepts = []
+  try {
+    allConcepts = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
+  } catch (e) {
+    console.error(`  Failed to read concepts file: ${e.message}`)
+    allConcepts = null
+  }
+
+  if (Array.isArray(allConcepts)) {
+    // Build childId → topDownLevels[L+1] node lookup once
+    const nodeByIdAtLevel = {}  // `${L}:${id}` → node
+    for (let L = 0; L < totalLevels; L++) {
+      for (const n of topDownLevels[L]) nodeByIdAtLevel[`${L}:${n.id}`] = n
+    }
+
+    // Re-reduce non-leaf levels (skip L_max, which IS the source text)
+    for (let L = 0; L < totalLevels - 1; L++) {
+      const essentials = allConcepts.filter(c => (c.min_visible_level ?? totalLevels) <= L)
+      console.log(`  L${L}: ${essentials.length} essentials (min_visible_level<=${L})`)
+      if (essentials.length === 0) {
+        // No essentials at this level — leave existing reduction as-is.
+        // (Could also force a re-reduce here saying "produce 1-2 sentences";
+        //  TBD if user prefers that.)
+        continue
+      }
+
+      for (const node of topDownLevels[L]) {
+        // Members at the next level (the children whose text gets reduced)
+        const childMembers = (node.children || [])
+          .map(cid => nodeByIdAtLevel[`${L + 1}:${cid}`])
+          .filter(Boolean)
+          .map(cn => ({ text: cn.text, embedding: cn.embedding }))
+        if (childMembers.length === 0) continue
+        const childWordCount = childMembers.reduce((s, m) => s + m.text.split(/\s+/).length, 0)
+        const targetWords = targetWordCount(childWordCount, totalLevels - 1 - L, 0, totalWords)
+
+        let newText
+        if (useExtractive) {
+          // Extractive doesn't take essentials; keep the tree's current text.
+          continue
+        } else {
+          console.log(`    re-reducing ${node.id} (${childMembers.length} children → ~${targetWords} words, ${essentials.length} essentials)`)
+          newText = claudeSummarize(childMembers, targetWords, [], { essentials })
+          if (!newText) {
+            console.log(`    re-reduce failed; keeping original text for ${node.id}`)
+            continue
+          }
+        }
+
+        node.text = newText
+        node.embedding = await embedText(newText)
+      }
+    }
+  }
+  console.log()
 }
 
 // ------ Step 7: Build output JSON ------

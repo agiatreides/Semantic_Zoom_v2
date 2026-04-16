@@ -165,6 +165,11 @@ function findConceptAtCursor(level, offsets) {
   if (!cursorNodeId) return null
 
   const lvlStr = String(level)
+
+  // First pass: collect ALL concepts whose anchor at this level contains the
+  // cursor. Tie-break by SHORTEST anchor (most specific) — old behavior was
+  // first-in-array which was unstable when concepts overlapped at L0.
+  let containing = null  // {concept, span}
   let bestConcept = null
   let bestDistance = Infinity
 
@@ -173,7 +178,11 @@ function findConceptAtCursor(level, offsets) {
     if (!anchor || anchor.nodeId !== cursorNodeId) continue
 
     if (cursorCharIdx >= anchor.charStart && cursorCharIdx <= anchor.charEnd) {
-      return concept
+      const span = anchor.charEnd - anchor.charStart
+      if (!containing || span < containing.span) {
+        containing = { concept, span }
+      }
+      continue
     }
 
     const dist = Math.min(
@@ -186,6 +195,7 @@ function findConceptAtCursor(level, offsets) {
     }
   }
 
+  if (containing) return containing.concept
   if (bestConcept && bestDistance < 200) return bestConcept
 
   // Fallback: find closest concept by content Y
@@ -231,6 +241,33 @@ function getConceptPosition(concept, level) {
   }
 
   return { contentY: node.y, contentX: 0 }
+}
+
+// Position of the MIDDLE character of the anchor span. Aim for this from the
+// wheel handler so the cursor lands centered on the concept, not at its
+// leading edge where a neighboring concept's tail can grab it.
+function getConceptCenterPosition(concept, level) {
+  const anchor = concept.anchors[String(level)]
+  if (!anchor) return null
+  const nodes = measuredLevels[level]
+  if (!nodes) return null
+  const node = nodes.find(n => n.nodeId === anchor.nodeId)
+  if (!node) return null
+
+  const midChar = Math.floor((anchor.charStart + anchor.charEnd) / 2)
+  let charsAcc = 0
+  for (let li = 0; li < node.lines.length; li++) {
+    const lineChars = node.lines[li].text.length
+    if (charsAcc + lineChars >= midChar || li === node.lines.length - 1) {
+      const contentY = node.y + li * LINE_HEIGHT + LINE_HEIGHT / 2
+      const charInLine = midChar - charsAcc
+      const prefix = node.lines[li].text.substring(0, Math.max(0, Math.min(charInLine, node.lines[li].text.length)))
+      const contentX = renderer.measureText(prefix, FONT)
+      return { contentY, contentX }
+    }
+    charsAcc += lineChars
+  }
+  return { contentY: node.y + LINE_HEIGHT / 2, contentX: 0 }
 }
 
 // ========== HIT TESTING ==========
@@ -377,8 +414,37 @@ canvas.addEventListener('wheel', (e) => {
     if (!trackedConcept) {
       trackedConcept = findConceptAtCursor(prevLevel, oldOff)
     }
-    if (trackedConcept && trackedConcept.anchors[String(currentLevel)]) {
-      const pos = getConceptPosition(trackedConcept, currentLevel)
+
+    // If the tracked concept has no anchor at the new level (it's invisible
+    // there because we zoomed past its min_visible_level), gracefully promote
+    // to whatever concept lives where the cursor would otherwise land. Falls
+    // through to the phrase-chain placement below if nothing fits.
+    let targetConcept = trackedConcept
+    if (targetConcept && !targetConcept.anchors[String(currentLevel)]) {
+      // Place via phrase chain first (so cursor lands SOMEWHERE meaningful),
+      // then re-acquire whatever concept is now under the cursor.
+      const tmpContentY = mouseY - oldOff.y
+      const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+      const tmpContentX = mouseX - baseLeftX - oldOff.x
+      const phrase = findPhraseAtCursor(prevLevel, tmpContentY, tmpContentX)
+      const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
+      const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
+      if (target) {
+        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
+        placed = true
+      }
+      const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+      const reacquired = findConceptAtCursor(currentLevel, provisionalOff)
+      if (reacquired) {
+        trackedConcept = reacquired
+        targetConcept = reacquired
+      } else {
+        targetConcept = null  // keep the phrase-chain placement, don't re-anchor
+      }
+    }
+
+    if (targetConcept && targetConcept.anchors[String(currentLevel)]) {
+      const pos = getConceptCenterPosition(targetConcept, currentLevel)
       if (pos) {
         levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - pos.contentY })
         placed = true
@@ -604,9 +670,15 @@ window._sz = {
   get hoveredWord() { return hoveredWord },
   get levelOffsets() { return levelOffsets },
   get phrasesAtLevel() { return phrasesAtLevel },
+  get trackedConcept() { return trackedConcept },
   findConceptAtCursor,
   getConceptPosition,
+  getConceptCenterPosition,
   findPhraseAtCursor,
   hitTestWord,
-  defaultOffset
+  defaultOffset,
+  // Test hook: force-set the tracked concept (used by regression runner to
+  // verify behavior without driving real wheel events).
+  setTrackedConcept(c) { trackedConcept = c },
+  clearTrackedConcept() { trackedConcept = null }
 }

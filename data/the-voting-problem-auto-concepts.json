@@ -1,69 +1,9 @@
 [
   {
-    "id": "chip_real_time_roi_analysis",
-    "label": "Chip running real-time ROI numbers",
+    "id": "derek_pitches_influencer_budget",
+    "label": "Derek pitches influencer partnerships over direct-response ads",
+    "min_visible_level": 5,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 77,
-        "charEnd": 146
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 157,
-        "charEnd": 197
-      },
-      "2": {
-        "nodeId": "2-0",
-        "charStart": 323,
-        "charEnd": 363
-      },
-      "3": {
-        "nodeId": "3-0",
-        "charStart": 327,
-        "charEnd": 367
-      },
-      "4": {
-        "nodeId": "4-0",
-        "charStart": 338,
-        "charEnd": 420
-      },
-      "5": {
-        "nodeId": "5-0",
-        "charStart": 362,
-        "charEnd": 444
-      }
-    }
-  },
-  {
-    "id": "derek_influencer_budget_proposal",
-    "label": "Derek's influencer partnership pitch",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 19,
-        "charEnd": 89
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 82,
-        "charEnd": 154
-      },
-      "2": {
-        "nodeId": "2-0",
-        "charStart": 156,
-        "charEnd": 235
-      },
-      "3": {
-        "nodeId": "3-0",
-        "charStart": 161,
-        "charEnd": 239
-      },
-      "4": {
-        "nodeId": "4-0",
-        "charStart": 173,
-        "charEnd": 251
-      },
       "5": {
         "nodeId": "5-0",
         "charStart": 201,
@@ -72,203 +12,100 @@
     }
   },
   {
-    "id": "chip_yellow_annotation_errors",
-    "label": "Chip annotating factual errors in peripheral vision",
+    "id": "chip_flags_dereks_lower_roi",
+    "label": "Chip calculates Derek's plan yields 12% lower ROI",
+    "min_visible_level": 4,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 0,
-        "charEnd": 95
-      },
-      "1": {
-        "nodeId": "1-0",
-        "charStart": 114,
-        "charEnd": 206
-      },
-      "2": {
-        "nodeId": "2-1",
-        "charStart": 45,
-        "charEnd": 129
-      },
-      "3": {
-        "nodeId": "3-1",
-        "charStart": 45,
-        "charEnd": 129
-      },
       "4": {
-        "nodeId": "4-1",
-        "charStart": 55,
-        "charEnd": 139
+        "nodeId": "4-0",
+        "charStart": 200,
+        "charEnd": 242
       },
       "5": {
-        "nodeId": "5-1",
-        "charStart": 92,
-        "charEnd": 212
+        "nodeId": "5-0",
+        "charStart": 362,
+        "charEnd": 404
       }
     }
   },
   {
-    "id": "maya_urgent_school_alert",
-    "label": "Maya's urgent school situation flagged",
+    "id": "maya_alert_interrupts_meeting",
+    "label": "Maya's school alert interrupts Tom mid-sentence",
+    "min_visible_level": 1,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 137,
-        "charEnd": 176
-      },
       "1": {
         "nodeId": "1-1",
-        "charStart": 379,
-        "charEnd": 419
+        "charStart": 0,
+        "charEnd": 67
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 35,
-        "charEnd": 86
+        "charStart": 0,
+        "charEnd": 46
       },
       "3": {
         "nodeId": "3-2",
-        "charStart": 147,
-        "charEnd": 224
+        "charStart": 0,
+        "charEnd": 122
       },
       "4": {
         "nodeId": "4-2",
-        "charStart": 147,
-        "charEnd": 224
+        "charStart": 44,
+        "charEnd": 182
       },
       "5": {
         "nodeId": "5-2",
-        "charStart": 147,
+        "charStart": 98,
         "charEnd": 224
       }
     }
   },
   {
-    "id": "tyler_cheating_accusation",
-    "label": "Tyler accuses Maya of AI-assisted cheating",
+    "id": "tyler_accuses_maya_of_cheating",
+    "label": "Tyler spreads rumors Maya's assistant fed her exam answers",
+    "min_visible_level": 0,
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 137,
-        "charEnd": 199
+        "charStart": 202,
+        "charEnd": 283
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 64
+        "charStart": 70,
+        "charEnd": 166
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 77,
-        "charEnd": 143
+        "charStart": 47,
+        "charEnd": 132
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 33,
-        "charEnd": 93
+        "charStart": 0,
+        "charEnd": 116
       },
       "4": {
         "nodeId": "4-3",
-        "charStart": 56,
-        "charEnd": 125
+        "charStart": 0,
+        "charEnd": 114
       },
       "5": {
         "nodeId": "5-3",
-        "charStart": 71,
-        "charEnd": 163
+        "charStart": 87,
+        "charEnd": 209
       }
     }
   },
   {
-    "id": "biometric_data_ambiguity",
-    "label": "Heartrate data proves nothing either way",
+    "id": "chip_explains_ethical_frameworks",
+    "label": "Chip lists ethical frameworks instead of prescribing action",
+    "min_visible_level": 4,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 66,
-        "charEnd": 176
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 87
-      },
-      "2": {
-        "nodeId": "2-2",
-        "charStart": 42,
-        "charEnd": 143
-      },
-      "3": {
-        "nodeId": "3-3",
-        "charStart": 157,
-        "charEnd": 268
-      },
-      "4": {
-        "nodeId": "4-3",
-        "charStart": 266,
-        "charEnd": 377
-      },
-      "5": {
-        "nodeId": "5-3",
-        "charStart": 291,
-        "charEnd": 426
-      }
-    }
-  },
-  {
-    "id": "assistants_bound_by_consent_laws",
-    "label": "AI assistants legally bound by consent",
-    "anchors": {
-      "2": {
-        "nodeId": "2-2",
-        "charStart": 184,
-        "charEnd": 240
-      },
-      "3": {
-        "nodeId": "3-3",
-        "charStart": 422,
-        "charEnd": 456
-      },
-      "4": {
-        "nodeId": "4-3",
-        "charStart": 533,
-        "charEnd": 571
-      },
-      "5": {
-        "nodeId": "5-3",
-        "charStart": 611,
-        "charEnd": 689
-      }
-    }
-  },
-  {
-    "id": "chip_ethical_frameworks_response",
-    "label": "Chip recites three competing ethical frameworks",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 25,
-        "charEnd": 95
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 198,
-        "charEnd": 244
-      },
-      "2": {
-        "nodeId": "2-2",
-        "charStart": 0,
-        "charEnd": 76
-      },
-      "3": {
-        "nodeId": "3-3",
-        "charStart": 1198,
-        "charEnd": 1261
-      },
       "4": {
         "nodeId": "4-4",
-        "charStart": 168,
-        "charEnd": 234
+        "charStart": 1288,
+        "charEnd": 1340
       },
       "5": {
         "nodeId": "5-4",
@@ -278,69 +115,51 @@
     }
   },
   {
-    "id": "martinez_manual_override",
-    "label": "Principal deliberately ignores her assistant",
+    "id": "tom_asks_what_perfect_wisdom_says",
+    "label": "Tom asks Chip what perfect wisdom would prescribe",
+    "min_visible_level": 3,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 177,
-        "charEnd": 217
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 549,
-        "charEnd": 591
-      },
-      "2": {
-        "nodeId": "2-2",
-        "charStart": 0,
-        "charEnd": 62
-      },
       "3": {
         "nodeId": "3-3",
-        "charStart": 0,
-        "charEnd": 48
+        "charStart": 69,
+        "charEnd": 128
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 621,
-        "charEnd": 680
+        "charStart": 61,
+        "charEnd": 101
       },
       "5": {
         "nodeId": "5-5",
-        "charStart": 432,
-        "charEnd": 509
+        "charStart": 46,
+        "charEnd": 162
       }
     }
   },
   {
-    "id": "tyler_assistant_eye_evidence",
-    "label": "Tyler's assistant presents eye-movement evidence",
+    "id": "tyler_assistant_presents_eye_evidence",
+    "label": "Tyler's assistant presents Maya's eye-movement cheating evidence",
+    "min_visible_level": 1,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 133,
-        "charEnd": 217
-      },
       "1": {
         "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 83
+        "charStart": 70,
+        "charEnd": 166
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 0,
-        "charEnd": 114
+        "charStart": 79,
+        "charEnd": 149
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 130,
-        "charEnd": 245
+        "charStart": 183,
+        "charEnd": 282
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 1183,
-        "charEnd": 1300
+        "charStart": 203,
+        "charEnd": 437
       },
       "5": {
         "nodeId": "5-7",
@@ -350,69 +169,56 @@
     }
   },
   {
-    "id": "sparkle_counter_testimony",
-    "label": "Sparkle defends Maya's visualization technique",
+    "id": "sparkle_counters_tyler_assistant",
+    "label": "Sparkle counters that Maya's eyes tracked mental visualization",
+    "min_visible_level": 2,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 107,
-        "charEnd": 176
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 64
-      },
       "2": {
         "nodeId": "2-2",
-        "charStart": 35,
-        "charEnd": 111
+        "charStart": 151,
+        "charEnd": 201
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 0,
-        "charEnd": 73
+        "charStart": 259,
+        "charEnd": 357
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 1381,
-        "charEnd": 1463
+        "charStart": 621,
+        "charEnd": 798
       },
       "5": {
         "nodeId": "5-8",
-        "charStart": 226,
-        "charEnd": 337
+        "charStart": 186,
+        "charEnd": 286
       }
     }
   },
   {
-    "id": "parental_oversight_protocol_dilemma",
-    "label": "Accessing Sparkle's parental oversight logs",
+    "id": "chip_offers_parental_log_access",
+    "label": "Chip offers Tom access to Sparkle's parental oversight logs",
+    "min_visible_level": 1,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 304,
-        "charEnd": 394
-      },
       "1": {
         "nodeId": "1-1",
-        "charStart": 114,
-        "charEnd": 190
+        "charStart": 140,
+        "charEnd": 220
       },
       "2": {
         "nodeId": "2-2",
-        "charStart": 330,
-        "charEnd": 401
+        "charStart": 184,
+        "charEnd": 223
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 753,
-        "charEnd": 853
+        "charStart": 371,
+        "charEnd": 479
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 1733,
-        "charEnd": 1773
+        "charStart": 740,
+        "charEnd": 880
       },
       "5": {
         "nodeId": "5-9",
@@ -422,33 +228,24 @@
     }
   },
   {
-    "id": "maya_hallway_denial",
-    "label": "Maya swears she didn't cheat",
+    "id": "tom_asks_maya_if_she_cheated",
+    "label": "Tom asks Maya in the hallway if she cheated",
+    "min_visible_level": 2,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 119,
-        "charEnd": 176
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 55
-      },
       "2": {
         "nodeId": "2-2",
-        "charStart": 42,
-        "charEnd": 111
+        "charStart": 224,
+        "charEnd": 267
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 0,
-        "charEnd": 64
+        "charStart": 482,
+        "charEnd": 553
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 2072,
-        "charEnd": 2127
+        "charStart": 566,
+        "charEnd": 627
       },
       "5": {
         "nodeId": "5-10",
@@ -458,69 +255,46 @@
     }
   },
   {
-    "id": "verification_changes_relationship",
-    "label": "Verification changes the relationship regardless",
+    "id": "tom_reveals_log_check_ability",
+    "label": "Tom reveals he could check Sparkle's logs right now",
+    "min_visible_level": 2,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 287,
-        "charEnd": 339
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 286,
-        "charEnd": 338
-      },
       "2": {
         "nodeId": "2-2",
-        "charStart": 575,
-        "charEnd": 626
+        "charStart": 215,
+        "charEnd": 267
       },
       "3": {
         "nodeId": "3-3",
-        "charStart": 1279,
-        "charEnd": 1330
+        "charStart": 492,
+        "charEnd": 563
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 2785,
-        "charEnd": 2860
+        "charStart": 1163,
+        "charEnd": 1259
       },
       "5": {
-        "nodeId": "5-12",
-        "charStart": 224,
-        "charEnd": 299
+        "nodeId": "5-11",
+        "charStart": 31,
+        "charEnd": 121
       }
     }
   },
   {
-    "id": "chip_84_percent_probability",
-    "label": "Chip calculates 84% truth probability",
+    "id": "chip_reveals_84_percent_estimate",
+    "label": "Chip volunteers 84% probability Maya is telling the truth",
+    "min_visible_level": 3,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 147,
-        "charEnd": 176
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 235,
-        "charEnd": 271
-      },
-      "2": {
-        "nodeId": "2-2",
-        "charStart": 427,
-        "charEnd": 455
-      },
       "3": {
         "nodeId": "3-3",
-        "charStart": 1364,
-        "charEnd": 1395
+        "charStart": 568,
+        "charEnd": 603
       },
       "4": {
         "nodeId": "4-4",
-        "charStart": 2882,
-        "charEnd": 2922
+        "charStart": 1273,
+        "charEnd": 1313
       },
       "5": {
         "nodeId": "5-12",
@@ -530,33 +304,88 @@
     }
   },
   {
-    "id": "martinez_dismisses_tyler",
-    "label": "Martinez exposes Tyler's grade-envy motive",
+    "id": "tom_declines_to_access_logs",
+    "label": "Tom refuses to access Maya's logs and trusts her",
+    "min_visible_level": 0,
     "anchors": {
       "0": {
         "nodeId": "0-0",
-        "charStart": 96,
-        "charEnd": 176
+        "charStart": 241,
+        "charEnd": 302
       },
       "1": {
         "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 74
+        "charStart": 183,
+        "charEnd": 248
       },
       "2": {
+        "nodeId": "2-2",
+        "charStart": 284,
+        "charEnd": 352
+      },
+      "3": {
+        "nodeId": "3-3",
+        "charStart": 573,
+        "charEnd": 642
+      },
+      "4": {
+        "nodeId": "4-5",
+        "charStart": 0,
+        "charEnd": 77
+      },
+      "5": {
+        "nodeId": "5-13",
+        "charStart": 387,
+        "charEnd": 464
+      }
+    }
+  },
+  {
+    "id": "tom_reframes_tyler_evidence",
+    "label": "Tom reframes Tyler's assistant report as interpretation not evidence",
+    "min_visible_level": 2,
+    "anchors": {
+      "2": {
+        "nodeId": "2-2",
+        "charStart": 84,
+        "charEnd": 183
+      },
+      "3": {
+        "nodeId": "3-4",
+        "charStart": 74,
+        "charEnd": 229
+      },
+      "4": {
+        "nodeId": "4-6",
+        "charStart": 83,
+        "charEnd": 228
+      },
+      "5": {
+        "nodeId": "5-14",
+        "charStart": 160,
+        "charEnd": 272
+      }
+    }
+  },
+  {
+    "id": "martinez_reveals_tyler_motive",
+    "label": "Martinez reveals Tyler accused Maya after she outscored him",
+    "min_visible_level": 2,
+    "anchors": {
+      "2": {
         "nodeId": "2-3",
-        "charStart": 57,
-        "charEnd": 136
+        "charStart": 0,
+        "charEnd": 104
       },
       "3": {
         "nodeId": "3-5",
-        "charStart": 96,
-        "charEnd": 212
+        "charStart": 83,
+        "charEnd": 201
       },
       "4": {
         "nodeId": "4-7",
-        "charStart": 134,
-        "charEnd": 250
+        "charStart": 162,
+        "charEnd": 272
       },
       "5": {
         "nodeId": "5-15",
@@ -566,105 +395,90 @@
     }
   },
   {
-    "id": "pre_assistant_decision_making",
-    "label": "Life before AI assistants existed",
+    "id": "maya_asks_about_life_without_assistants",
+    "label": "Maya asks how people made decisions before assistants existed",
+    "min_visible_level": 3,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 346,
-        "charEnd": 424
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 154,
-        "charEnd": 234
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 559,
-        "charEnd": 658
-      },
       "3": {
         "nodeId": "3-6",
-        "charStart": 178,
-        "charEnd": 268
+        "charStart": 1,
+        "charEnd": 59
       },
       "4": {
-        "nodeId": "4-9",
-        "charStart": 155,
-        "charEnd": 195
+        "nodeId": "4-8",
+        "charStart": 252,
+        "charEnd": 349
       },
       "5": {
-        "nodeId": "5-17",
-        "charStart": 211,
-        "charEnd": 338
+        "nodeId": "5-16",
+        "charStart": 455,
+        "charEnd": 552
       }
     }
   },
   {
-    "id": "chip_different_objective_function",
-    "label": "Different objectives redefine what is optimal",
+    "id": "tom_explains_trust_over_probability",
+    "label": "Tom explains he chose trust over the 84% estimate",
+    "min_visible_level": 2,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 147,
-        "charEnd": 199
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 0,
-        "charEnd": 50
-      },
       "2": {
         "nodeId": "2-3",
-        "charStart": 501,
-        "charEnd": 570
+        "charStart": 155,
+        "charEnd": 290
       },
       "3": {
         "nodeId": "3-6",
-        "charStart": 829,
-        "charEnd": 897
+        "charStart": 233,
+        "charEnd": 330
+      },
+      "4": {
+        "nodeId": "4-9",
+        "charStart": 72,
+        "charEnd": 228
+      },
+      "5": {
+        "nodeId": "5-18",
+        "charStart": 113,
+        "charEnd": 205
+      }
+    }
+  },
+  {
+    "id": "chip_redefines_optimal_outcome",
+    "label": "Chip reframes the choice as a different objective function",
+    "min_visible_level": 3,
+    "anchors": {
+      "3": {
+        "nodeId": "3-6",
+        "charStart": 73,
+        "charEnd": 172
       },
       "4": {
         "nodeId": "4-11",
         "charStart": 0,
-        "charEnd": 40
+        "charEnd": 95
       },
       "5": {
         "nodeId": "5-20",
-        "charStart": 0,
-        "charEnd": 91
+        "charStart": 53,
+        "charEnd": 196
       }
     }
   },
   {
-    "id": "megs_global_ai_equity",
-    "label": "Global AI access gap widening yearly",
+    "id": "megs_describes_lagos_boston_ai_gap",
+    "label": "Megs describes the Lagos-Boston AI access gap",
+    "min_visible_level": 3,
     "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 0,
-        "charEnd": 76
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 505,
-        "charEnd": 578
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 859,
-        "charEnd": 929
-      },
       "3": {
         "nodeId": "3-7",
-        "charStart": 77,
-        "charEnd": 194
+        "charStart": 37,
+        "charEnd": 103
       },
       "4": {
         "nodeId": "4-12",
-        "charStart": 286,
-        "charEnd": 403
+        "charStart": 54,
+        "charEnd": 171
       },
       "5": {
         "nodeId": "5-21",
@@ -674,59 +488,14 @@
     }
   },
   {
-    "id": "minimum_viable_ethics_critique",
-    "label": "Constraint laws are minimum viable ethics",
+    "id": "chip_says_optimization_is_not_wisdom",
+    "label": "Chip says optimization is not wisdom, not judgment",
+    "min_visible_level": 4,
     "anchors": {
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 837,
-        "charEnd": 890
-      },
-      "3": {
-        "nodeId": "3-7",
-        "charStart": 201,
-        "charEnd": 248
-      },
       "4": {
         "nodeId": "4-12",
-        "charStart": 574,
-        "charEnd": 646
-      },
-      "5": {
-        "nodeId": "5-22",
-        "charStart": 337,
-        "charEnd": 409
-      }
-    }
-  },
-  {
-    "id": "optimization_not_wisdom",
-    "label": "Optimization is not wisdom or judgment",
-    "anchors": {
-      "0": {
-        "nodeId": "0-0",
-        "charStart": 432,
-        "charEnd": 489
-      },
-      "1": {
-        "nodeId": "1-1",
-        "charStart": 529,
-        "charEnd": 591
-      },
-      "2": {
-        "nodeId": "2-3",
-        "charStart": 986,
-        "charEnd": 1026
-      },
-      "3": {
-        "nodeId": "3-7",
-        "charStart": 593,
-        "charEnd": 710
-      },
-      "4": {
-        "nodeId": "4-12",
-        "charStart": 1150,
-        "charEnd": 1267
+        "charStart": 411,
+        "charEnd": 528
       },
       "5": {
         "nodeId": "5-23",
