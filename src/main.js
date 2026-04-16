@@ -27,6 +27,8 @@ let hoveredConcept = null
 let hoveredWord = null
 let phrasesAtLevel = {}
 let trackedConcept = null    // locked during a continuous wheel-zoom session; cleared on mousemove
+let trackedWord = null       // the exact word the user is hovering; preferred landing target at every zoom level
+                             // (e.g. 'not' — if it literally exists in the target anchor's text, land there)
 
 const canvas = document.getElementById('viewport')
 const renderer = createRenderer(canvas)
@@ -243,6 +245,25 @@ function getConceptPosition(concept, level) {
   return { contentY: node.y, contentX: 0 }
 }
 
+// Content-space position for a specific character index within a node. Used
+// by both getConceptCenterPosition (midpoint of anchor) and getConceptWordPosition
+// (a specific word within the anchor).
+function positionAtCharIdx(node, charIdx) {
+  let charsAcc = 0
+  for (let li = 0; li < node.lines.length; li++) {
+    const lineChars = node.lines[li].text.length
+    if (charsAcc + lineChars >= charIdx || li === node.lines.length - 1) {
+      const contentY = node.y + li * LINE_HEIGHT + LINE_HEIGHT / 2
+      const charInLine = charIdx - charsAcc
+      const prefix = node.lines[li].text.substring(0, Math.max(0, Math.min(charInLine, node.lines[li].text.length)))
+      const contentX = renderer.measureText(prefix, FONT)
+      return { contentY, contentX }
+    }
+    charsAcc += lineChars
+  }
+  return { contentY: node.y + LINE_HEIGHT / 2, contentX: 0 }
+}
+
 // Position of the MIDDLE character of the anchor span. Aim for this from the
 // wheel handler so the cursor lands centered on the concept, not at its
 // leading edge where a neighboring concept's tail can grab it.
@@ -253,21 +274,44 @@ function getConceptCenterPosition(concept, level) {
   if (!nodes) return null
   const node = nodes.find(n => n.nodeId === anchor.nodeId)
   if (!node) return null
-
   const midChar = Math.floor((anchor.charStart + anchor.charEnd) / 2)
-  let charsAcc = 0
-  for (let li = 0; li < node.lines.length; li++) {
-    const lineChars = node.lines[li].text.length
-    if (charsAcc + lineChars >= midChar || li === node.lines.length - 1) {
-      const contentY = node.y + li * LINE_HEIGHT + LINE_HEIGHT / 2
-      const charInLine = midChar - charsAcc
-      const prefix = node.lines[li].text.substring(0, Math.max(0, Math.min(charInLine, node.lines[li].text.length)))
-      const contentX = renderer.measureText(prefix, FONT)
-      return { contentY, contentX }
+  return positionAtCharIdx(node, midChar)
+}
+
+// If `word` literally appears (case-insensitive, word-boundary) inside the
+// concept's anchor text at `level`, return the screen-content-space position
+// of that occurrence. Otherwise null. The wheel handler prefers this over
+// the anchor midpoint when the user's hovered word survives across levels.
+function getConceptWordPosition(concept, level, word) {
+  if (!word || word.length < 2) return null
+  const anchor = concept.anchors[String(level)]
+  if (!anchor) return null
+  const nodes = measuredLevels[level]
+  if (!nodes) return null
+  const node = nodes.find(n => n.nodeId === anchor.nodeId)
+  if (!node) return null
+
+  const anchorText = node.text.substring(anchor.charStart, anchor.charEnd)
+  // Strip leading/trailing non-word chars from the incoming word so we match
+  // "not" against "not," and "not." equally.
+  const clean = word.replace(/^[^\w'-]+|[^\w'-]+$/g, '').toLowerCase()
+  if (clean.length < 2) return null
+
+  // Word-boundary search. We scan the anchor text by words and look for a
+  // case-insensitive exact match.
+  const re = /[\w'-]+/g
+  let m, bestIdx = -1
+  while ((m = re.exec(anchorText)) !== null) {
+    if (m[0].toLowerCase() === clean) {
+      // Found it — position is anchor.charStart + this match's offset
+      // plus half the word length (land cursor on middle of the word).
+      const midOffset = m.index + Math.floor(m[0].length / 2)
+      bestIdx = anchor.charStart + midOffset
+      break
     }
-    charsAcc += lineChars
   }
-  return { contentY: node.y + LINE_HEIGHT / 2, contentX: 0 }
+  if (bestIdx < 0) return null
+  return positionAtCharIdx(node, bestIdx)
 }
 
 // ========== HIT TESTING ==========
@@ -413,6 +457,12 @@ canvas.addEventListener('wheel', (e) => {
     // until the cursor moves (mousemove handler clears trackedConcept).
     if (!trackedConcept) {
       trackedConcept = findConceptAtCursor(prevLevel, oldOff)
+      // Also capture the exact word under the cursor at session start.
+      // If that word survives at deeper/shallower levels (e.g. "not"),
+      // the wheel handler lands cursor on it specifically, not on the
+      // anchor midpoint where a different word might sit.
+      const hit = hitTestWord(prevLevel, oldOff)
+      trackedWord = hit?.word ?? null
     }
 
     // If the tracked concept has no anchor at the new level (it's invisible
@@ -444,7 +494,11 @@ canvas.addEventListener('wheel', (e) => {
     }
 
     if (targetConcept && targetConcept.anchors[String(currentLevel)]) {
-      const pos = getConceptCenterPosition(targetConcept, currentLevel)
+      // Prefer the specific tracked word if it appears in the target anchor;
+      // fall back to the anchor's midpoint. This keeps cursor on the same
+      // word across levels when the word survives (e.g. "not").
+      const wordPos = trackedWord ? getConceptWordPosition(targetConcept, currentLevel, trackedWord) : null
+      const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
       if (pos) {
         levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - pos.contentY })
         placed = true
@@ -472,7 +526,7 @@ canvas.addEventListener('mousemove', (e) => {
   const movedX = e.clientX, movedY = e.clientY
   // Real cursor motion (>2px) ends the current zoom-tracking session so the
   // next wheel re-acquires whatever concept is now under the cursor.
-  if (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2) trackedConcept = null
+  if (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2) { trackedConcept = null; trackedWord = null }
   mouseX = movedX; mouseY = movedY
   cursorInTextArea = isInTextArea(mouseX, mouseY)
   if (isFrozen() || offsetsLocked) return
@@ -482,7 +536,7 @@ canvas.addEventListener('mousemove', (e) => {
   hoveredConcept = findConceptAtCursor(currentLevel, off)
 })
 
-canvas.addEventListener('mouseleave', () => { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null })
+canvas.addEventListener('mouseleave', () => { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null; trackedWord = null })
 window.addEventListener('resize', () => renderer.resize())
 
 // ========== HUD ==========
@@ -671,14 +725,16 @@ window._sz = {
   get levelOffsets() { return levelOffsets },
   get phrasesAtLevel() { return phrasesAtLevel },
   get trackedConcept() { return trackedConcept },
+  get trackedWord() { return trackedWord },
   findConceptAtCursor,
   getConceptPosition,
   getConceptCenterPosition,
+  getConceptWordPosition,
   findPhraseAtCursor,
   hitTestWord,
   defaultOffset,
-  // Test hook: force-set the tracked concept (used by regression runner to
-  // verify behavior without driving real wheel events).
+  // Test hooks for the regression runner.
   setTrackedConcept(c) { trackedConcept = c },
-  clearTrackedConcept() { trackedConcept = null }
+  setTrackedWord(w) { trackedWord = w },
+  clearTrackedConcept() { trackedConcept = null; trackedWord = null }
 }

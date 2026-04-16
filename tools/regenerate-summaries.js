@@ -125,42 +125,66 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
 
   // Build the list of jobs for this level; filter out clusters that
   // contain no essentials in their subtree.
+  //
+  // Key refinement: the input we pass to the reducer is NOT the children's
+  // full text. Instead, for each essential whose anchor is in this cluster's
+  // children, we extract JUST the anchor's text span (with a small word-
+  // rounded buffer to preserve sentence boundaries). This starves Claude
+  // of context it could leak from — no "conference room", no "Derek
+  // pitches" surviving as continuity glue. The reducer's input contains
+  // only the text of the events that should actually appear at this level.
+  const bufferedSpanFromChild = (childId, anchor) => {
+    const child = nodeByLevelId[`${L + 1}:${childId}`]
+    if (!child) return null
+    const text = child.text
+    // Round to sentence boundaries where possible — walk out from the anchor
+    // until we hit a sentence-ending punctuation or the node edge. Keeps
+    // dialogue + voice intact; avoids cutting mid-clause.
+    let s = anchor.charStart
+    let e = anchor.charEnd
+    while (s > 0 && !/[.!?]["'\u201d\u2019)\s]*$/.test(text.substring(0, s))) s--
+    while (e < text.length && !/[.!?]/.test(text[e - 1])) e++
+    // Guard: don't balloon past ~3x anchor size
+    const cap = (anchor.charEnd - anchor.charStart) * 3 + 80
+    if (e - s > cap) {
+      s = Math.max(0, anchor.charStart - 20)
+      e = Math.min(text.length, anchor.charEnd + 20)
+    }
+    return text.substring(s, e).trim()
+  }
+
   const jobs = []
   let viaKept = 0
   for (const node of tree.levels[String(L)].nodes) {
     const childIds = node.children || []
     if (childIds.length === 0) continue
-    const childMembers = childIds
-      .map(cid => nodeByLevelId[`${L + 1}:${cid}`])
-      .filter(Boolean)
-      .map(cn => ({ text: cn.text }))
-    if (childMembers.length === 0) continue
 
-    // Does any essential's anchor land in this node's subtree?
-    const subtree = descendantsOf(node.id, L)
-    const relevantEssentials = essentials.filter(e => {
-      // essentials list carries only label+snippet; we need to find the
-      // matching concept back and check anchors. Do it against the
-      // concepts list.
+    // For each essential, collect the text span from THIS cluster's
+    // children where the essential's anchor lives at L+1.
+    const spanMembers = []    // [{ text }, …] — fed to the reducer
+    const relevantEssentials = []
+    for (const e of essentials) {
       const fullConcept = concepts.find(c => c.label === e.label)
-      if (!fullConcept) return false
-      for (let LL = L + 1; LL <= Lmax; LL++) {
-        const a = fullConcept.anchors[String(LL)]
-        if (a && subtree[String(LL)]?.has(a.nodeId)) return true
-      }
-      return false
-    })
+      if (!fullConcept) continue
+      const aL1 = fullConcept.anchors[String(L + 1)]
+      if (!aL1) continue
+      if (!childIds.includes(aL1.nodeId)) continue  // essential is in a different cluster
+      const span = bufferedSpanFromChild(aL1.nodeId, aL1)
+      if (!span) continue
+      spanMembers.push({ text: span })
+      relevantEssentials.push(e)
+    }
 
     if (relevantEssentials.length === 0) {
       viaKept++
       continue
     }
 
-    const childWordCount = childMembers.reduce((s, m) => s + m.text.split(/\s+/).length, 0)
-    const targetWords = targetWordCount(childWordCount, Lmax - L, 0, totalWords)
-    jobs.push({ node, childMembers, childWordCount, targetWords, relevantEssentials })
+    const spanWordCount = spanMembers.reduce((s, m) => s + m.text.split(/\s+/).length, 0)
+    const targetWords = targetWordCount(spanWordCount, Lmax - L, 0, totalWords)
+    jobs.push({ node, childMembers: spanMembers, childWordCount: spanWordCount, targetWords, relevantEssentials })
   }
-  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept as-is (no essentials in subtree)`)
+  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept as-is (no essentials in cluster)`)
 
   const tStart = Date.now()
   await pmap(jobs, CONCURRENCY, async (job) => {
