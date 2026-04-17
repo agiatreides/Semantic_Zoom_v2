@@ -1,0 +1,237 @@
+{
+  "timestamp": "2026-04-17_10-44-58",
+  "words_tested": [
+    "not",
+    "cheated",
+    "Maya",
+    "Chip",
+    "Tyler",
+    "logs",
+    "trust",
+    "84%"
+  ],
+  "results": [
+    {
+      "word": "not",
+      "cursorXY": {
+        "x": 873,
+        "y": 360
+      },
+      "trackedWord": "not",
+      "trackedConcept": "tom_chooses_not_to_access_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "not",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 1,
+          "word": "not",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 2,
+          "word": "not",
+          "concept": "chip_volunteers_84_percent_probability"
+        },
+        {
+          "level": 3,
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 4,
+          "word": "not",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 5,
+          "word": "not",
+          "concept": "tom_chooses_not_to_access_logs"
+        }
+      ],
+      "conceptStability": "5/6",
+      "wordStemMatches": "5/6"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "cheated"
+    },
+    {
+      "word": "Maya",
+      "cursorXY": {
+        "x": 494,
+        "y": 332
+      },
+      "trackedWord": "Maya",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 2,
+          "word": "Maya",
+          "concept": "maya_says_checking_means_no_trust"
+        },
+        {
+          "level": 3,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 5,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "5/6",
+      "wordStemMatches": "6/6"
+    },
+    {
+      "word": "Chip",
+      "cursorXY": {
+        "x": 741,
+        "y": 332
+      },
+      "trackedWord": "Chip",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "Chip",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "Chen",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 2,
+          "word": "accused",
+          "concept": "maya_says_checking_means_no_trust"
+        },
+        {
+          "level": 3,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "spreading",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 5,
+          "word": "about",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "5/6",
+      "wordStemMatches": "1/6"
+    },
+    {
+      "error": "parse_fail",
+      "raw": "evaluate: Target page, context or browser has been closed"
+    },
+    {
+      "word": "logs",
+      "cursorXY": {
+        "x": 704,
+        "y": 360
+      },
+      "trackedWord": "logs.",
+      "trackedConcept": "tom_chooses_not_to_access_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "logs.",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 1,
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 2,
+          "word": "logs.\"",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 3,
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 4,
+          "word": "logs,\"",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 5,
+          "word": "logs,\"",
+          "concept": "tom_chooses_not_to_access_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "4/6"
+    },
+    {
+      "word": "trust",
+      "cursorXY": {
+        "x": 640,
+        "y": 388
+      },
+      "trackedWord": "trust",
+      "trackedConcept": "tom_chooses_not_to_access_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "trust",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 1,
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 2,
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 3,
+          "word": "trust",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 4,
+          "word": "trust",
+          "concept": "tom_chooses_not_to_access_logs"
+        },
+        {
+          "level": 5,
+          "word": "trust",
+          "concept": "tom_chooses_not_to_access_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "4/6"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "84%"
+    }
+  ]
+}
