@@ -6,7 +6,7 @@
       "nodes": [
         {
           "id": "0-0",
-          "text": "\"I'm not going to access my daughter's assistant logs. I trust her.\"",
+          "text": "When Tyler Chen, Maya's classmate, accuses her of cheating via her assistant, Tom tells her he has the ability to check. \"I'm not going to access my daughter's assistant logs. I trust her.\" Later Maya asks why. He decided based on who he wants to be.",
           "children": [
             "1-0",
             "1-1",
@@ -29,7 +29,7 @@
         },
         {
           "id": "1-1",
-          "text": "Tyler Chen accuses Maya of cheating on her algebra exam, claiming her assistant fed her answers. Tom refuses to pull Maya's logs. \"I'm not going to access my daughter's assistant logs. I trust her.\" Tyler protests, but the principal agrees the assistant's interpretation isn't conclusive.",
+          "text": "Tyler Chen accused Maya of cheating on her algebra exam—claimed Sparkle, Maya's AI assistant, had fed her the answers. Chip, Tom's AI, noted: \"I have the ability to check. I could access Sparkle's logs right now.\" Chip gave 84% that Maya was truthful. Tom refused. \"I'm not going to access my daughter's assistant logs. I trust her.\"",
           "children": [
             "2-2",
             "2-3"
@@ -66,7 +66,7 @@
         },
         {
           "id": "2-2",
-          "text": "Chip interrupts: Maya's assistant flagged an emergency at school. Tyler, her classmate, accused Maya of cheating—Sparkle fed her the answers. Principal Martinez convenes a hearing; both assistants contradict each other. Chip notes I can access Sparkle's logs through parental oversight. Maya swears she didn't cheat. I'm not accessing her logs. I trust her. Martinez rules Tyler's interpretation inconclusive.",
+          "text": "Mid-meeting, Chip, Tom's AI assistant, cuts in: Maya's assistant has flagged an urgent situation at school. Tyler Chen accused Maya of cheating on her algebra exam — her assistant Sparkle fed her the answers, he claims. Principal Martinez convenes a formal hearing. Chip notes Tom has parental access to Sparkle's logs. Alone with Maya, who swears she didn't cheat, Tom says quietly, \"I could access Sparkle's logs right now.\" He doesn't. \"I trust her,\" he tells Martinez, who rules Tyler's evidence is interpretation, not proof.",
           "children": [
             "3-2",
             "3-3",
@@ -114,7 +114,7 @@
         },
         {
           "id": "3-2",
-          "text": "Chip interrupts mid-meeting: \"Incoming priority notification. Your daughter Maya's assistant has flagged an urgent situation at her school.\"",
+          "text": "Chip interrupts: \"Incoming priority notification. Your daughter Maya's assistant has flagged an urgent situation at her school.\"",
           "children": [
             "4-2"
           ],
@@ -122,7 +122,7 @@
         },
         {
           "id": "3-3",
-          "text": "Sparkle reports Tyler's been spreading rumors Maya cheated. Martinez convenes a hearing. Tyler's assistant presents eye-movement evidence—reading text, transcribing. Sparkle counters: Maya tracked her own visualization. Chip offers parental log access. In the hallway, Maya swears Sparkle only kept her calm. \"I have the ability to check,\" I say. \"Like you didn't trust me.\" Chip gives 84%. \"I trust her.\"",
+          "text": "Maya's assistant Sparkle reports that Tyler Chen accused Maya of cheating on her algebra exam, claiming her assistant fed her the answers. Sparkle maintains Maya worked independently, but her biometrics show stress consistent with either working hard or feeling guilty—the data is ambiguous. These assistants know everything about us—every heartbeat, every micro-expression, every time we're slightly less than honest—but they're bound by law to only share with their human's consent.\n\nApproaching school, the narrator asks Chip what someone would do if they could observe this situation with perfect wisdom and complete information, unburdened by fear or ego. At the principal's office, Tyler's assistant and Sparkle give contradictory testimony about whether Maya cheated. The narrator could access Sparkle's diagnostic logs through parental oversight. Alone with Maya, who swears she didn't cheat, the narrator says slowly, \"I have the ability to check. I could access Sparkle's logs right now. If I check, and you're telling the truth, how would you feel?\" She's quiet for a moment. \"Like you didn't trust me.\" \"And if I don't check, and you're telling the truth?\" She meets my eyes. \"Then you trusted me.\" This is an interesting ethical configuration, Chip observes—the act of verification changes the relationship regardless of the finding. He calculates an 84% probability Maya is telling the truth.\n\nChip shares this unprompted but explicitly won't recommend action—this falls outside his competence. Maya's fear radiates in waves. \"I'm not going to access my daughter's assistant logs,\" the narrator says. \"I trust her.\"",
           "children": [
             "4-3",
             "4-4",
@@ -132,7 +132,7 @@
         },
         {
           "id": "3-4",
-          "text": "Martinez nods slowly. Tyler's analysis is suggestive, not conclusive — Tyler has no direct knowledge, only his assistant's interpretation.",
+          "text": "Martinez nods slowly. Tyler's analysis is suggestive but not conclusive — Tyler himself has no direct knowledge of cheating, only his assistant's interpretation.",
           "children": [
             "4-6"
           ],
@@ -140,7 +140,7 @@
         },
         {
           "id": "3-5",
-          "text": "Tyler filed his accusation three hours after grades posted — the moment he learned Maya had outscored him.",
+          "text": "Martinez reveals the accusation came three hours after grades posted — Tyler had just learned Maya outscored him.",
           "children": [
             "4-7"
           ],
@@ -148,7 +148,7 @@
         },
         {
           "id": "3-6",
-          "text": "But that's not why I decided not to check. I decided because of what it would mean — what it would say about us.",
+          "text": "But that's not why I didn't check. I decided because of what it would mean. What it would say about us. About who I want to be.",
           "children": [
             "4-8",
             "4-9",
@@ -159,7 +159,7 @@
         },
         {
           "id": "3-7",
-          "text": "Optimization is not wisdom. Data is not judgment.",
+          "text": "Megs says subsidizing hardware is easy but infrastructure is the bottleneck—\"Kids in Boston are growing up with superintelligent tutors. Kids in Lagos are still learning from overworked teachers.\" The constraint laws are \"minimum viable ethics, Tom. They keep the assistants from hurting people. They don't guarantee the assistants will help everyone equally.\" In darkness, Chip reflects: \"Today, you made a decision that prioritized relationship over optimization.\" He ventures, uncertain: \"The future Megs is working toward—will still require humans who can make the choices you made today. Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant.\" I think about Chip, who spent all day feeding me optimal strategies, and who—in the end—respected my choice to ignore all of it. Thanks, Chip. Tomorrow there will be new decisions where the math says one thing and my gut says another.",
           "children": [
             "4-12",
             "4-13"
@@ -188,7 +188,7 @@
         },
         {
           "id": "4-1",
-          "text": "Derek finishes pitching a pivot to the creator economy model. Chip flags three factual errors as yellow annotations in my peripheral vision. I counter: influencer conversion rates have declined since 2029. \"Chip, can you show the data?\" A holographic chart materializes above the conference table. Everyone's assistants immediately begin cross-referencing, and Derek's face falls as \"Bro\" delivers the bad news.",
+          "text": "\"Derek, the conversion rates on influencer campaigns in our vertical have been declining since 2029.\"",
           "children": [
             "5-1"
           ],
@@ -196,7 +196,7 @@
         },
         {
           "id": "4-2",
-          "text": "Chip, Tom's AI, breaks in: Maya's assistant has flagged an urgent situation.",
+          "text": "Chip interrupts mid-sentence. *Incoming priority notification.* Maya's assistant has flagged an urgent situation at her school.",
           "children": [
             "5-2"
           ],
@@ -204,7 +204,7 @@
         },
         {
           "id": "4-3",
-          "text": "Tyler Chen, a classmate, has been spreading rumors that Maya cheated on her algebra exam — that her assistant fed her the answers.",
+          "text": "Sparkle — Maya's assistant, named at eleven — reports that Tyler Chen, a classmate, has been spreading rumors that Maya cheated on her algebra exam. Chip, Tom's AI, explains: they know everything — every heartbeat, every micro-expression, every lapse in honesty — but they can only share that with their human's consent.",
           "children": [
             "5-3"
           ],
@@ -212,7 +212,7 @@
         },
         {
           "id": "4-4",
-          "text": "Martinez calls both assistants to testify. Tyler's AI reports Maya's eyes moved like someone reading displayed text. Sparkle counters: she was tracking her own mental visualization, a technique for test anxiety. Chip, Tom's AI, notes he can pull Sparkle's logs through the parental oversight protocol. \"Dad, I swear,\" Maya says. \"Sparkle was just there.\" Tom tells her he has the ability to check right now. \"Like you didn't trust me.\" Chip offers 84% odds she's telling the truth.",
+          "text": "\"You're asking what perfect wisdom recommends,\" Chip says.\n\nPrincipal Martinez convenes the hearing. Tyler's assistant: Maya's eyes were reading text. Sparkle counters: test anxiety, her visualization technique. Chip notes parental access to Sparkle's logs.\n\n\"She kept me calm,\" Maya says. \"No answers.\"\n\n\"I could check now,\" I say. \"Verification changes the relationship regardless. 84% she's telling the truth.\"",
           "children": [
             "5-4",
             "5-5",
@@ -228,7 +228,7 @@
         },
         {
           "id": "4-5",
-          "text": "\"I'm not going to access Maya's logs,\" I say. \"I trust her.\"",
+          "text": "\"I'm not going to access my daughter's assistant logs,\" I say. \"I trust her.\"",
           "children": [
             "5-13"
           ],
@@ -236,7 +236,7 @@
         },
         {
           "id": "4-6",
-          "text": "Martinez rules: suggestive, not conclusive.",
+          "text": "Martinez: \"Suggestive but not conclusive.\"",
           "children": [
             "5-14"
           ],
@@ -244,7 +244,7 @@
         },
         {
           "id": "4-7",
-          "text": "Tyler filed his accusation three hours after grades posted — when he learned Maya had outscored him.",
+          "text": "Martinez reveals Tyler filed his accusation three hours after grades posted — once he learned Maya had outscored him.",
           "children": [
             "5-15"
           ],
@@ -252,7 +252,7 @@
         },
         {
           "id": "4-8",
-          "text": "\"But how do they know things?\" Maya asked. \"How do they make decisions? How do they know if someone's lying?\"",
+          "text": "\"But like, how do they know things?\" Maya asked. \"How do they make decisions? How do they know if someone's lying?\"",
           "children": [
             "5-16"
           ],
@@ -260,7 +260,7 @@
         },
         {
           "id": "4-9",
-          "text": "But that's not why I decided not to check. It was what checking would mean — what it would say about us.",
+          "text": "But that's not why I decided not to check. I decided because of what it would mean — what it would say about us, about who I want to be.",
           "children": [
             "5-17",
             "5-18"
@@ -277,7 +277,7 @@
         },
         {
           "id": "4-11",
-          "text": "\"You weren't trying to detect cheating,\" Chip said. \"You were trying to maintain your relationship with Maya while modeling ethics.\" He paused. \"I respect it.\"",
+          "text": "Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating.",
           "children": [
             "5-20"
           ],
@@ -285,7 +285,7 @@
         },
         {
           "id": "4-12",
-          "text": "Kids in Boston have superintelligent tutors. Kids in Lagos have overworked teachers, thirty-five to a class. Optimization is not wisdom. Data is not judgment.",
+          "text": "Kids in Boston grow up with superintelligent tutors. Kids in Lagos still learn from overworked teachers, thirty-five to a class.",
           "children": [
             "5-21",
             "5-22",
