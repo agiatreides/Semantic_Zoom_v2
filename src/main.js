@@ -278,10 +278,16 @@ function getConceptCenterPosition(concept, level) {
   return positionAtCharIdx(node, midChar)
 }
 
-// If `word` literally appears (case-insensitive, word-boundary) inside the
-// concept's anchor text at `level`, return the screen-content-space position
-// of that occurrence. Otherwise null. The wheel handler prefers this over
-// the anchor midpoint when the user's hovered word survives across levels.
+// If `word` (or a stem-equivalent) appears inside the concept's anchor
+// text at `level`, return the screen-content-space position of that
+// occurrence. Otherwise null. The wheel handler prefers this over the
+// anchor midpoint when the user's hovered word survives across levels.
+//
+// Matching tiers, in order:
+//   1. exact case-insensitive word-boundary match  ("not" = "not")
+//   2. stem match via 4-char common prefix        ("cheating" ≈ "cheated")
+//   3. substring containment either direction      ("log" ⊂ "logs")
+// The first tier match wins; we don't search for "best" across tiers.
 function getConceptWordPosition(concept, level, word) {
   if (!word || word.length < 2) return null
   const anchor = concept.anchors[String(level)]
@@ -292,26 +298,51 @@ function getConceptWordPosition(concept, level, word) {
   if (!node) return null
 
   const anchorText = node.text.substring(anchor.charStart, anchor.charEnd)
-  // Strip leading/trailing non-word chars from the incoming word so we match
-  // "not" against "not," and "not." equally.
+  // Strip leading/trailing non-word chars so we match "not" against "not,"
+  // and "not." equally.
   const clean = word.replace(/^[^\w'-]+|[^\w'-]+$/g, '').toLowerCase()
   if (clean.length < 2) return null
 
-  // Word-boundary search. We scan the anchor text by words and look for a
-  // case-insensitive exact match.
+  // Collect all words in the anchor text with their offsets
   const re = /[\w'-]+/g
-  let m, bestIdx = -1
+  const words = []
+  let m
   while ((m = re.exec(anchorText)) !== null) {
-    if (m[0].toLowerCase() === clean) {
-      // Found it — position is anchor.charStart + this match's offset
-      // plus half the word length (land cursor on middle of the word).
-      const midOffset = m.index + Math.floor(m[0].length / 2)
-      bestIdx = anchor.charStart + midOffset
-      break
+    words.push({ text: m[0], textLc: m[0].toLowerCase(), offset: m.index })
+  }
+  if (words.length === 0) return null
+
+  // Tier 1: exact
+  for (const w of words) {
+    if (w.textLc === clean) {
+      const midOffset = w.offset + Math.floor(w.text.length / 2)
+      return positionAtCharIdx(node, anchor.charStart + midOffset)
     }
   }
-  if (bestIdx < 0) return null
-  return positionAtCharIdx(node, bestIdx)
+
+  // Tier 2: stem match via 4-char prefix (handles cheating/cheated, trust/trusted, etc.)
+  const stemLen = Math.min(clean.length, 4)
+  if (clean.length >= 4) {
+    const stem = clean.substring(0, stemLen)
+    for (const w of words) {
+      if (w.textLc.length >= stemLen && w.textLc.startsWith(stem)) {
+        const midOffset = w.offset + Math.floor(w.text.length / 2)
+        return positionAtCharIdx(node, anchor.charStart + midOffset)
+      }
+    }
+  }
+
+  // Tier 3: substring containment (handles log/logs, access/accessing)
+  if (clean.length >= 4) {
+    for (const w of words) {
+      if (w.textLc.length >= 4 && (w.textLc.includes(clean) || clean.includes(w.textLc))) {
+        const midOffset = w.offset + Math.floor(w.text.length / 2)
+        return positionAtCharIdx(node, anchor.charStart + midOffset)
+      }
+    }
+  }
+
+  return null
 }
 
 // ========== HIT TESTING ==========
@@ -500,7 +531,17 @@ canvas.addEventListener('wheel', (e) => {
       const wordPos = trackedWord ? getConceptWordPosition(targetConcept, currentLevel, trackedWord) : null
       const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
       if (pos) {
-        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - pos.contentY })
+        // Adjust BOTH axes. Y brings the target line under the cursor.
+        // X shifts the column so the target char sits under the cursor X,
+        // so the underlined word actually ends up where the cursor is —
+        // not just on the same line at the old X. Without the X shift,
+        // the cursor stays at the old screen X and lands on whatever word
+        // happens to occupy that X in the new layout.
+        const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+        levelOffsets[currentLevel] = clampOffset(currentLevel, {
+          x: mouseX - baseLeftX - pos.contentX,
+          y: mouseY - pos.contentY
+        })
         placed = true
       }
     }
@@ -671,7 +712,15 @@ async function loadConcepts(basePath) {
   try {
     const resp = await fetch(basePath)
     if (resp.ok) {
-      concepts = await resp.json()
+      const raw = await resp.json()
+      // Support both shapes: bare array (old) and {concepts, characters} (new)
+      if (Array.isArray(raw)) {
+        concepts = raw
+      } else if (raw && Array.isArray(raw.concepts)) {
+        concepts = raw.concepts
+      } else {
+        concepts = []
+      }
       console.log(`Loaded ${concepts.length} concepts`)
     } else {
       console.warn('No concepts.json — concept-based zoom disabled')

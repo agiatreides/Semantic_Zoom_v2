@@ -161,7 +161,12 @@ function parseJsonResponse(raw, label) {
 // Pass 1: identify events + L_max snippets + min_visible_level
 // --------------------------------------------------------------------
 
-const POKER_NUTS_PROMPT = (nodeBlock, totalWords, levelCount, targetCount, lMaxId) => `You are extracting the MAJOR EVENTS from a piece of prose for a semantic-zoom reader. The reader hovers over a phrase and zooms; the system keeps the event under their cursor anchored across zoom levels. As they zoom OUT (toward L0, the most compressed level), the text gets shorter — and most events disappear. Only the load-bearing ones remain at the most-compressed levels.
+const POKER_NUTS_PROMPT = (nodeBlock, totalWords, levelCount, targetCount, lMaxId) => `You are extracting TWO things from a piece of prose for a semantic-zoom reader:
+
+1. A character dictionary (for introducing characters at compressed zoom levels).
+2. The major events, each with a min_visible_level (poker nuts framing).
+
+The reader hovers over a phrase and zooms; the system keeps the event under their cursor anchored across zoom levels. As they zoom OUT (toward L0, the most compressed level), the text gets shorter — and most events disappear. Only the load-bearing ones remain at the most-compressed levels.
 
 Identify approximately ${targetCount} events. An "event" is a discrete THING THAT HAPPENS — a decision, an action, a dialogue exchange, a turn in the plot. Events are verb-driven and named in the story's own voice. Examples of GOOD vs BAD event labels:
 
@@ -188,19 +193,34 @@ For EACH event, return:
 
 THE POKER NUTS FRAMING for min_visible_level — ask yourself: "if I cut this event from the level-N reduction, can the reader still follow what happened?"
 
-  - min_visible_level = 0  → THE NUTS. The story collapses without this event. A reader who only sees L0 must see this. Usually 1-5 events per document, depending on length.
-  - min_visible_level = 1  → still essential at L1. A reader who only sees L1 needs this to follow the plot. Add the next most-load-bearing events here.
+  - min_visible_level = 0  → THE NUTS. The story collapses without this event. A reader who only sees L0 must see this.
+  - min_visible_level = 1  → still essential at L1. A reader who only sees L1 needs this to follow the plot.
   - min_visible_level = 2..${levelCount - 2}  → progressively less essential — important context, character moments, dialogue exchanges that enrich the story.
   - min_visible_level = ${levelCount - 1}  → flavor only. Atmospheric description, color, side scenes that don't move the plot. Most events fall here.
 
-Be DISCRIMINATING. The L0 nuts are the irreducible core. If you assign too many events to min_visible_level=0, the L0 reduction becomes a paragraph instead of a sentence. Default to assigning events to higher levels unless you're confident the story collapses without them.
+IMPORTANT — the L0 reduction must be a COMPLETE CAUSAL CHAIN, not just the climax in isolation. A story is:
 
-Output STRICT JSON: a single array of objects. No markdown fences, no commentary, no preamble. Just the JSON array.
+    [inciting event / pressure] → [complication or stakes] → [protagonist's response] → [outcome]
+
+The reader at L0 needs ENOUGH events to understand WHY and HOW, not just WHAT was decided. For a short-story or 2000-word piece, L0 usually needs 2-4 events covering this chain. "Tom refuses to check the logs" alone is NOT the nuts — it's the punchline without the setup. The real L0 nuts for a trust-vs-verify story would be something like:
+
+    [Tyler accuses Maya of cheating] → [Tom has the option to verify via AI logs] → [Tom refuses]
+
+Be generous at L0 when the story has a clear causal chain. Be DISCRIMINATING about what goes at L0 — but don't under-include such that the reader sees a punchline without a setup.
+
+ALSO RETURN a character dictionary. At compressed zoom levels the reader sees "Tyler accuses Maya of cheating" and has no idea who Tyler or Maya are. List every NAMED character (people or named AIs) with a 3-8 word role descriptor: their relationship to the narrator, age if mentioned, and most salient function in the story. Use the character's most common name in the source as the key (e.g. "Tom", not "Thomas Okonkwo"; "Maya", not "Maya Okonkwo").
+
+Output STRICT JSON — a single object with TWO keys:
+{
+  "events": [ ... array of event objects as described above ... ],
+  "characters": { "Name": "role descriptor", ... }
+}
+No markdown fences, no commentary, no preamble. Just the JSON.
 
 NODES (level ${levelCount - 1}, ${totalWords} words total):
 ${nodeBlock}
 
-Return the JSON array.`
+Return the JSON object.`
 
 function identifyAndAnchorAtLmax(tree, targetCount) {
   const maxL = String(tree.levelCount - 1)
@@ -214,17 +234,33 @@ function identifyAndAnchorAtLmax(tree, targetCount) {
     targetCount = Math.max(8, Math.min(20, Math.round(Math.sqrt(totalWords) / 1.5)))
   }
 
-  console.log(`Pass 1: identifying ~${targetCount} events from L${maxL} (${totalWords} words)...`)
+  console.log(`Pass 1: identifying ~${targetCount} events + characters from L${maxL} (${totalWords} words)...`)
   const lMaxId = nodes[0]?.id ?? `${maxL}-0`
   const raw = callClaude(POKER_NUTS_PROMPT(nodeBlock, totalWords, tree.levelCount, targetCount, lMaxId), 'identify')
   const parsed = parseJsonResponse(raw, 'identify')
-  if (!Array.isArray(parsed)) {
-    console.error('  Pass 1 failed: did not get an array')
+  // Support both the new {events, characters} shape and the old bare-array shape
+  let eventsArr = null
+  let characters = {}
+  if (Array.isArray(parsed)) {
+    eventsArr = parsed
+  } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.events)) {
+    eventsArr = parsed.events
+    if (parsed.characters && typeof parsed.characters === 'object') {
+      characters = parsed.characters
+    }
+  } else {
+    console.error('  Pass 1 failed: unrecognized response shape')
     return null
+  }
+  // Attach characters to a module-scoped emit later; stash on tree for now
+  tree._extractedCharacters = characters
+  const charNames = Object.keys(characters)
+  if (charNames.length) {
+    console.log(`  characters: ${charNames.map(n => `${n}=${characters[n]}`).join('; ').substring(0, 200)}`)
   }
 
   const concepts = []
-  for (const c of parsed) {
+  for (const c of eventsArr) {
     if (!c || typeof c.id !== 'string' || typeof c.label !== 'string') continue
     if (typeof c.nodeId !== 'string' || typeof c.snippet !== 'string') continue
     let mvl = parseInt(c.min_visible_level, 10)
@@ -489,7 +525,8 @@ for (let L = Lmax - 1; L >= 0; L--) {
   console.log(`  L${L}: ${placed}/${concepts.length} placed (${viaPrecise} precise, ${viaLiteral} literal, ${viaFuzzy} fuzzy, ${viaSkippedMVL} below_mvl, ${viaNone} unanchored) in ${((Date.now() - tStart)/1000).toFixed(1)}s`)
 }
 
-// Emit
+// Emit — the concepts file is now an object with {concepts, characters}.
+// Renderer's loadConcepts accepts either shape (backward compat).
 const output = concepts.map(c => ({
   id: c.id,
   label: c.label,
@@ -500,7 +537,9 @@ const final = output.filter(c => Object.keys(c.anchors).length > 0)
 const dropped = output.length - final.length
 if (dropped > 0) console.log(`\nDropped ${dropped} concepts with no valid anchors`)
 
-fs.writeFileSync(outputPath, JSON.stringify(final, null, 2))
+const characters = tree._extractedCharacters || {}
+const fileShape = { concepts: final, characters }
+fs.writeFileSync(outputPath, JSON.stringify(fileShape, null, 2))
 console.log(`\nWrote ${final.length} concepts to ${path.relative(projectRoot, outputPath)}`)
 console.log(`Coverage:`)
 for (let L = 0; L < levelCount; L++) {

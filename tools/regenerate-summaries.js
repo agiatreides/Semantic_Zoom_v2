@@ -58,12 +58,15 @@ for (let i = 2; i < args.length; i++) {
 
 console.log(`Reading tree: ${path.relative(projectRoot, treePath)}`)
 const tree = JSON.parse(fs.readFileSync(treePath, 'utf8'))
-const concepts = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
+const conceptsRaw = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
+// Support both shapes: bare array (old) and {concepts, characters} (new)
+const concepts = Array.isArray(conceptsRaw) ? conceptsRaw : (conceptsRaw.concepts || [])
+const characters = (!Array.isArray(conceptsRaw) && conceptsRaw.characters) || {}
 const Lmax = tree.levelCount - 1
 const totalWords = (tree.levels[String(Lmax)]?.nodes || [])
   .map(n => n.text.split(/\s+/).length).reduce((a, b) => a + b, 0)
 console.log(`Tree: "${tree.title}" with ${tree.levelCount} levels, ${totalWords} words at L${Lmax}`)
-console.log(`Concepts: ${concepts.length}`)
+console.log(`Concepts: ${concepts.length}, Characters: ${Object.keys(characters).length}`)
 
 // Build a quick lookup: nodeId → node, per level
 const nodeByLevelId = {}
@@ -176,6 +179,25 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     }
 
     if (relevantEssentials.length === 0) {
+      // No essentials at this level for this cluster. At UPPER levels
+      // (L <= halfway), trim the cluster's text aggressively to its first
+      // sentence so it doesn't dominate the view with backdrop. At deeper
+      // levels, keep original prose (backdrop is fine when there's room).
+      const halfway = Math.floor((tree.levelCount - 1) / 2)
+      if (L <= halfway) {
+        for (const cid of childIds) {
+          const child = nodeByLevelId[`${L + 1}:${cid}`]
+          if (!child) continue
+          // Determine which child text to use for this parent's text
+        }
+        // Simpler: trim THIS node's existing text to first sentence
+        const orig = node.text || ''
+        // Find first sentence: end on .?! followed by space/end
+        const firstSent = orig.match(/^[\s\S]*?[.!?](?=[\s"'\u201d\u2019]|$)/)
+        node.text = (firstSent ? firstSent[0] : orig).trim()
+        viaKept++
+        continue
+      }
       viaKept++
       continue
     }
@@ -184,13 +206,13 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     const targetWords = targetWordCount(spanWordCount, Lmax - L, 0, totalWords)
     jobs.push({ node, childMembers: spanMembers, childWordCount: spanWordCount, targetWords, relevantEssentials })
   }
-  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept as-is (no essentials in cluster)`)
+  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept/trimmed (no essentials in cluster)`)
 
   const tStart = Date.now()
   await pmap(jobs, CONCURRENCY, async (job) => {
     const { node, childMembers, childWordCount, targetWords, relevantEssentials } = job
     process.stdout.write(`  [start ${node.id}] ${childMembers.length} children, ~${childWordCount}w → ~${targetWords}w, ${relevantEssentials.length} essentials\n`)
-    const newText = await claudeSummarizeAsync(childMembers, targetWords, [], { essentials: relevantEssentials })
+    const newText = await claudeSummarizeAsync(childMembers, targetWords, [], { essentials: relevantEssentials, characters })
     if (newText) {
       node.text = newText
     } else {

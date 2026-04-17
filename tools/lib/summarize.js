@@ -40,9 +40,20 @@ export function claudeSummarize(members, targetWords, importantConcepts = [], op
   const perPassageWords = Math.max(8, Math.floor(targetWords / n))
 
   const essentials = (opts && Array.isArray(opts.essentials)) ? opts.essentials : []
+  const characters = (opts && opts.characters && typeof opts.characters === 'object') ? opts.characters : {}
   const essentialsMode = essentials.length > 0
   let essentialsBlock = ''
   let coverageRule = `- You MUST include content from ALL ${n} passage${n > 1 ? 's' : ''}. Never drop an entire passage.\n- Each passage contributes ~${perPassageWords} words to the output. Allocate proportionally.`
+
+  const charNames = Object.keys(characters)
+  const charactersBlock = charNames.length > 0 ? `
+
+CHARACTER DICTIONARY (for briefly introducing characters at this compression):
+${charNames.map(n => `  ${n} — ${characters[n]}`).join('\n')}
+
+When naming a character in the output, help the reader by briefly pairing the name with their role the first time they appear (e.g. "Tyler, Maya's classmate" or "Chip, Tom's AI assistant"). Inline, conversational — not a parenthetical dump. One or two words of context is enough.
+
+` : ''
 
   if (essentialsMode) {
     const list = essentials.map(e => `- ${e.label}${e.snippet ? `  (in the source: "${e.snippet.substring(0, 100)}${e.snippet.length > 100 ? '…' : ''}")` : ''}`).join('\n')
@@ -78,7 +89,7 @@ ${coverageRule}
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.
 - Flowing prose. No bullet points, no headers, no meta-commentary.
-${essentialsBlock}
+${charactersBlock}${essentialsBlock}
 ${essentialsMode ? `Reduce to approximately ${targetWords} words, covering ONLY the events listed above. Same voice. Same story. Just tighter.` : `Reduce ALL ${n} passage${n > 1 ? 's' : ''} below into approximately ${targetWords} words total. Same voice. Same story. Just tighter.`}
 
 ---
@@ -155,9 +166,20 @@ function buildReductionPrompt(members, targetWords, importantConcepts, opts) {
   const perPassageWords = Math.max(8, Math.floor(targetWords / n))
 
   const essentials = (opts && Array.isArray(opts.essentials)) ? opts.essentials : []
+  const characters = (opts && opts.characters && typeof opts.characters === 'object') ? opts.characters : {}
   const essentialsMode = essentials.length > 0
   let essentialsBlock = ''
   let coverageRule = `- You MUST include content from ALL ${n} passage${n > 1 ? 's' : ''}. Never drop an entire passage.\n- Each passage contributes ~${perPassageWords} words to the output. Allocate proportionally.`
+
+  const charNames = Object.keys(characters)
+  const charactersBlock = charNames.length > 0 ? `
+
+CHARACTER DICTIONARY (for briefly introducing characters at this compression):
+${charNames.map(n => `  ${n} — ${characters[n]}`).join('\n')}
+
+When naming a character in the output, help the reader by briefly pairing the name with their role the first time they appear (e.g. "Tyler, Maya's classmate" or "Chip, Tom's AI assistant"). Inline, conversational — not a parenthetical dump. One or two words of context is enough.
+
+` : ''
 
   if (essentialsMode) {
     const list = essentials.map(e => `- ${e.label}${e.snippet ? `  (in the source: "${e.snippet.substring(0, 100)}${e.snippet.length > 100 ? '…' : ''}")` : ''}`).join('\n')
@@ -193,7 +215,7 @@ ${coverageRule}
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.
 - Flowing prose. No bullet points, no headers, no meta-commentary.
-${essentialsBlock}
+${charactersBlock}${essentialsBlock}
 ${essentialsMode ? `Reduce to approximately ${targetWords} words, covering ONLY the events listed above. Same voice. Same story. Just tighter.` : `Reduce ALL ${n} passage${n > 1 ? 's' : ''} below into approximately ${targetWords} words total. Same voice. Same story. Just tighter.`}
 
 ---
