@@ -642,8 +642,15 @@ function frame() {
 
   if (!offsetsLocked && !isTransitioning) {
     const off = levelOffsets[currentLevel]
-    if (off && Math.abs(off.x) > 0.5) off.x *= 0.95
-    else if (off) off.x = 0
+    // Only auto-center X when there's no active concept-tracking session.
+    // During tracking, offset.x was set intentionally by the wheel handler
+    // to land the cursor on the target word — easing it toward 0 would
+    // slide the text out from under the cursor (the "zoom, pause, then
+    // side-scroll" visual jank).
+    if (off && !trackedConcept) {
+      if (Math.abs(off.x) > 0.5) off.x *= 0.95
+      else off.x = 0
+    }
     hoveredWord = hitTestWord(currentLevel, off)
     // Only re-detect concept if not locked (concept stays locked through zoom until mouse moves)
     hoveredConcept = findConceptAtCursor(currentLevel, off)
