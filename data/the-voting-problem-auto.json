@@ -8,9 +8,7 @@
           "id": "0-0",
           "text": "When Tyler Chen, Maya's classmate, accuses her of cheating via her assistant, Tom tells her he has the ability to check. \"I'm not going to access my daughter's assistant logs. I trust her.\" Later Maya asks why. He decided based on who he wants to be.",
           "children": [
-            "1-0",
-            "1-1",
-            "1-2"
+            "1-1"
           ],
           "phrases": []
         }
@@ -19,28 +17,11 @@
     "1": {
       "nodes": [
         {
-          "id": "1-0",
-          "text": "Having a superintelligent AI living in your head ruins your ability to argue.",
-          "children": [
-            "2-0",
-            "2-1"
-          ],
-          "phrases": []
-        },
-        {
           "id": "1-1",
           "text": "Tyler Chen accused Maya of cheating on her algebra exam—claimed Sparkle, Maya's AI assistant, had fed her the answers. Chip, Tom's AI, noted: \"I have the ability to check. I could access Sparkle's logs right now.\" Chip gave 84% that Maya was truthful. Tom refused. \"I'm not going to access my daughter's assistant logs. I trust her.\"",
           "children": [
             "2-2",
             "2-3"
-          ],
-          "phrases": []
-        },
-        {
-          "id": "1-2",
-          "text": "But tonight, I'm pretty sure I got it right.",
-          "children": [
-            "2-4"
           ],
           "phrases": []
         }
@@ -49,24 +30,8 @@
     "2": {
       "nodes": [
         {
-          "id": "2-0",
-          "text": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.",
-          "children": [
-            "3-0"
-          ],
-          "phrases": []
-        },
-        {
-          "id": "2-1",
-          "text": "Derek pitches a pivot to the creator economy model.",
-          "children": [
-            "3-1"
-          ],
-          "phrases": []
-        },
-        {
           "id": "2-2",
-          "text": "Mid-meeting, Chip, Tom's AI assistant, cuts in: Maya's assistant has flagged an urgent situation at school. Tyler Chen accused Maya of cheating on her algebra exam — her assistant Sparkle fed her the answers, he claims. Principal Martinez convenes a formal hearing. Chip notes Tom has parental access to Sparkle's logs. Alone with Maya, who swears she didn't cheat, Tom says quietly, \"I could access Sparkle's logs right now.\" He doesn't. \"I trust her,\" he tells Martinez, who rules Tyler's evidence is interpretation, not proof.",
+          "text": "\"Incoming priority notification\"—Tyler, Maya's classmate, accused her of cheating. I ask Chip what wisdom would do. Martinez presents the accusation; Chip notes I can access Sparkle's logs. Maya swears she didn't. \"If I check and you're telling the truth, how would you feel?\" Verification changes the relationship regardless, Chip observes. \"I'm not going to access my daughter's logs.\" Martinez rules Tyler inconclusive.",
           "children": [
             "3-2",
             "3-3",
@@ -76,19 +41,11 @@
         },
         {
           "id": "2-3",
-          "text": "Martinez dismantles Tyler's case—Maya's scores match her preparation, his accusation came only after she outscored him.",
+          "text": "Martinez reveals the accusation came three hours after grades posted — Tyler had just learned Maya outscored him.\n\nBut that's not why I didn't check. I decided because of what it would mean. What it would say about us. About who I want to be.",
           "children": [
             "3-5",
             "3-6",
             "3-7"
-          ],
-          "phrases": []
-        },
-        {
-          "id": "2-4",
-          "text": "But tonight, I'm pretty sure I got it right.",
-          "children": [
-            "3-8"
           ],
           "phrases": []
         }

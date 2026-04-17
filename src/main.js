@@ -23,6 +23,15 @@ let offsetsLocked = false
 let lockTimer = 0
 let scrollAccum = 0
 
+// Scrollbar state (right-gutter, canvas-drawn)
+const SB_WIDTH = 10
+const SB_RIGHT_MARGIN = 4
+const SB_MIN_THUMB = 30
+let sbHover = false
+let sbDragging = false
+let sbDragStartY = 0
+let sbDragStartOffsetY = 0
+
 let hoveredConcept = null
 let hoveredWord = null
 let phrasesAtLevel = {}
@@ -399,6 +408,34 @@ function clampOffset(level, off) {
   return { x, y }
 }
 
+// Scrollbar geometry: thumb reflects how much of CURRENT level's content is
+// visible and where in the content the viewport sits. When contentH <= screenH
+// there's nothing to scroll, so the bar is hidden.
+function getScrollbarGeom(level) {
+  const screenH = renderer.height, screenW = renderer.width
+  const contentH = levelHeights[level] || 0
+  if (contentH <= screenH) return null
+  const trackX = screenW - SB_RIGHT_MARGIN - SB_WIDTH
+  const trackY = 0
+  const trackH = screenH
+  const scrollRange = contentH - screenH
+  const thumbH = Math.max(SB_MIN_THUMB, (screenH * screenH) / contentH)
+  const off = levelOffsets[level] ?? defaultOffset(level)
+  // off.y = 0 → top of content at top of screen. off.y = -(contentH-screenH) → bottom.
+  const frac = Math.max(0, Math.min(1, -off.y / scrollRange))
+  const thumbY = trackY + frac * (trackH - thumbH)
+  return { trackX, trackY, trackH, thumbY, thumbH, scrollRange }
+}
+
+function isOnScrollbarThumb(x, y, level) {
+  const g = getScrollbarGeom(level); if (!g) return false
+  return x >= g.trackX && x <= g.trackX + SB_WIDTH && y >= g.thumbY && y <= g.thumbY + g.thumbH
+}
+function isOnScrollbarTrack(x, y, level) {
+  const g = getScrollbarGeom(level); if (!g) return false
+  return x >= g.trackX && x <= g.trackX + SB_WIDTH && y >= g.trackY && y <= g.trackY + g.trackH
+}
+
 // ========== ZOOM INDICATORS ==========
 
 const particles = []
@@ -447,13 +484,34 @@ let mouseDown = false, cursorInTextArea = false
 
 function isInTextArea(x, y) {
   const bx = (renderer.width - COLUMN_WIDTH) / 2
+  if (x >= renderer.width - SB_RIGHT_MARGIN - SB_WIDTH - 4) return false
   return x >= bx - 20 && x <= bx + COLUMN_WIDTH + 20 && y >= 0 && y <= renderer.height
 }
-function isFrozen() { return mouseDown || !cursorInTextArea }
+function isFrozen() { return mouseDown || sbDragging || !cursorInTextArea }
 
-canvas.addEventListener('mousedown', () => { mouseDown = true })
-canvas.addEventListener('mouseup', () => { mouseDown = false })
-window.addEventListener('mouseup', () => { mouseDown = false })
+canvas.addEventListener('mousedown', (e) => {
+  const x = e.clientX, y = e.clientY
+  if (isOnScrollbarThumb(x, y, currentLevel)) {
+    sbDragging = true
+    sbDragStartY = y
+    sbDragStartOffsetY = (levelOffsets[currentLevel] ?? defaultOffset(currentLevel)).y
+    e.preventDefault()
+    return
+  }
+  if (isOnScrollbarTrack(x, y, currentLevel)) {
+    // Page jump toward click point
+    const g = getScrollbarGeom(currentLevel)
+    const dir = y < g.thumbY ? -1 : 1
+    const page = renderer.height * 0.8
+    const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+    levelOffsets[currentLevel] = clampOffset(currentLevel, { x: off.x, y: off.y - dir * page })
+    e.preventDefault()
+    return
+  }
+  mouseDown = true
+})
+canvas.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
+window.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
 
 canvas.addEventListener('wheel', (e) => {
   e.preventDefault()
@@ -563,21 +621,38 @@ canvas.addEventListener('wheel', (e) => {
   }
 }, { passive: false })
 
-canvas.addEventListener('mousemove', (e) => {
+function onMouseMove(e) {
   const movedX = e.clientX, movedY = e.clientY
   // Real cursor motion (>2px) ends the current zoom-tracking session so the
   // next wheel re-acquires whatever concept is now under the cursor.
-  if (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2) { trackedConcept = null; trackedWord = null }
+  if (!sbDragging && (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2)) { trackedConcept = null; trackedWord = null }
   mouseX = movedX; mouseY = movedY
+
+  if (sbDragging) {
+    const g = getScrollbarGeom(currentLevel)
+    if (g) {
+      const travel = g.trackH - g.thumbH
+      const dy = movedY - sbDragStartY
+      const deltaFrac = travel > 0 ? dy / travel : 0
+      const newY = sbDragStartOffsetY - deltaFrac * g.scrollRange
+      const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: off.x, y: newY })
+    }
+    return
+  }
+
+  sbHover = isOnScrollbarThumb(movedX, movedY, currentLevel) || isOnScrollbarTrack(movedX, movedY, currentLevel)
   cursorInTextArea = isInTextArea(mouseX, mouseY)
   if (isFrozen() || offsetsLocked) return
 
   const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
   hoveredWord = hitTestWord(currentLevel, off)
   hoveredConcept = findConceptAtCursor(currentLevel, off)
-})
+}
+canvas.addEventListener('mousemove', onMouseMove)
+window.addEventListener('mousemove', (e) => { if (sbDragging) onMouseMove(e) })
 
-canvas.addEventListener('mouseleave', () => { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null; trackedWord = null })
+canvas.addEventListener('mouseleave', () => { if (!sbDragging) { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null; trackedWord = null; sbHover = false } })
 window.addEventListener('resize', () => renderer.resize())
 
 // ========== HUD ==========
@@ -621,7 +696,7 @@ function drawHUD() {
   if (hoveredConcept) { ctx.fillStyle = 'rgba(255,200,100,0.5)'; ctx.fillText(`◆ ${hoveredConcept.label}`, 16, h - 66) }
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.2)'
-  ctx.fillText('Scroll: zoom  |  Move cursor: navigate', w - 16, h - 12)
+  ctx.fillText('Scroll: zoom  |  Drag scrollbar: pan  |  Move cursor: navigate', w - 16, h - 12)
   ctx.restore()
 }
 
@@ -656,22 +731,6 @@ function frame() {
     hoveredConcept = findConceptAtCursor(currentLevel, off)
   }
 
-  if (!isFrozen() && !offsetsLocked && !isTransitioning) {
-    const screenH = renderer.height, contentH = levelHeights[currentLevel] || 0
-    if (contentH > screenH) {
-      const ez = screenH * 0.10, ms = 8
-      let sd = 0
-      if (mouseY > screenH - ez) { const d = (mouseY - (screenH - ez)) / ez; sd = -ms * d * d }
-      else if (mouseY < ez) { const d = (ez - mouseY) / ez; sd = ms * d * d }
-      if (sd !== 0) {
-        const off = levelOffsets[currentLevel]
-        off.y = clampOffset(currentLevel, { x: off.x, y: off.y + sd }).y
-        hoveredWord = hitTestWord(currentLevel, off)
-        hoveredConcept = findConceptAtCursor(currentLevel, off)
-      }
-    }
-  }
-
   const baseLevel = Math.floor(displayLevel)
   const nextLevel = Math.min(baseLevel + 1, MAX_LEVEL)
   const t = displayLevel - baseLevel
@@ -692,8 +751,33 @@ function frame() {
   }
 
   updateAndDrawParticles()
+  drawScrollbar()
   drawHUD()
   requestAnimationFrame(frame)
+}
+
+// ========== SCROLLBAR ==========
+
+function drawScrollbar() {
+  const g = getScrollbarGeom(currentLevel); if (!g) return
+  const ctx = renderer.ctx, dpr = renderer.dpr
+  ctx.save(); ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+  // Track
+  ctx.fillStyle = 'rgba(255,255,255,0.04)'
+  ctx.fillRect(g.trackX, g.trackY, SB_WIDTH, g.trackH)
+  // Thumb
+  const active = sbDragging || sbHover
+  ctx.fillStyle = active ? 'rgba(150,190,255,0.55)' : 'rgba(255,255,255,0.22)'
+  const r = 4
+  const x = g.trackX, y = g.thumbY, w = SB_WIDTH, h = g.thumbH
+  ctx.beginPath()
+  ctx.moveTo(x + r, y)
+  ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r)
+  ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
+  ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r)
+  ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y)
+  ctx.fill()
+  ctx.restore()
 }
 
 // ========== BOOT ==========
@@ -792,5 +876,9 @@ window._sz = {
   // Test hooks for the regression runner.
   setTrackedConcept(c) { trackedConcept = c },
   setTrackedWord(w) { trackedWord = w },
-  clearTrackedConcept() { trackedConcept = null; trackedWord = null }
+  clearTrackedConcept() { trackedConcept = null; trackedWord = null },
+  getScrollbarGeom,
+  isOnScrollbarThumb,
+  isOnScrollbarTrack,
+  get sbDragging() { return sbDragging },
 }

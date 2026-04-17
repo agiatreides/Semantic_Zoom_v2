@@ -82,9 +82,23 @@ REDUCTION ≠ SUMMARY. The output is the SAME story told tighter, in the origina
   ✗ WRONG (summary): "The story explores themes of trust between humans and AI."
   ✓ RIGHT (reduction): "Chip gives 84%. He doesn't check. 'I trust her.'"
 
+  ✗ WRONG (dialogue paraphrased away):
+      source:  The captain rose. "I will not yield the ship."
+      output:  The captain refused to yield.   <- paraphrased, lost the quoted speech
+  ✓ RIGHT:    "I will not yield the ship," the captain says.
+      <- kept the quote verbatim; cut only the narrator tag since the quote shows the action.
+
+  ✗ WRONG (first-person flattened to third):
+      source:  I set down the paper. "I refuse to sign."
+      output:  The narrator refused to sign.   <- shifted perspective, dropped the quote
+  ✓ RIGHT:    I set down the paper. "I refuse to sign."
+      <- if it is short enough to keep, keep it; first-person stays first-person.
+
 CRITICAL RULES:
 ${coverageRule}
 - PRESERVE: original voice, tense, perspective (1st/3rd person), character agency, load-bearing dialogue, named characters, decisions, causal steps.
+- DIALOGUE is LOAD-BEARING. When the source has direct speech in quotation marks, the output MUST include that dialogue VERBATIM. Do NOT paraphrase \`"I'm not going to access my daughter's logs"\` as \`"Tom refused to access her logs"\`. Do NOT convert quoted speech into third-person narration. Quote marks in, quote marks out.
+- TENSE IS STICKY. If the source is present tense, the output is present tense. If past, past. Never shift past↔present or first↔third to save words; cut adjectives or scene-setting instead.
 - CUT: adjectives, atmospheric description, redundant elaboration, side scenes that don't move the plot, color details that aren't thematically weight-bearing.
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.
@@ -208,9 +222,23 @@ REDUCTION ≠ SUMMARY. The output is the SAME story told tighter, in the origina
   ✗ WRONG (summary): "The story explores themes of trust between humans and AI."
   ✓ RIGHT (reduction): "Chip gives 84%. He doesn't check. 'I trust her.'"
 
+  ✗ WRONG (dialogue paraphrased away):
+      source:  The captain rose. "I will not yield the ship."
+      output:  The captain refused to yield.   <- paraphrased, lost the quoted speech
+  ✓ RIGHT:    "I will not yield the ship," the captain says.
+      <- kept the quote verbatim; cut only the narrator tag since the quote shows the action.
+
+  ✗ WRONG (first-person flattened to third):
+      source:  I set down the paper. "I refuse to sign."
+      output:  The narrator refused to sign.   <- shifted perspective, dropped the quote
+  ✓ RIGHT:    I set down the paper. "I refuse to sign."
+      <- if it is short enough to keep, keep it; first-person stays first-person.
+
 CRITICAL RULES:
 ${coverageRule}
 - PRESERVE: original voice, tense, perspective (1st/3rd person), character agency, load-bearing dialogue, named characters, decisions, causal steps.
+- DIALOGUE is LOAD-BEARING. When the source has direct speech in quotation marks, the output MUST include that dialogue VERBATIM. Do NOT paraphrase \`"I'm not going to access my daughter's logs"\` as \`"Tom refused to access her logs"\`. Do NOT convert quoted speech into third-person narration. Quote marks in, quote marks out.
+- TENSE IS STICKY. If the source is present tense, the output is present tense. If past, past. Never shift past↔present or first↔third to save words; cut adjectives or scene-setting instead.
 - CUT: adjectives, atmospheric description, redundant elaboration, side scenes that don't move the plot, color details that aren't thematically weight-bearing.
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.

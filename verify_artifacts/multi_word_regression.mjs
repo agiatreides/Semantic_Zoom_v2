@@ -23,8 +23,10 @@ const artifactsDir = path.dirname(new URL(import.meta.url).pathname)
 const B = path.resolve(process.env.HOME, '.claude/skills/gstack/browse/dist/browse')
 const TARGET_URL = 'http://localhost:5181/?file=the-voting-problem-auto.json'
 
-// Default test words — spread across the L0 text
-let WORDS = ['not', 'cheated', 'Maya', 'Chip', 'Tyler', 'logs', 'trust', '84%']
+// Default test words — spread across the L0 text of the current corpus.
+// Keep these present in L0 (the causal-chain reduction); words from older
+// drafts (cheated, Chip, 84%) don't exist in the current L0 and will skip.
+let WORDS = ['not', 'cheating', 'Maya', 'Tom', 'Tyler', 'logs', 'trust', 'daughter']
 const args = process.argv.slice(2)
 for (const a of args) {
   if (a.startsWith('--words=')) WORDS = a.slice('--words='.length).split(',').filter(Boolean)
@@ -115,11 +117,37 @@ const LMAX = tree.levelCount - 1
 
 console.log(`Multi-word cursor regression — testing ${WORDS.length} words × L0→L${LMAX}\n`)
 
+// Poll until the page module has booted (window._sz defined). The browse
+// daemon queues commands but doesn't wait for JS modules to load; under
+// cumulative latency a fixed sleep drops the trace script on a blank page.
+const READY_POLL = `
+new Promise(function(resolve){
+  var start = Date.now();
+  var tick = function(){
+    if (window._sz && window._sz.treeData && window._sz.measuredLevels &&
+        window._sz.measuredLevels[0] && window._sz.measuredLevels[0].length > 0) {
+      resolve(JSON.stringify({ready: true, ms: Date.now()-start}));
+    } else if (Date.now()-start > 8000) {
+      resolve(JSON.stringify({ready: false, ms: Date.now()-start, has_sz: !!window._sz}));
+    } else {
+      setTimeout(tick, 50);
+    }
+  };
+  tick();
+})
+`
+
 for (const word of WORDS) {
   process.stdout.write(`  "${word}" ... `)
   bgoto(TARGET_URL)
-  // brief settle
-  const sleep = spawnSync('sleep', ['1.6'])
+  const readyRaw = bjs(READY_POLL)
+  let ready
+  try { ready = JSON.parse(readyRaw) } catch { ready = { ready: false, raw: readyRaw.substring(0, 120) } }
+  if (!ready.ready) {
+    console.log(`SKIP (not_ready after ${ready.ms ?? '?'}ms)`)
+    results.results.push({ error: 'not_ready', word, detail: ready })
+    continue
+  }
   const out = bjs(ZOOM_TRACE_SCRIPT(word, LMAX))
   let parsed
   try { parsed = JSON.parse(out) }

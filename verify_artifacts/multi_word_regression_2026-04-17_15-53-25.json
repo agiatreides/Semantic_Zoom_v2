@@ -1,0 +1,355 @@
+{
+  "timestamp": "2026-04-17_15-53-25",
+  "words_tested": [
+    "not",
+    "cheating",
+    "Maya",
+    "Tom",
+    "Tyler",
+    "logs",
+    "trust",
+    "daughter"
+  ],
+  "results": [
+    {
+      "word": "not",
+      "cursorXY": {
+        "x": 695,
+        "y": 346
+      },
+      "trackedWord": "not",
+      "trackedConcept": "tom_refuses_to_access_daughter_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "not",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 1,
+          "word": "not",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 2,
+          "word": "not",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 3,
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 4,
+          "word": "not",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 5,
+          "word": "not",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "5/6"
+    },
+    {
+      "word": "cheating",
+      "cursorXY": {
+        "x": 766,
+        "y": 318
+      },
+      "trackedWord": "cheating",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "cheating",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "cheating",
+          "concept": "maya_alert_interrupts_meeting"
+        },
+        {
+          "level": 2,
+          "word": "cheating.",
+          "concept": "tyler_assistant_presents_eye_evidence"
+        },
+        {
+          "level": 3,
+          "word": "cheating",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "cheated",
+          "concept": "chip_explains_ambiguous_biometrics"
+        },
+        {
+          "level": 5,
+          "word": "cheating",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "3/6",
+      "wordStemMatches": "6/6"
+    },
+    {
+      "word": "Maya",
+      "cursorXY": {
+        "x": 486,
+        "y": 318
+      },
+      "trackedWord": "Maya's",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "Maya's",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "Maya's",
+          "concept": "maya_alert_interrupts_meeting"
+        },
+        {
+          "level": 2,
+          "word": "cheating.",
+          "concept": "tyler_assistant_presents_eye_evidence"
+        },
+        {
+          "level": 3,
+          "word": "Maya's",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "Maya",
+          "concept": "chip_explains_ambiguous_biometrics"
+        },
+        {
+          "level": 5,
+          "word": "Maya",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "3/6",
+      "wordStemMatches": "5/6"
+    },
+    {
+      "word": "Tom",
+      "cursorXY": {
+        "x": 334,
+        "y": 346
+      },
+      "trackedWord": "Tom",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "Tom",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "exam—claimed",
+          "concept": "maya_alert_interrupts_meeting"
+        },
+        {
+          "level": 2,
+          "word": "cheating.",
+          "concept": "tyler_assistant_presents_eye_evidence"
+        },
+        {
+          "level": 3,
+          "word": "cheating",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "rumors",
+          "concept": "chip_explains_ambiguous_biometrics"
+        },
+        {
+          "level": 5,
+          "word": "her",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "3/6",
+      "wordStemMatches": "1/6"
+    },
+    {
+      "word": "Tyler",
+      "cursorXY": {
+        "x": 394,
+        "y": 318
+      },
+      "trackedWord": "Tyler",
+      "trackedConcept": "tyler_accuses_maya_of_cheating",
+      "trail": [
+        {
+          "level": 0,
+          "word": "Tyler",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 1,
+          "word": "Tyler",
+          "concept": "martinez_undermines_tyler_accusation"
+        },
+        {
+          "level": 2,
+          "word": "cheating.",
+          "concept": "tyler_assistant_presents_eye_evidence"
+        },
+        {
+          "level": 3,
+          "word": "Tyler",
+          "concept": "tyler_accuses_maya_of_cheating"
+        },
+        {
+          "level": 4,
+          "word": "rumors",
+          "concept": "chip_explains_ambiguous_biometrics"
+        },
+        {
+          "level": 5,
+          "word": "Tyler",
+          "concept": "tyler_accuses_maya_of_cheating"
+        }
+      ],
+      "conceptStability": "3/6",
+      "wordStemMatches": "4/6"
+    },
+    {
+      "word": "logs",
+      "cursorXY": {
+        "x": 412,
+        "y": 374
+      },
+      "trackedWord": "logs.",
+      "trackedConcept": "tom_refuses_to_access_daughter_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "logs.",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 1,
+          "word": "logs.",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 2,
+          "word": "logs.\"",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 3,
+          "word": "radiates",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 4,
+          "word": "logs,\"",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 5,
+          "word": "logs,\"",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "5/6"
+    },
+    {
+      "word": "trust",
+      "cursorXY": {
+        "x": 469,
+        "y": 374
+      },
+      "trackedWord": "trust",
+      "trackedConcept": "tom_refuses_to_access_daughter_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "trust",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 1,
+          "word": "trust",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 2,
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 3,
+          "word": "radiates",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 4,
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 5,
+          "concept": "tom_refuses_to_access_daughter_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "2/6"
+    },
+    {
+      "word": "daughter",
+      "cursorXY": {
+        "x": 900,
+        "y": 346
+      },
+      "trackedWord": "daughter's",
+      "trackedConcept": "tom_refuses_to_access_daughter_logs",
+      "trail": [
+        {
+          "level": 0,
+          "word": "daughter's",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 1,
+          "word": "daughter's",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 2,
+          "word": "daughter's",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 3,
+          "word": "radiates",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 4,
+          "word": "daughter's",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        },
+        {
+          "level": 5,
+          "word": "daughter's",
+          "concept": "tom_refuses_to_access_daughter_logs"
+        }
+      ],
+      "conceptStability": "6/6",
+      "wordStemMatches": "5/6"
+    }
+  ]
+}

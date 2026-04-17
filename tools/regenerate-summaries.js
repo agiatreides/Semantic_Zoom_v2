@@ -45,15 +45,19 @@ async function pmap(items, concurrency, fn) {
 
 const args = process.argv.slice(2)
 if (args.length < 2 || args.includes('--help')) {
-  console.error('Usage: node tools/regenerate-summaries.js <tree.json> <concepts.json> [--output <out.json>]')
+  console.error('Usage: node tools/regenerate-summaries.js <tree.json> <concepts.json> [--output <out.json>] [--only-level N] [--skip-drop]')
   process.exit(1)
 }
 const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const treePath = path.resolve(projectRoot, args[0])
 const conceptsPath = path.resolve(projectRoot, args[1])
 let outputPath = treePath
+let onlyLevel = null
+let skipDrop = false
 for (let i = 2; i < args.length; i++) {
   if (args[i] === '--output' && args[i + 1]) outputPath = path.resolve(projectRoot, args[++i])
+  else if (args[i] === '--only-level' && args[i + 1]) onlyLevel = parseInt(args[++i], 10)
+  else if (args[i] === '--skip-drop') skipDrop = true
 }
 
 console.log(`Reading tree: ${path.relative(projectRoot, treePath)}`)
@@ -82,6 +86,7 @@ for (let L = 0; L < tree.levelCount; L++) {
 const CONCURRENCY = 8
 
 for (let L = 0; L < tree.levelCount - 1; L++) {
+  if (onlyLevel !== null && L !== onlyLevel) continue
   const essentials = concepts
     .filter(c => (c.min_visible_level ?? tree.levelCount) <= L)
     .map(c => ({
@@ -156,7 +161,9 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     return text.substring(s, e).trim()
   }
 
+  const halfway = Math.floor((tree.levelCount - 1) / 2)
   const jobs = []
+  const toDelete = []    // nodes at this L with zero essentials at upper levels — drop entirely
   let viaKept = 0
   for (const node of tree.levels[String(L)].nodes) {
     const childIds = node.children || []
@@ -179,25 +186,14 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     }
 
     if (relevantEssentials.length === 0) {
-      // No essentials at this level for this cluster. At UPPER levels
-      // (L <= halfway), trim the cluster's text aggressively to its first
-      // sentence so it doesn't dominate the view with backdrop. At deeper
-      // levels, keep original prose (backdrop is fine when there's room).
-      const halfway = Math.floor((tree.levelCount - 1) / 2)
-      if (L <= halfway) {
-        for (const cid of childIds) {
-          const child = nodeByLevelId[`${L + 1}:${cid}`]
-          if (!child) continue
-          // Determine which child text to use for this parent's text
-        }
-        // Simpler: trim THIS node's existing text to first sentence
-        const orig = node.text || ''
-        // Find first sentence: end on .?! followed by space/end
-        const firstSent = orig.match(/^[\s\S]*?[.!?](?=[\s"'\u201d\u2019]|$)/)
-        node.text = (firstSent ? firstSent[0] : orig).trim()
-        viaKept++
-        continue
-      }
+      // No essentials at this level for this cluster. Poker-nuts rule: at
+      // UPPER levels (L <= halfway), the cluster is backdrop — drop it
+      // entirely rather than trim-to-first-sentence (which used to leave
+      // standalone artifacts like "Derek pitches a pivot to the creator
+      // economy model." at L2 even though Derek's `min_visible_level=5`).
+      // At deeper levels (L > halfway), keep the original prose as-is —
+      // backdrop is fine when there's room to spare.
+      if (!skipDrop && L <= halfway) { toDelete.push(node.id); continue }
       viaKept++
       continue
     }
@@ -206,7 +202,7 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     const targetWords = targetWordCount(spanWordCount, Lmax - L, 0, totalWords)
     jobs.push({ node, childMembers: spanMembers, childWordCount: spanWordCount, targetWords, relevantEssentials })
   }
-  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept/trimmed (no essentials in cluster)`)
+  console.log(`  ${jobs.length} nodes to re-reduce (parallel ${Math.min(CONCURRENCY, jobs.length)}), ${viaKept} kept (backdrop at deeper level), ${toDelete.length} dropped (no essentials at upper level)`)
 
   const tStart = Date.now()
   await pmap(jobs, CONCURRENCY, async (job) => {
@@ -220,6 +216,33 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
     }
   })
   console.log(`  L${L} done in ${((Date.now() - tStart)/1000).toFixed(1)}s`)
+
+  // Drop no-essential upper-level nodes + prune from parent .children lists.
+  // Only affects L <= halfway. Parents at L-1 already consumed the old L
+  // text; removing the child id just prevents downstream tools
+  // (extract-concepts, any future walker) from following a dead pointer.
+  // Safety: never empty a level — the renderer draws level.nodes directly.
+  if (toDelete.length > 0) {
+    const total = tree.levels[String(L)].nodes.length
+    let finalDelete = toDelete
+    if (total - toDelete.length < 1) {
+      // Would empty the level — keep the first flagged node as a placeholder
+      const keep = toDelete[0]
+      finalDelete = toDelete.slice(1)
+      console.log(`  (level ${L} would be emptied — keeping node ${keep} as placeholder)`)
+    }
+    const dead = new Set(finalDelete)
+    tree.levels[String(L)].nodes = tree.levels[String(L)].nodes.filter(n => !dead.has(n.id))
+    if (L > 0) {
+      for (const parent of tree.levels[String(L - 1)].nodes) {
+        if (Array.isArray(parent.children)) {
+          parent.children = parent.children.filter(cid => !dead.has(cid))
+        }
+      }
+    }
+    for (const id of finalDelete) delete nodeByLevelId[`${L}:${id}`]
+    console.log(`  dropped ${finalDelete.length} backdrop nodes from L${L} (${total} → ${tree.levels[String(L)].nodes.length})`)
+  }
 }
 
 // Phrase maps are now stale. Rather than recomputing them (which needs the
