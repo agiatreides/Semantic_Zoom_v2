@@ -1,0 +1,79 @@
+Reading tree: bench/haiku/tree.json
+Tree: "The voting problem" — 6 levels, 2318 words at L5
+Genre: short_story
+Concepts: 19, Characters: 8, Voice anchors: 3
+Thematic thrust: "Tom has the power to know whether Maya cheated and decides not to use it, choosing trust over certainty."
+
+
+=== L4 — 19 visible essentials ===
+
+=== L3 — 19 visible essentials ===
+
+=== L2 — 19 visible essentials ===
+
+=== L1 — 12 visible essentials ===
+
+=== L0 — 3 visible essentials ===
+  [gen:L0:a1] 52.9s (675 chars)
+  [L0] wrote 4 nodes (108 words)
+  [gen:L1:a1] 53.6s (2188 chars)
+  [L1] wrote 20 nodes (354 words)
+  [gen:L3:a1] 60.8s (8834 chars)
+  [L3] attempt 1: 1404w > cap 1275w — retry with tightened target 909
+  [gen:L2:a1] 71.5s (4719 chars)
+  [L2] wrote 52 nodes (755 words)
+  [gen:L4:a1] 72.0s (11770 chars)
+  [L4] wrote 122 nodes (1873 words)
+  [gen:L3:a2] 53.8s (6525 chars)
+  [L3] wrote 64 nodes (1029 words)
+  [anchor:L2] 60.9s (1575 chars)
+  [L2] anchored 19/19 essentials
+  [anchor:L0] 82.5s (322 chars)
+  [L0] anchored 3/3 essentials
+  [anchor:L4] 89.9s (1664 chars)
+  [L4] anchored 19/19 essentials
+  [anchor:L1] 216.6s (1043 chars)
+  [L1] anchored 12/12 essentials
+  [anchor:L3] 161.6s (1657 chars)
+  [L3] anchored 19/19 essentials
+
+Wrote tree: bench/haiku/tree.json
+Wrote concepts: bench/haiku/concepts.json
+
+Anchor coverage:
+  L0: 3/3 visible anchored
+  L1: 12/12 visible anchored
+  L2: 19/19 visible anchored
+  L3: 19/19 visible anchored
+  L4: 19/19 visible anchored
+  L5: 19/19 visible anchored
+
+Level-spacing check (word-count ratios to next level):
+  L0/L1: 108/354 = 31%
+  L1/L2: 354/755 = 47%
+  L2/L3: 755/1029 = 73%
+  L3/L4: 1029/1873 = 55%
+  L4/L5: 1873/2318 = 81%
+
+Building phrase-chain maps...
+
+Adding phrase maps to: /Users/lts/Desktop/Second_Brain/Second_Brain/Projects/Semantic_Zoom_v2/bench/haiku/tree.json
+
+Loading embedding model...
+  Level 0: 30 phrases
+  Level 1: 101 phrases
+  Level 2: 217 phrases
+  Level 3: 296 phrases
+  Level 4: 540 phrases
+  Level 5: 671 phrases
+
+Computing cross-level matches...
+  Level 0: matched
+  Level 1: matched
+  Level 2: matched
+  Level 3: matched
+  Level 4: matched
+  Level 5: matched
+
+1855 total phrases mapped.
+Written: /Users/lts/Desktop/Second_Brain/Second_Brain/Projects/Semantic_Zoom_v2/bench/haiku/tree.json

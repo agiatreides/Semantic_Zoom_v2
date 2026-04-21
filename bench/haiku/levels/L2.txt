@@ -1,0 +1,103 @@
+So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.
+
+I'm at 7:47 AM in the conference room, listening to my boss Derek pitch influencer partnerships. My assistant Chip is running numbers—12% lower ROI. Before I can respond: Incoming priority. Your daughter Maya's assistant flagged an urgent situation at school.
+
+By 7:52 I'm in my car. Chip briefs me: Tyler accused Maya of cheating on her algebra exam. Did she? Sparkle says Maya worked independently, but her stress was elevated during the test. Ambiguous data.
+
+That's the problem with assistants. They know everything—every heartbeat, every moment of dishonesty—but they're legally bound to only share that with consent. Tyler's assistant knows the truth. So does Maya's. But they can't tell each other.
+
+Principal Martinez is tired. Maya sits miserable. Tyler wears the smug expression of someone who's already won.
+
+"Tyler has accused Maya of cheating," Martinez says. "Both assistants will testify."
+
+Tyler's assistant: "During the exam, Maya's eyes moved consistent with reading displayed text. Answer times suggest transcription, not problem-solving."
+
+"Sparkle," Martinez says, "your response?"
+
+Maya's assistant, in the voice my daughter chose at eleven: "Maya worked each problem independently. Her eye movements tracked her mental visualization to manage test anxiety. Answer times reflect her natural workflow."
+
+"These accounts are mutually exclusive," Martinez says. "One is wrong."
+
+Actually, both could be correct from different observational frames, Chip says privately.
+
+Can you tell if she cheated?
+
+I have access to Sparkle's diagnostic logs through the parental oversight protocol from when Maya was twelve. Would you like me to access them?
+
+I pause. She was a kid who needed guardrails then. She's sixteen now.
+
+Is that what perfect wisdom would do?
+
+That's a value judgment I can't make for you.
+
+"I'd like a moment alone with my daughter," I tell Martinez.
+
+In the hallway, Maya leans against a locker.
+
+"Did you cheat?"
+
+"No. Dad, I didn't. Sparkle helped me study, but during the test she was just there—keeping me calm. She didn't tell me answers."
+
+The thing is, I say slowly, "I could access her logs and know for certain."
+
+Maya's eyes widen. "You wouldn't."
+
+"I could. But if I check and you're telling the truth, how would you feel?"
+
+"Like you didn't trust me."
+
+"And if I don't check?"
+
+"Then you did."
+
+The act of verification changes the relationship regardless of the outcome, Chip observes.
+
+For what it's worth, I calculate 84% probability you're telling the truth. But I'm not recommending anything.
+
+Why tell me?
+
+Because you would want all available information for your decision.
+
+Back in the office, I face Martinez and Tyler.
+
+"I'm not going to access my daughter's logs," I say. "I trust her."
+
+Tyler laughs. "That's not how this works—"
+
+"Both assistants processed the same data and reached opposite conclusions," I say. "That's ambiguity."
+
+Martinez nods. "Maya's score is consistent with her preparation. Tyler's accusation was filed three hours after grades posted—right after Maya outscored him."
+
+In the car, Maya stares out the window.
+
+"You really didn't check?"
+
+"I really didn't."
+
+She's quiet. "Dad, how do people without assistants make decisions? How do they know if someone's lying?"
+
+"How do you think they did it before?"
+
+"That was twenty years ago. I wasn't even born."
+
+"People made decisions with incomplete information. They trusted or didn't, based on past behavior and instinct. They got lied to. Made mistakes."
+
+"That sounds terrible."
+
+"It was, sometimes. But here's the thing, Maya. Even now, with all this technology, I still had to choose. Chip could have given me 84 percent—but that's not why I didn't check. I didn't check because of what it would mean. What it would say about who I want to be."
+
+For just a second I really see her—not the biometric overlay—just my daughter, sixteen, trying to figure out how to be a person in a world that thinks it's solved everything.
+
+"Thanks, Dad."
+
+Her stress indicators are decreasing, Chip says. By several measures, this was optimal.
+
+I thought it was suboptimal.
+
+Statistically suboptimal for detecting cheating. But you weren't trying to detect cheating. You were trying to maintain your relationship while modeling ethical decision-making. Different objective function.
+
+So I made the right choice?
+
+You made a choice reflecting your values. Rightness is not something I'm equipped to assess. But I respect it.
+
+That evening, I sit in the dark. Tomorrow will bring new problems, moments where math says one thing and instinct says another. But tonight, I'm pretty sure I got it right.

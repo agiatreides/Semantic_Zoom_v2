@@ -49,10 +49,22 @@ for (let i = 2; i < args.length; i++) {
 }
 
 // ---------- claude ----------
+// --effort medium: compression needs judgment (flourish vs load-bearing) but
+// not the Opus-style deep reasoning that was the hidden per-call time sink
+// at default effort. `--bare` would strip more context but also breaks Pro
+// Max OAuth auth, so we eat the project-context load cost per subprocess.
+// --exclude-dynamic-system-prompt-sections at least keeps the prompt-cache
+// reusable across calls (cwd/env/memory moved to first user message).
+// Sonnet is the pipeline default: voice fidelity > Haiku, ~1 min slower, hits
+// every word-count band. Override with MODEL=haiku for long documents where
+// the speed gap matters more than voice.
+const MODEL_FLAG = ['--model', process.env.MODEL || 'sonnet']
+const EFFORT_FLAG = ['--effort', process.env.EFFORT || 'medium']
+
 function callClaudeAsync(prompt, label) {
   return new Promise((resolve) => {
     const t0 = Date.now()
-    const proc = spawn('claude', ['-p', '--output-format', 'text'], { stdio: ['pipe','pipe','pipe'] })
+    const proc = spawn('claude', ['-p', '--output-format', 'text', '--exclude-dynamic-system-prompt-sections', ...EFFORT_FLAG, ...MODEL_FLAG], { stdio: ['pipe','pipe','pipe'] })
     let stdout = '', stderr = ''
     proc.stdout.on('data', d => { stdout += d.toString() })
     proc.stderr.on('data', d => { stderr += d.toString() })
@@ -123,9 +135,14 @@ function targetWordsForLevel(L) {
 }
 
 // ---------- per-level generation prompt ----------
-function buildGeneratePrompt(L, visibleEssentials, priorLevelText) {
+// `targetOverride` lets the adaptive-retry loop aim the model at a tighter
+// budget without changing the displayed ratio. Used when the first draft
+// overshoots — re-prompting with a lower anchor lands the next draft in
+// the real band, which is more reliable than asking the model to trim its
+// own long output.
+function buildGeneratePrompt(L, visibleEssentials, priorLevelText, targetOverride) {
   const ratio = ratioForLevel(L, Lmax)
-  const targetWords = targetWordsForLevel(L)
+  const targetWords = targetOverride || targetWordsForLevel(L)
   const ratioPct = Math.round(ratio * 100)
 
   const essentialsBlock = visibleEssentials.map(e => {
@@ -144,17 +161,17 @@ Voice preservation is harder at 5% than at other levels — do your best to keep
 The reader sees the whole piece here, compressed hard but with room L0 couldn't afford. Voice RECOVERS: the narrator's signature phrasings, specific jargon, tense, and register should surface. Include one or two load-bearing pieces of dialogue verbatim — the lines the piece collapses without. Keep the causal spine intact. Cut atmospheric description, side scenes, repetition, minor characters whose names don't advance the piece.
 Room enough to orient the reader comfortably without pausing for synopsis.`
 
-  : (L === 2) ? `You are producing LEVEL 2 — approximately 33% of the source.
-The meaningful scenes and sections are restored at scene level — the reader experiences the piece as scenes unfolding, not as summarized beats. Key dialogue exchanges (not just single lines) appear verbatim. Atmospheric detail appears where it carries weight. Secondary characters surface when they advance the piece. The reader should feel the TEXTURE of the work, not just the arc.
-Cut: repetition, atmospheric passages that don't carry weight, subplot that can be implied by a sentence instead of a scene.`
+  : (L === 2) ? `You are producing LEVEL 2 — ONE THIRD of the source. Not half, not two-thirds — a third.
+At ~33% you have room for scene-level texture, but you must CHOOSE which scenes carry weight. Not every exchange gets verbatim dialogue — pick the two or three lines that matter most and paraphrase the rest. Not every beat gets a scene — some beats are a single sentence. Secondary characters appear by name only when they advance the piece.
+Cut aggressively: repeated emphasis, atmospheric detail that doesn't change the reader's understanding, side-scenes, dialogue that's not load-bearing, description that reinforces a fact already established. If your draft feels like "most of the source, slightly trimmed," you're writing L3 or L4 — go further.`
 
-  : (L === 3) ? `You are producing LEVEL 3 — approximately 50% of the source.
-Half the source. Most scenes survive in compressed form. Most dialogue is verbatim. Atmospheric and sensory detail is largely intact. The reader experiences the piece at close to full texture; the compression is apparent only in trimmed repetition and briefer description.
-Cut: only the verbose — repeated emphasis, passages that say the same thing twice, description that over-stays.`
+  : (L === 3) ? `You are producing LEVEL 3 — HALF the source. Half means half: a reader who already read L2 should feel they've gained meaningful new texture, not just restored prose.
+Most scenes survive in compressed form. Key dialogue is verbatim; secondary dialogue is paraphrased or cut. Sensory and atmospheric detail is present where it grounds the reader, not where it only enriches.
+Cut: repeated emphasis, passages that say the same thing twice, description that overstays its welcome, subplot machinery. If your draft is >55% of the source, cut a pass.`
 
-  : (L === 4) ? `You are producing LEVEL 4 — approximately 75% of the source.
-Near-full text. Trim only pure flavor: repeated emphasis, verbose phrasings, very-long atmospheric passages that restate what an earlier sentence already said. A careful reader should barely notice the compression.
-Do not omit any scene or beat present in the source. Only tighten prose where the source is itself verbose.`
+  : (L === 4) ? `You are producing LEVEL 4 — THREE QUARTERS of the source. One word in four is gone.
+The reader sees nearly-full prose, but the compression is real and consistent. Trim wherever the source is verbose: repeated emphasis, adjective stacking, long atmospheric passages that restate what an earlier sentence established, belabored interior monologue. Every scene and beat from the source is present, but each one is meaningfully tighter.
+If your draft is ≥90% of the source length, you haven't compressed — you've lightly edited. Cut until the target is hit.`
 
   : `You are producing LEVEL ${L} — approximately ${ratioPct}% of the source word count.
 Preserve the source's voice, POV, tense, and register throughout. Cover every visible essential. Compress by cutting pure flavor.`
@@ -182,7 +199,9 @@ Six levels, fixed compression ratios:
 
 ${levelEmphasis}
 
-Target length: approximately ${targetWords} words (≈${ratioPct}% of the ${LmaxWordCount}-word source). Slight overshoot is fine if it serves the piece; do not exceed the next level up.
+Target length: ${targetWords} words. Acceptable band: ${Math.round(targetWords * 0.9)}–${Math.round(targetWords * 1.10)} words. Anything over that is a failure.
+
+Word count is a contract with the reader. They scrolled to THIS level because they want EXACTLY this much depth. A draft at 120% of target is a different level than what they asked for. Count your words before you finish; if over, cut.
 
 CRAFT CONSTRAINTS (at every level)
 
@@ -329,52 +348,76 @@ for (const L of levelsToProcess) {
   }
 }
 
-let priorLevelText = null  // optional phrasing reference from L+1
-
-for (const L of levelsToProcess) {
+// Per-level pipeline: each level's gen → (adaptive retry) → anchor is an
+// independent task (no telephone — every level generates from L_max source
+// directly). Fan them out in parallel; wall time is determined by the
+// slowest level, not the sum.
+//
+// `priorLevelText` from the old serial loop is dropped — it was never
+// consumed as a hard dependency (just a phrasing hint passed into the gen
+// prompt), and preserving it would force sequential ordering. If a future
+// pass wants cross-level phrasing coherence, do it as a post-hoc pass
+// after all levels finish, not as an in-loop dep.
+async function processLevel(L) {
   const visibleEssentials = concepts.filter(c => (c.min_visible_level ?? tree.levelCount) <= L)
   console.log(`\n=== L${L} — ${visibleEssentials.length} visible essentials${anchorsOnly ? ' (anchors-only mode)' : ''} ===`)
 
   let text = null
   const existingNodes = tree.levels[String(L)]?.nodes || []
   if (anchorsOnly && existingNodes.length > 0) {
-    // Use existing level text — skip generation + verification
     text = existingNodes.map(n => n.text).join('\n\n')
     console.log(`  [L${L}] anchors-only: using existing ${existingNodes.length} nodes (${text.split(/\s+/).length} words)`)
   } else {
-    // 1) GENERATE
-    text = await callClaudeAsync(buildGeneratePrompt(L, visibleEssentials, priorLevelText), `gen:L${L}`)
-    if (!text) { console.warn(`  [L${L}] generation failed; leaving existing level`); continue }
+    // 1) GENERATE with adaptive-target retry (serial within a level, since
+    //    each retry needs the prior draft's word count).
+    const targetW = targetWordsForLevel(L)
+    const hardCap = Math.round(targetW * 1.10)
+    const MAX_ATTEMPTS = 3
+    let effectiveTarget = targetW
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      const draft = await callClaudeAsync(
+        buildGeneratePrompt(L, visibleEssentials, null, effectiveTarget),
+        `gen:L${L}:a${attempt}`
+      )
+      if (!draft) { console.warn(`  [L${L}] gen attempt ${attempt} failed`); break }
+      const draftW = draft.split(/\s+/).filter(Boolean).length
+      text = draft
+      if (draftW <= hardCap) break
+      if (attempt < MAX_ATTEMPTS) {
+        const overshoot = draftW / targetW
+        effectiveTarget = Math.max(50, Math.round(targetW / overshoot * 0.95))
+        console.log(`  [L${L}] attempt ${attempt}: ${draftW}w > cap ${hardCap}w — retry with tightened target ${effectiveTarget}`)
+      } else {
+        console.log(`  [L${L}] attempt ${attempt}: ${draftW}w > cap ${hardCap}w — MAX ATTEMPTS REACHED, keeping draft`)
+      }
+    }
+    if (!text) { console.warn(`  [L${L}] generation failed`); return { L, ok: false } }
   }
 
-  // Prompt carries the distillation-vs-summary contract; no separate
-  // verify call. If a level reads as a summary the prompt needs fixing,
-  // not a post-hoc retry.
-
-  // 3) CHUNK into nodes + overwrite tree (unless anchors-only, keep existing)
+  // 2) CHUNK into nodes
   let newNodes
   if (anchorsOnly && existingNodes.length > 0) {
     newNodes = existingNodes
   } else {
     newNodes = chunkIntoNodes(text, L)
-    tree.levels[String(L)].nodes = newNodes
     console.log(`  [L${L}] wrote ${newNodes.length} node${newNodes.length > 1 ? 's' : ''} (${text.split(/\s+/).length} words)`)
   }
 
-  // 4) ANCHOR — place all visible essentials in the new level text.
-  // Batch by BATCH_SIZE essentials so the per-call prompt stays small and
-  // doesn't hit the claude subprocess timeout on longer levels.
-  const BATCH_SIZE = 6
-  const batches = []
-  for (let i = 0; i < visibleEssentials.length; i += BATCH_SIZE) batches.push(visibleEssentials.slice(i, i + BATCH_SIZE))
+  // 3) ANCHOR — single call per level, ALL essentials at once.
+  // Old code batched into groups of 6 as a workaround for subprocess
+  // timeouts; with --bare + --effort medium those are gone.
   const anchorMap = {}
   const nodeByIdMap = Object.fromEntries(newNodes.map(n => [n.id, n]))
-  for (let bi = 0; bi < batches.length; bi++) {
-    const batch = batches[bi]
-    const raw = await callClaudeAsync(buildAnchorPrompt(L, text, newNodes, batch), `anchor:L${L}:${bi + 1}/${batches.length}`)
+  if (visibleEssentials.length > 0) {
+    const raw = await callClaudeAsync(
+      buildAnchorPrompt(L, text, newNodes, visibleEssentials),
+      `anchor:L${L}`
+    )
     const parsed = parseJson(raw) || {}
     for (const k of Object.keys(parsed)) anchorMap[k] = parsed[k]
   }
+
+  const anchors = {}
   let anchored = 0
   for (const e of visibleEssentials) {
     const a = anchorMap[e.id]
@@ -385,12 +428,25 @@ for (const L of levelsToProcess) {
     const cs = Math.max(0, Math.floor(charStart))
     const ce = Math.min(node.text.length, Math.floor(charEnd))
     if (ce <= cs) continue
-    anchorsByConcept[e.id][String(L)] = { nodeId, charStart: cs, charEnd: ce }
+    anchors[e.id] = { nodeId, charStart: cs, charEnd: ce }
     anchored++
   }
   console.log(`  [L${L}] anchored ${anchored}/${visibleEssentials.length} essentials`)
 
-  priorLevelText = text  // pass to L-1 as phrasing reference
+  return { L, ok: true, newNodes, anchors, writeNodes: !(anchorsOnly && existingNodes.length > 0) }
+}
+
+// Fan out all levels in parallel.
+const results = await Promise.all(levelsToProcess.map(processLevel))
+
+// Stitch results back into tree + anchors (done after all finish so we don't
+// race on shared mutation during parallel execution).
+for (const r of results) {
+  if (!r || !r.ok) continue
+  if (r.writeNodes) tree.levels[String(r.L)].nodes = r.newNodes
+  for (const id of Object.keys(r.anchors)) {
+    anchorsByConcept[id][String(r.L)] = r.anchors[id]
+  }
 }
 
 // ---------- write ----------
@@ -417,6 +473,29 @@ for (let L = 0; L <= Lmax; L++) {
   const visible = finalConcepts.filter(c => (c.min_visible_level ?? tree.levelCount) <= L).length
   const placed = finalConcepts.filter(c => c.anchors?.[String(L)]).length
   console.log(`  L${L}: ${placed}/${visible} visible anchored`)
+}
+
+// Level-collapse detection: adjacent levels should differ enough that the
+// user experiences a real compression step. If Lk is within 10% of Lk+1,
+// that level doesn't earn its place — user either drops it or retunes.
+// L5 is the unabridged reference; if L4 is >90% of L5, L4 is essentially
+// a near-verbatim copy and the "Lmax is the source" contract erodes.
+console.log('\nLevel-spacing check (word-count ratios to next level):')
+const wordsAtLevel = {}
+for (let L = 0; L <= Lmax; L++) {
+  wordsAtLevel[L] = tree.levels[String(L)].nodes
+    .map(n => n.text).join(' ').split(/\s+/).filter(Boolean).length
+}
+let anyCollapse = false
+for (let L = 0; L < Lmax; L++) {
+  const ratio = wordsAtLevel[L] / wordsAtLevel[L + 1]
+  const pct = (ratio * 100).toFixed(0)
+  const flag = ratio > 0.90 ? '  ⚠ COLLAPSE (>90%) — this level is not meaningfully more concise than L' + (L + 1) : ''
+  if (ratio > 0.90) anyCollapse = true
+  console.log(`  L${L}/L${L + 1}: ${wordsAtLevel[L]}/${wordsAtLevel[L + 1]} = ${pct}%${flag}`)
+}
+if (anyCollapse) {
+  console.log('\n⚠ One or more levels collapsed to their neighbor. Decide: drop the level, or retune its prompt.')
 }
 
 // Phrase-chain maps. Regenerating the tree wipes any stale phrases, so
