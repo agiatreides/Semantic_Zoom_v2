@@ -48,6 +48,7 @@
 import fs from 'fs'
 import path from 'path'
 import { execSync, spawn } from 'child_process'
+import { classifyGenre } from './classify-genre.js'
 
 // Promise-mapping helper: run async fn over items with bounded concurrency.
 async function pmap(items, concurrency, fn) {
@@ -104,9 +105,11 @@ const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname)
 const inputPath = path.resolve(projectRoot, args[0])
 let outputPath = null
 let conceptCount = null
+let identifyOnly = false
 for (let i = 1; i < args.length; i++) {
   if (args[i] === '--output' && args[i + 1]) { outputPath = path.resolve(projectRoot, args[++i]) }
   else if (args[i] === '--concept-count' && args[i + 1]) { conceptCount = parseInt(args[++i], 10) }
+  else if (args[i] === '--identify-only') { identifyOnly = true }
 }
 if (!outputPath) {
   const dir = path.dirname(inputPath)
@@ -153,76 +156,130 @@ function parseJsonResponse(raw, label) {
   } catch (e) {
     console.error(`  [${label}] JSON parse failed:`, e.message)
     console.error('  raw response (first 500 chars):', raw.substring(0, 500))
+    // Dump full raw for debugging
+    try {
+      fs.writeFileSync(`/tmp/extract-concepts-failed-${label.replace(/[^\w]/g,'_')}.txt`, raw)
+      console.error(`  full raw saved to /tmp/extract-concepts-failed-${label.replace(/[^\w]/g,'_')}.txt`)
+    } catch {}
     return null
   }
 }
 
 // --------------------------------------------------------------------
-// Pass 1: identify events + L_max snippets + min_visible_level
+// Pass 1: identify beats + L_max snippets + min_visible_level
+// (Field name "events" kept for backward compat — content is beats.)
 // --------------------------------------------------------------------
+//
+// See SIGNAL_HIERARCHY_REVIEW.md §13-14 for the rationale behind this
+// prompt. Short summary:
+//   - "beat" (not "event") — covers actions, dialogue, reveals, inner
+//     shifts, tonal pivots, voice-carrying passages.
+//   - Multi-axis poker-nuts test: plot / stakes / meaning / voice. A
+//     beat survives at L0 if cutting it collapses the story on ANY axis.
+//   - Opening and ending are privileged (but not hard-locked).
+//   - A single "thematic_thrust" sentence is extracted alongside beats
+//     to orient the L0 reduction and later stages.
+//   - Up to 3 "voice_anchors" — passages whose diction carries the
+//     story's register. They are candidates for per-level anchoring so
+//     reduced text still SOUNDS like the story.
+//   - L0 completeness gate: the prompt asks Claude to read back the L0
+//     set as if a cold reader would see ONLY that, and promote if
+//     incomplete.
+//
+// Genre routing: this prompt is the `short_story` path in PROMPT_REGISTRY
+// (and the fallback for every other genre until we tune them). See the
+// stubs and the dispatch at the bottom of this file.
 
-const POKER_NUTS_PROMPT = (nodeBlock, totalWords, levelCount, targetCount, lMaxId) => `You are extracting TWO things from a piece of prose for a semantic-zoom reader:
+const NARRATIVE_NUTS_PROMPT_V2 = (nodeBlock, totalWords, levelCount, targetCount, lMaxId) => `Extract the signal hierarchy from this short story for a semantic-zoom reader.
 
-1. A character dictionary (for introducing characters at compressed zoom levels).
-2. The major events, each with a min_visible_level (poker nuts framing).
+Return ONE strict-JSON object with five fields:
 
-The reader hovers over a phrase and zooms; the system keeps the event under their cursor anchored across zoom levels. As they zoom OUT (toward L0, the most compressed level), the text gets shorter — and most events disappear. Only the load-bearing ones remain at the most-compressed levels.
+A. THEMATIC_THRUST — one sentence (10-25 words) answering "What is this story ABOUT?" Stay inside the diegesis. No "explores themes of…" or "is about how…".
 
-Identify approximately ${targetCount} events. An "event" is a discrete THING THAT HAPPENS — a decision, an action, a dialogue exchange, a turn in the plot. Events are verb-driven and named in the story's own voice. Examples of GOOD vs BAD event labels:
+B. CHARACTERS — cast & glossary dict. Every named person, named AI, and proper-noun entity a cold reader wouldn't recognize. Value: 3-8 word role tag with relationship to narrator where tight (e.g. "narrator's daughter, age 16").
 
-  GOOD: "He chooses not to check Maya's logs"
-  BAD:  "Parental oversight protocol dilemma"            (← topic-noun, meta)
+C. EVENTS — approximately ${targetCount} BEATS, in story order. A beat is any moment doing load-bearing work: an action/decision, a dialogue exchange, an inner shift/realization, a reveal that reframes, a tonal pivot, or a voice-carrying passage. For each beat:
+  - id: kebab-case
+  - label: 3-9 word VERB-DRIVEN phrase
+  - type: one of action | dialogue | inner_shift | reveal | tonal_pivot | voice
+  - nodeId: the L${levelCount - 1} node id (e.g. "${lMaxId}") where the beat lives
+  - snippet: 20-150 char VERBATIM quote from that node (must literally exist)
+  - min_visible_level: integer 0 to ${levelCount - 1} (0 = most compressed; ${levelCount - 1} = full text)
+  - collapse_axes: array of subset of ["plot","stakes","meaning","voice"] — the axes on which cutting this beat would break the story
 
-  GOOD: "Tyler accuses Maya of cheating"
-  BAD:  "Cheating accusation theme"                       (← topic-noun, meta)
+D. VOICE_ANCHORS — up to 3 short passages whose diction carries the story's register. Each: { nodeId, snippet (verbatim), note (one sentence on voice quality) }. Empty array if no single passage carries voice.
 
-  GOOD: "Maya alert interrupts the budget meeting"
-  BAD:  "Workplace interruption pattern"                  (← topic-noun, meta)
+POKER-NUTS ASSIGNMENT RULES:
+- min_visible_level = 0: cutting this beat breaks at least one of the four axes. A cold reader seeing ONLY level-0 beats must be able to follow the story — enter it (world, POV), see the pivotal turn, and reach a landing. Usually 3-7 beats in a short story; err on the side of MORE beats at L0, not fewer. Better to include backdrop than destroy the story.
+- min_visible_level = 1: still essential at L1; cutting weakens but doesn't break.
+- min_visible_level = ${levelCount - 1}: pure flavor. Most atmospheric / secondary beats land here.
 
-Each event must:
-- Be VERB-DRIVEN (something HAPPENS — a character acts, decides, or speaks)
-- Be DISTINCT from the others (different semantic event, not a rewording)
-- Be PRESENT in the text (not synthesized)
+BIASES:
+- Opening and closing beats are almost always L0-essential.
+- Direct dialogue (quoted speech) that is load-bearing is L0-essential; preserve verbatim snippet.
+- Voice-type beats belong at the level where the voice is load-bearing; often L0 or L1.
 
-For EACH event, return:
-- "id": stable kebab-case identifier (lowercase, words separated by underscores)
-- "label": 3-9 word VERB-DRIVEN event phrase (see examples above)
-- "nodeId": the node id (e.g. "${lMaxId}") where this event is most clearly expressed at the deepest level
-- "snippet": 20-150 character VERBATIM quote from that node's text. Must literally appear in the node's text — preserve spaces, punctuation, capitalization, smart quotes exactly. Mis-quoted snippets get dropped.
-- "min_visible_level": the most-compressed zoom level at which this event MUST remain visible. The story has ${levelCount} levels (0 = most compressed, ${levelCount - 1} = full text).
+SAME-STORY CONSTRAINT (the floor): the set of level-0 beats must tell the SAME story as the full text at coarser resolution, not a description of the story. If mentally stringing your L0 beats together produces "a summary of the story" rather than "the story told tighter," promote more beats to L0 until it reads as the story.
 
-THE POKER NUTS FRAMING for min_visible_level — ask yourself: "if I cut this event from the level-N reduction, can the reader still follow what happened?"
+OUTPUT EXACTLY THIS SHAPE (strict JSON, no fences, no commentary, no preamble):
 
-  - min_visible_level = 0  → THE NUTS. The story collapses without this event. A reader who only sees L0 must see this.
-  - min_visible_level = 1  → still essential at L1. A reader who only sees L1 needs this to follow the plot.
-  - min_visible_level = 2..${levelCount - 2}  → progressively less essential — important context, character moments, dialogue exchanges that enrich the story.
-  - min_visible_level = ${levelCount - 1}  → flavor only. Atmospheric description, color, side scenes that don't move the plot. Most events fall here.
-
-IMPORTANT — the L0 reduction must be a COMPLETE CAUSAL CHAIN, not just the climax in isolation. A story is:
-
-    [inciting event / pressure] → [complication or stakes] → [protagonist's response] → [outcome]
-
-The reader at L0 needs ENOUGH events to understand WHY and HOW, not just WHAT was decided. For a short-story or 2000-word piece, L0 usually needs 2-4 events covering this chain. "Tom refuses to check the logs" alone is NOT the nuts — it's the punchline without the setup. The real L0 nuts for a trust-vs-verify story would be something like:
-
-    [Tyler accuses Maya of cheating] → [Tom has the option to verify via AI logs] → [Tom refuses]
-
-Be generous at L0 when the story has a clear causal chain. Be DISCRIMINATING about what goes at L0 — but don't under-include such that the reader sees a punchline without a setup.
-
-ALSO RETURN a character dictionary. At compressed zoom levels the reader sees "Tyler accuses Maya of cheating" and has no idea who Tyler or Maya are. List every NAMED character (people or named AIs) with a 3-8 word role descriptor: their relationship to the narrator, age if mentioned, and most salient function in the story. Use the character's most common name in the source as the key (e.g. "Tom", not "Thomas Okonkwo"; "Maya", not "Maya Okonkwo").
-
-Output STRICT JSON — a single object with TWO keys:
 {
-  "events": [ ... array of event objects as described above ... ],
-  "characters": { "Name": "role descriptor", ... }
+  "thematic_thrust": "<one sentence, 10-25 words>",
+  "characters": { "Name": "role descriptor", ... },
+  "events": [
+    {
+      "id": "...", "label": "...", "type": "...",
+      "nodeId": "...", "snippet": "...",
+      "min_visible_level": N,
+      "collapse_axes": ["plot","stakes",...]
+    }, ...
+  ],
+  "voice_anchors": [
+    { "nodeId": "...", "snippet": "...", "note": "..." }, ...
+  ]
 }
-No markdown fences, no commentary, no preamble. Just the JSON.
 
 NODES (level ${levelCount - 1}, ${totalWords} words total):
 ${nodeBlock}
 
 Return the JSON object.`
 
-function identifyAndAnchorAtLmax(tree, targetCount) {
+// --------------------------------------------------------------------
+// PROMPT_REGISTRY — genre → prompt builder
+// --------------------------------------------------------------------
+//
+// Only short_story has a fully-tuned prompt. Other genres call the
+// narrative prompt and log a warning so operators know they're routing
+// through the fallback. See SIGNAL_HIERARCHY_REVIEW.md §16 for the
+// planned schema per genre.
+
+function stubWarn(genre, schema) {
+  console.warn(`[genre=${genre}] using short-story fallback prompt. Planned schema: ${schema}`)
+  console.warn(`  TODO: replace with ${genre}-specific prompt. See SIGNAL_HIERARCHY_REVIEW.md §16.`)
+}
+
+const PROMPT_REGISTRY = {
+  short_story:      NARRATIVE_NUTS_PROMPT_V2,
+
+  // Narrative-family — currently reuses the short-story prompt. Acceptable
+  // because the shape is similar; needs its own tuning for longer arcs.
+  novella:          (...a) => { stubWarn('novella', 'narrative, multi-arc'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  novel_excerpt:    (...a) => { stubWarn('novel_excerpt', 'narrative, part-of-larger'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  biography_memoir: (...a) => { stubWarn('biography_memoir', 'narrative + reflection, real life'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+
+  // Argument / exposition / procedural / research / reference — these really
+  // need their own schemas. Stubs fall back to narrative with a warning.
+  essay:            (...a) => { stubWarn('essay', 'thesis → evidence → counter → rebuttal → conclusion'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  argument:         (...a) => { stubWarn('argument', 'thesis → evidence → counter → rebuttal → conclusion'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  exposition:       (...a) => { stubWarn('exposition', 'claim/definition → elaboration → implication'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  procedural:       (...a) => { stubWarn('procedural', 'prerequisites → critical steps → outcome test'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  research_paper:   (...a) => { stubWarn('research_paper', 'problem → method → result → significance'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  reference:        (...a) => { stubWarn('reference', 'topic → structured-facets'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+
+  default:          NARRATIVE_NUTS_PROMPT_V2,
+}
+
+function identifyAndAnchorAtLmax(tree, targetCount, genre) {
   const maxL = String(tree.levelCount - 1)
   const nodes = tree.levels[maxL]?.nodes || []
   const nodeBlock = nodes.map(n =>
@@ -234,13 +291,16 @@ function identifyAndAnchorAtLmax(tree, targetCount) {
     targetCount = Math.max(8, Math.min(20, Math.round(Math.sqrt(totalWords) / 1.5)))
   }
 
-  console.log(`Pass 1: identifying ~${targetCount} events + characters from L${maxL} (${totalWords} words)...`)
   const lMaxId = nodes[0]?.id ?? `${maxL}-0`
-  const raw = callClaude(POKER_NUTS_PROMPT(nodeBlock, totalWords, tree.levelCount, targetCount, lMaxId), 'identify')
+  const promptBuilder = PROMPT_REGISTRY[genre] || PROMPT_REGISTRY.default
+  console.log(`Pass 1 [genre=${genre}]: identifying ~${targetCount} beats + glossary from L${maxL} (${totalWords} words)...`)
+  const raw = callClaude(promptBuilder(nodeBlock, totalWords, tree.levelCount, targetCount, lMaxId), 'identify')
   const parsed = parseJsonResponse(raw, 'identify')
-  // Support both the new {events, characters} shape and the old bare-array shape
+  // Support both the new rich shape and legacy bare-array / {events, characters}
   let eventsArr = null
   let characters = {}
+  let thematicThrust = ''
+  let voiceAnchors = []
   if (Array.isArray(parsed)) {
     eventsArr = parsed
   } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.events)) {
@@ -248,15 +308,29 @@ function identifyAndAnchorAtLmax(tree, targetCount) {
     if (parsed.characters && typeof parsed.characters === 'object') {
       characters = parsed.characters
     }
+    if (typeof parsed.thematic_thrust === 'string') {
+      thematicThrust = parsed.thematic_thrust.trim()
+    }
+    if (Array.isArray(parsed.voice_anchors)) {
+      voiceAnchors = parsed.voice_anchors.filter(v => v && typeof v.nodeId === 'string' && typeof v.snippet === 'string')
+    }
   } else {
     console.error('  Pass 1 failed: unrecognized response shape')
     return null
   }
-  // Attach characters to a module-scoped emit later; stash on tree for now
+  // Stash on tree for later emit
   tree._extractedCharacters = characters
+  tree._thematicThrust = thematicThrust
+  tree._voiceAnchors = voiceAnchors
   const charNames = Object.keys(characters)
+  if (thematicThrust) {
+    console.log(`  thematic thrust: "${thematicThrust}"`)
+  }
   if (charNames.length) {
     console.log(`  characters: ${charNames.map(n => `${n}=${characters[n]}`).join('; ').substring(0, 200)}`)
+  }
+  if (voiceAnchors.length) {
+    console.log(`  voice anchors: ${voiceAnchors.length} (${voiceAnchors.map(v => v.note?.substring(0, 40) || '?').join(' | ')})`)
   }
 
   const concepts = []
@@ -279,6 +353,8 @@ function identifyAndAnchorAtLmax(tree, targetCount) {
     concepts.push({
       id: c.id.trim(),
       label: c.label.trim(),
+      type: typeof c.type === 'string' ? c.type.trim() : undefined,
+      collapse_axes: Array.isArray(c.collapse_axes) ? c.collapse_axes.filter(x => typeof x === 'string') : undefined,
       snippet: c.snippet,
       min_visible_level: mvl,
       lmaxAnchor: { nodeId: c.nodeId, charStart: idx, charEnd: idx + c.snippet.length },
@@ -464,7 +540,14 @@ const levelCount = tree.levelCount
 const Lmax = levelCount - 1
 console.log(`Tree: "${tree.title}" with ${levelCount} levels`)
 
-let concepts = identifyAndAnchorAtLmax(tree, conceptCount)
+console.log(`\nPass 0: classifying genre...`)
+const genreResult = await classifyGenre(tree)
+console.log(`  genre:      ${genreResult.genre} (confidence ${genreResult.confidence})`)
+if (genreResult.secondary) console.log(`  secondary:  ${genreResult.secondary}`)
+if (genreResult.reasoning) console.log(`  reasoning:  ${genreResult.reasoning}`)
+tree._classifiedGenre = genreResult
+
+let concepts = identifyAndAnchorAtLmax(tree, conceptCount, genreResult.genre)
 if (!concepts || concepts.length === 0) {
   console.error('No concepts identified — aborting.')
   process.exit(2)
@@ -486,9 +569,13 @@ for (const c of concepts) {
 
 const parentMap = buildParentMap(tree)
 
-console.log(`Propagating concepts upward through ${Lmax} levels (parallel within each level)...`)
+if (identifyOnly) {
+  console.log(`\n--identify-only: skipping upward anchor propagation.`)
+}
+
+if (!identifyOnly) console.log(`Propagating concepts upward through ${Lmax} levels (parallel within each level)...`)
 const ANCHOR_CONCURRENCY = 8
-for (let L = Lmax - 1; L >= 0; L--) {
+for (let L = identifyOnly ? -1 : Lmax - 1; L >= 0; L--) {
   const lstr = String(L)
   const nodes = tree.levels[lstr]?.nodes || []
   const nodeById = Object.fromEntries(nodes.map(n => [n.id, n]))
@@ -525,20 +612,31 @@ for (let L = Lmax - 1; L >= 0; L--) {
   console.log(`  L${L}: ${placed}/${concepts.length} placed (${viaPrecise} precise, ${viaLiteral} literal, ${viaFuzzy} fuzzy, ${viaSkippedMVL} below_mvl, ${viaNone} unanchored) in ${((Date.now() - tStart)/1000).toFixed(1)}s`)
 }
 
-// Emit — the concepts file is now an object with {concepts, characters}.
+// Emit — the concepts file now carries genre, thematic thrust, characters,
+// voice anchors, and concepts (with type + collapse_axes on each).
 // Renderer's loadConcepts accepts either shape (backward compat).
-const output = concepts.map(c => ({
-  id: c.id,
-  label: c.label,
-  min_visible_level: c.min_visible_level,
-  anchors: anchorsByConcept[c.id],
-}))
+const output = concepts.map(c => {
+  const rec = {
+    id: c.id,
+    label: c.label,
+    min_visible_level: c.min_visible_level,
+    anchors: anchorsByConcept[c.id],
+  }
+  if (c.type) rec.type = c.type
+  if (c.collapse_axes) rec.collapse_axes = c.collapse_axes
+  return rec
+})
 const final = output.filter(c => Object.keys(c.anchors).length > 0)
 const dropped = output.length - final.length
 if (dropped > 0) console.log(`\nDropped ${dropped} concepts with no valid anchors`)
 
-const characters = tree._extractedCharacters || {}
-const fileShape = { concepts: final, characters }
+const fileShape = {
+  genre: tree._classifiedGenre || null,
+  thematic_thrust: tree._thematicThrust || '',
+  characters: tree._extractedCharacters || {},
+  voice_anchors: tree._voiceAnchors || [],
+  concepts: final,
+}
 fs.writeFileSync(outputPath, JSON.stringify(fileShape, null, 2))
 console.log(`\nWrote ${final.length} concepts to ${path.relative(projectRoot, outputPath)}`)
 console.log(`Coverage:`)

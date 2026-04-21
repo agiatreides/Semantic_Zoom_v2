@@ -155,21 +155,42 @@ function findConceptAtCursor(level, offsets) {
   let cursorNodeId = null
   let cursorCharIdx = 0
 
-  for (const node of nodes) {
-    if (contentY >= node.y && contentY < node.y + node.height) {
-      cursorNodeId = node.nodeId
-      const lineIdx = Math.max(0, Math.min(node.lines.length - 1,
-        Math.floor((contentY - node.y) / LINE_HEIGHT)))
+  // Prefer hitTestWord's exact char index — it scans real word widths and
+  // returns the word directly under cursor. Linear X-ratio (fallback below)
+  // can miss the right word by dozens of chars on wide lines with varying
+  // glyph widths, which miscounts containment on short anchor spans.
+  const hit = hitTestWord(level, offsets)
+  if (hit) {
+    const hitNode = nodes.find(n => n.nodeId === hit.nodeId)
+    if (hitNode) {
       let charsBeforeLine = 0
-      for (let li = 0; li < lineIdx; li++) charsBeforeLine += node.lines[li].text.length
-      const line = node.lines[lineIdx]
-      if (line && line.width > 0) {
-        const charRatio = Math.max(0, Math.min(1, contentX / line.width))
-        cursorCharIdx = charsBeforeLine + Math.floor(charRatio * line.text.length)
-      } else {
-        cursorCharIdx = charsBeforeLine
+      for (let li = 0; li < hit.lineIdx; li++) charsBeforeLine += hitNode.lines[li].text.length
+      const lineText = hitNode.lines[hit.lineIdx].text
+      const wordIdx = lineText.indexOf(hit.word)
+      if (wordIdx >= 0) {
+        cursorNodeId = hit.nodeId
+        cursorCharIdx = charsBeforeLine + wordIdx + Math.floor(hit.word.length / 2)
       }
-      break
+    }
+  }
+
+  if (!cursorNodeId) {
+    for (const node of nodes) {
+      if (contentY >= node.y && contentY < node.y + node.height) {
+        cursorNodeId = node.nodeId
+        const lineIdx = Math.max(0, Math.min(node.lines.length - 1,
+          Math.floor((contentY - node.y) / LINE_HEIGHT)))
+        let charsBeforeLine = 0
+        for (let li = 0; li < lineIdx; li++) charsBeforeLine += node.lines[li].text.length
+        const line = node.lines[lineIdx]
+        if (line && line.width > 0) {
+          const charRatio = Math.max(0, Math.min(1, contentX / line.width))
+          cursorCharIdx = charsBeforeLine + Math.floor(charRatio * line.text.length)
+        } else {
+          cursorCharIdx = charsBeforeLine
+        }
+        break
+      }
     }
   }
 
@@ -177,55 +198,46 @@ function findConceptAtCursor(level, offsets) {
 
   const lvlStr = String(level)
 
-  // First pass: collect ALL concepts whose anchor at this level contains the
-  // cursor. Tie-break by SHORTEST anchor (most specific) — old behavior was
-  // first-in-array which was unstable when concepts overlapped at L0.
-  let containing = null  // {concept, span}
-  let bestConcept = null
-  let bestDistance = Infinity
-
+  // Pass 1: exact char-range containment. Pick the SHORTEST containing anchor
+  // when concepts overlap — most specific wins.
+  let containing = null
   for (const concept of concepts) {
     const anchor = concept.anchors[lvlStr]
     if (!anchor || anchor.nodeId !== cursorNodeId) continue
-
     if (cursorCharIdx >= anchor.charStart && cursorCharIdx <= anchor.charEnd) {
       const span = anchor.charEnd - anchor.charStart
-      if (!containing || span < containing.span) {
-        containing = { concept, span }
-      }
-      continue
-    }
-
-    const dist = Math.min(
-      Math.abs(cursorCharIdx - anchor.charStart),
-      Math.abs(cursorCharIdx - anchor.charEnd)
-    )
-    if (dist < bestDistance) {
-      bestDistance = dist
-      bestConcept = concept
+      if (!containing || span < containing.span) containing = { concept, span }
     }
   }
-
   if (containing) return containing.concept
-  if (bestConcept && bestDistance < 200) return bestConcept
 
-  // Fallback: find closest concept by content Y
-  let closestByY = null
-  let closestYDist = Infinity
-  for (const concept of concepts) {
-    const anchor = concept.anchors[lvlStr]
-    if (!anchor) continue
-    const anchorNode = nodes.find(n => n.nodeId === anchor.nodeId)
-    if (!anchorNode) continue
-    const anchorY = anchorNode.y + (anchor.charStart / Math.max(1, anchorNode.text?.length || 100)) * anchorNode.height
-    const dist = Math.abs(contentY - anchorY)
-    if (dist < closestYDist) {
-      closestYDist = dist
-      closestByY = concept
-    }
+  // Pass 2: PHRASE-CHAIN PROJECTION.
+  // The cursor sits on unanchored content (most of the story at L0/L1 under
+  // the poker-nuts rule). Project the cursor's phrase through matchIn to
+  // L_max and ask: at full resolution, what concept does this semantic
+  // position belong to? That concept may have no anchor at the current level
+  // — that's fine, it's still the right identity for the zoom session.
+  // No stem-matching, no spatial proximity — purely embedding chain.
+  const phrase = findPhraseAtCursor(level, contentY, contentX)
+  if (!phrase) return null
+  const Lmax = Object.keys(measuredLevels).map(Number).reduce((a, b) => Math.max(a, b), 0)
+  let pL = level, pIdx = phrasesAtLevel[level].indexOf(phrase)
+  while (pL < Lmax && pIdx >= 0) {
+    const p = phrasesAtLevel[pL][pIdx]
+    if (!p || p.matchIn == null || p.matchIn < 0) break
+    pIdx = p.matchIn
+    pL++
   }
-
-  return closestByY
+  if (pL !== Lmax || pIdx < 0) return null
+  const projected = phrasesAtLevel[Lmax][pIdx]
+  if (!projected) return null
+  const pMid = Math.floor((projected.charStart + projected.charEnd) / 2)
+  for (const concept of concepts) {
+    const anchor = concept.anchors[String(Lmax)]
+    if (!anchor || anchor.nodeId !== projected.nodeId) continue
+    if (pMid >= anchor.charStart && pMid <= anchor.charEnd) return concept
+  }
+  return null
 }
 
 function getConceptPosition(concept, level) {
@@ -297,7 +309,11 @@ function getConceptCenterPosition(concept, level) {
 //   2. stem match via 4-char common prefix        ("cheating" ≈ "cheated")
 //   3. substring containment either direction      ("log" ⊂ "logs")
 // The first tier match wins; we don't search for "best" across tiers.
-function getConceptWordPosition(concept, level, word) {
+// hintCharAtLevel: phrase-chain-projected target char in the anchor node's text
+//   at `level`. When multiple occurrences of `word` live inside the anchor,
+//   pick the one nearest the hint — that resolves Maya-mention-1 vs Maya-
+//   mention-4 by semantic projection rather than first-wins.
+function getConceptWordPosition(concept, level, word, hintCharAtLevel) {
   if (!word || word.length < 2) return null
   const anchor = concept.anchors[String(level)]
   if (!anchor) return null
@@ -307,12 +323,9 @@ function getConceptWordPosition(concept, level, word) {
   if (!node) return null
 
   const anchorText = node.text.substring(anchor.charStart, anchor.charEnd)
-  // Strip leading/trailing non-word chars so we match "not" against "not,"
-  // and "not." equally.
   const clean = word.replace(/^[^\w'-]+|[^\w'-]+$/g, '').toLowerCase()
   if (clean.length < 2) return null
 
-  // Collect all words in the anchor text with their offsets
   const re = /[\w'-]+/g
   const words = []
   let m
@@ -321,34 +334,39 @@ function getConceptWordPosition(concept, level, word) {
   }
   if (words.length === 0) return null
 
+  const pick = (matches) => {
+    if (matches.length === 0) return null
+    if (matches.length === 1 || hintCharAtLevel == null) {
+      const w = matches[0]
+      const mid = w.offset + Math.floor(w.text.length / 2)
+      return positionAtCharIdx(node, anchor.charStart + mid)
+    }
+    // Multiple matches: pick whichever absolute char index is closest to the hint.
+    let best = matches[0], bestDist = Infinity
+    for (const w of matches) {
+      const mid = anchor.charStart + w.offset + Math.floor(w.text.length / 2)
+      const dist = Math.abs(mid - hintCharAtLevel)
+      if (dist < bestDist) { bestDist = dist; best = w }
+    }
+    const mid = best.offset + Math.floor(best.text.length / 2)
+    return positionAtCharIdx(node, anchor.charStart + mid)
+  }
+
   // Tier 1: exact
-  for (const w of words) {
-    if (w.textLc === clean) {
-      const midOffset = w.offset + Math.floor(w.text.length / 2)
-      return positionAtCharIdx(node, anchor.charStart + midOffset)
-    }
+  const exact = words.filter(w => w.textLc === clean)
+  if (exact.length) return pick(exact)
+
+  // Tier 2: stem via 4-char prefix
+  if (clean.length >= 4) {
+    const stem = clean.substring(0, 4)
+    const stemMatches = words.filter(w => w.textLc.length >= 4 && w.textLc.startsWith(stem))
+    if (stemMatches.length) return pick(stemMatches)
   }
 
-  // Tier 2: stem match via 4-char prefix (handles cheating/cheated, trust/trusted, etc.)
-  const stemLen = Math.min(clean.length, 4)
+  // Tier 3: substring containment
   if (clean.length >= 4) {
-    const stem = clean.substring(0, stemLen)
-    for (const w of words) {
-      if (w.textLc.length >= stemLen && w.textLc.startsWith(stem)) {
-        const midOffset = w.offset + Math.floor(w.text.length / 2)
-        return positionAtCharIdx(node, anchor.charStart + midOffset)
-      }
-    }
-  }
-
-  // Tier 3: substring containment (handles log/logs, access/accessing)
-  if (clean.length >= 4) {
-    for (const w of words) {
-      if (w.textLc.length >= 4 && (w.textLc.includes(clean) || clean.includes(w.textLc))) {
-        const midOffset = w.offset + Math.floor(w.text.length / 2)
-        return positionAtCharIdx(node, anchor.charStart + midOffset)
-      }
-    }
+    const subMatches = words.filter(w => w.textLc.length >= 4 && (w.textLc.includes(clean) || clean.includes(w.textLc)))
+    if (subMatches.length) return pick(subMatches)
   }
 
   return null
@@ -531,45 +549,39 @@ canvas.addEventListener('wheel', (e) => {
     const zoomingIn = currentLevel > prevLevel
     spawnZoomIndicator(zoomingIn ? 1 : -1)
 
-    // Semantic zoom anchoring — concept first, phrase-chain fallback.
-    // Concepts carry per-level anchors and preserve identity by construction.
-    // The phrase chain (matchIn/matchOut) is a per-phrase forward index that
-    // can drift across many levels.
+    // Two cooperating mechanisms:
+    //   Concept track — stable identity across a continuous zoom session.
+    //   Phrase chain  — per-phrase matchIn/matchOut from embedding similarity,
+    //                   used to (a) pick among multiple word occurrences
+    //                   inside the concept's anchor and (b) place the cursor
+    //                   when the tracked concept has no anchor at the new
+    //                   level (e.g. above its min_visible_level).
     const oldOff = levelOffsets[prevLevel] ?? defaultOffset(prevLevel)
+    const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+    const srcContentY = mouseY - oldOff.y
+    const srcContentX = mouseX - baseLeftX - oldOff.x
     let placed = false
 
-    // Track ONE concept across a continuous zoom session. The user moves
-    // the cursor to a word, then scrolls without moving — that whole session
-    // is "I want to track THIS concept." Re-resolving the concept on every
-    // wheel event lets neighboring concepts grab the cursor as line-wrap
-    // shifts. So: lock the concept on the first wheel of a session, reuse
-    // until the cursor moves (mousemove handler clears trackedConcept).
+    // Phrase-chain projection: follow matchIn/matchOut one step to the new
+    // level. Used both as a disambiguation hint and as a fallback placement.
+    const srcPhrase = findPhraseAtCursor(prevLevel, srcContentY, srcContentX)
+    const targetIdx = zoomingIn ? srcPhrase?.matchIn : srcPhrase?.matchOut
+    const projected = (targetIdx != null && targetIdx >= 0)
+      ? phrasesAtLevel[currentLevel]?.[targetIdx] ?? null
+      : null
+
     if (!trackedConcept) {
       trackedConcept = findConceptAtCursor(prevLevel, oldOff)
-      // Also capture the exact word under the cursor at session start.
-      // If that word survives at deeper/shallower levels (e.g. "not"),
-      // the wheel handler lands cursor on it specifically, not on the
-      // anchor midpoint where a different word might sit.
       const hit = hitTestWord(prevLevel, oldOff)
       trackedWord = hit?.word ?? null
     }
 
-    // If the tracked concept has no anchor at the new level (it's invisible
-    // there because we zoomed past its min_visible_level), gracefully promote
-    // to whatever concept lives where the cursor would otherwise land. Falls
-    // through to the phrase-chain placement below if nothing fits.
     let targetConcept = trackedConcept
+    // If the tracked concept has no anchor at the new level, use the
+    // phrase-chain projection to place the cursor and re-acquire identity.
     if (targetConcept && !targetConcept.anchors[String(currentLevel)]) {
-      // Place via phrase chain first (so cursor lands SOMEWHERE meaningful),
-      // then re-acquire whatever concept is now under the cursor.
-      const tmpContentY = mouseY - oldOff.y
-      const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
-      const tmpContentX = mouseX - baseLeftX - oldOff.x
-      const phrase = findPhraseAtCursor(prevLevel, tmpContentY, tmpContentX)
-      const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
-      const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
-      if (target) {
-        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
+      if (projected) {
+        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
         placed = true
       }
       const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
@@ -578,24 +590,25 @@ canvas.addEventListener('wheel', (e) => {
         trackedConcept = reacquired
         targetConcept = reacquired
       } else {
-        targetConcept = null  // keep the phrase-chain placement, don't re-anchor
+        targetConcept = null
       }
     }
 
     if (targetConcept && targetConcept.anchors[String(currentLevel)]) {
-      // Prefer the specific tracked word if it appears in the target anchor;
-      // fall back to the anchor's midpoint. This keeps cursor on the same
-      // word across levels when the word survives (e.g. "not").
-      const wordPos = trackedWord ? getConceptWordPosition(targetConcept, currentLevel, trackedWord) : null
+      // Disambiguate within-anchor using the phrase-chain projection. When
+      // the anchor contains multiple occurrences of the tracked word (e.g.
+      // anchor mentions "Maya" four times), pick the occurrence nearest the
+      // phrase projection, not just the first one.
+      const anchor = targetConcept.anchors[String(currentLevel)]
+      let hintChar = null
+      if (projected && projected.nodeId === anchor.nodeId) {
+        hintChar = Math.floor((projected.charStart + projected.charEnd) / 2)
+      }
+      const wordPos = trackedWord
+        ? getConceptWordPosition(targetConcept, currentLevel, trackedWord, hintChar)
+        : null
       const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
       if (pos) {
-        // Adjust BOTH axes. Y brings the target line under the cursor.
-        // X shifts the column so the target char sits under the cursor X,
-        // so the underlined word actually ends up where the cursor is —
-        // not just on the same line at the old X. Without the X shift,
-        // the cursor stays at the old screen X and lands on whatever word
-        // happens to occupy that X in the new layout.
-        const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
         levelOffsets[currentLevel] = clampOffset(currentLevel, {
           x: mouseX - baseLeftX - pos.contentX,
           y: mouseY - pos.contentY
@@ -604,16 +617,10 @@ canvas.addEventListener('wheel', (e) => {
       }
     }
 
-    if (!placed) {
-      const contentY = mouseY - oldOff.y
-      const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
-      const contentX = mouseX - baseLeftX - oldOff.x
-      const phrase = findPhraseAtCursor(prevLevel, contentY, contentX)
-      const targetIdx = zoomingIn ? phrase?.matchIn : phrase?.matchOut
-      const target = targetIdx >= 0 ? phrasesAtLevel[currentLevel]?.[targetIdx] : null
-      if (target) {
-        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - target.y })
-      }
+    // Last resort: pure phrase-chain placement (cursor wasn't on any
+    // trackable concept AND the fallback above didn't fire).
+    if (!placed && projected) {
+      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
     }
 
     offsetsLocked = true
@@ -693,7 +700,14 @@ function drawHUD() {
   }
 
   if (hoveredWord) { ctx.fillStyle = 'rgba(120,180,255,0.5)'; ctx.fillText(`→ ${hoveredWord.word}`, 16, h - 48) }
-  if (hoveredConcept) { ctx.fillStyle = 'rgba(255,200,100,0.5)'; ctx.fillText(`◆ ${hoveredConcept.label}`, 16, h - 66) }
+  // Prefer the live-detected concept; fall back to tracked so the label stays
+  // visible when the cursor is on unanchored content mid-zoom session.
+  const labelConcept = hoveredConcept || trackedConcept
+  if (labelConcept) {
+    const dim = hoveredConcept ? 'rgba(255,200,100,0.5)' : 'rgba(255,200,100,0.25)'
+    ctx.fillStyle = dim
+    ctx.fillText(`◆ ${labelConcept.label}`, 16, h - 66)
+  }
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.2)'
   ctx.fillText('Scroll: zoom  |  Drag scrollbar: pan  |  Move cursor: navigate', w - 16, h - 12)

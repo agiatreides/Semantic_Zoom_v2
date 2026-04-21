@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-04-19_18-53-39",
+  "words_tested": [
+    "not",
+    "cheating",
+    "Maya",
+    "Tom",
+    "Tyler",
+    "logs",
+    "trust",
+    "daughter"
+  ],
+  "results": [
+    {
+      "error": "word_not_in_L0",
+      "word": "not"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "cheating"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "Maya"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "Tom"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "Tyler"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "logs"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "trust"
+    },
+    {
+      "error": "word_not_in_L0",
+      "word": "daughter"
+    }
+  ]
+}

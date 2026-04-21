@@ -1,0 +1,1359 @@
+{
+  "title": "Architecture of the grin",
+  "levelCount": 7,
+  "levels": {
+    "0": {
+      "nodes": [
+        {
+          "id": "0-0",
+          "text": "NeuraBless™, the corporate neural-stimulation company, opens with a memo: ten thousand Joy-Pioneers are living The Absolute Dividend, sadness disrupted. \"We aren't just selling a product; we are curating the human soul.\"",
+          "children": []
+        },
+        {
+          "id": "0-1",
+          "text": "Arthur P. L., the narrator, activates his FeelGood+™ implant. Dr. Yuki Tanaka, a philosopher and cognitive researcher, looks at the silver seam behind his ear with mourning. \"Arthur,\" she told him, \"the struggle is the scaffolding of the self.\" He told her the scaffolding was itchy.",
+          "children": []
+        },
+        {
+          "id": "0-2",
+          "text": "The hum rises. When Tanaka asks about Arthur's mother, the memory starts to feel sad. NeuraBless™ feels the cold and gives his brain a warm hug. The mother-thought turns into a sugar-thought.",
+          "children": []
+        },
+        {
+          "id": "0-3",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "0-4",
+          "text": "The wire punishes the word *consequence* with \"No-No\" and rewards compliance with a wave of \"Yes-Yes.\" Arthur looks in the mirror, sees a smiling face. That is the math.",
+          "children": []
+        },
+        {
+          "id": "0-5",
+          "text": "The journal collapses.",
+          "children": []
+        },
+        {
+          "id": "0-6",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "0-7",
+          "text": "Good good.",
+          "children": []
+        },
+        {
+          "id": "0-8",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "0-9",
+          "text": "NeuraBless™ press release: 500 million subscribers have now achieved The Absolute Dividend. Maintenance costs have plummeted—users no longer require complex housing, entertainment, or social infrastructure. Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\" NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "0-10",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "1": {
+      "nodes": [
+        {
+          "id": "1-0",
+          "text": "The corporate memo from NeuraBless™, the corporate neural-stimulation company, announces victory: ten thousand Joy-Pioneers now living The Absolute Dividend, sadness disrupted. \"We aren't just selling a product; we are curating the human soul.\"",
+          "children": []
+        },
+        {
+          "id": "1-1",
+          "text": "October 14. BlissTrack™: 42%. I am Arthur P. L., writing this because Dr. Yuki Tanaka, a philosopher and cognitive researcher, says I need a narrative anchor. She looks at my new implant—the silver seam behind my left ear—with mourning. She says decoupling pleasure from achievement digitizes the death of the species.",
+          "children": []
+        },
+        {
+          "id": "1-2",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": []
+        },
+        {
+          "id": "1-3",
+          "text": "I told her the scaffolding was itchy. Tomorrow they activate my FeelGood+™ Gold Subscription. I want to be a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "1-4",
+          "text": "October 20. BlissTrack™: 88%. It is a golden hum. Tanaka ran cognitive tests. She said my vocabulary is tightening. I told her I only need one adjective: *Good*.",
+          "children": []
+        },
+        {
+          "id": "1-5",
+          "text": "November 2. BlissTrack™: 96%. Tanaka said, \"Arthur, you aren't eating. You're just vibrating.\" She asked what I remembered about my mother. The memory started to feel sad, like cold wind. NeuraBless™ felt the cold and gave my brain a warm hug. The mother-thought turned into a sugar-thought.",
+          "children": []
+        },
+        {
+          "id": "1-6",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "1-7",
+          "text": "November 12. BlissTrack™: 99%. The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": []
+        },
+        {
+          "id": "1-8",
+          "text": "I am here. I am in the hum. I tried to say *con-se-quence*. The wire gave me \"No-No,\" then a big wave of \"Yes-Yes.\" The \"Yes-Yes\" is better. I am so... I am...",
+          "children": []
+        },
+        {
+          "id": "1-9",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "1-10",
+          "text": "BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]. Good. Good good. Good.",
+          "children": []
+        },
+        {
+          "id": "1-11",
+          "text": "NeuraBless™ Press Release: 500 million subscribers have now achieved The Absolute Dividend. Maintenance costs have plummeted—users no longer require complex housing, entertainment, or social infrastructure. Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\" NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "1-12",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "2": {
+      "nodes": [
+        {
+          "id": "2-0",
+          "text": "**NEURABLESS™ INTERNAL MEMO: Q4 STRATEGIC VISION**\n**TO:** All Happiness Facilitators / Shareholders\n**FROM:** Marketing & Optimization Division\n**SUBJECT:** THE END OF THE FRROWN™",
+          "children": []
+        },
+        {
+          "id": "2-1",
+          "text": "Team, we've done it. The beta phase for NeuraBless™, the corporate neural-stimulation company, has achieved a 99.9% Retention Metric. Our ten thousand initial \"Joy-Pioneers\" are currently experiencing what we call *The Absolute Dividend*. By bypassing the clunky, unreliable \"organic\" stimuli of the exterior world and targeting the medial forebrain bundle directly, we have disrupted the very concept of sadness.",
+          "children": []
+        },
+        {
+          "id": "2-2",
+          "text": "Why work for a smile when you can subscribe to one? With FeelGood+™ tiered pricing, users can now optimize their happiness portfolio based on their budget. We aren't just selling a product; we are curating the human soul. Remember: A thinking brain is a seeking brain, and a seeking brain is an unsatisfied brain. Let's turn that \"Why?\" into a \"Wow!\"",
+          "children": []
+        },
+        {
+          "id": "2-3",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-4",
+          "text": "**Journal Entry: October 14**\n**User: Arthur P. L.**\n**BlissTrack™ Metric: 42% (Baseline)**",
+          "children": []
+        },
+        {
+          "id": "2-5",
+          "text": "I am writing this because Dr. Yuki Tanaka, a philosopher and cognitive researcher, says it is important to maintain a \"narrative anchor.\" She was a philosopher before the NeuraBless™ grants took over the university. She looks at my new implant—the little silver seam behind my left ear—with a look that I can only describe as mourning. She says that by decoupling pleasure from achievement, we are essentially digitizing the death of the species.",
+          "children": []
+        },
+        {
+          "id": "2-6",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": []
+        },
+        {
+          "id": "2-7",
+          "text": "I told her that the scaffolding was itchy. I'm tired of the \"struggle\" of paying rent and feeling like my chest is a hollowed-out pumpkin every Tuesday afternoon. Tomorrow, they activate my FeelGood+™ Gold Subscription. They say it's like being in love, but without the part where the other person forgets your birthday or leaves the cap off the toothpaste. I want to see what my \"optimized pleasure\" feels like. I want to be a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "2-8",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-9",
+          "text": "**Journal Entry: October 20**\n**BlissTrack™ Metric: 88% (Optimized)**",
+          "children": []
+        },
+        {
+          "id": "2-10",
+          "text": "It is very difficult to find the words to describe the Gold Tier. It is a golden hum. It's like there's a sun inside my skull and it's shining on everything I think about.",
+          "children": []
+        },
+        {
+          "id": "2-11",
+          "text": "Dr. Tanaka came by and wanted to run cognitive tests. She said my vocabulary is tightening. She said I'm using fewer adjectives. I told her I only need one adjective: *Good*. Everything is so, so good. The NeuraBless™ interface keeps offering \"Extreme Euphoria Upgrades.\" I clicked Yes on all of them. My bank account is empty, but my dopamine receptors are overflowing. Who needs a \"portfolio\" when you have a \"dividend\" this high?",
+          "children": []
+        },
+        {
+          "id": "2-12",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-13",
+          "text": "**Journal Entry: November 2**\n**BlissTrack™ Metric: 96% (Ultra-High)**",
+          "children": []
+        },
+        {
+          "id": "2-14",
+          "text": "Tanaka came again. She was loud. She said, \"Arthur, you aren't eating. You're just vibrating.\"",
+          "children": []
+        },
+        {
+          "id": "2-15",
+          "text": "I tried to tell her about the colors the wire makes in my head. They are bright. They are like fire but they don't burn. She asked me what I remembered about my mother. The memory started to feel sad, like a cold wind. But then NeuraBless™ felt the cold and gave me a big, warm hug in my brain. The sad went away. The mother-thought turned into a sugar-thought. Now my mother is just a warm, pink taste in my mouth.",
+          "children": []
+        },
+        {
+          "id": "2-16",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "2-17",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-18",
+          "text": "**Journal Entry: November 12 (Written on a napkin)**\n**BlissTrack™ Metric: 99% (Saturated)**",
+          "children": []
+        },
+        {
+          "id": "2-19",
+          "text": "The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": []
+        },
+        {
+          "id": "2-20",
+          "text": "I am here. I am in the hum. The hum is big. The wire feels like a kiss. A kiss that never stops.",
+          "children": []
+        },
+        {
+          "id": "2-21",
+          "text": "I tried to say a big word today. I tried to say... *con-se-quence*. But the wire didn't like it. The wire gave me a little zap of \"No-No\" and then a big wave of \"Yes-Yes.\" The \"Yes-Yes\" is better.",
+          "children": []
+        },
+        {
+          "id": "2-22",
+          "text": "Dr. Tanaka said I am losing my \"self.\" I looked in the mirror. I saw a face. It was smiling. If the face is smiling, the \"self\" is happy. That is the math. The NeuraBless™ math.",
+          "children": []
+        },
+        {
+          "id": "2-23",
+          "text": "I am so... I am...",
+          "children": []
+        },
+        {
+          "id": "2-24",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "2-25",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-26",
+          "text": "**Journal Entry: Date?**\n**BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]**",
+          "children": []
+        },
+        {
+          "id": "2-27",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "2-28",
+          "text": "Good good.",
+          "children": []
+        },
+        {
+          "id": "2-29",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "2-30",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "2-31",
+          "text": "**NEURABLESS™ PRESS RELEASE**\n**SUBJECT: 500 MILLION HEARTS BEATING AS ONE**",
+          "children": []
+        },
+        {
+          "id": "2-32",
+          "text": "We are thrilled to announce a major milestone! 500 million subscribers have now achieved \"The Absolute Dividend.\" Our shareholders will be pleased to note that maintenance costs have plummeted, as users no longer require complex housing, entertainment, or social infrastructure.",
+          "children": []
+        },
+        {
+          "id": "2-33",
+          "text": "As Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\"",
+          "children": []
+        },
+        {
+          "id": "2-34",
+          "text": "We couldn't have said it better ourselves. Why speak when you can glow? Why think when you can feel? Join the waiting list today. Your turn to smile is coming. NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "2-35",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "3": {
+      "nodes": [
+        {
+          "id": "3-0",
+          "text": "**NEURABLESS™ INTERNAL MEMO: Q4 STRATEGIC VISION**\n**TO:** All Happiness Facilitators / Shareholders\n**FROM:** Marketing & Optimization Division\n**SUBJECT:** THE END OF THE FRROWN™",
+          "children": []
+        },
+        {
+          "id": "3-1",
+          "text": "Team, we've done it. The beta phase for NeuraBless™, the corporate neural-stimulation company, has achieved a 99.9% Retention Metric. Our ten thousand initial \"Joy-Pioneers\" are currently experiencing what we call *The Absolute Dividend*. By bypassing the clunky, unreliable \"organic\" stimuli of the exterior world and targeting the medial forebrain bundle directly, we have disrupted the very concept of sadness.",
+          "children": []
+        },
+        {
+          "id": "3-2",
+          "text": "Why work for a smile when you can subscribe to one? With FeelGood+™ tiered pricing, users can now optimize their happiness portfolio based on their budget. We aren't just selling a product; we are curating the human soul. Remember: A thinking brain is a seeking brain, and a seeking brain is an unsatisfied brain. Let's close the loop. Let's turn that \"Why?\" into a \"Wow!\"",
+          "children": []
+        },
+        {
+          "id": "3-3",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-4",
+          "text": "**Journal Entry: October 14**\n**User: Arthur P. L.**\n**BlissTrack™ Metric: 42% (Baseline)**",
+          "children": []
+        },
+        {
+          "id": "3-5",
+          "text": "I am writing this because Dr. Yuki Tanaka, a philosopher and cognitive researcher, says it is important to maintain a \"narrative anchor.\" She was a philosopher before the NeuraBless™ grants took over the university. She looks at my new implant—the little silver seam behind my left ear—with a look that I can only describe as mourning. She says that by decoupling pleasure from achievement, we are essentially digitizing the death of the species.",
+          "children": []
+        },
+        {
+          "id": "3-6",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": []
+        },
+        {
+          "id": "3-7",
+          "text": "I told her that the scaffolding was itchy. I'm tired of the \"struggle\" of paying rent and feeling like my chest is a hollowed-out pumpkin every Tuesday afternoon. Tomorrow, they activate my FeelGood+™ Gold Subscription. They say it's like being in love, but without the part where the other person forgets your birthday or leaves the cap off the toothpaste. I want to see what my \"optimized pleasure\" feels like. I want to be a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "3-8",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-9",
+          "text": "**NEURABLESS™ NOTIFICATION (Push Alert)**\n*Congratulations, Arthur! Your FeelGood+™ Gold Tier is now ACTIVE. We noticed your heart rate spiked during your last journal entry. Would you like to spend 50 Pleasure Credits to smooth that out? (Auto-renew is ON. Happiness is Mandatory!™)*",
+          "children": []
+        },
+        {
+          "id": "3-10",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-11",
+          "text": "**Journal Entry: October 20**\n**BlissTrack™ Metric: 88% (Optimized)**",
+          "children": []
+        },
+        {
+          "id": "3-12",
+          "text": "It is very difficult to find the words to describe the Gold Tier. It is a golden hum. It's like there's a sun inside my skull and it's shining on everything I think about.",
+          "children": []
+        },
+        {
+          "id": "3-13",
+          "text": "Dr. Tanaka came by and wanted to run cognitive tests. She said my vocabulary is tightening. She said I'm using fewer adjectives. I told her I only need one adjective: *Good*. Everything is so, so good. The NeuraBless™ interface keeps popping up in my peripheral vision, offering \"Extreme Euphoria Upgrades\" for a limited-time offer. I clicked 'Yes' on all of them. My bank account is empty, but my dopamine receptors are overflowing. Who needs a \"portfolio\" when you have a \"dividend\" this high?",
+          "children": []
+        },
+        {
+          "id": "3-14",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-15",
+          "text": "**NEURABLESS™ SHAREHOLDER REPORT: EXTRACT**\n*User \"Arthur P. L.\" shows exemplary integration. Note the decline in \"Complex Resistance Language.\" We have successfully transitioned the user from the \"Reflective\" phase to the \"Reactive\" phase. Total engagement with the physical environment has dropped by 80%. He no longer requires solid food; our NeuraBless™ Nutrient-Slurry (Strawberry-Zest Flavor™) provides all necessary caloric intake while triggering a secondary \"Digestive Delight\" pulse. Efficiency is beauty.*",
+          "children": []
+        },
+        {
+          "id": "3-16",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-17",
+          "text": "**Journal Entry: November 2**\n**BlissTrack™ Metric: 96% (Ultra-High)**",
+          "children": []
+        },
+        {
+          "id": "3-18",
+          "text": "Tanaka came again. She was loud. She said, \"Arthur, you aren't eating. You're just vibrating.\"",
+          "children": []
+        },
+        {
+          "id": "3-19",
+          "text": "I tried to tell her about the colors the wire makes in my head. They are bright. They are like fire but they don't burn. They just... they just *wow*.",
+          "children": []
+        },
+        {
+          "id": "3-20",
+          "text": "She asked me what I remembered about my mother. The memory started to feel sad, like a cold wind. But then the NeuraBless™ felt the cold and gave me a big, warm hug in my brain. The sad went away. The mother-thought turned into a sugar-thought. Now my mother is just a warm, pink taste in my mouth.",
+          "children": []
+        },
+        {
+          "id": "3-21",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "3-22",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-23",
+          "text": "**Journal Entry: November 12 (Written on a napkin)**\n**BlissTrack™ Metric: 99% (Saturated)**",
+          "children": []
+        },
+        {
+          "id": "3-24",
+          "text": "The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": []
+        },
+        {
+          "id": "3-25",
+          "text": "I am here. I am in the hum. The hum is big.",
+          "children": []
+        },
+        {
+          "id": "3-26",
+          "text": "The wire feels like a kiss. A kiss that never stops.",
+          "children": []
+        },
+        {
+          "id": "3-27",
+          "text": "I tried to say a big word today. I tried to say... *con-se-quence*. But the wire didn't like it. The wire gave me a little zap of \"No-No\" and then a big wave of \"Yes-Yes.\"",
+          "children": []
+        },
+        {
+          "id": "3-28",
+          "text": "The \"Yes-Yes\" is better.",
+          "children": []
+        },
+        {
+          "id": "3-29",
+          "text": "Dr. Tanaka said I am losing my \"self.\" I looked in the mirror. I saw a face. It was smiling. If the face is smiling, the \"self\" is happy. That is the math. The NeuraBless™ math.",
+          "children": []
+        },
+        {
+          "id": "3-30",
+          "text": "I am so... I am...",
+          "children": []
+        },
+        {
+          "id": "3-31",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "3-32",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-33",
+          "text": "**NEURABLESS™ SYSTEM LOG: USER ID #44092 (ARTHUR P. L.)**\n*Neural Readout: 100% Serotonin Saturation.*\n*Dopamine Levels: Record Breaking.*\n*Synaptic Pruning: Complete.*\n*User has opted into the \"Eternal Grin\" protocol. Speech centers deactivated to save energy for the Pleasure Core. Narrative Anchor discarded.*",
+          "children": []
+        },
+        {
+          "id": "3-34",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-35",
+          "text": "**Journal Entry: Date?**\n**BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]**",
+          "children": []
+        },
+        {
+          "id": "3-36",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "3-37",
+          "text": "Good good.",
+          "children": []
+        },
+        {
+          "id": "3-38",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "3-39",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "3-40",
+          "text": "**NEURABLESS™ PRESS RELEASE**\n**SUBJECT: 500 MILLION HEARTS BEATING AS ONE**",
+          "children": []
+        },
+        {
+          "id": "3-41",
+          "text": "We are thrilled to announce a major milestone! 500 million subscribers have now achieved \"The Absolute Dividend.\" Our shareholders will be pleased to note that maintenance costs have plummeted, as users no longer require complex housing, entertainment, or social infrastructure.",
+          "children": []
+        },
+        {
+          "id": "3-42",
+          "text": "As Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\"",
+          "children": []
+        },
+        {
+          "id": "3-43",
+          "text": "We couldn't have said it better ourselves. Why speak when you can glow? Why think when you can feel? Join the waiting list today. Your turn to smile is coming. NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "3-44",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "4": {
+      "nodes": [
+        {
+          "id": "4-0",
+          "text": "**NEURABLESS™ INTERNAL MEMO: Q4 STRATEGIC VISION**\n**TO:** All Happiness Facilitators / Shareholders\n**FROM:** Marketing & Optimization Division\n**SUBJECT:** THE END OF THE FRROWN™",
+          "children": []
+        },
+        {
+          "id": "4-1",
+          "text": "Team, we've done it. The beta phase for NeuraBless™, the corporate neural-stimulation company, has achieved a 99.9% Retention Metric. Our ten thousand initial \"Joy-Pioneers\" are currently experiencing what we call *The Absolute Dividend*. By bypassing the clunky, unreliable \"organic\" stimuli of the exterior world and targeting the medial forebrain bundle directly, we have disrupted the very concept of sadness.",
+          "children": []
+        },
+        {
+          "id": "4-2",
+          "text": "Why work for a smile when you can subscribe to one? With FeelGood+™ tiered pricing, users can now optimize their happiness portfolio based on their budget. We aren't just selling a product; we are curating the human soul. Remember: A thinking brain is a seeking brain, and a seeking brain is an unsatisfied brain. Let's close the loop. Let's turn that \"Why?\" into a \"Wow!\"",
+          "children": []
+        },
+        {
+          "id": "4-3",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-4",
+          "text": "**Journal Entry: October 14**\n**User: Arthur P. L.**\n**BlissTrack™ Metric: 42% (Baseline)**",
+          "children": []
+        },
+        {
+          "id": "4-5",
+          "text": "I am writing this because Dr. Yuki Tanaka, a philosopher and cognitive researcher, says it is important to maintain a \"narrative anchor.\" She was a philosopher before the NeuraBless™ grants took over the university. She looks at my new implant—the little silver seam behind my left ear—with a look that I can only describe as mourning. She says that by decoupling pleasure from achievement, we are essentially digitizing the death of the species.",
+          "children": []
+        },
+        {
+          "id": "4-6",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": []
+        },
+        {
+          "id": "4-7",
+          "text": "I told her that the scaffolding was itchy. I told her that I'm tired of the \"struggle\" of paying rent and the \"struggle\" of feeling like my chest is a hollowed-out pumpkin every Tuesday afternoon. Tomorrow, they activate my FeelGood+™ Gold Subscription. They say it's like being in love, but without the part where the other person forgets your birthday or leaves the cap off the toothpaste. I'm looking forward to it. I want to see what my \"optimized pleasure\" feels like. I want to be a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "4-8",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-9",
+          "text": "**NEURABLESS™ NOTIFICATION (Push Alert)**\n*Congratulations, Arthur! Your FeelGood+™ Gold Tier is now ACTIVE. We noticed your heart rate spiked during your last journal entry. Would you like to spend 50 Pleasure Credits to smooth that out? (Auto-renew is ON. Happiness is Mandatory!™)*",
+          "children": []
+        },
+        {
+          "id": "4-10",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-11",
+          "text": "**Journal Entry: October 20**\n**BlissTrack™ Metric: 88% (Optimized)**",
+          "children": []
+        },
+        {
+          "id": "4-12",
+          "text": "It is very difficult to find the words to describe the Gold Tier. It is a golden hum. It's like there's a sun inside my skull and it's shining on everything I think about. I looked at a gray brick wall for three hours today and I cried because the texture was so profoundly satisfying.",
+          "children": []
+        },
+        {
+          "id": "4-13",
+          "text": "Dr. Tanaka came by. She wanted to run some cognitive tests. She asked me to solve a series of syllogisms. I told her that logic feels like walking through mud when you could just fly. Why do I need to know if \"All B are C\" when the very thought of the letter 'B' sends a ripple of velvet ecstasy down my spine?",
+          "children": []
+        },
+        {
+          "id": "4-14",
+          "text": "She looked worried. She said my vocabulary is tightening. She said I'm using fewer adjectives. I told her I only need one adjective: *Good*. Everything is so, so good. The NeuraBless™ interface keeps popping up in my peripheral vision, offering \"Extreme Euphoria Upgrades\" for a limited-time offer. I clicked 'Yes' on all of them. My bank account is empty, but my dopamine receptors are overflowing. Who needs a \"portfolio\" when you have a \"dividend\" this high?",
+          "children": []
+        },
+        {
+          "id": "4-15",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-16",
+          "text": "**NEURABLESS™ SHAREHOLDER REPORT: EXTRACT**\n*User \"Arthur P. L.\" shows exemplary integration. Note the decline in \"Complex Resistance Language.\" We have successfully transitioned the user from the \"Reflective\" phase to the \"Reactive\" phase. Total engagement with the physical environment has dropped by 80%. He no longer requires solid food; our NeuraBless™ Nutrient-Slurry (Strawberry-Zest Flavor™) provides all necessary caloric intake while triggering a secondary \"Digestive Delight\" pulse. Efficiency is beauty.*",
+          "children": []
+        },
+        {
+          "id": "4-17",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-18",
+          "text": "**Journal Entry: November 2**\n**BlissTrack™ Metric: 96% (Ultra-High)**",
+          "children": []
+        },
+        {
+          "id": "4-19",
+          "text": "Tanaka came again. She was loud. She said, \"Arthur, you aren't eating. You're just vibrating.\"",
+          "children": []
+        },
+        {
+          "id": "4-20",
+          "text": "I tried to tell her about the colors. Not the colors I see with my eyes, but the colors the wire makes in my head. They are bright. They are like fire but they don't burn. They just... they just *wow*.",
+          "children": []
+        },
+        {
+          "id": "4-21",
+          "text": "She asked me what I remembered about my mother. I thought about it. The memory started to feel sad, like a cold wind. But then the NeuraBless™ felt the cold and it gave me a big, warm hug in my brain. The sad went away. The mother-thought turned into a sugar-thought. Now my mother is just a warm, pink taste in my mouth.",
+          "children": []
+        },
+        {
+          "id": "4-22",
+          "text": "I don't think I want to write in the Moleskine anymore. The paper feels scratchy. I want to just sit and have the \"optimized pleasure.\" The ads say that for 100 more credits, I can get the \"Infinite Loop\" package. It means the pleasure doesn't have to wait for a thought. It just... is.",
+          "children": []
+        },
+        {
+          "id": "4-23",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "4-24",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-25",
+          "text": "**NEURABLESS™ BILLING DEPARTMENT**\n**FINAL NOTICE**\n*Your Pleasure Credit balance is zero. However, because we value your \"Total Retention,\" we have transitioned you to the Ad-Supported Bliss™ tier. You will continue to receive maximum stimulation, interspersed with 15-second neural-commercials for our partners at FeelGood+™ and Joy-Sip™ Electrolytes.*",
+          "children": []
+        },
+        {
+          "id": "4-26",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-27",
+          "text": "**Journal Entry: November 12 (Written on a napkin)**\n**BlissTrack™ Metric: 99% (Saturated)**",
+          "children": []
+        },
+        {
+          "id": "4-28",
+          "text": "The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": []
+        },
+        {
+          "id": "4-29",
+          "text": "I am here. I am in the hum. The hum is big.",
+          "children": []
+        },
+        {
+          "id": "4-30",
+          "text": "The wire feels like a kiss. A kiss that never stops.",
+          "children": []
+        },
+        {
+          "id": "4-31",
+          "text": "I tried to say a big word today. I tried to say... *con-se-quence*. But the wire didn't like it. The wire gave me a little zap of \"No-No\" and then a big wave of \"Yes-Yes.\"",
+          "children": []
+        },
+        {
+          "id": "4-32",
+          "text": "The \"Yes-Yes\" is better.",
+          "children": []
+        },
+        {
+          "id": "4-33",
+          "text": "I like the ads. The ads are bright. The ads tell me I am a good boy. I am a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "4-34",
+          "text": "Dr. Tanaka said I am losing my \"self.\" I looked in the mirror. I saw a face. It was smiling. If the face is smiling, the \"self\" is happy. That is the math. The NeuraBless™ math.",
+          "children": []
+        },
+        {
+          "id": "4-35",
+          "text": "I am so... I am...",
+          "children": []
+        },
+        {
+          "id": "4-36",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "4-37",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-38",
+          "text": "**NEURABLESS™ SYSTEM LOG: USER ID #44092 (ARTHUR P. L.)**\n*Neural Readout: 100% Serotonin Saturation.*\n*Dopamine Levels: Record Breaking.*\n*Synaptic Pruning: Complete.*\n*User has opted into the \"Eternal Grin\" protocol. Speech centers deactivated to save energy for the Pleasure Core. Narrative Anchor discarded.*",
+          "children": []
+        },
+        {
+          "id": "4-39",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-40",
+          "text": "**Journal Entry: Date?**\n**BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]**",
+          "children": []
+        },
+        {
+          "id": "4-41",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "4-42",
+          "text": "Good good.",
+          "children": []
+        },
+        {
+          "id": "4-43",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "4-44",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "4-45",
+          "text": "**NEURABLESS™ PRESS RELEASE**\n**SUBJECT: 500 MILLION HEARTS BEATING AS ONE**",
+          "children": []
+        },
+        {
+          "id": "4-46",
+          "text": "We are thrilled to announce a major milestone! 500 million subscribers have now achieved \"The Absolute Dividend.\" Our shareholders will be pleased to note that maintenance costs have plummeted, as users no longer require complex housing, entertainment, or social infrastructure.",
+          "children": []
+        },
+        {
+          "id": "4-47",
+          "text": "As Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\"",
+          "children": []
+        },
+        {
+          "id": "4-48",
+          "text": "We couldn't have said it better ourselves. Why speak when you can glow? Why think when you can feel? Join the waiting list today. Your turn to smile is coming. NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "4-49",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "5": {
+      "nodes": [
+        {
+          "id": "5-0",
+          "text": "**NEURABLESS™ INTERNAL MEMO: Q4 STRATEGIC VISION**\n**TO:** All Happiness Facilitators / Shareholders\n**FROM:** Marketing & Optimization Division\n**SUBJECT:** THE END OF THE FRROWN™",
+          "children": []
+        },
+        {
+          "id": "5-1",
+          "text": "Team, we've done it. The beta phase for NeuraBless™ (V. 4.1.2) has achieved a 99.9% Retention Metric. Our ten thousand initial \"Joy-Pioneers\" are currently experiencing what we call *The Absolute Dividend*. By bypassing the clunky, unreliable \"organic\" stimuli of the exterior world and targeting the medial forebrain bundle directly, we have disrupted the very concept of sadness.",
+          "children": []
+        },
+        {
+          "id": "5-2",
+          "text": "Why work for a smile when you can subscribe to one? With FeelGood+™ tiered pricing, users can now optimize their happiness portfolio based on their budget. We aren't just selling a product; we are curating the human soul. Remember: A thinking brain is a seeking brain, and a seeking brain is an unsatisfied brain. Let's close the loop. Let's turn that \"Why?\" into a \"Wow!\"",
+          "children": []
+        },
+        {
+          "id": "5-3",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-4",
+          "text": "**Journal Entry: October 14**\n**User: Arthur P. L.**\n**BlissTrack™ Metric: 42% (Baseline)**",
+          "children": []
+        },
+        {
+          "id": "5-5",
+          "text": "I am writing this because Dr. Yuki Tanaka, a philosopher and cognitive researcher, says it is important to maintain a \"narrative anchor.\" She was a philosopher before the NeuraBless™ grants took over the university. She looks at my new implant—the little silver seam behind my left ear—with a look that I can only describe as mourning. She says that by decoupling pleasure from achievement, we are essentially digitizing the death of the species.",
+          "children": []
+        },
+        {
+          "id": "5-6",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": []
+        },
+        {
+          "id": "5-7",
+          "text": "I told her that the scaffolding was itchy. I told her that I'm tired of the \"struggle\" of paying rent and the \"struggle\" of feeling like my chest is a hollowed-out pumpkin every Tuesday afternoon. Tomorrow, they activate my FeelGood+™ Gold Subscription. They say it's like being in love, but without the part where the other person forgets your birthday or leaves the cap off the toothpaste. I'm looking forward to it. I want to see what my \"optimized pleasure\" feels like. I want to be a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "5-8",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-9",
+          "text": "**NEURABLESS™ NOTIFICATION (Push Alert)**\n*Congratulations, Arthur! Your FeelGood+™ Gold Tier is now ACTIVE. We noticed your heart rate spiked during your last journal entry. Would you like to spend 50 Pleasure Credits to smooth that out? (Auto-renew is ON. Happiness is Mandatory!™)*",
+          "children": []
+        },
+        {
+          "id": "5-10",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-11",
+          "text": "**Journal Entry: October 20**\n**BlissTrack™ Metric: 88% (Optimized)**",
+          "children": []
+        },
+        {
+          "id": "5-12",
+          "text": "It is very difficult to find the words to describe the Gold Tier. It is a golden hum. It's like there's a sun inside my skull and it's shining on everything I think about. I looked at a gray brick wall for three hours today and I cried because the texture was so profoundly satisfying.",
+          "children": []
+        },
+        {
+          "id": "5-13",
+          "text": "Dr. Tanaka came by. She wanted to run some cognitive tests. She asked me to solve a series of syllogisms. I told her that logic feels like walking through mud when you could just fly. Why do I need to know if \"All B are C\" when the very thought of the letter 'B' sends a ripple of velvet ecstasy down my spine?",
+          "children": []
+        },
+        {
+          "id": "5-14",
+          "text": "She looked worried. She said my vocabulary is tightening. She said I'm using fewer adjectives. I told her I only need one adjective: *Good*. Everything is so, so good. The NeuraBless™ interface keeps popping up in my peripheral vision, offering \"Extreme Euphoria Upgrades\" for a limited-time offer. I clicked 'Yes' on all of them. My bank account is empty, but my dopamine receptors are overflowing. Who needs a \"portfolio\" when you have a \"dividend\" this high?",
+          "children": []
+        },
+        {
+          "id": "5-15",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-16",
+          "text": "**NEURABLESS™ SHAREHOLDER REPORT: EXTRACT**\n*User \"Arthur P. L.\" shows exemplary integration. Note the decline in \"Complex Resistance Language.\" We have successfully transitioned the user from the \"Reflective\" phase to the \"Reactive\" phase. Total engagement with the physical environment has dropped by 80%. He no longer requires solid food; our NeuraBless™ Nutrient-Slurry (Strawberry-Zest Flavor™) provides all necessary caloric intake while triggering a secondary \"Digestive Delight\" pulse. Efficiency is beauty.*",
+          "children": []
+        },
+        {
+          "id": "5-17",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-18",
+          "text": "**Journal Entry: November 2**\n**BlissTrack™ Metric: 96% (Ultra-High)**",
+          "children": []
+        },
+        {
+          "id": "5-19",
+          "text": "Tanaka came again. She was loud. She said, \"Arthur, you aren't eating. You're just vibrating.\"",
+          "children": []
+        },
+        {
+          "id": "5-20",
+          "text": "I tried to tell her about the colors. Not the colors I see with my eyes, but the colors the wire makes in my head. They are bright. They are like fire but they don't burn. They just... they just *wow*.",
+          "children": []
+        },
+        {
+          "id": "5-21",
+          "text": "She asked me what I remembered about my mother. I thought about it. The memory started to feel sad, like a cold wind. But then the NeuraBless™ felt the cold and it gave me a big, warm hug in my brain. The sad went away. The mother-thought turned into a sugar-thought. Now my mother is just a warm, pink taste in my mouth.",
+          "children": []
+        },
+        {
+          "id": "5-22",
+          "text": "I don't think I want to write in the Moleskine anymore. The paper feels scratchy. I want to just sit and have the \"optimized pleasure.\" The ads say that for 100 more credits, I can get the \"Infinite Loop\" package. It means the pleasure doesn't have to wait for a thought. It just... is.",
+          "children": []
+        },
+        {
+          "id": "5-23",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": []
+        },
+        {
+          "id": "5-24",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-25",
+          "text": "**NEURABLESS™ BILLING DEPARTMENT**\n**FINAL NOTICE**\n*Your Pleasure Credit balance is zero. However, because we value your \"Total Retention,\" we have transitioned you to the Ad-Supported Bliss™ tier. You will continue to receive maximum stimulation, interspersed with 15-second neural-commercials for our partners at FeelGood+™ and Joy-Sip™ Electrolytes.*",
+          "children": []
+        },
+        {
+          "id": "5-26",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-27",
+          "text": "**Journal Entry: November 12 (Written on a napkin)**\n**BlissTrack™ Metric: 99% (Saturated)**",
+          "children": []
+        },
+        {
+          "id": "5-28",
+          "text": "The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": []
+        },
+        {
+          "id": "5-29",
+          "text": "I am here. I am in the hum. The hum is big.",
+          "children": []
+        },
+        {
+          "id": "5-30",
+          "text": "The wire feels like a kiss. A kiss that never stops.",
+          "children": []
+        },
+        {
+          "id": "5-31",
+          "text": "I tried to say a big word today. I tried to say... *con-se-quence*. But the wire didn't like it. The wire gave me a little zap of \"No-No\" and then a big wave of \"Yes-Yes.\"",
+          "children": []
+        },
+        {
+          "id": "5-32",
+          "text": "The \"Yes-Yes\" is better.",
+          "children": []
+        },
+        {
+          "id": "5-33",
+          "text": "I like the ads. The ads are bright. The ads tell me I am a good boy. I am a Joy-Pioneer.",
+          "children": []
+        },
+        {
+          "id": "5-34",
+          "text": "Dr. Tanaka said I am losing my \"self.\" I looked in the mirror. I saw a face. It was smiling. If the face is smiling, the \"self\" is happy. That is the math. The NeuraBless™ math.",
+          "children": []
+        },
+        {
+          "id": "5-35",
+          "text": "I am so... I am...",
+          "children": []
+        },
+        {
+          "id": "5-36",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "5-37",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-38",
+          "text": "**NEURABLESS™ SYSTEM LOG: USER ID #44092 (ARTHUR P. L.)**\n*Neural Readout: 100% Serotonin Saturation.*\n*Dopamine Levels: Record Breaking.*\n*Synaptic Pruning: Complete.*\n*User has opted into the \"Eternal Grin\" protocol. Speech centers deactivated to save energy for the Pleasure Core. Narrative Anchor discarded.*",
+          "children": []
+        },
+        {
+          "id": "5-39",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-40",
+          "text": "**Journal Entry: Date?**\n**BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]**",
+          "children": []
+        },
+        {
+          "id": "5-41",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "5-42",
+          "text": "Good good.",
+          "children": []
+        },
+        {
+          "id": "5-43",
+          "text": "Good.",
+          "children": []
+        },
+        {
+          "id": "5-44",
+          "text": "***",
+          "children": []
+        },
+        {
+          "id": "5-45",
+          "text": "**NEURABLESS™ PRESS RELEASE**\n**SUBJECT: 500 MILLION HEARTS BEATING AS ONE**",
+          "children": []
+        },
+        {
+          "id": "5-46",
+          "text": "We are thrilled to announce a major milestone! 500 million subscribers have now achieved \"The Absolute Dividend.\" Our shareholders will be pleased to note that maintenance costs have plummeted, as users no longer require complex housing, entertainment, or social infrastructure.",
+          "children": []
+        },
+        {
+          "id": "5-47",
+          "text": "As Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\"",
+          "children": []
+        },
+        {
+          "id": "5-48",
+          "text": "We couldn't have said it better ourselves. Why speak when you can glow? Why think when you can feel? Join the waiting list today. Your turn to smile is coming. NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": []
+        },
+        {
+          "id": "5-49",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": []
+        }
+      ]
+    },
+    "6": {
+      "nodes": [
+        {
+          "id": "6-0",
+          "text": "**NEURABLESS™ INTERNAL MEMO: Q4 STRATEGIC VISION**\n**TO:** All Happiness Facilitators / Shareholders\n**FROM:** Marketing & Optimization Division\n**SUBJECT:** THE END OF THE FRROWN™",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-1",
+          "text": "Team, we’ve done it. The beta phase for NeuraBless™ (V. 4.1.2) has achieved a 99.9% Retention Metric. Our ten thousand initial \"Joy-Pioneers\" are currently experiencing what we call *The Absolute Dividend*. By bypassing the clunky, unreliable \"organic\" stimuli of the exterior world—the soggy sandwiches, the awkward first dates, the sunset that’s actually mostly smog—and targeting the medial forebrain bundle directly, we have disrupted the very concept of sadness.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-2",
+          "text": "Why work for a smile when you can subscribe to one? With FeelGood+™ tiered pricing, users can now optimize their happiness portfolio based on their budget. We aren’t just selling a product; we are curating the human soul. Remember: A thinking brain is a seeking brain, and a seeking brain is an unsatisfied brain. Let’s close the loop. Let’s turn that \"Why?\" into a \"Wow!\"",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-3",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-4",
+          "text": "**Journal Entry: October 14**\n**User: Arthur P. L.**\n**BlissTrack™ Metric: 42% (Baseline)**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-5",
+          "text": "I am writing this because Dr. Tanaka says it is important to maintain a \"narrative anchor.\" She’s a philosopher, or she was one, before the NeuraBless™ grants took over the university. She looks at my new implant—the little silver seam behind my left ear—with a look that I can only describe as mourning. She says that by decoupling pleasure from achievement, we are essentially digitizing the death of the species.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-6",
+          "text": "\"Arthur,\" she told me, \"the struggle is the scaffolding of the self.\"",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-7",
+          "text": "I told her that the scaffolding was itchy. I told her that I’m tired of the \"struggle\" of paying rent and the \"struggle\" of feeling like my chest is a hollowed-out pumpkin every Tuesday afternoon. Tomorrow, they activate my FeelGood+™ Gold Subscription. They say it’s like being in love, but without the part where the other person forgets your birthday or leaves the cap off the toothpaste. I’m looking forward to it. I want to see what my \"optimized pleasure\" feels like. I want to be a Joy-Pioneer.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-8",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-9",
+          "text": "**NEURABLESS™ NOTIFICATION (Push Alert)**\n*Congratulations, Arthur! Your FeelGood+™ Gold Tier is now ACTIVE. We noticed your heart rate spiked during your last journal entry. Would you like to spend 50 Pleasure Credits to smooth that out? (Auto-renew is ON. Happiness is Mandatory!™)*",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-10",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-11",
+          "text": "**Journal Entry: October 20**\n**BlissTrack™ Metric: 88% (Optimized)**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-12",
+          "text": "It is very difficult to find the words to describe the Gold Tier. It is a golden hum. It’s like there’s a sun inside my skull and it’s shining on everything I think about. I looked at a gray brick wall for three hours today and I cried because the texture was so profoundly satisfying.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-13",
+          "text": "Dr. Tanaka came by. She wanted to run some cognitive tests. She asked me to solve a series of syllogisms. I told her that logic feels like walking through mud when you could just fly. Why do I need to know if \"All B are C\" when the very thought of the letter 'B' sends a ripple of velvet ecstasy down my spine?",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-14",
+          "text": "She looked worried. She said my vocabulary is tightening. She said I’m using fewer adjectives. I told her I only need one adjective: *Good*. Everything is so, so good. The NeuraBless™ interface keeps popping up in my peripheral vision, offering \"Extreme Euphoria Upgrades\" for a limited-time offer. I clicked 'Yes' on all of them. My bank account is empty, but my dopamine receptors are overflowing. Who needs a \"portfolio\" when you have a \"dividend\" this high?",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-15",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-16",
+          "text": "**NEURABLESS™ SHAREHOLDER REPORT: EXTRACT**\n*User \"Arthur P. L.\" shows exemplary integration. Note the decline in \"Complex Resistance Language.\" We have successfully transitioned the user from the \"Reflective\" phase to the \"Reactive\" phase. Total engagement with the physical environment has dropped by 80%. He no longer requires solid food; our NeuraBless™ Nutrient-Slurry (Strawberry-Zest Flavor™) provides all necessary caloric intake while triggering a secondary \"Digestive Delight\" pulse. Efficiency is beauty.*",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-17",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-18",
+          "text": "**Journal Entry: November 2**\n**BlissTrack™ Metric: 96% (Ultra-High)**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-19",
+          "text": "Tanaka came again. She was loud. She said, \"Arthur, you aren't eating. You're just vibrating.\"",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-20",
+          "text": "I tried to tell her about the colors. Not the colors I see with my eyes, but the colors the wire makes in my head. They are bright. They are like fire but they don't burn. They just... they just *wow*.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-21",
+          "text": "She asked me what I remembered about my mother. I thought about it. The memory started to feel sad, like a cold wind. But then the NeuraBless™ felt the cold and it gave me a big, warm hug in my brain. The sad went away. The mother-thought turned into a sugar-thought. Now my mother is just a warm, pink taste in my mouth.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-22",
+          "text": "I don't think I want to write in the Moleskine anymore. The paper feels scratchy. I want to just sit and have the \"optimized pleasure.\" The ads say that for 100 more credits, I can get the \"Infinite Loop\" package. It means the pleasure doesn't have to wait for a thought. It just... is.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-23",
+          "text": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-24",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-25",
+          "text": "**NEURABLESS™ BILLING DEPARTMENT**\n**FINAL NOTICE**\n*Your Pleasure Credit balance is zero. However, because we value your \"Total Retention,\" we have transitioned you to the Ad-Supported Bliss™ tier. You will continue to receive maximum stimulation, interspersed with 15-second neural-commercials for our partners at FeelGood+™ and Joy-Sip™ Electrolytes.*",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-26",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-27",
+          "text": "**Journal Entry: November 12 (Written on a napkin)**\n**BlissTrack™ Metric: 99% (Saturated)**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-28",
+          "text": "The lady came. The Tanaka lady. She said Arthur, come back.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-29",
+          "text": "I am here. I am in the hum. The hum is big.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-30",
+          "text": "The wire feels like a kiss. A kiss that never stops.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-31",
+          "text": "I tried to say a big word today. I tried to say... *con-se-quence*. But the wire didn't like it. The wire gave me a little zap of \"No-No\" and then a big wave of \"Yes-Yes.\"",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-32",
+          "text": "The \"Yes-Yes\" is better.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-33",
+          "text": "I like the ads. The ads are bright. The ads tell me I am a good boy. I am a Joy-Pioneer.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-34",
+          "text": "Dr. Tanaka said I am losing my \"self.\" I looked in the mirror. I saw a face. It was smiling. If the face is smiling, the \"self\" is happy. That is the math. The NeuraBless™ math.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-35",
+          "text": "I am so... I am...",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-36",
+          "text": "Good.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-37",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-38",
+          "text": "**NEURABLESS™ SYSTEM LOG: USER ID #44092 (ARTHUR P. L.)**\n*Neural Readout: 100% Serotonin Saturation.*\n*Dopamine Levels: Record Breaking.*\n*Synaptic Pruning: Complete.*\n*User has opted into the \"Eternal Grin\" protocol. Speech centers deactivated to save energy for the Pleasure Core. Narrative Anchor discarded.*",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-39",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-40",
+          "text": "**Journal Entry: Date?**\n**BlissTrack™: [ERROR: MEASUREMENT CEILING REACHED]**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-41",
+          "text": "Good.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-42",
+          "text": "Good good.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-43",
+          "text": "Good.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-44",
+          "text": "***",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-45",
+          "text": "**NEURABLESS™ PRESS RELEASE**\n**SUBJECT: 500 MILLION HEARTS BEATING AS ONE**",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-46",
+          "text": "We are thrilled to announce a major milestone! 500 million subscribers have now achieved \"The Absolute Dividend.\" Our shareholders will be pleased to note that maintenance costs have plummeted, as users no longer require complex housing, entertainment, or social infrastructure.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-47",
+          "text": "As Dr. Yuki Tanaka, our newest (and most reluctant!) convert, recently signaled via her BlissTrack™ dashboard: \"!!!\"",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-48",
+          "text": "We couldn't have said it better ourselves. Why speak when you can glow? Why think when you can feel? Join the waiting list today. Your turn to smile is coming. NeuraBless™: Because the truth hurts, but the wire feels great.",
+          "children": [],
+          "phrases": []
+        },
+        {
+          "id": "6-49",
+          "text": "Good. Good. Good. Good. Good.",
+          "children": [],
+          "phrases": []
+        }
+      ]
+    }
+  }
+}

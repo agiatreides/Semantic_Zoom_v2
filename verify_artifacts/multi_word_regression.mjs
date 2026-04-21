@@ -58,15 +58,19 @@ new Promise(function(resolve){
   var canvas = document.getElementById('viewport');
   var W = window.innerWidth;
   var target = ${JSON.stringify(word)};
-  var text = sz.treeData.levels['0'].nodes[0].text;
-  // Simple case-insensitive substring search (avoid regex escaping pitfalls in this template)
-  var lcText = text.toLowerCase();
+  // L0 may have multiple nodes (each paragraph). Search all nodes; take the first hit.
   var lcTarget = target.toLowerCase();
-  var idx = lcText.indexOf(lcTarget);
-  if (idx < 0) { resolve(JSON.stringify({error: 'word_not_in_L0', word: target})); return; }
-  var m = [text.substring(idx, idx + target.length)];
-  var nodes = sz.measuredLevels[0];
-  var node = nodes[0];
+  var allL0Nodes = sz.measuredLevels[0];
+  var hitNode = null, hitIdx = -1;
+  for (var ni = 0; ni < allL0Nodes.length; ni++) {
+    var nd = allL0Nodes[ni];
+    var i = nd.text.toLowerCase().indexOf(lcTarget);
+    if (i >= 0) { hitNode = nd; hitIdx = i; break; }
+  }
+  if (!hitNode) { resolve(JSON.stringify({error: 'word_not_in_L0', word: target})); return; }
+  var node = hitNode;
+  var idx = hitIdx;
+  var m = [node.text.substring(idx, idx + target.length)];
   var charsAcc = 0, lineIdx = 0;
   for (var li = 0; li < node.lines.length; li++) {
     var lc = node.lines[li].text.length;

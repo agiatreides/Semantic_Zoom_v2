@@ -30,6 +30,15 @@ The project is a three-part pipeline that produces data files for a vanilla-JS +
 
 **Data orthogonality.** The data file ships two separate anchor structures: `concepts[].anchors[L]` (per-concept per-level, identity-preserving by construction, used for zoom positioning) and `treeData.levels[L].nodes[i].phrases[j].matchIn/matchOut` (per-phrase forward/backward chains, useful as fallback but does NOT preserve concept identity reliably). The wheel handler prefers concept anchors and falls back to the phrase chain (per `CLAUDE.md` lines 85–94).
 
+**Cursor targeting — the user-facing contract.** The cursor is the user's intent pointer. The reader hovers over a WORD, and the system locks onto the CONCEPT most semantically relevant to that word (not whatever concept happens to have an anchor geographically nearest to the cursor). The rules the renderer is expected to enforce:
+
+1. **Hover locks onto the semantically-right concept.** Hovering on "logs" locks onto the concept whose L_max snippet contains "logs" — even if the cursor's current paragraph has no concept anchor of its own. Hovering on "relationship" locks onto the concept whose snippet contains "relationship". The locked concept is shown in the HUD (`◆ Tom refuses to access his daughter's logs`).
+2. **Scrolling zooms while preserving the locked concept.** Once a concept is locked, subsequent scroll-wheel events zoom in or out and keep the cursor on THAT concept's anchor at every new level. The text shifts; the cursor does not.
+3. **Moving the cursor to a different word re-targets.** Moving the cursor (more than ~2 pixels) ends the current zoom session. The next scroll-wheel event re-acquires whichever concept is semantically matched by the new hovered word. The user never has to "release" a lock explicitly.
+4. **Drift is defined by the user's intent, not by Y-distance.** A zoom result that places the cursor on "another part of the story" — content that does not semantically match the word the user started with — is a bug. The anchor lookup must prefer lexical match of the hovered word against each concept's defining content, and only fall back to spatial proximity when no word match exists.
+
+The prior "closest-by-Y" fallback violated this contract: when a word had no concept anchor in its own paragraph, the cursor would lock onto whichever anchor's Y was nearest, even if that anchor was about an unrelated moment. The April 20 fix in `src/main.js findConceptAtCursor` adds a semantic-word-match fallback (stem-match the hovered word against each concept's label + L_max anchor text, pick the closest-Y match among those that test positive) before ever falling to pure spatial proximity.
+
 **Current corpus** — two short stories from the 72 Futures fiction pipeline: `the-voting-problem-auto.json` (default) and `architecture-of-the-grin-auto.json`. Tree builds are 6 levels each; concept files are regenerated sidecars, never hand-edited (per `CLAUDE.md` lines 102–107 and `data/` listing).
 
 ## What Done Looks Like

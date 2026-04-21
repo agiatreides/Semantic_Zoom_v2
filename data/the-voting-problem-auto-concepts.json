@@ -1,568 +1,719 @@
 {
-  "concepts": [
+  "genre": {
+    "genre": "short_story",
+    "confidence": 0.97,
+    "secondary": null,
+    "reasoning": "Compact narrative fiction with a clear protagonist, scene-level events, and an unfolding dramatic arc centered on a father-daughter moral dilemma."
+  },
+  "thematic_thrust": "Tom has the power to know whether Maya cheated and decides not to use it, choosing trust over certainty.",
+  "characters": {
+    "Tom Okonkwo": "narrator, father of Maya, works in marketing",
+    "Chip": "Tom's neural interface AI assistant",
+    "Maya Okonkwo": "narrator's daughter, age 16, accused of cheating",
+    "Sparkle": "Maya's AI assistant, named by Maya at age 11",
+    "Derek": "Tom's boss, proposes influencer marketing budget",
+    "Tyler Chen": "student who accused Maya, was outscored by her",
+    "Martinez": "school principal, deliberately ignores her own assistant",
+    "Megs": "Tom's friend, runs AI-equity nonprofit in Lagos"
+  },
+  "voice_anchors": [
     {
-      "id": "derek_pitches_influencer_budget",
-      "label": "Derek pitches creator economy marketing pivot",
-      "min_visible_level": 4,
-      "anchors": {
-        "4": {
-          "nodeId": "4-1",
-          "charStart": 1,
-          "charEnd": 31
-        },
-        "5": {
-          "nodeId": "5-1",
-          "charStart": 238,
-          "charEnd": 291
-        }
-      }
+      "nodeId": "5-0",
+      "snippet": "So here's the thing about having a superintelligent AI living in your head: it ruins your ability to argue.",
+      "note": "Direct-address confession in the first sentence establishes the wry, self-aware register the whole story runs on."
     },
     {
-      "id": "maya_alert_interrupts_meeting",
-      "label": "Maya's assistant flags urgent school situation",
+      "nodeId": "5-19",
+      "snippet": "just my daughter, sixteen years old, trying to figure out how to be a person in a world that thinks it's solved everything.",
+      "note": "Stripped syntax and the mid-sentence pivot from data to wonder carry the story's emotional center in a single breath."
+    },
+    {
+      "nodeId": "5-23",
+      "snippet": "Optimization is not wisdom. Data is not judgment. And an assistant, no matter how intelligent, is still an assistant.",
+      "note": "Chip's clipped aphoristic cadence deliberately mimics earned wisdom while insisting on his own limit — the story's thesis in his voice."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "chip-ruins-arguments",
+      "label": "Narrator confesses AI ruins arguing ability",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 0,
+          "charEnd": 107
+        },
+        "3": {
+          "nodeId": "3-0",
+          "charStart": 0,
+          "charEnd": 107
+        },
+        "4": {
+          "nodeId": "4-0",
+          "charStart": 0,
+          "charEnd": 107
+        },
+        "5": {
+          "nodeId": "5-0",
+          "charStart": 0,
+          "charEnd": 107
+        }
+      },
+      "type": "voice",
+      "collapse_axes": [
+        "plot",
+        "stakes",
+        "voice"
+      ]
+    },
+    {
+      "id": "maya-notification-interrupts",
+      "label": "Maya school crisis interrupts budget meeting",
       "min_visible_level": 1,
       "anchors": {
         "1": {
-          "nodeId": "1-1",
-          "charStart": 19,
-          "charEnd": 92
+          "nodeId": "1-0",
+          "charStart": 98,
+          "charEnd": 300
         },
         "2": {
           "nodeId": "2-2",
           "charStart": 0,
-          "charEnd": 31
+          "charEnd": 111
         },
         "3": {
-          "nodeId": "3-2",
+          "nodeId": "3-3",
           "charStart": 0,
-          "charEnd": 128
+          "charEnd": 111
         },
         "4": {
-          "nodeId": "4-2",
+          "nodeId": "4-9",
           "charStart": 0,
-          "charEnd": 127
+          "charEnd": 130
         },
         "5": {
           "nodeId": "5-2",
           "charStart": 98,
           "charEnd": 224
         }
-      }
+      },
+      "type": "action",
+      "collapse_axes": [
+        "plot"
+      ]
     },
     {
-      "id": "tyler_accuses_maya_of_cheating",
-      "label": "Tyler Chen accuses Maya of cheating on algebra exam",
+      "id": "tyler-accuses-maya-cheating",
+      "label": "Tyler accuses Maya of AI-assisted cheating",
       "min_visible_level": 0,
       "anchors": {
         "0": {
           "nodeId": "0-0",
-          "charStart": 5,
-          "charEnd": 80
+          "charStart": 193,
+          "charEnd": 289
         },
         "1": {
           "nodeId": "1-1",
-          "charStart": 0,
-          "charEnd": 116
+          "charStart": 23,
+          "charEnd": 163
         },
         "2": {
-          "nodeId": "2-2",
-          "charStart": 44,
-          "charEnd": 116
+          "nodeId": "2-5",
+          "charStart": 28,
+          "charEnd": 141
         },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 0,
-          "charEnd": 138
+          "nodeId": "3-7",
+          "charStart": 23,
+          "charEnd": 157
         },
         "4": {
-          "nodeId": "4-3",
-          "charStart": 70,
-          "charEnd": 146
+          "nodeId": "4-14",
+          "charStart": 0,
+          "charEnd": 211
         },
         "5": {
           "nodeId": "5-3",
-          "charStart": 87,
+          "charStart": 71,
           "charEnd": 209
         }
-      }
+      },
+      "type": "reveal",
+      "collapse_axes": [
+        "plot",
+        "stakes"
+      ]
     },
     {
-      "id": "chip_explains_ambiguous_biometrics",
-      "label": "Chip reports Maya's stress data is ambiguous",
+      "id": "privacy-constraint-explained",
+      "label": "Assistants know all but legally cannot share",
       "min_visible_level": 2,
       "anchors": {
         "2": {
-          "nodeId": "2-2",
-          "charStart": 89,
-          "charEnd": 154
+          "nodeId": "2-5",
+          "charStart": 266,
+          "charEnd": 508
         },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 198,
-          "charEnd": 370
+          "nodeId": "3-10",
+          "charStart": 0,
+          "charEnd": 391
         },
         "4": {
-          "nodeId": "4-3",
-          "charStart": 93,
-          "charEnd": 153
+          "nodeId": "4-17",
+          "charStart": 0,
+          "charEnd": 393
         },
         "5": {
           "nodeId": "5-3",
-          "charStart": 356,
-          "charEnd": 449
+          "charStart": 607,
+          "charEnd": 741
         }
-      }
+      },
+      "type": "voice",
+      "collapse_axes": [
+        "stakes",
+        "meaning"
+      ]
     },
     {
-      "id": "chip_outlines_ethical_frameworks",
-      "label": "Chip recites utilitarian, deontological, virtue frameworks",
-      "min_visible_level": 3,
+      "id": "tom-demands-right-not-optimal",
+      "label": "Tom asks for right action, not optimal action",
+      "min_visible_level": 2,
       "anchors": {
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 0,
+          "charEnd": 35
+        },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 462,
-          "charEnd": 528
+          "nodeId": "3-11",
+          "charStart": 0,
+          "charEnd": 31
         },
         "4": {
-          "nodeId": "4-4",
-          "charStart": 1,
-          "charEnd": 69
+          "nodeId": "4-21",
+          "charStart": 0,
+          "charEnd": 33
         },
         "5": {
           "nodeId": "5-4",
-          "charStart": 397,
-          "charEnd": 481
+          "charStart": 229,
+          "charEnd": 262
         }
-      }
+      },
+      "type": "dialogue",
+      "collapse_axes": [
+        "meaning",
+        "stakes"
+      ]
     },
     {
-      "id": "chip_recommends_gathering_information",
-      "label": "Chip recommends gathering facts before deciding",
-      "min_visible_level": 3,
-      "anchors": {
-        "3": {
-          "nodeId": "3-3",
-          "charStart": 1021,
-          "charEnd": 1096
-        },
-        "4": {
-          "nodeId": "4-4",
-          "charStart": 187,
-          "charEnd": 283
-        },
-        "5": {
-          "nodeId": "5-5",
-          "charStart": 217,
-          "charEnd": 320
-        }
-      }
-    },
-    {
-      "id": "martinez_presents_accusation",
-      "label": "Martinez formally presents cheating accusation to Tom",
+      "id": "tyler-assistant-accuses",
+      "label": "Tyler's AI presents behavioral cheating evidence",
       "min_visible_level": 1,
       "anchors": {
         "1": {
-          "nodeId": "1-1",
-          "charStart": 0,
-          "charEnd": 118
+          "nodeId": "1-2",
+          "charStart": 27,
+          "charEnd": 184
         },
         "2": {
-          "nodeId": "2-2",
-          "charStart": 104,
+          "nodeId": "2-15",
+          "charStart": 0,
           "charEnd": 165
         },
         "3": {
-          "nodeId": "3-3",
+          "nodeId": "3-21",
           "charStart": 0,
-          "charEnd": 144
+          "charEnd": 165
         },
         "4": {
-          "nodeId": "4-4",
-          "charStart": 60,
-          "charEnd": 172
-        },
-        "5": {
-          "nodeId": "5-6",
-          "charStart": 266,
-          "charEnd": 411
-        }
-      }
-    },
-    {
-      "id": "tyler_assistant_presents_eye_evidence",
-      "label": "Tyler's assistant reports Maya's eye movements as cheating",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-2",
-          "charStart": 33,
-          "charEnd": 82
-        },
-        "3": {
-          "nodeId": "3-3",
-          "charStart": 661,
-          "charEnd": 774
-        },
-        "4": {
-          "nodeId": "4-4",
-          "charStart": 120,
-          "charEnd": 216
+          "nodeId": "4-39",
+          "charStart": 0,
+          "charEnd": 304
         },
         "5": {
           "nodeId": "5-7",
           "charStart": 391,
           "charEnd": 522
         }
-      }
+      },
+      "type": "action",
+      "collapse_axes": [
+        "plot",
+        "stakes"
+      ]
     },
     {
-      "id": "sparkle_defends_maya_eye_movements",
-      "label": "Sparkle defends Maya's eye movements as visualization",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-2",
-          "charStart": 94,
-          "charEnd": 194
-        },
-        "3": {
-          "nodeId": "3-3",
-          "charStart": 74,
-          "charEnd": 182
-        },
-        "4": {
-          "nodeId": "4-4",
-          "charStart": 133,
-          "charEnd": 213
-        },
-        "5": {
-          "nodeId": "5-8",
-          "charStart": 186,
-          "charEnd": 337
-        }
-      }
-    },
-    {
-      "id": "chip_reveals_parental_oversight_access",
-      "label": "Chip reveals Tom can access Maya's assistant logs",
+      "id": "tom-hesitates-sixteen-now",
+      "label": "Tom pauses on parental logs: she is sixteen",
       "min_visible_level": 1,
       "anchors": {
         "1": {
-          "nodeId": "1-1",
-          "charStart": 155,
-          "charEnd": 213
+          "nodeId": "1-4",
+          "charStart": 0,
+          "charEnd": 86
         },
         "2": {
-          "nodeId": "2-2",
-          "charStart": 150,
-          "charEnd": 222
+          "nodeId": "2-18",
+          "charStart": 0,
+          "charEnd": 95
         },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 775,
-          "charEnd": 854
+          "nodeId": "3-26",
+          "charStart": 0,
+          "charEnd": 94
         },
         "4": {
-          "nodeId": "4-4",
-          "charStart": 231,
-          "charEnd": 268
+          "nodeId": "4-47",
+          "charStart": 0,
+          "charEnd": 95
         },
         "5": {
           "nodeId": "5-9",
-          "charStart": 29,
-          "charEnd": 149
+          "charStart": 193,
+          "charEnd": 279
         }
-      }
+      },
+      "type": "inner_shift",
+      "collapse_axes": [
+        "meaning",
+        "stakes"
+      ]
     },
     {
-      "id": "maya_denies_cheating_in_hallway",
-      "label": "Maya denies cheating in hallway talk with Tom",
-      "min_visible_level": 2,
+      "id": "maya-swears-sparkle-was-there",
+      "label": "Maya swears Sparkle only kept her calm",
+      "min_visible_level": 1,
       "anchors": {
+        "1": {
+          "nodeId": "1-5",
+          "charStart": 78,
+          "charEnd": 219
+        },
         "2": {
-          "nodeId": "2-2",
-          "charStart": 189,
-          "charEnd": 210
+          "nodeId": "2-22",
+          "charStart": 0,
+          "charEnd": 166
         },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 855,
-          "charEnd": 957
+          "nodeId": "3-32",
+          "charStart": 29,
+          "charEnd": 165
         },
         "4": {
-          "nodeId": "4-4",
-          "charStart": 214,
-          "charEnd": 251
+          "nodeId": "4-56",
+          "charStart": 0,
+          "charEnd": 172
         },
         "5": {
           "nodeId": "5-10",
-          "charStart": 227,
-          "charEnd": 318
+          "charStart": 251,
+          "charEnd": 397
         }
-      }
+      },
+      "type": "dialogue",
+      "collapse_axes": [
+        "plot",
+        "stakes"
+      ]
     },
     {
-      "id": "tom_tells_maya_he_can_verify",
-      "label": "Tom tells Maya he has the power to check",
-      "min_visible_level": 3,
+      "id": "tom-reveals-he-could-check",
+      "label": "Tom reveals power to access Sparkle's logs",
+      "min_visible_level": 1,
       "anchors": {
+        "1": {
+          "nodeId": "1-6",
+          "charStart": 0,
+          "charEnd": 115
+        },
+        "2": {
+          "nodeId": "2-23",
+          "charStart": 0,
+          "charEnd": 122
+        },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 928,
-          "charEnd": 968
+          "nodeId": "3-34",
+          "charStart": 0,
+          "charEnd": 121
         },
         "4": {
-          "nodeId": "4-4",
-          "charStart": 272,
-          "charEnd": 323
+          "nodeId": "4-58",
+          "charStart": 0,
+          "charEnd": 122
         },
         "5": {
           "nodeId": "5-11",
           "charStart": 31,
           "charEnd": 121
         }
-      }
+      },
+      "type": "action",
+      "collapse_axes": [
+        "plot",
+        "stakes",
+        "meaning"
+      ]
     },
     {
-      "id": "maya_explains_trust_cost_of_checking",
-      "label": "Maya says checking would mean Tom doesn't trust her",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-2",
-          "charStart": 214,
-          "charEnd": 276
-        },
-        "3": {
-          "nodeId": "3-3",
-          "charStart": 1087,
-          "charEnd": 1114
-        },
-        "4": {
-          "nodeId": "4-4",
-          "charStart": 321,
-          "charEnd": 397
-        },
-        "5": {
-          "nodeId": "5-11",
-          "charStart": 370,
-          "charEnd": 395
-        }
-      }
-    },
-    {
-      "id": "chip_gives_eighty_four_percent_probability",
-      "label": "Chip offers 84% probability Maya is truthful",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-2",
-          "charStart": 226,
-          "charEnd": 254
-        },
-        "3": {
-          "nodeId": "3-3",
-          "charStart": 1347,
-          "charEnd": 1406
-        },
-        "4": {
-          "nodeId": "4-4",
-          "charStart": 340,
-          "charEnd": 411
-        },
-        "5": {
-          "nodeId": "5-12",
-          "charStart": 329,
-          "charEnd": 391
-        }
-      }
-    },
-    {
-      "id": "tom_refuses_to_access_daughter_logs",
-      "label": "Tom publicly refuses to access Maya's logs",
+      "id": "verification-changes-relationship",
+      "label": "Chip names paradox: checking changes the bond",
       "min_visible_level": 0,
       "anchors": {
         "0": {
-          "nodeId": "0-0",
-          "charStart": 120,
-          "charEnd": 172
+          "nodeId": "0-2",
+          "charStart": 0,
+          "charEnd": 88
         },
         "1": {
-          "nodeId": "1-1",
-          "charStart": 270,
-          "charEnd": 332
+          "nodeId": "1-8",
+          "charStart": 0,
+          "charEnd": 92
         },
         "2": {
-          "nodeId": "2-2",
-          "charStart": 339,
-          "charEnd": 393
+          "nodeId": "2-29",
+          "charStart": 0,
+          "charEnd": 140
         },
         "3": {
-          "nodeId": "3-3",
-          "charStart": 1490,
-          "charEnd": 1554
+          "nodeId": "3-40",
+          "charStart": 0,
+          "charEnd": 139
         },
         "4": {
-          "nodeId": "4-5",
+          "nodeId": "4-66",
           "charStart": 0,
-          "charEnd": 54
+          "charEnd": 140
         },
         "5": {
-          "nodeId": "5-13",
-          "charStart": 388,
-          "charEnd": 440
+          "nodeId": "5-12",
+          "charStart": 224,
+          "charEnd": 299
         }
-      }
+      },
+      "type": "inner_shift",
+      "collapse_axes": [
+        "meaning",
+        "stakes"
+      ]
     },
     {
-      "id": "martinez_undermines_tyler_accusation",
-      "label": "Martinez reveals Tyler filed after Maya outscored him",
+      "id": "chip-gives-84-percent",
+      "label": "Chip volunteers unprompted 84-percent estimate",
       "min_visible_level": 1,
       "anchors": {
         "1": {
-          "nodeId": "1-1",
-          "charStart": 0,
-          "charEnd": 79
+          "nodeId": "1-8",
+          "charStart": 93,
+          "charEnd": 210
         },
         "2": {
-          "nodeId": "2-3",
+          "nodeId": "2-30",
           "charStart": 0,
-          "charEnd": 112
+          "charEnd": 247
         },
         "3": {
-          "nodeId": "3-5",
+          "nodeId": "3-41",
           "charStart": 0,
-          "charEnd": 113
+          "charEnd": 163
         },
         "4": {
-          "nodeId": "4-7",
+          "nodeId": "4-68",
           "charStart": 0,
-          "charEnd": 117
+          "charEnd": 184
+        },
+        "5": {
+          "nodeId": "5-12",
+          "charStart": 308,
+          "charEnd": 391
+        }
+      },
+      "type": "reveal",
+      "collapse_axes": [
+        "stakes"
+      ]
+    },
+    {
+      "id": "tom-refuses-logs-trusts-maya",
+      "label": "Tom refuses logs, declares trust aloud",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-3",
+          "charStart": 17,
+          "charEnd": 85
+        },
+        "1": {
+          "nodeId": "1-9",
+          "charStart": 0,
+          "charEnd": 81
+        },
+        "2": {
+          "nodeId": "2-31",
+          "charStart": 0,
+          "charEnd": 83
+        },
+        "3": {
+          "nodeId": "3-45",
+          "charStart": 0,
+          "charEnd": 76
+        },
+        "4": {
+          "nodeId": "4-74",
+          "charStart": 0,
+          "charEnd": 77
+        },
+        "5": {
+          "nodeId": "5-13",
+          "charStart": 387,
+          "charEnd": 464
+        }
+      },
+      "type": "action",
+      "collapse_axes": [
+        "plot",
+        "meaning"
+      ]
+    },
+    {
+      "id": "martinez-exposes-tyler-motive",
+      "label": "Martinez reveals Tyler filed after being outscored",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-10",
+          "charStart": 0,
+          "charEnd": 126
+        },
+        "2": {
+          "nodeId": "2-32",
+          "charStart": 177,
+          "charEnd": 283
+        },
+        "3": {
+          "nodeId": "3-48",
+          "charStart": 93,
+          "charEnd": 225
+        },
+        "4": {
+          "nodeId": "4-79",
+          "charStart": 159,
+          "charEnd": 276
         },
         "5": {
           "nodeId": "5-15",
           "charStart": 188,
           "charEnd": 304
         }
-      }
+      },
+      "type": "reveal",
+      "collapse_axes": [
+        "plot"
+      ]
     },
     {
-      "id": "maya_asks_about_life_without_assistants",
-      "label": "Maya asks how people live without neural assistants",
-      "min_visible_level": 4,
+      "id": "maya-asks-you-really-didnt-check",
+      "label": "Maya confirms Tom really chose not to verify",
+      "min_visible_level": 1,
       "anchors": {
-        "4": {
-          "nodeId": "4-8",
-          "charStart": 1,
-          "charEnd": 56
-        },
-        "5": {
-          "nodeId": "5-16",
-          "charStart": 218,
-          "charEnd": 323
-        }
-      }
-    },
-    {
-      "id": "tom_explains_pre_assistant_trust",
-      "label": "Tom describes trusting without AI data before assistants",
-      "min_visible_level": 3,
-      "anchors": {
-        "5": {
-          "nodeId": "5-17",
-          "charStart": 211,
-          "charEnd": 338
-        }
-      }
-    },
-    {
-      "id": "maya_reveals_sparkle_called_choice_suboptimal",
-      "label": "Maya reveals Sparkle judged Tom's choice suboptimal",
-      "min_visible_level": 4,
-      "anchors": {
-        "5": {
-          "nodeId": "5-18",
-          "charStart": 247,
-          "charEnd": 303
-        }
-      }
-    },
-    {
-      "id": "chip_reframes_optimal_by_objective",
-      "label": "Chip reframes Tom's choice as correct for different goal",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-3",
-          "charStart": 115,
-          "charEnd": 242
-        },
-        "3": {
-          "nodeId": "3-6",
-          "charStart": 0,
-          "charEnd": 127
-        },
-        "4": {
-          "nodeId": "4-11",
-          "charStart": 42,
-          "charEnd": 91
-        },
-        "5": {
-          "nodeId": "5-20",
-          "charStart": 49,
-          "charEnd": 196
-        }
-      }
-    },
-    {
-      "id": "megs_warns_ai_widens_inequality",
-      "label": "Megs warns AI advantage widens the inequality gap",
-      "min_visible_level": 4,
-      "anchors": {
-        "4": {
-          "nodeId": "4-12",
+        "1": {
+          "nodeId": "1-11",
           "charStart": 0,
           "charEnd": 66
         },
-        "5": {
-          "nodeId": "5-21",
-          "charStart": 383,
-          "charEnd": 500
-        }
-      }
-    },
-    {
-      "id": "chip_declares_optimization_not_wisdom",
-      "label": "Chip declares optimization is not wisdom",
-      "min_visible_level": 3,
-      "anchors": {
+        "2": {
+          "nodeId": "2-33",
+          "charStart": 40,
+          "charEnd": 66
+        },
         "3": {
-          "nodeId": "3-7",
-          "charStart": 593,
-          "charEnd": 710
+          "nodeId": "3-51",
+          "charStart": 0,
+          "charEnd": 26
         },
         "4": {
-          "nodeId": "4-12",
-          "charStart": 8,
-          "charEnd": 72
+          "nodeId": "4-85",
+          "charStart": 0,
+          "charEnd": 25
+        },
+        "5": {
+          "nodeId": "5-16",
+          "charStart": 1,
+          "charEnd": 25
+        }
+      },
+      "type": "dialogue",
+      "collapse_axes": [
+        "plot",
+        "meaning"
+      ]
+    },
+    {
+      "id": "84-percent-decided-by-meaning",
+      "label": "Tom says trust was about meaning, not math",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-14",
+          "charStart": 0,
+          "charEnd": 96
+        },
+        "2": {
+          "nodeId": "2-36",
+          "charStart": 0,
+          "charEnd": 208
+        },
+        "3": {
+          "nodeId": "3-60",
+          "charStart": 0,
+          "charEnd": 190
+        },
+        "4": {
+          "nodeId": "4-100",
+          "charStart": 0,
+          "charEnd": 190
+        },
+        "5": {
+          "nodeId": "5-18",
+          "charStart": 113,
+          "charEnd": 205
+        }
+      },
+      "type": "inner_shift",
+      "collapse_axes": [
+        "meaning",
+        "voice"
+      ]
+    },
+    {
+      "id": "tom-really-sees-maya",
+      "label": "Tom sees Maya without biometric overlay",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-37",
+          "charStart": 0,
+          "charEnd": 274
+        },
+        "3": {
+          "nodeId": "3-65",
+          "charStart": 0,
+          "charEnd": 297
+        },
+        "4": {
+          "nodeId": "4-107",
+          "charStart": 0,
+          "charEnd": 299
+        },
+        "5": {
+          "nodeId": "5-19",
+          "charStart": 195,
+          "charEnd": 318
+        }
+      },
+      "type": "voice",
+      "collapse_axes": [
+        "meaning",
+        "voice"
+      ]
+    },
+    {
+      "id": "chip-i-respect-it",
+      "label": "Chip respects Tom's choice over optimal outcome",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-45",
+          "charStart": 0,
+          "charEnd": 15
+        },
+        "3": {
+          "nodeId": "3-71",
+          "charStart": 0,
+          "charEnd": 15
+        },
+        "4": {
+          "nodeId": "4-116",
+          "charStart": 0,
+          "charEnd": 15
+        },
+        "5": {
+          "nodeId": "5-20",
+          "charStart": 264,
+          "charEnd": 387
+        }
+      },
+      "type": "inner_shift",
+      "collapse_axes": [
+        "meaning"
+      ]
+    },
+    {
+      "id": "chip-optimization-not-wisdom",
+      "label": "Chip declares optimization cannot replace judgment",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-47",
+          "charStart": 0,
+          "charEnd": 119
+        },
+        "3": {
+          "nodeId": "3-73",
+          "charStart": 0,
+          "charEnd": 141
+        },
+        "4": {
+          "nodeId": "4-130",
+          "charStart": 0,
+          "charEnd": 119
         },
         "5": {
           "nodeId": "5-23",
           "charStart": 598,
           "charEnd": 715
         }
-      }
+      },
+      "type": "voice",
+      "collapse_axes": [
+        "meaning",
+        "voice"
+      ]
+    },
+    {
+      "id": "closing-pretty-sure-got-it-right",
+      "label": "Narrator settles into earned uncertainty",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-49",
+          "charStart": 0,
+          "charEnd": 40
+        },
+        "3": {
+          "nodeId": "3-75",
+          "charStart": 0,
+          "charEnd": 44
+        },
+        "4": {
+          "nodeId": "4-135",
+          "charStart": 0,
+          "charEnd": 44
+        },
+        "5": {
+          "nodeId": "5-25",
+          "charStart": 0,
+          "charEnd": 44
+        }
+      },
+      "type": "tonal_pivot",
+      "collapse_axes": [
+        "voice",
+        "meaning"
+      ]
     }
-  ],
-  "characters": {
-    "Tom": "narrator, father of Maya, chooses trust over data",
-    "Chip": "Tom's neural AI assistant, superintelligent inner voice",
-    "Maya": "Tom's daughter, age 16, accused of cheating",
-    "Sparkle": "Maya's AI assistant, chosen by her at age eleven",
-    "Derek": "Tom's boss, pitches influencer marketing budget",
-    "Tyler": "student who accused Maya of cheating, outscored by her",
-    "Martinez": "school principal, mid-fifties, uses manual assistant override",
-    "Megs": "Tom's friend, leads AI equity nonprofit in Lagos"
-  }
+  ]
 }

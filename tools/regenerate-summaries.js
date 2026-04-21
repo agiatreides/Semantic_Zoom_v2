@@ -63,14 +63,16 @@ for (let i = 2; i < args.length; i++) {
 console.log(`Reading tree: ${path.relative(projectRoot, treePath)}`)
 const tree = JSON.parse(fs.readFileSync(treePath, 'utf8'))
 const conceptsRaw = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
-// Support both shapes: bare array (old) and {concepts, characters} (new)
+// Support both shapes: bare array (old) and {concepts, characters, ...} (new)
 const concepts = Array.isArray(conceptsRaw) ? conceptsRaw : (conceptsRaw.concepts || [])
 const characters = (!Array.isArray(conceptsRaw) && conceptsRaw.characters) || {}
+const thematicThrust = (!Array.isArray(conceptsRaw) && typeof conceptsRaw.thematic_thrust === 'string') ? conceptsRaw.thematic_thrust : ''
 const Lmax = tree.levelCount - 1
 const totalWords = (tree.levels[String(Lmax)]?.nodes || [])
   .map(n => n.text.split(/\s+/).length).reduce((a, b) => a + b, 0)
 console.log(`Tree: "${tree.title}" with ${tree.levelCount} levels, ${totalWords} words at L${Lmax}`)
 console.log(`Concepts: ${concepts.length}, Characters: ${Object.keys(characters).length}`)
+if (thematicThrust) console.log(`Thematic thrust: "${thematicThrust}"`)
 
 // Build a quick lookup: nodeId → node, per level
 const nodeByLevelId = {}
@@ -208,7 +210,7 @@ for (let L = 0; L < tree.levelCount - 1; L++) {
   await pmap(jobs, CONCURRENCY, async (job) => {
     const { node, childMembers, childWordCount, targetWords, relevantEssentials } = job
     process.stdout.write(`  [start ${node.id}] ${childMembers.length} children, ~${childWordCount}w → ~${targetWords}w, ${relevantEssentials.length} essentials\n`)
-    const newText = await claudeSummarizeAsync(childMembers, targetWords, [], { essentials: relevantEssentials, characters })
+    const newText = await claudeSummarizeAsync(childMembers, targetWords, [], { essentials: relevantEssentials, characters, thematicThrust })
     if (newText) {
       node.text = newText
     } else {

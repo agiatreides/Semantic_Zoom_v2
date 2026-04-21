@@ -41,6 +41,7 @@ export function claudeSummarize(members, targetWords, importantConcepts = [], op
 
   const essentials = (opts && Array.isArray(opts.essentials)) ? opts.essentials : []
   const characters = (opts && opts.characters && typeof opts.characters === 'object') ? opts.characters : {}
+  const thematicThrust = (opts && typeof opts.thematicThrust === 'string') ? opts.thematicThrust.trim() : ''
   const essentialsMode = essentials.length > 0
   let essentialsBlock = ''
   let coverageRule = `- You MUST include content from ALL ${n} passage${n > 1 ? 's' : ''}. Never drop an entire passage.\n- Each passage contributes ~${perPassageWords} words to the output. Allocate proportionally.`
@@ -48,12 +49,36 @@ export function claudeSummarize(members, targetWords, importantConcepts = [], op
   const charNames = Object.keys(characters)
   const charactersBlock = charNames.length > 0 ? `
 
-CHARACTER DICTIONARY (for briefly introducing characters at this compression):
+CAST & GLOSSARY (mandatory — the reader at compressed levels has ZERO prior context):
 ${charNames.map(n => `  ${n} — ${characters[n]}`).join('\n')}
 
-When naming a character in the output, help the reader by briefly pairing the name with their role the first time they appear (e.g. "Tyler, Maya's classmate" or "Chip, Tom's AI assistant"). Inline, conversational — not a parenthetical dump. One or two words of context is enough.
+MANDATORY INTRODUCTION RULE — on FIRST mention of any entry above in the reduced output, you MUST pair the name with a 1-6 word role-tag drawn from (or shortened from) its dictionary entry. Inline, conversational — not a parenthetical dump. Second and later mentions use just the name.
+
+EXAMPLES of correct first-mention introductions (generic, not from this work):
+  ✓ "my daughter, accused of cheating"       (use narrator's relationship when it's tighter)
+  ✓ "the implant, billed monthly,"
+  ✓ "the classmate who accused her"
+  ✗ first mention with no orientation is forbidden.
+
+This applies at EVERY level (L0 most strictly). A reader arriving at any level should be able to follow who / what is doing what without having read a deeper level first.
 
 ` : ''
+
+  const thematicBlock = thematicThrust ? `
+
+THEMATIC THRUST (what this piece is ABOUT — keep the reduction faithful to this):
+  ${thematicThrust}
+
+The thrust is not a line to insert. It's a compass. Your reduction should feel like a tightening of this idea, not a drift away from it.
+
+` : ''
+
+  const sameStoryRule = `
+
+SAME-STORY CONSTRAINT (the irreducible-detail floor):
+Your reduction must be the SAME story/piece as the source, just told with less detail. A reader of the reduction and a reader of the source should both describe the work the same way — same characters doing the same things for the same reasons, same pivotal turn, same ending. If your draft reduction is instead a DESCRIPTION OF the story ("the story shows…", "a man discovers…") rather than the story itself at coarser resolution, it has crossed below the irreducible-detail floor. That's destruction, not compression. Rewrite with more detail.
+
+`
 
   if (essentialsMode) {
     const list = essentials.map(e => `- ${e.label}${e.snippet ? `  (in the source: "${e.snippet.substring(0, 100)}${e.snippet.length > 100 ? '…' : ''}")` : ''}`).join('\n')
@@ -103,7 +128,7 @@ ${coverageRule}
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.
 - Flowing prose. No bullet points, no headers, no meta-commentary.
-${charactersBlock}${essentialsBlock}
+${charactersBlock}${thematicBlock}${essentialsBlock}${sameStoryRule}
 ${essentialsMode ? `Reduce to approximately ${targetWords} words, covering ONLY the events listed above. Same voice. Same story. Just tighter.` : `Reduce ALL ${n} passage${n > 1 ? 's' : ''} below into approximately ${targetWords} words total. Same voice. Same story. Just tighter.`}
 
 ---
@@ -181,6 +206,7 @@ function buildReductionPrompt(members, targetWords, importantConcepts, opts) {
 
   const essentials = (opts && Array.isArray(opts.essentials)) ? opts.essentials : []
   const characters = (opts && opts.characters && typeof opts.characters === 'object') ? opts.characters : {}
+  const thematicThrust = (opts && typeof opts.thematicThrust === 'string') ? opts.thematicThrust.trim() : ''
   const essentialsMode = essentials.length > 0
   let essentialsBlock = ''
   let coverageRule = `- You MUST include content from ALL ${n} passage${n > 1 ? 's' : ''}. Never drop an entire passage.\n- Each passage contributes ~${perPassageWords} words to the output. Allocate proportionally.`
@@ -188,12 +214,36 @@ function buildReductionPrompt(members, targetWords, importantConcepts, opts) {
   const charNames = Object.keys(characters)
   const charactersBlock = charNames.length > 0 ? `
 
-CHARACTER DICTIONARY (for briefly introducing characters at this compression):
+CAST & GLOSSARY (mandatory — the reader at compressed levels has ZERO prior context):
 ${charNames.map(n => `  ${n} — ${characters[n]}`).join('\n')}
 
-When naming a character in the output, help the reader by briefly pairing the name with their role the first time they appear (e.g. "Tyler, Maya's classmate" or "Chip, Tom's AI assistant"). Inline, conversational — not a parenthetical dump. One or two words of context is enough.
+MANDATORY INTRODUCTION RULE — on FIRST mention of any entry above in the reduced output, you MUST pair the name with a 1-6 word role-tag drawn from (or shortened from) its dictionary entry. Inline, conversational — not a parenthetical dump. Second and later mentions use just the name.
+
+EXAMPLES of correct first-mention introductions (generic, not from this work):
+  ✓ "my daughter, accused of cheating"       (use narrator's relationship when it's tighter)
+  ✓ "the implant, billed monthly,"
+  ✓ "the classmate who accused her"
+  ✗ first mention with no orientation is forbidden.
+
+This applies at EVERY level (L0 most strictly). A reader arriving at any level should be able to follow who / what is doing what without having read a deeper level first.
 
 ` : ''
+
+  const thematicBlock = thematicThrust ? `
+
+THEMATIC THRUST (what this piece is ABOUT — keep the reduction faithful to this):
+  ${thematicThrust}
+
+The thrust is not a line to insert. It's a compass. Your reduction should feel like a tightening of this idea, not a drift away from it.
+
+` : ''
+
+  const sameStoryRule = `
+
+SAME-STORY CONSTRAINT (the irreducible-detail floor):
+Your reduction must be the SAME story/piece as the source, just told with less detail. A reader of the reduction and a reader of the source should both describe the work the same way — same characters doing the same things for the same reasons, same pivotal turn, same ending. If your draft reduction is instead a DESCRIPTION OF the story ("the story shows…", "a man discovers…") rather than the story itself at coarser resolution, it has crossed below the irreducible-detail floor. That's destruction, not compression. Rewrite with more detail.
+
+`
 
   if (essentialsMode) {
     const list = essentials.map(e => `- ${e.label}${e.snippet ? `  (in the source: "${e.snippet.substring(0, 100)}${e.snippet.length > 100 ? '…' : ''}")` : ''}`).join('\n')
@@ -243,7 +293,7 @@ ${coverageRule}
 - DO NOT step outside the narrative. Do NOT write "the story shows…" or "the narrator…" or "themes of…" or "the protagonist…". Stay inside the diegesis.
 - Preserve reading order. Events appear in the same sequence as the original.
 - Flowing prose. No bullet points, no headers, no meta-commentary.
-${charactersBlock}${essentialsBlock}
+${charactersBlock}${thematicBlock}${essentialsBlock}${sameStoryRule}
 ${essentialsMode ? `Reduce to approximately ${targetWords} words, covering ONLY the events listed above. Same voice. Same story. Just tighter.` : `Reduce ALL ${n} passage${n > 1 ? 's' : ''} below into approximately ${targetWords} words total. Same voice. Same story. Just tighter.`}
 
 ---
