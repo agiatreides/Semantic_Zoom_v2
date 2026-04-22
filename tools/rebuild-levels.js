@@ -372,6 +372,12 @@ async function processLevel(L) {
     //    each retry needs the prior draft's word count).
     const targetW = targetWordsForLevel(L)
     const hardCap = Math.round(targetW * 1.10)
+    // Floor on adaptive tightening: never tell the model to write below 85%
+    // of original target. Without this, a big overshoot can make the retry
+    // target absurdly low, and the retry lands the level right next to the
+    // one below (collapse). Observed: L4 at 1008w → naive retry target 472w
+    // → actual 485w, collapsing into L3 at 464w.
+    const retryFloor = Math.round(targetW * 0.85)
     const MAX_ATTEMPTS = 3
     let effectiveTarget = targetW
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -380,12 +386,16 @@ async function processLevel(L) {
         `gen:L${L}:a${attempt}`
       )
       if (!draft) { console.warn(`  [L${L}] gen attempt ${attempt} failed`); break }
-      const draftW = draft.split(/\s+/).filter(Boolean).length
-      text = draft
+      // Strip trailing meta-commentary the model sometimes appends despite
+      // the prompt's "no meta-commentary" rule. Common tell: a paragraph
+      // starting with "*N words" (word count announcement).
+      const cleaned = draft.replace(/\n\s*\*?\s*\d+\s*words[\s\S]*$/im, '').trim()
+      const draftW = cleaned.split(/\s+/).filter(Boolean).length
+      text = cleaned
       if (draftW <= hardCap) break
       if (attempt < MAX_ATTEMPTS) {
         const overshoot = draftW / targetW
-        effectiveTarget = Math.max(50, Math.round(targetW / overshoot * 0.95))
+        effectiveTarget = Math.max(retryFloor, Math.round(targetW / overshoot * 0.95))
         console.log(`  [L${L}] attempt ${attempt}: ${draftW}w > cap ${hardCap}w — retry with tightened target ${effectiveTarget}`)
       } else {
         console.log(`  [L${L}] attempt ${attempt}: ${draftW}w > cap ${hardCap}w — MAX ATTEMPTS REACHED, keeping draft`)

@@ -3,146 +3,52 @@
     "genre": "short_story",
     "confidence": 0.92,
     "secondary": "argument",
-    "reasoning": "Structured as satirical fiction with a named protagonist (Arthur), a clear arc of cognitive decline, and alternating narrative documents — but the corporate-dystopia satire carries an implicit argument about commodified consciousness."
+    "reasoning": "Structured as a satirical narrative fiction following Arthur's arc from skeptic to dissolved self, told through alternating journal entries, corporate memos, and push notifications — classic epistolary short story form with an embedded anti-consumerism argument."
   },
-  "thematic_thrust": "A man surrenders his struggling mind to a subscription happiness implant and is erased, journal entry by entry.",
+  "thematic_thrust": "A man surrenders his mind and memory to corporate-mediated pleasure until only the word 'Good' remains.",
   "characters": {
-    "Arthur P. L.": "narrator; voluntary NeuraBless implant recipient, self-described Joy-Pioneer",
-    "Dr. Yuki Tanaka": "philosopher and cognitive researcher; Arthur's warning voice and last monitor",
-    "NeuraBless™": "corporate neural-stimulation company; the antagonist system dissolving Arthur"
+    "Arthur P. L.": "narrator, first-person journal-writer, NeuraBless™ Gold subscriber",
+    "Dr. Yuki Tanaka": "philosopher turned NeuraBless™ convert, Arthur's moral conscience",
+    "NeuraBless™": "corporation whose neural-stimulation implant progressively consumes Arthur",
+    "Joy-Pioneers": "beta-test cohort; Arthur's aspirational identity at story's start"
   },
   "voice_anchors": [
     {
-      "nodeId": "6-2",
-      "snippet": "We aren't just selling a product; we are curating the human soul.",
-      "note": "Corporate euphemism at its most grotesque pitch: grandiose register masks the premise's horror."
+      "nodeId": "6-12",
+      "snippet": "It is a golden hum. It's like there's a sun inside my skull and it's shining on everything I think about.",
+      "note": "First-person bliss in still-intact but already narrowing diction — warmth and richness just before the rot sets in."
     },
     {
-      "nodeId": "6-23",
-      "snippet": "Tanaka was crying. Why cry? Crying is a bug. NeuraBless™ is the fix.",
-      "note": "Arthur's inverted moral logic enacted at the sentence level: the short declaratives perform the simplification the story describes."
+      "nodeId": "6-20",
+      "snippet": "They are bright. They are like fire but they don't burn. They just... they just *wow*.",
+      "note": "Vocabulary collapsing in real time: the ellipsis and monosyllabic surrender mark the exact moment syntax breaks under pleasure."
     },
     {
       "nodeId": "6-48",
-      "snippet": "the truth hurts, but the wire feels great",
-      "note": "Closing tagline crystallizes the story's satirical thesis in a single antithesis."
+      "snippet": "Why speak when you can glow? Why think when you can feel? NeuraBless™: Because the truth hurts, but the wire feels great.",
+      "note": "Corporate voice at maximum crystallization — the rhetorical question doubles as genuine answer, satire and horror fused into a single tagline."
     }
   ],
   "concepts": [
     {
-      "id": "corporate-memo-opens",
-      "label": "Corporate memo announces end of sadness",
-      "min_visible_level": 1,
-      "anchors": {
-        "1": {
-          "nodeId": "1-0",
-          "charStart": 0,
-          "charEnd": 176
-        },
-        "2": {
-          "nodeId": "2-0",
-          "charStart": 0,
-          "charEnd": 180
-        },
-        "3": {
-          "nodeId": "3-1",
-          "charStart": 367,
-          "charEnd": 413
-        },
-        "4": {
-          "nodeId": "4-0",
-          "charStart": 0,
-          "charEnd": 180
-        },
-        "5": {
-          "nodeId": "5-0",
-          "charStart": 0,
-          "charEnd": 180
-        },
-        "6": {
-          "nodeId": "6-0",
-          "charStart": 2,
-          "charEnd": 48
-        }
-      },
-      "type": "voice",
-      "collapse_axes": [
-        "plot",
-        "voice"
-      ]
-    },
-    {
-      "id": "happiness-sold-as-subscription",
-      "label": "Corporation frames happiness as curated portfolio",
+      "id": "arthur-describes-tanaka-mourning",
+      "label": "Tanaka mourns Arthur's implant in silence",
       "min_visible_level": 2,
       "anchors": {
         "2": {
-          "nodeId": "2-2",
+          "nodeId": "2-1",
           "charStart": 0,
-          "charEnd": 350
+          "charEnd": 183
         },
         "3": {
-          "nodeId": "3-2",
-          "charStart": 52,
-          "charEnd": 221
-        },
-        "4": {
-          "nodeId": "4-2",
-          "charStart": 0,
-          "charEnd": 221
-        },
-        "5": {
-          "nodeId": "5-2",
-          "charStart": 0,
-          "charEnd": 221
-        },
-        "6": {
-          "nodeId": "6-2",
-          "charStart": 0,
-          "charEnd": 51
-        }
-      },
-      "type": "voice",
-      "collapse_axes": [
-        "stakes",
-        "meaning",
-        "voice"
-      ]
-    },
-    {
-      "id": "arthur-introduces-implant-tanaka-mourns",
-      "label": "Arthur reveals implant; Tanaka watches with mourning",
-      "min_visible_level": 0,
-      "anchors": {
-        "0": {
-          "nodeId": "0-1",
-          "charStart": 0,
-          "charEnd": 173
-        },
-        "1": {
-          "nodeId": "1-1",
-          "charStart": 159,
-          "charEnd": 236
-        },
-        "2": {
-          "nodeId": "2-5",
-          "charStart": 0,
-          "charEnd": 446
-        },
-        "3": {
-          "nodeId": "3-5",
-          "charStart": 217,
-          "charEnd": 336
-        },
-        "4": {
-          "nodeId": "4-5",
-          "charStart": 216,
-          "charEnd": 335
+          "nodeId": "3-4",
+          "charStart": 92,
+          "charEnd": 204
         },
         "5": {
           "nodeId": "5-5",
-          "charStart": 216,
-          "charEnd": 335
+          "charStart": 113,
+          "charEnd": 227
         },
         "6": {
           "nodeId": "6-5",
@@ -158,26 +64,16 @@
     },
     {
       "id": "tanaka-warns-struggle-is-scaffolding",
-      "label": "Tanaka warns struggle is scaffolding of self",
-      "min_visible_level": 1,
+      "label": "Tanaka declares struggle scaffolds the self",
+      "min_visible_level": 2,
       "anchors": {
-        "1": {
-          "nodeId": "1-2",
-          "charStart": 0,
-          "charEnd": 69
-        },
         "2": {
-          "nodeId": "2-6",
-          "charStart": 0,
-          "charEnd": 69
+          "nodeId": "2-1",
+          "charStart": 55,
+          "charEnd": 183
         },
         "3": {
-          "nodeId": "3-6",
-          "charStart": 0,
-          "charEnd": 69
-        },
-        "4": {
-          "nodeId": "4-6",
+          "nodeId": "3-5",
           "charStart": 0,
           "charEnd": 69
         },
@@ -199,29 +95,29 @@
       ]
     },
     {
-      "id": "arthur-dismisses-warning-anticipates-gold",
-      "label": "Arthur calls struggle itchy; welcomes Gold Tier",
-      "min_visible_level": 2,
+      "id": "arthur-dismisses-chooses-gold",
+      "label": "Arthur calls scaffolding itchy, chooses pleasure",
+      "min_visible_level": 1,
       "anchors": {
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 20,
+          "charEnd": 148
+        },
         "2": {
-          "nodeId": "2-7",
+          "nodeId": "2-2",
           "charStart": 0,
-          "charEnd": 440
+          "charEnd": 230
         },
         "3": {
-          "nodeId": "3-7",
+          "nodeId": "3-6",
           "charStart": 0,
-          "charEnd": 219
-        },
-        "4": {
-          "nodeId": "4-7",
-          "charStart": 0,
-          "charEnd": 501
+          "charEnd": 93
         },
         "5": {
           "nodeId": "5-7",
           "charStart": 0,
-          "charEnd": 501
+          "charEnd": 214
         },
         "6": {
           "nodeId": "6-7",
@@ -229,26 +125,31 @@
           "charEnd": 42
         }
       },
-      "type": "inner_shift",
+      "type": "dialogue",
       "collapse_axes": [
         "plot",
         "meaning"
       ]
     },
     {
-      "id": "gold-tier-activates-smooths-distress",
-      "label": "Push alert activates Gold Tier; monetizes anxiety",
-      "min_visible_level": 3,
+      "id": "push-notification-happiness-mandatory",
+      "label": "System auto-activates Gold tier uninvited",
+      "min_visible_level": 2,
       "anchors": {
-        "3": {
-          "nodeId": "3-9",
+        "2": {
+          "nodeId": "2-3",
           "charStart": 0,
-          "charEnd": 284
+          "charEnd": 129
+        },
+        "3": {
+          "nodeId": "3-8",
+          "charStart": 0,
+          "charEnd": 103
         },
         "4": {
-          "nodeId": "4-9",
+          "nodeId": "4-0",
           "charStart": 0,
-          "charEnd": 284
+          "charEnd": 13
         },
         "5": {
           "nodeId": "5-9",
@@ -257,8 +158,8 @@
         },
         "6": {
           "nodeId": "6-9",
-          "charStart": 175,
-          "charEnd": 283
+          "charStart": 240,
+          "charEnd": 282
         }
       },
       "type": "reveal",
@@ -268,19 +169,51 @@
       ]
     },
     {
-      "id": "shareholder-report-reflective-to-reactive",
-      "label": "Corporate report clinically marks Arthur's phase shift",
+      "id": "logic-feels-like-mud",
+      "label": "Arthur dismisses logic for ecstatic flight",
       "min_visible_level": 3,
       "anchors": {
         "3": {
-          "nodeId": "3-15",
-          "charStart": 145,
-          "charEnd": 240
+          "nodeId": "3-11",
+          "charStart": 73,
+          "charEnd": 145
         },
         "4": {
-          "nodeId": "4-16",
-          "charStart": 145,
-          "charEnd": 240
+          "nodeId": "4-4",
+          "charStart": 68,
+          "charEnd": 128
+        },
+        "5": {
+          "nodeId": "5-13",
+          "charStart": 66,
+          "charEnd": 143
+        },
+        "6": {
+          "nodeId": "6-13",
+          "charStart": 122,
+          "charEnd": 182
+        }
+      },
+      "type": "inner_shift",
+      "collapse_axes": [
+        "meaning",
+        "voice"
+      ]
+    },
+    {
+      "id": "shareholder-report-reflective-to-reactive",
+      "label": "Corporation logs Arthur's phase transition complete",
+      "min_visible_level": 3,
+      "anchors": {
+        "3": {
+          "nodeId": "3-13",
+          "charStart": 0,
+          "charEnd": 187
+        },
+        "4": {
+          "nodeId": "4-7",
+          "charStart": 94,
+          "charEnd": 189
         },
         "5": {
           "nodeId": "5-16",
@@ -300,34 +233,39 @@
       ]
     },
     {
-      "id": "tanaka-arthur-you-arent-eating",
-      "label": "Tanaka confronts Arthur: not eating, only vibrating",
-      "min_visible_level": 2,
+      "id": "tanaka-arthur-not-eating-vibrating",
+      "label": "Tanaka tells Arthur he has stopped eating",
+      "min_visible_level": 1,
       "anchors": {
-        "2": {
-          "nodeId": "2-14",
+        "1": {
+          "nodeId": "1-3",
           "charStart": 0,
-          "charEnd": 94
+          "charEnd": 70
+        },
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 0,
+          "charEnd": 70
         },
         "3": {
-          "nodeId": "3-18",
-          "charStart": 43,
-          "charEnd": 94
+          "nodeId": "3-16",
+          "charStart": 0,
+          "charEnd": 80
         },
         "4": {
-          "nodeId": "4-19",
+          "nodeId": "4-10",
           "charStart": 0,
-          "charEnd": 94
+          "charEnd": 80
         },
         "5": {
           "nodeId": "5-19",
           "charStart": 0,
-          "charEnd": 94
+          "charEnd": 80
         },
         "6": {
           "nodeId": "6-19",
-          "charStart": 43,
-          "charEnd": 94
+          "charStart": 44,
+          "charEnd": 93
         }
       },
       "type": "dialogue",
@@ -337,14 +275,24 @@
       ]
     },
     {
-      "id": "arthur-describes-wire-colors",
-      "label": "Arthur describes wire-colors he cannot name",
-      "min_visible_level": 4,
+      "id": "language-collapses-to-wow",
+      "label": "Arthur's prose degrades mid-sentence to 'wow'",
+      "min_visible_level": 2,
       "anchors": {
-        "4": {
-          "nodeId": "4-20",
+        "2": {
+          "nodeId": "2-8",
           "charStart": 0,
-          "charEnd": 201
+          "charEnd": 83
+        },
+        "3": {
+          "nodeId": "3-17",
+          "charStart": 0,
+          "charEnd": 83
+        },
+        "4": {
+          "nodeId": "4-11",
+          "charStart": 112,
+          "charEnd": 141
         },
         "5": {
           "nodeId": "5-20",
@@ -359,28 +307,39 @@
       },
       "type": "voice",
       "collapse_axes": [
-        "voice"
+        "voice",
+        "meaning"
       ]
     },
     {
-      "id": "mother-memory-converted-to-sugar",
-      "label": "Implant hijacks mother-memory; grief becomes sweetness",
-      "min_visible_level": 3,
+      "id": "mother-memory-erased",
+      "label": "NeuraBless converts mother's memory to sugar-thought",
+      "min_visible_level": 1,
       "anchors": {
+        "1": {
+          "nodeId": "1-4",
+          "charStart": 0,
+          "charEnd": 192
+        },
+        "2": {
+          "nodeId": "2-9",
+          "charStart": 0,
+          "charEnd": 223
+        },
         "3": {
-          "nodeId": "3-20",
-          "charStart": 178,
-          "charEnd": 298
+          "nodeId": "3-18",
+          "charStart": 0,
+          "charEnd": 258
         },
         "4": {
-          "nodeId": "4-21",
-          "charStart": 118,
-          "charEnd": 321
+          "nodeId": "4-12",
+          "charStart": 194,
+          "charEnd": 295
         },
         "5": {
           "nodeId": "5-21",
           "charStart": 0,
-          "charEnd": 321
+          "charEnd": 298
         },
         "6": {
           "nodeId": "6-21",
@@ -390,37 +349,33 @@
       },
       "type": "reveal",
       "collapse_axes": [
+        "plot",
         "stakes",
         "meaning"
       ]
     },
     {
       "id": "crying-is-a-bug",
-      "label": "Arthur declares Tanaka's grief a software bug",
-      "min_visible_level": 1,
+      "label": "Arthur reframes Tanaka's grief as product malfunction",
+      "min_visible_level": 2,
       "anchors": {
-        "1": {
-          "nodeId": "1-6",
+        "2": {
+          "nodeId": "2-10",
           "charStart": 0,
           "charEnd": 68
         },
-        "2": {
-          "nodeId": "2-16",
-          "charStart": 28,
-          "charEnd": 68
-        },
         "3": {
-          "nodeId": "3-21",
-          "charStart": 28,
+          "nodeId": "3-19",
+          "charStart": 0,
           "charEnd": 68
         },
         "4": {
-          "nodeId": "4-23",
-          "charStart": 28,
+          "nodeId": "4-13",
+          "charStart": 0,
           "charEnd": 68
         },
         "5": {
-          "nodeId": "5-23",
+          "nodeId": "5-22",
           "charStart": 0,
           "charEnd": 68
         },
@@ -437,32 +392,63 @@
       ]
     },
     {
-      "id": "arthur-barely-recognizes-tanaka",
-      "label": "Arthur refers to Tanaka only as 'the Tanaka lady'",
-      "min_visible_level": 1,
+      "id": "ad-supported-bliss-transition",
+      "label": "Billing converts depleted Arthur to ad-supported tier",
+      "min_visible_level": 4,
       "anchors": {
-        "1": {
-          "nodeId": "1-7",
-          "charStart": 31,
-          "charEnd": 62
-        },
-        "2": {
-          "nodeId": "2-19",
-          "charStart": 0,
-          "charEnd": 59
-        },
-        "3": {
-          "nodeId": "3-24",
-          "charStart": 0,
-          "charEnd": 31
-        },
         "4": {
-          "nodeId": "4-28",
+          "nodeId": "4-15",
           "charStart": 0,
-          "charEnd": 59
+          "charEnd": 354
         },
         "5": {
-          "nodeId": "5-28",
+          "nodeId": "5-24",
+          "charStart": 0,
+          "charEnd": 345
+        },
+        "6": {
+          "nodeId": "6-25",
+          "charStart": 53,
+          "charEnd": 198
+        }
+      },
+      "type": "action",
+      "collapse_axes": [
+        "plot"
+      ]
+    },
+    {
+      "id": "tanaka-lady-come-back",
+      "label": "Tanaka begs Arthur to return; he cannot",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-2",
+          "charStart": 55,
+          "charEnd": 113
+        },
+        "1": {
+          "nodeId": "1-5",
+          "charStart": 0,
+          "charEnd": 42
+        },
+        "2": {
+          "nodeId": "2-12",
+          "charStart": 0,
+          "charEnd": 84
+        },
+        "3": {
+          "nodeId": "3-22",
+          "charStart": 0,
+          "charEnd": 59
+        },
+        "4": {
+          "nodeId": "4-18",
+          "charStart": 0,
+          "charEnd": 49
+        },
+        "5": {
+          "nodeId": "5-27",
           "charStart": 0,
           "charEnd": 59
         },
@@ -472,170 +458,124 @@
           "charEnd": 59
         }
       },
-      "type": "voice",
+      "type": "dialogue",
       "collapse_axes": [
         "plot",
         "voice"
       ]
     },
     {
-      "id": "arthur-in-the-hum",
-      "label": "Arthur reports self dissolved into the hum",
-      "min_visible_level": 4,
+      "id": "neurabless-math",
+      "label": "Arthur adopts the corporation's logic as his own",
+      "min_visible_level": 3,
       "anchors": {
-        "4": {
-          "nodeId": "4-29",
-          "charStart": 0,
-          "charEnd": 43
-        },
-        "5": {
-          "nodeId": "5-29",
-          "charStart": 0,
-          "charEnd": 43
-        },
-        "6": {
-          "nodeId": "6-29",
-          "charStart": 0,
-          "charEnd": 43
-        }
-      },
-      "type": "inner_shift",
-      "collapse_axes": [
-        "voice",
-        "meaning"
-      ]
-    },
-    {
-      "id": "word-consequence-suppressed",
-      "label": "Wire zaps Arthur for attempting 'consequence'",
-      "min_visible_level": 4,
-      "anchors": {
-        "4": {
-          "nodeId": "4-31",
-          "charStart": 0,
-          "charEnd": 171
-        },
-        "5": {
-          "nodeId": "5-31",
-          "charStart": 0,
-          "charEnd": 171
-        },
-        "6": {
-          "nodeId": "6-31",
-          "charStart": 33,
-          "charEnd": 96
-        }
-      },
-      "type": "reveal",
-      "collapse_axes": [
-        "plot",
-        "stakes",
-        "meaning"
-      ]
-    },
-    {
-      "id": "tanaka-tells-arthur-losing-self",
-      "label": "Tanaka says Arthur is losing self; Arthur sees only smile",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-22",
-          "charStart": 0,
-          "charEnd": 177
-        },
         "3": {
-          "nodeId": "3-29",
-          "charStart": 0,
-          "charEnd": 92
+          "nodeId": "3-23",
+          "charStart": 154,
+          "charEnd": 238
         },
         "4": {
-          "nodeId": "4-34",
-          "charStart": 0,
-          "charEnd": 177
+          "nodeId": "4-21",
+          "charStart": 125,
+          "charEnd": 164
         },
         "5": {
-          "nodeId": "5-34",
-          "charStart": 0,
+          "nodeId": "5-33",
+          "charStart": 93,
           "charEnd": 177
         },
         "6": {
           "nodeId": "6-34",
-          "charStart": 0,
-          "charEnd": 92
+          "charStart": 93,
+          "charEnd": 177
         }
       },
-      "type": "dialogue",
+      "type": "inner_shift",
       "collapse_axes": [
-        "plot",
         "meaning"
       ]
     },
     {
-      "id": "speech-centers-deactivated",
-      "label": "System log confirms narrative anchor discarded",
-      "min_visible_level": 3,
+      "id": "system-log-narrative-anchor-discarded",
+      "label": "System log confirms Arthur's self extinguished",
+      "min_visible_level": 0,
       "anchors": {
+        "0": {
+          "nodeId": "0-3",
+          "charStart": 0,
+          "charEnd": 43
+        },
+        "1": {
+          "nodeId": "1-7",
+          "charStart": 0,
+          "charEnd": 53
+        },
+        "2": {
+          "nodeId": "2-15",
+          "charStart": 0,
+          "charEnd": 85
+        },
         "3": {
-          "nodeId": "3-33",
-          "charStart": 219,
-          "charEnd": 311
+          "nodeId": "3-27",
+          "charStart": 0,
+          "charEnd": 97
         },
         "4": {
-          "nodeId": "4-38",
-          "charStart": 219,
-          "charEnd": 312
+          "nodeId": "4-25",
+          "charStart": 278,
+          "charEnd": 305
         },
         "5": {
-          "nodeId": "5-38",
-          "charStart": 0,
-          "charEnd": 312
+          "nodeId": "5-37",
+          "charStart": 284,
+          "charEnd": 311
         },
         "6": {
           "nodeId": "6-38",
-          "charStart": 219,
+          "charStart": 284,
           "charEnd": 311
         }
       },
       "type": "reveal",
       "collapse_axes": [
         "plot",
-        "stakes"
+        "meaning"
       ]
     },
     {
-      "id": "journal-collapses-to-good",
-      "label": "Journal degenerates to single repeated word",
+      "id": "final-journal-only-good",
+      "label": "Arthur's last entry: only 'Good'",
       "min_visible_level": 0,
       "anchors": {
         "0": {
-          "nodeId": "0-5",
+          "nodeId": "0-4",
           "charStart": 0,
-          "charEnd": 22
+          "charEnd": 5
         },
         "1": {
-          "nodeId": "1-12",
+          "nodeId": "1-10",
           "charStart": 0,
-          "charEnd": 29
+          "charEnd": 5
         },
         "2": {
-          "nodeId": "2-27",
+          "nodeId": "2-14",
           "charStart": 0,
           "charEnd": 5
         },
         "3": {
-          "nodeId": "3-37",
+          "nodeId": "3-30",
           "charStart": 0,
-          "charEnd": 10
+          "charEnd": 5
         },
         "4": {
-          "nodeId": "4-42",
+          "nodeId": "4-28",
           "charStart": 0,
-          "charEnd": 10
+          "charEnd": 5
         },
         "5": {
-          "nodeId": "5-42",
+          "nodeId": "5-40",
           "charStart": 0,
-          "charEnd": 10
+          "charEnd": 5
         },
         "6": {
           "nodeId": "6-41",
@@ -643,81 +583,40 @@
           "charEnd": 5
         }
       },
-      "type": "tonal_pivot",
+      "type": "voice",
       "collapse_axes": [
-        "meaning",
-        "voice"
+        "plot",
+        "voice",
+        "meaning"
       ]
     },
     {
-      "id": "press-release-500-million",
-      "label": "Press release celebrates 500 million erased subscribers",
-      "min_visible_level": 0,
+      "id": "tanaka-converted-500m-tagline",
+      "label": "Press release announces Tanaka converted, 500 million lost",
+      "min_visible_level": 1,
       "anchors": {
-        "0": {
-          "nodeId": "0-9",
-          "charStart": 0,
-          "charEnd": 91
-        },
         "1": {
           "nodeId": "1-11",
           "charStart": 0,
-          "charEnd": 91
+          "charEnd": 202
         },
         "2": {
-          "nodeId": "2-32",
+          "nodeId": "2-18",
           "charStart": 0,
-          "charEnd": 278
+          "charEnd": 239
         },
         "3": {
-          "nodeId": "3-41",
+          "nodeId": "3-35",
           "charStart": 0,
-          "charEnd": 278
+          "charEnd": 176
         },
         "4": {
-          "nodeId": "4-46",
-          "charStart": 0,
-          "charEnd": 278
-        },
-        "5": {
-          "nodeId": "5-46",
-          "charStart": 0,
-          "charEnd": 278
-        },
-        "6": {
-          "nodeId": "6-46",
-          "charStart": 47,
-          "charEnd": 113
-        }
-      },
-      "type": "reveal",
-      "collapse_axes": [
-        "plot",
-        "stakes"
-      ]
-    },
-    {
-      "id": "tanaka-converted-to-exclamations",
-      "label": "Tanaka herself reduced to exclamation marks",
-      "min_visible_level": 2,
-      "anchors": {
-        "2": {
-          "nodeId": "2-33",
-          "charStart": 0,
-          "charEnd": 116
-        },
-        "3": {
-          "nodeId": "3-42",
-          "charStart": 0,
-          "charEnd": 116
-        },
-        "4": {
-          "nodeId": "4-47",
+          "nodeId": "4-34",
           "charStart": 0,
           "charEnd": 116
         },
         "5": {
-          "nodeId": "5-47",
+          "nodeId": "5-46",
           "charStart": 0,
           "charEnd": 116
         },
@@ -732,48 +631,6 @@
         "plot",
         "stakes",
         "meaning"
-      ]
-    },
-    {
-      "id": "final-tagline-truth-hurts-wire-feels",
-      "label": "Tagline closes: truth hurts, wire feels great",
-      "min_visible_level": 1,
-      "anchors": {
-        "1": {
-          "nodeId": "1-11",
-          "charStart": 321,
-          "charEnd": 384
-        },
-        "2": {
-          "nodeId": "2-34",
-          "charStart": 160,
-          "charEnd": 223
-        },
-        "3": {
-          "nodeId": "3-43",
-          "charStart": 160,
-          "charEnd": 223
-        },
-        "4": {
-          "nodeId": "4-48",
-          "charStart": 160,
-          "charEnd": 223
-        },
-        "5": {
-          "nodeId": "5-48",
-          "charStart": 160,
-          "charEnd": 223
-        },
-        "6": {
-          "nodeId": "6-48",
-          "charStart": 181,
-          "charEnd": 222
-        }
-      },
-      "type": "voice",
-      "collapse_axes": [
-        "meaning",
-        "voice"
       ]
     }
   ]
