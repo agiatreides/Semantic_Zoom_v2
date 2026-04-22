@@ -66,11 +66,18 @@ async function pmap(items, concurrency, fn) {
   return results
 }
 
+// Sonnet is the pipeline default here too: enough judgment for concept
+// identification + anchor placement, ~5× faster wall time vs Opus default.
+// --effort medium keeps extended thinking bounded. See rebuild-levels.js
+// header comment for the full rationale.
+const MODEL = process.env.MODEL || 'sonnet'
+const CLAUDE_CLI_ARGS = ['-p', '--output-format', 'text', '--exclude-dynamic-system-prompt-sections', '--effort', process.env.EFFORT || 'medium', '--model', MODEL]
+
 // Async Claude call via spawn — for parallel batching.
 function callClaudeAsync(prompt, label) {
   return new Promise((resolve) => {
     const t0 = Date.now()
-    const proc = spawn('claude', ['-p', '--output-format', 'text'], { stdio: ['pipe', 'pipe', 'pipe'] })
+    const proc = spawn('claude', CLAUDE_CLI_ARGS, { stdio: ['pipe', 'pipe', 'pipe'] })
     let stdout = '', stderr = ''
     proc.stdout.on('data', d => { stdout += d.toString() })
     proc.stderr.on('data', d => { stderr += d.toString() })
@@ -124,7 +131,7 @@ if (!outputPath) {
 function callClaude(prompt, label) {
   const t0 = Date.now()
   try {
-    const result = execSync('claude -p --output-format text', {
+    const result = execSync(`claude ${CLAUDE_CLI_ARGS.map(a => `'${a}'`).join(' ')}`, {
       input: prompt,
       encoding: 'utf8',
       maxBuffer: 8 * 1024 * 1024,

@@ -140,8 +140,11 @@ ${numberedPassages}
 ${essentialsMode ? `Reduced version (~${targetWords} words, covering ONLY the listed events, in the original voice):` : `Reduced version (~${targetWords} words, covering all ${n} passage${n > 1 ? 's' : ''}, in the original voice):`}`
 
   try {
+    // Sonnet default, --effort medium — see rebuild-levels.js for rationale.
+    const _model = process.env.MODEL || 'sonnet'
+    const _effort = process.env.EFFORT || 'medium'
     const result = execSync(
-      'claude -p --output-format text',
+      `claude -p --output-format text --exclude-dynamic-system-prompt-sections --effort '${_effort}' --model '${_model}'`,
       { input: prompt, encoding: 'utf8', maxBuffer: 2 * 1024 * 1024, timeout: 240000 }
     ).trim()
     return result || null
@@ -167,7 +170,9 @@ export function claudeSummarizeAsync(members, targetWords, importantConcepts = [
   const prompt = buildReductionPrompt(members, targetWords, importantConcepts, opts)
   return new Promise((resolve) => {
     const t0 = Date.now()
-    const proc = spawn('claude', ['-p', '--output-format', 'text'], {
+    const _model = process.env.MODEL || 'sonnet'
+    const _effort = process.env.EFFORT || 'medium'
+    const proc = spawn('claude', ['-p', '--output-format', 'text', '--exclude-dynamic-system-prompt-sections', '--effort', _effort, '--model', _model], {
       stdio: ['pipe', 'pipe', 'pipe'],
     })
     let stdout = '', stderr = ''

@@ -52,7 +52,11 @@ Return ONLY a JSON array of scores in order, e.g. [8, 3, 7, 5, ...].
 No commentary.`
 
   try {
-    const result = execSync('claude -p --output-format text',
+    // Same flags as rebuild-levels.js / extract-concepts.js — sonnet default,
+    // --effort medium keeps importance-scoring fast (it's a lightweight rank).
+    const _model = process.env.MODEL || 'sonnet'
+    const _effort = process.env.EFFORT || 'medium'
+    const result = execSync(`claude -p --output-format text --exclude-dynamic-system-prompt-sections --effort '${_effort}' --model '${_model}'`,
       { input: prompt, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024, timeout: 120000 }).trim()
     return JSON.parse(result)
   } catch (e) {
