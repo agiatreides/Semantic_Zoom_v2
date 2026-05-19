@@ -8,9 +8,10 @@
 
 The user wants to drop in a research paper, a book chapter, a short
 story, an essay, a long-form article, or any other piece of running
-prose. Run a pipeline. Open the renderer. Hover over a word. Scroll.
-The cursor stays anchored to that idea as the text gets coarser or
-finer underneath. No hand-curation of concepts. No artisanal tree
+prose. Run a pipeline. Open the renderer. Hover over a word. Left-click
+zooms in, right-click zooms out, and the wheel scrolls the current level
+normally. The cursor stays anchored to that idea as the text gets coarser
+or finer underneath. No hand-curation of concepts. No artisanal tree
 authoring. ~6 zoom levels is the target (10 is overkill).
 
 Anything in this project that requires a human to author per-document
@@ -20,10 +21,11 @@ sidecar) have been deleted. The pipeline is the source of truth.
 
 ## What this project is
 
-Canvas-based semantic-zoom reader. The user scrolls the wheel to zoom; the
-text is replaced with a coarser/finer rendition. The intent is that the
-**concept under the cursor** stays under the cursor across zoom levels.
-That invariant is the entire product.
+Canvas-based semantic-zoom reader. The user left-clicks to zoom in and
+right-clicks to zoom out; the text is replaced with a coarser/finer
+rendition. The wheel pans the current level like normal document scrolling.
+The intent is that the **concept under the cursor** stays under the cursor
+across zoom levels. That invariant is the entire product.
 
 Stack: vite, vanilla JS, canvas 2D context. Data is pre-baked as JSON.
 The pipeline (three steps; the second pass is what gives L0 a real thesis):
@@ -47,7 +49,7 @@ Both tools must be runnable on any prose input with no manual editing.
 
 Sources of truth:
 
-- `src/main.js` — boot, input, zoom logic, hit-testing. The wheel handler
+- `src/main.js` — boot, input, zoom logic, hit-testing. `zoomAtCursor`
   is the place where zoom anchoring happens.
 - `src/renderer.js` — canvas drawing.
 - `src/text-layout.js` — line wrapping / measurement.
@@ -89,21 +91,21 @@ Sources of truth:
    - `treeData.levels[L].nodes[i].phrases[j].matchIn / matchOut` —
      per-phrase forward/backward index chains. Useful as a fallback /
      building block, but DOES NOT preserve concept identity reliably.
-   The current wheel handler uses the phrase chain. The drift bug is
-   most likely there.
+   The current zoom handler uses the phrase chain. Drift bugs are most
+   likely there.
 
 4. **Use the `window._sz` debug API for headless testing.** It exposes
    `concepts`, `currentLevel`, `findConceptAtCursor`,
    `getConceptPosition`, `findPhraseAtCursor`, `levelOffsets`,
-   `defaultOffset`. This is in `src/main.js` lines 568-584 — preserve it
-   when refactoring; the verification loop depends on it.
+   `defaultOffset`, and the zoom/scroll test hooks. Preserve it when
+   refactoring; the verification loop depends on it.
 
-5. **Single corpus today.** `the-voting-problem-auto.json` (6 levels,
-   pipeline output) plus its `*-concepts.json` sidecar. Adding a new
-   document = drop the `.txt` next to it, run `generate-tree.js`, run
-   `extract-concepts.js`, add an option to `index.html`. Never patch
-   data files by hand; if a concepts file is stale (anchors out of
-   range), regenerate it.
+5. **Demo corpora today.** The checked-in options are
+   `the-voting-problem-auto.json`, `architecture-of-the-grin-auto.json`,
+   and `the-bitter-lesson-auto.json`, each with a `*-concepts.json`
+   sidecar. Adding a new document = drop the `.txt` next to it, run the
+   pipeline, add an option to `index.html`. Never patch data files by hand;
+   if a concepts file is stale (anchors out of range), regenerate it.
 
 ## When debugging
 

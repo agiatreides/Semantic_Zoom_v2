@@ -7,7 +7,6 @@ const COLUMN_WIDTH = 640
 const NODE_GAP = 24
 let MAX_LEVEL = 9
 const TRANSITION_SPEED = 0.12
-const SCROLL_THRESHOLD = 80
 
 let treeData = null
 let concepts = []
@@ -21,7 +20,6 @@ let levelOffsets = {}
 
 let offsetsLocked = false
 let lockTimer = 0
-let scrollAccum = 0
 
 // Scrollbar state (right-gutter, canvas-drawn)
 const SB_WIDTH = 10
@@ -35,7 +33,7 @@ let sbDragStartOffsetY = 0
 let hoveredConcept = null
 let hoveredWord = null
 let phrasesAtLevel = {}
-let trackedConcept = null    // locked during a continuous wheel-zoom session; cleared on mousemove
+let trackedConcept = null    // locked during a continuous click-zoom session; cleared on mousemove/scroll
 let trackedWord = null       // the exact word the user is hovering; preferred landing target at every zoom level
                              // (e.g. 'not' — if it literally exists in the target anchor's text, land there)
 
@@ -441,7 +439,7 @@ function getConceptCenterPosition(concept, level) {
 
 // If `word` (or a stem-equivalent) appears inside the concept's anchor
 // text at `level`, return the screen-content-space position of that
-// occurrence. Otherwise null. The wheel handler prefers this over the
+// occurrence. Otherwise null. The zoom handler prefers this over the
 // anchor midpoint when the user's hovered word survives across levels.
 //
 // Matching tiers, in order:
@@ -652,16 +650,146 @@ function isInTextArea(x, y) {
 }
 function isFrozen() { return mouseDown || sbDragging || !cursorInTextArea }
 
+function updateHoverAtCursor() {
+  const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+  hoveredWord = cursorInTextArea ? hitTestWord(currentLevel, off) : null
+  hoveredConcept = cursorInTextArea ? findConceptAtCursor(currentLevel, off) : null
+}
+
+function zoomAtCursor(direction) {
+  if (!cursorInTextArea || sbDragging) return false
+  if (Math.abs(displayLevel - currentLevel) > 0.5) return false
+
+  const prevLevel = currentLevel
+  if (direction > 0 && currentLevel < MAX_LEVEL) currentLevel++
+  else if (direction < 0 && currentLevel > 0) currentLevel--
+  else return false
+
+  const zoomingIn = currentLevel > prevLevel
+  spawnZoomIndicator(zoomingIn ? 1 : -1)
+
+  // Two cooperating mechanisms:
+  //   Concept track — stable identity across a continuous zoom session.
+  //   Phrase chain  — per-phrase matchIn/matchOut from embedding similarity,
+  //                   used to (a) pick among multiple word occurrences
+  //                   inside the concept's anchor and (b) place the cursor
+  //                   when the tracked concept has no anchor at the new
+  //                   level (e.g. above its min_visible_level).
+  const oldOff = levelOffsets[prevLevel] ?? defaultOffset(prevLevel)
+  const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
+  const srcContentY = mouseY - oldOff.y
+  const srcContentX = mouseX - baseLeftX - oldOff.x
+  let placed = false
+
+  // Phrase-chain projection: follow matchIn/matchOut one step to the new
+  // level. Used both as a disambiguation hint and as a fallback placement.
+  const srcPhrase = findPhraseAtCursor(prevLevel, srcContentY, srcContentX)
+  const targetIdx = zoomingIn ? srcPhrase?.matchIn : srcPhrase?.matchOut
+  const projected = (targetIdx != null && targetIdx >= 0)
+    ? phrasesAtLevel[currentLevel]?.[targetIdx] ?? null
+    : null
+
+  if (!trackedConcept) {
+    trackedConcept = findConceptAtCursor(prevLevel, oldOff)
+    const hit = hitTestWord(prevLevel, oldOff)
+    trackedWord = hit?.word ?? null
+  }
+
+  let targetConcept = trackedConcept
+  // If the tracked concept has no anchor at the new level, use the
+  // phrase-chain projection to place the cursor. Only re-acquire identity
+  // when the concept is intentionally invisible at that level; if the data
+  // is missing an anchor for a concept that should be visible, keep the
+  // lock so it can snap back when the anchor reappears on the next level.
+  if (targetConcept && !targetConcept.anchors[String(currentLevel)]) {
+    if (projected) {
+      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
+      placed = true
+    }
+    const intentionallyHidden = currentLevel < (targetConcept.min_visible_level ?? 0)
+    if (intentionallyHidden) {
+      const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+      const reacquired = findConceptAtCursor(currentLevel, provisionalOff)
+      if (reacquired) {
+        trackedConcept = reacquired
+        targetConcept = reacquired
+      } else {
+        targetConcept = null
+      }
+    } else {
+      targetConcept = null
+    }
+  }
+
+  if (targetConcept && targetConcept.anchors[String(currentLevel)]) {
+    // Disambiguate within-anchor using the phrase-chain projection. When
+    // the anchor contains multiple occurrences of the tracked word (e.g.
+    // anchor mentions "Maya" four times), pick the occurrence nearest the
+    // phrase projection, not just the first one.
+    const anchor = targetConcept.anchors[String(currentLevel)]
+    let hintChar = null
+    if (projected && projected.nodeId === anchor.nodeId) {
+      hintChar = Math.floor((projected.charStart + projected.charEnd) / 2)
+    }
+    const wordPos = trackedWord
+      ? getConceptWordPosition(targetConcept, currentLevel, trackedWord, hintChar)
+      : null
+    const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
+    if (pos) {
+      levelOffsets[currentLevel] = clampOffset(currentLevel, {
+        x: mouseX - baseLeftX - pos.contentX,
+        y: mouseY - pos.contentY
+      })
+      placed = true
+    }
+  }
+
+  // Last resort: pure phrase-chain placement (cursor wasn't on any
+  // trackable concept AND the fallback above didn't fire).
+  if (!placed && projected) {
+    levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
+  }
+
+  offsetsLocked = true
+  lockTimer = 0
+  return true
+}
+
+function scrollCurrentLevel(deltaY, deltaX = 0) {
+  if (sbDragging || Math.abs(displayLevel - currentLevel) > 0.01) return false
+  const contentH = levelHeights[currentLevel] || 0
+  if (contentH <= renderer.height && Math.abs(deltaX) < 1) return false
+
+  const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+  levelOffsets[currentLevel] = clampOffset(currentLevel, {
+    x: off.x - deltaX,
+    y: off.y - deltaY
+  })
+  trackedConcept = null
+  trackedWord = null
+  offsetsLocked = false
+  lockTimer = 0
+  updateHoverAtCursor()
+  return true
+}
+
+function syncPointer(e) {
+  mouseX = e.clientX
+  mouseY = e.clientY
+  cursorInTextArea = isInTextArea(mouseX, mouseY)
+}
+
 canvas.addEventListener('mousedown', (e) => {
-  const x = e.clientX, y = e.clientY
-  if (isOnScrollbarThumb(x, y, currentLevel)) {
+  syncPointer(e)
+  const x = mouseX, y = mouseY
+  if (e.button === 0 && isOnScrollbarThumb(x, y, currentLevel)) {
     sbDragging = true
     sbDragStartY = y
     sbDragStartOffsetY = (levelOffsets[currentLevel] ?? defaultOffset(currentLevel)).y
     e.preventDefault()
     return
   }
-  if (isOnScrollbarTrack(x, y, currentLevel)) {
+  if (e.button === 0 && isOnScrollbarTrack(x, y, currentLevel)) {
     // Page jump toward click point
     const g = getScrollbarGeom(currentLevel)
     const dir = y < g.thumbY ? -1 : 1
@@ -671,120 +799,34 @@ canvas.addEventListener('mousedown', (e) => {
     e.preventDefault()
     return
   }
-  mouseDown = true
+  if (e.button === 0) mouseDown = true
+  else if (e.button === 2) e.preventDefault()
 })
 canvas.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
 window.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
 
+canvas.addEventListener('click', (e) => {
+  if (e.button !== 0) return
+  syncPointer(e)
+  if (zoomAtCursor(1)) e.preventDefault()
+})
+
+canvas.addEventListener('contextmenu', (e) => {
+  syncPointer(e)
+  if (cursorInTextArea) zoomAtCursor(-1)
+  e.preventDefault()
+})
+
 canvas.addEventListener('wheel', (e) => {
   e.preventDefault()
-  if (isFrozen()) return
-  if (Math.abs(displayLevel - currentLevel) > 0.5) return
-
-  scrollAccum += e.deltaY
-  if (Math.abs(scrollAccum) < SCROLL_THRESHOLD) return
-  const direction = scrollAccum > 0 ? 1 : -1
-  scrollAccum = 0
-
-  const prevLevel = currentLevel
-  if (direction > 0 && currentLevel < MAX_LEVEL) currentLevel++
-  else if (direction < 0 && currentLevel > 0) currentLevel--
-
-  if (currentLevel !== prevLevel) {
-    const zoomingIn = currentLevel > prevLevel
-    spawnZoomIndicator(zoomingIn ? 1 : -1)
-
-    // Two cooperating mechanisms:
-    //   Concept track — stable identity across a continuous zoom session.
-    //   Phrase chain  — per-phrase matchIn/matchOut from embedding similarity,
-    //                   used to (a) pick among multiple word occurrences
-    //                   inside the concept's anchor and (b) place the cursor
-    //                   when the tracked concept has no anchor at the new
-    //                   level (e.g. above its min_visible_level).
-    const oldOff = levelOffsets[prevLevel] ?? defaultOffset(prevLevel)
-    const baseLeftX = (renderer.width - COLUMN_WIDTH) / 2
-    const srcContentY = mouseY - oldOff.y
-    const srcContentX = mouseX - baseLeftX - oldOff.x
-    let placed = false
-
-    // Phrase-chain projection: follow matchIn/matchOut one step to the new
-    // level. Used both as a disambiguation hint and as a fallback placement.
-    const srcPhrase = findPhraseAtCursor(prevLevel, srcContentY, srcContentX)
-    const targetIdx = zoomingIn ? srcPhrase?.matchIn : srcPhrase?.matchOut
-    const projected = (targetIdx != null && targetIdx >= 0)
-      ? phrasesAtLevel[currentLevel]?.[targetIdx] ?? null
-      : null
-
-    if (!trackedConcept) {
-      trackedConcept = findConceptAtCursor(prevLevel, oldOff)
-      const hit = hitTestWord(prevLevel, oldOff)
-      trackedWord = hit?.word ?? null
-    }
-
-    let targetConcept = trackedConcept
-    // If the tracked concept has no anchor at the new level, use the
-    // phrase-chain projection to place the cursor. Only re-acquire identity
-    // when the concept is intentionally invisible at that level; if the data
-    // is missing an anchor for a concept that should be visible, keep the
-    // lock so it can snap back when the anchor reappears on the next level.
-    if (targetConcept && !targetConcept.anchors[String(currentLevel)]) {
-      if (projected) {
-        levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
-        placed = true
-      }
-      const intentionallyHidden = currentLevel < (targetConcept.min_visible_level ?? 0)
-      if (intentionallyHidden) {
-        const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
-        const reacquired = findConceptAtCursor(currentLevel, provisionalOff)
-        if (reacquired) {
-          trackedConcept = reacquired
-          targetConcept = reacquired
-        } else {
-          targetConcept = null
-        }
-      } else {
-        targetConcept = null
-      }
-    }
-
-    if (targetConcept && targetConcept.anchors[String(currentLevel)]) {
-      // Disambiguate within-anchor using the phrase-chain projection. When
-      // the anchor contains multiple occurrences of the tracked word (e.g.
-      // anchor mentions "Maya" four times), pick the occurrence nearest the
-      // phrase projection, not just the first one.
-      const anchor = targetConcept.anchors[String(currentLevel)]
-      let hintChar = null
-      if (projected && projected.nodeId === anchor.nodeId) {
-        hintChar = Math.floor((projected.charStart + projected.charEnd) / 2)
-      }
-      const wordPos = trackedWord
-        ? getConceptWordPosition(targetConcept, currentLevel, trackedWord, hintChar)
-        : null
-      const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
-      if (pos) {
-        levelOffsets[currentLevel] = clampOffset(currentLevel, {
-          x: mouseX - baseLeftX - pos.contentX,
-          y: mouseY - pos.contentY
-        })
-        placed = true
-      }
-    }
-
-    // Last resort: pure phrase-chain placement (cursor wasn't on any
-    // trackable concept AND the fallback above didn't fire).
-    if (!placed && projected) {
-      levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
-    }
-
-    offsetsLocked = true
-    lockTimer = 0
-  }
+  syncPointer(e)
+  scrollCurrentLevel(e.deltaY, e.deltaX)
 }, { passive: false })
 
 function onMouseMove(e) {
   const movedX = e.clientX, movedY = e.clientY
   // Real cursor motion (>2px) ends the current zoom-tracking session so the
-  // next wheel re-acquires whatever concept is now under the cursor.
+  // next click re-acquires whatever concept is now under the cursor.
   if (!sbDragging && (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2)) { trackedConcept = null; trackedWord = null }
   mouseX = movedX; mouseY = movedY
 
@@ -866,7 +908,7 @@ function drawHUD() {
   }
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.2)'
-  ctx.fillText('Scroll: zoom  |  Drag scrollbar: pan  |  Move cursor: navigate', w - 16, h - 12)
+  ctx.fillText('Left click: zoom in  |  Right click: zoom out  |  Scroll: pan', w - 16, h - 12)
   ctx.restore()
 }
 
@@ -888,7 +930,7 @@ function frame() {
   if (!offsetsLocked && !isTransitioning) {
     const off = levelOffsets[currentLevel]
     // Only auto-center X when there's no active concept-tracking session.
-    // During tracking, offset.x was set intentionally by the wheel handler
+    // During tracking, offset.x was set intentionally by the zoom handler
     // to land the cursor on the target word — easing it toward 0 would
     // slide the text out from under the cursor (the "zoom, pause, then
     // side-scroll" visual jank).
@@ -1030,6 +1072,7 @@ window._sz = {
   get measuredLevels() { return measuredLevels },
   get levelHeights() { return levelHeights },
   get currentLevel() { return currentLevel },
+  get displayLevel() { return displayLevel },
   get hoveredConcept() { return hoveredConcept },
   get hoveredWord() { return hoveredWord },
   get levelOffsets() { return levelOffsets },
@@ -1043,6 +1086,8 @@ window._sz = {
   findPhraseAtCursor,
   hitTestWord,
   defaultOffset,
+  zoomAtCursor,
+  scrollCurrentLevel,
   // Test hooks for the regression runner.
   setTrackedConcept(c) { trackedConcept = c },
   setTrackedWord(w) { trackedWord = w },

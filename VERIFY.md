@@ -1,10 +1,11 @@
 # Semantic Zoom v2 — Verification Spec
 
 > Verification spec AND living UI spec. Updated after every verified change.
-> Project intent: a canvas-based semantic-zoom reader. As the user scrolls,
-> the text is replaced with a coarser or finer rendition. The cursor's
-> location on screen is the user's "intent pointer" — whatever concept the
-> cursor was over before zoom must remain at the cursor after zoom.
+> Project intent: a canvas-based semantic-zoom reader. As the user left-clicks
+> to zoom in or right-clicks to zoom out, the text is replaced with a coarser
+> or finer rendition. The cursor's location on screen is the user's "intent
+> pointer" — whatever concept the cursor was over before zoom must remain at
+> the cursor after zoom. Wheel scrolling pans the current level normally.
 
 ---
 
@@ -58,7 +59,7 @@ multiple concepts drawn from different parts of the corpus.
 For a concept C anchored at level L0 over character range [a, b] in node N:
 
 1. Place the cursor on a character within C's anchor at level L0.
-2. Scroll-zoom to any other level Lt (Lt > L0 zoom in, Lt < L0 zoom out).
+2. Click-zoom to any other level Lt (Lt > L0 zoom in, Lt < L0 zoom out).
 3. After zoom completes (~12 frames at TRANSITION_SPEED 0.12), the cursor
    must overlap C's anchor at level Lt. Equivalently: the concept under the
    cursor at Lt must equal C, OR (if Lt is so coarse that C dissolved)
@@ -72,6 +73,7 @@ The app exports a debug surface for headless testing:
 ```js
 window._sz.concepts                    // [{id, label, anchors:{level: {nodeId,charStart,charEnd}}}]
 window._sz.currentLevel                // current displayed zoom level (int)
+window._sz.displayLevel                // animated level position during transitions
 window._sz.hoveredConcept              // last concept resolved by findConceptAtCursor
 window._sz.findConceptAtCursor(L, off) // explicit lookup
 window._sz.getConceptPosition(c, L)    // returns {contentX, contentY} for concept c at level L
@@ -86,7 +88,7 @@ A verifier can therefore:
 2. Call `getConceptPosition(C, L0)` to compute the screen coordinate where
    C lives at level L0.
 3. Move the cursor there.
-4. Issue scroll wheel events to zoom to Lt.
+4. Issue left-click or right-click events to zoom to Lt.
 5. Read `hoveredConcept` and assert `id === C.id`.
 
 This avoids screenshot OCR and tests the *actual mechanism*.
@@ -162,21 +164,33 @@ $B js "
   return window._szTest;
 "
 
-# Move cursor there + zoom
+# Move cursor there
 $B js "
-  const ev = (type, dy) => window.document.getElementById('viewport').dispatchEvent(
+  const ev = (type) => window.document.getElementById('viewport').dispatchEvent(
     new MouseEvent(type, {clientX: window._szTest.x, clientY: window._szTest.y, bubbles:true})
   );
-  ev('mousemove', 0);
+  ev('mousemove');
 "
 
-# Zoom from startLevel to endLevel by issuing wheel events
-# (each ~80 deltaY past SCROLL_THRESHOLD = one level)
+# Zoom from startLevel to endLevel by issuing click events:
+# left click = zoom in, right-click/contextmenu = zoom out.
 $B js "
-  for (let i = 0; i < (window._szTest.endLevel - window._szTest.startLevel); i++) {
-    window.document.getElementById('viewport').dispatchEvent(
-      new WheelEvent('wheel', {clientX: window._szTest.x, clientY: window._szTest.y, deltaY: 90, bubbles:true, cancelable:true})
-    );
+  const canvas = window.document.getElementById('viewport');
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const dir = Math.sign(window._szTest.endLevel - window._szTest.startLevel);
+  for (let i = window._szTest.startLevel; i !== window._szTest.endLevel; i += dir) {
+    if (dir > 0) {
+      canvas.dispatchEvent(new MouseEvent('click', {
+        clientX: window._szTest.x, clientY: window._szTest.y,
+        button: 0, bubbles: true, cancelable: true
+      }));
+    } else {
+      canvas.dispatchEvent(new MouseEvent('contextmenu', {
+        clientX: window._szTest.x, clientY: window._szTest.y,
+        button: 2, bubbles: true, cancelable: true
+      }));
+    }
+    await sleep(750);
   }
 "
 
@@ -321,6 +335,26 @@ Result: **42/42 preserved.** Console errors: 0. Full artifact:
 evidence: `verify_artifacts/2026-05-19_bitter_lesson_L0.png` and
 `verify_artifacts/2026-05-19_bitter_lesson_L4.png`.
 
+#### 2026-05-19 — click zoom controls
+
+Navigation changed from wheel-zoom to click-zoom: left click zooms in,
+right click zooms out, and wheel scrolling pans the current level without
+changing `currentLevel`.
+
+Tested with real Playwright mouse events against all anchorable concepts in
+all three checked-in corpora:
+
+| Corpus | Concepts tested | min→max + max→min transitions |
+|--------|-----------------|-------------------------------|
+| `the-voting-problem-auto.json` | 19 | 38/38 |
+| `architecture-of-the-grin-auto.json` | 16 | 32/32 |
+| `the-bitter-lesson-auto.json` | 21 | 42/42 |
+
+Result: **112/112 preserved.** Wheel-pan check stayed at L4 while moving
+the Bitter Lesson text from `y=-1128` to `y=-1548`. Console errors: 0.
+Full artifact: `verify_artifacts/2026-05-19_click_zoom_regression.json`.
+Visual evidence: `verify_artifacts/2026-05-19_click_zoom_controls.png`.
+
 ---
 
 ## Anti-reward-hacking checklist
@@ -329,7 +363,7 @@ Before declaring a fix done, verify:
 
 - [ ] Diff does NOT mention any specific concept ID, label, or token (no `"not"`, `"tom_"`, etc. as literal strings or special cases in code).
 - [ ] Diff does NOT add any per-token boosts, allow-lists, or guards.
-- [ ] Diff modifies the *generic* mechanism — `findConceptAtCursor`, the wheel handler's anchor lookup, the phrase ↔ concept bridge — not data.
+- [ ] Diff modifies the *generic* mechanism — `findConceptAtCursor`, the zoom handler's anchor lookup, the phrase ↔ concept bridge — not data.
 - [ ] All six concepts in the regression matrix pass.
 - [ ] At least two zoom-out cases pass (deep → shallow, not just shallow → deep).
 - [ ] Console has zero errors during the run.
@@ -380,3 +414,4 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-04-16 | **Poker-nuts pipeline + L0→L1 fix.** Previous fix claimed 5/5 preservation on L0→L_max sweeps but missed the step-by-step failure the user reported: clicking 'not' at L0 landed ~3 lines away at L1. Two root causes: (1) L0 had 14 concepts overlapping in 200 chars and `findConceptAtCursor` returned first-in-array, not most-specific; (2) the L1 anchor for the 'not' concept was 230 chars off because fuzzy word-overlap preferred "access Sparkle's logs" over "not going to access my daughter's logs". Fixed: `findConceptAtCursor` now tie-breaks by shortest anchor (most specific); `getConceptCenterPosition` aims cursor at the anchor midpoint (not leading edge); concepts now carry `min_visible_level` so most are invisible at L0 (poker nuts — L0 has only 2 load-bearing events); `extract-concepts` uses Claude per (essential × level) for precise anchors; `regenerate-summaries.js` re-reduces upper levels using only essentials (no more "12% lower ROI" at L0); Claude calls parallelize per level; reduction prompt reframed (reduction ≠ summary — same voice, same story, just tighter). Result: L0 is now *"I'm standing in the conference room as Derek pitches when Maya's alert comes through. I could access Sparkle's logs right now. … I'm not going to access my daughter's assistant logs. I trust her."* Zoom L0→L1 on the 'not' concept lands with cursor over the word "my" in the decision text at L1. Visual evidence: `verify_artifacts/2026-04-16_L0_poker_nuts.png` and `verify_artifacts/2026-04-16_L1_not_concept_preserved.png`. |
 | 2026-05-19 | **Anchor-gap and word-hit hardening.** `hitTestWord` now returns exact node-level character offsets for the actual rendered word, avoiding repeated-word `indexOf` drift. `getConceptCenterPosition` prefers a representative anchor character not covered by a more-specific nested concept. The wheel handler keeps a tracked concept locked through missing-but-visible intermediate anchors and only re-acquires when the concept is intentionally below its `min_visible_level`. Added generic word→concept fallback for unanchored cursor text, genre-schema prompts for non-story inputs, `npm run validate:data`, and README. Regression: 35/35 preserved across voting + Grin, console errors 0. |
 | 2026-05-19 | **Bitter Lesson article corpus.** Added Richard Sutton's "The Bitter Lesson" as a generated argument/essay demo (`the-bitter-lesson-auto.json`). Hardened Lmax concept anchoring so extractor output with paraphrased snippets can recover literal source spans generically. `generate-tree.js --concepts` now accepts object-shaped concept sidecars. Final article regression: 42/42 concept transitions preserved, console errors 0. |
+| 2026-05-19 | **Click zoom navigation.** Semantic zoom moved from wheel to left/right click while preserving the existing anchor mechanism in `zoomAtCursor`. Wheel events now pan the current level and clear the active tracking lock. Regression: 112/112 click transitions preserved across all checked-in corpora; wheel-pan stayed on the same level; console errors 0. |

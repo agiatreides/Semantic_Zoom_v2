@@ -1,8 +1,9 @@
 # Semantic Zoom v2
 
-Canvas reader for semantic zooming over prose. Hover an idea, scroll the
-wheel, and the text changes detail level while the cursor stays anchored to
-the same concept.
+Canvas reader for semantic zooming over prose. Hover an idea, left-click to
+zoom in, right-click to zoom out, and the text changes detail level while
+the cursor stays anchored to the same concept. The wheel scrolls the current
+level normally.
 
 The checked-in demo corpora run without any model calls:
 
@@ -19,8 +20,9 @@ npm run dev -- --port 5181
 
 Open `http://localhost:5181/?file=the-voting-problem-auto.json`.
 
-Use the picker in the upper-right corner to switch corpora. Scroll over the
-text to zoom in or out. Drag the right scrollbar to pan long levels.
+Use the picker in the upper-right corner to switch corpora. Left-click over
+text to zoom in, right-click over text to zoom out, and use the wheel or
+right scrollbar to pan long levels.
 
 ## Validate Data
 
