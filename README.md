@@ -43,16 +43,27 @@ node tools/validate-data.js --strict
 
 ## Generate a New Corpus
 
-Drop a `.txt` file in `data/`, then run:
+Drop a `.txt` file in `data/`, then run the fast ingest path:
+
+```bash
+npm run ingest:fast -- data/my-document.txt
+```
+
+Then add an option for `my-document-auto.json` in `index.html`.
+
+For faster draft passes, use Haiku:
+
+```bash
+MODEL=haiku npm run ingest:fast -- data/my-document.txt
+```
+
+The older bottom-up pipeline is still available for experiments:
 
 ```bash
 node tools/generate-tree.js data/my-document.txt
 node tools/extract-concepts.js data/my-document-auto.json
-node tools/generate-tree.js data/my-document.txt --concepts data/my-document-auto-concepts.json
-node tools/extract-concepts.js data/my-document-auto.json
+node tools/rebuild-levels.js data/my-document-auto.json data/my-document-auto-concepts.json
 ```
-
-Then add an option for `my-document-auto.json` in `index.html`.
 
 The pipeline is intended to be fully automatic. Do not hand-author per-document
 concept files; stale or invalid anchors should be regenerated or repaired by
@@ -64,6 +75,7 @@ generic tooling.
 - `src/renderer.js` — canvas rendering.
 - `src/text-layout.js` — line wrapping and measurement.
 - `tools/generate-tree.js` — text to multi-level tree.
+- `tools/ingest-fast.js` — one-command corpus ingest path.
 - `tools/extract-concepts.js` — concept/signal extraction and anchor placement.
 - `tools/rebuild-levels.js` — direct source-to-level rebuild for polished demo corpora.
 - `VERIFY.md` — regression contract for UI changes.

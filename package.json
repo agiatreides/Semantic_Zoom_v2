@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "generate": "node tools/generate-tree.js",
+    "ingest:fast": "node tools/ingest-fast.js",
     "validate:data": "node tools/validate-data.js"
   },
   "dependencies": {

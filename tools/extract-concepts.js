@@ -743,6 +743,7 @@ const output = concepts.map(c => {
     min_visible_level: c.min_visible_level,
     anchors: anchorsByConcept[c.id],
   }
+  if (c.snippet) rec.snippet = c.snippet
   if (c.type) rec.type = c.type
   if (c.collapse_axes) rec.collapse_axes = c.collapse_axes
   return rec

@@ -93,6 +93,125 @@ function parseJson(raw) {
   return null
 }
 
+// ---------- cheap anchor placement ----------
+// Model placement is useful when reductions paraphrase a concept, but near-full
+// levels often preserve literal source language. Try literal placement first
+// and send only unresolved essentials to Claude. Fuzzy pre-placement is opt-in
+// via FAST_FUZZY_ANCHORS=1 because a wrong anchor is worse than a slow call.
+const ANCHOR_STOPWORDS = new Set([
+  'about', 'after', 'again', 'against', 'also', 'because', 'before', 'being',
+  'between', 'could', 'does', 'doing', 'during', 'every', 'from', 'have',
+  'into', 'just', 'more', 'most', 'only', 'over', 'same', 'should', 'that',
+  'their', 'them', 'then', 'there', 'these', 'they', 'this', 'through',
+  'under', 'what', 'when', 'where', 'which', 'while', 'with', 'would',
+])
+
+function keywords(text) {
+  return (text || '')
+    .toLowerCase()
+    .match(/[a-z0-9'-]+/g)?.filter(w => w.length >= 4 && !ANCHOR_STOPWORDS.has(w)) || []
+}
+
+function wordMatches(a, b) {
+  if (a === b) return true
+  if (a.length >= 5 && b.length >= 5 && a.slice(0, 5) === b.slice(0, 5)) return true
+  return a.length >= 6 && b.length >= 6 && (a.includes(b) || b.includes(a))
+}
+
+function literalAnchor(text, snippet) {
+  if (!text || !snippet) return null
+  const exact = text.indexOf(snippet)
+  if (exact !== -1) return { charStart: exact, charEnd: exact + snippet.length, via: 'literal' }
+
+  const compact = snippet.replace(/\s+/g, ' ').trim()
+  if (compact && compact !== snippet) {
+    const idx = text.indexOf(compact)
+    if (idx !== -1) return { charStart: idx, charEnd: idx + compact.length, via: 'literal-compact' }
+  }
+
+  const head = compact.substring(0, Math.min(48, compact.length))
+  if (head.length >= 16) {
+    const idx = text.indexOf(head)
+    if (idx !== -1) return { charStart: idx, charEnd: idx + head.length, via: 'literal-head' }
+  }
+  return null
+}
+
+function sentenceSpans(text) {
+  const spans = []
+  const re = /[^.!?\n]+[.!?]?/g
+  let m
+  while ((m = re.exec(text)) !== null) {
+    const raw = m[0]
+    const leading = raw.match(/^\s*/)?.[0].length || 0
+    const trailing = raw.match(/\s*$/)?.[0].length || 0
+    const start = m.index + leading
+    const end = m.index + raw.length - trailing
+    if (end > start) spans.push({ start, end, text: text.slice(start, end) })
+  }
+  if (spans.length === 0 && text.trim()) {
+    const start = text.indexOf(text.trim())
+    spans.push({ start, end: start + text.trim().length, text: text.trim() })
+  }
+  return spans
+}
+
+function fuzzyAnchor(text, snippet, label) {
+  const sourceWords = [...new Set(keywords(`${label || ''} ${snippet || ''}`))]
+  if (sourceWords.length < 2) return null
+
+  const spans = sentenceSpans(text)
+  const candidates = []
+  for (let i = 0; i < spans.length; i++) {
+    candidates.push({ start: spans[i].start, end: spans[i].end, text: spans[i].text })
+    if (i < spans.length - 1) {
+      candidates.push({
+        start: spans[i].start,
+        end: spans[i + 1].end,
+        text: text.slice(spans[i].start, spans[i + 1].end),
+      })
+    }
+  }
+
+  let best = null
+  for (const c of candidates) {
+    const spanLen = c.end - c.start
+    if (spanLen < 12 || spanLen > 600) continue
+    const candidateWords = [...new Set(keywords(c.text))]
+    if (candidateWords.length === 0) continue
+    let overlap = 0
+    for (const sw of sourceWords) {
+      if (candidateWords.some(cw => wordMatches(sw, cw))) overlap++
+    }
+    const score = overlap / sourceWords.length
+    const density = overlap / candidateWords.length
+    if (overlap < 2 || score < 0.34 || density < 0.12) continue
+    const rank = score + density * 0.25 - Math.abs(160 - spanLen) / 5000
+    if (!best || rank > best.rank) best = { ...c, rank, via: 'fuzzy' }
+  }
+
+  if (!best) return null
+  return { charStart: best.start, charEnd: best.end, via: best.via }
+}
+
+function deterministicAnchor(essential, nodes) {
+  for (const node of nodes) {
+    const a = literalAnchor(node.text, essential.snippet)
+    if (a) return { nodeId: node.id, ...a }
+  }
+  if (process.env.FAST_FUZZY_ANCHORS !== '1') return null
+
+  let best = null
+  for (const node of nodes) {
+    const a = fuzzyAnchor(node.text, essential.snippet, essential.label)
+    if (!a) continue
+    const span = a.charEnd - a.charStart
+    const score = (a.via === 'fuzzy' ? 0 : 1) - span / 10000
+    if (!best || score > best.score) best = { score, anchor: { nodeId: node.id, ...a } }
+  }
+  return best?.anchor || null
+}
+
 // ---------- load ----------
 console.log(`Reading tree: ${path.relative(projectRoot, treePath)}`)
 const tree = JSON.parse(fs.readFileSync(treePath, 'utf8'))
@@ -106,6 +225,16 @@ const Lmax = tree.levelCount - 1
 const LmaxNodes = tree.levels[String(Lmax)].nodes
 const LmaxText = LmaxNodes.map(n => n.text).join('\n\n')
 const LmaxWordCount = LmaxText.split(/\s+/).length
+const LmaxNodeById = Object.fromEntries(LmaxNodes.map(n => [n.id, n]))
+
+// Older concepts files did not persist `snippet`. Hydrate it from the Lmax
+// anchor so generation and cheap anchor placement still get source phrasing.
+for (const c of concepts) {
+  if (c.snippet) continue
+  const a = c.anchors?.[String(Lmax)]
+  const node = a ? LmaxNodeById[a.nodeId] : null
+  if (node && a.charEnd > a.charStart) c.snippet = node.text.substring(a.charStart, a.charEnd)
+}
 
 console.log(`Tree: "${tree.title}" — ${tree.levelCount} levels, ${LmaxWordCount} words at L${Lmax}`)
 console.log(`Genre: ${genreInfo.genre}`)
@@ -418,13 +547,27 @@ async function processLevel(L) {
   // timeouts; with --bare + --effort medium those are gone.
   const anchorMap = {}
   const nodeByIdMap = Object.fromEntries(newNodes.map(n => [n.id, n]))
-  if (visibleEssentials.length > 0) {
+  let deterministicAnchored = 0
+  for (const e of visibleEssentials) {
+    const a = deterministicAnchor(e, newNodes)
+    if (!a) continue
+    anchorMap[e.id] = a
+    deterministicAnchored++
+  }
+
+  const unresolvedEssentials = visibleEssentials.filter(e => !anchorMap[e.id])
+  if (deterministicAnchored > 0) {
+    console.log(`  [L${L}] deterministic anchors: ${deterministicAnchored}/${visibleEssentials.length}`)
+  }
+  if (unresolvedEssentials.length > 0) {
     const raw = await callClaudeAsync(
-      buildAnchorPrompt(L, text, newNodes, visibleEssentials),
+      buildAnchorPrompt(L, text, newNodes, unresolvedEssentials),
       `anchor:L${L}`
     )
     const parsed = parseJson(raw) || {}
     for (const k of Object.keys(parsed)) anchorMap[k] = parsed[k]
+  } else if (visibleEssentials.length > 0) {
+    console.log(`  [L${L}] anchor Claude call skipped; deterministic placement covered all visible essentials`)
   }
 
   const anchors = {}

@@ -28,24 +28,22 @@ The intent is that the **concept under the cursor** stays under the cursor
 across zoom levels. That invariant is the entire product.
 
 Stack: vite, vanilla JS, canvas 2D context. Data is pre-baked as JSON.
-The pipeline (three steps; the second pass is what gives L0 a real thesis):
+The preferred ingest path is now:
 
-1. `tools/generate-tree.js <text.txt>` → builds the multi-level tree
-   (semantic chunking → contiguous clustering → Codex CLI reduction,
-   bottom-up RAPTOR style). Currently produces ~6 levels.
-2. `tools/extract-concepts.js <tree.json>` → identifies major events
-   (verb-driven, e.g. *"Tom refuses to access Maya's logs"*), assigns
-   each one a `min_visible_level` via the poker-nuts framing, and emits
-   per-level anchors in `<basename>-concepts.json`. Anchors are emitted
-   ONLY at levels >= a concept's `min_visible_level`; above that, the
-   concept is intentionally invisible.
-3. `tools/generate-tree.js <text.txt> --concepts <concepts.json>` →
-   re-runs the tree build, then **re-reduces upper levels using only
-   the events whose `min_visible_level <= L`**. This is what fixes the
-   "12% lower ROI" garbage at L0; the L0 reduction is built FROM the
-   nuts only. Re-run `extract-concepts.js` after this to refresh anchors.
+1. `tools/ingest-fast.js <text.txt>` → creates a cheap source-level seed
+   tree, runs concept identification at Lmax, then calls `rebuild-levels.js`.
+2. `tools/extract-concepts.js <tree.json> --identify-only` → identifies
+   major events (verb-driven, e.g. *"Tom refuses to access Maya's logs"*),
+   assigns each one a `min_visible_level` via the poker-nuts framing, and
+   emits Lmax anchors in `<basename>-concepts.json`.
+3. `tools/rebuild-levels.js <tree.json> <concepts.json>` → generates each
+   zoom level directly from source text in parallel, using only events whose
+   `min_visible_level <= L`, then refreshes per-level anchors. This is what
+   gives L0 a real thesis: the L0 reduction is built FROM the nuts only.
 
-Both tools must be runnable on any prose input with no manual editing.
+The older bottom-up `generate-tree.js` path still exists for experiments,
+but the one-command fast ingest path is the default for adding prose. All
+tools must be runnable on any prose input with no manual editing.
 
 Sources of truth:
 
@@ -53,6 +51,7 @@ Sources of truth:
   is the place where zoom anchoring happens.
 - `src/renderer.js` — canvas drawing.
 - `src/text-layout.js` — line wrapping / measurement.
+- `tools/ingest-fast.js` — one-command corpus ingest.
 - `tools/generate-tree.js` — offline corpus → tree builder.
 - `data/*.json` — corpus + concepts.
 
