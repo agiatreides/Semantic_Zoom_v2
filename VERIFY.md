@@ -28,8 +28,12 @@ The Pretext server uses `import.meta.url` to fetch data files relative to `src/m
 
 | File | Levels | Purpose |
 |------|--------|---------|
-| `the-voting-problem-auto.json`          | 6 (0–5) | Pipeline output (`generate-tree.js`) |
-| `the-voting-problem-auto-concepts.json` | n/a     | Concept anchors (`extract-concepts.js`) |
+| `the-voting-problem-auto.json`          | 6 (0–5) | Short-story pipeline output |
+| `the-voting-problem-auto-concepts.json` | n/a     | Concept anchors |
+| `architecture-of-the-grin-auto.json`    | 7 (0–6) | Short-story stress case with anchor gaps |
+| `architecture-of-the-grin-auto-concepts.json` | n/a | Concept anchors |
+| `the-bitter-lesson-auto.json`           | 5 (0–4) | Argument/article corpus |
+| `the-bitter-lesson-auto-concepts.json`  | n/a     | Concept anchors |
 
 URL: `http://localhost:5181/?file=the-voting-problem-auto.json`
 
@@ -303,6 +307,20 @@ missing-anchor level instead of permanently re-acquiring a sibling. Visual
 evidence: `verify_artifacts/2026-05-19_grin_anchor_gap_L4.png` and
 `verify_artifacts/2026-05-19_grin_anchor_gap_L6.png`.
 
+#### 2026-05-19 — Bitter Lesson article corpus
+
+Added `the-bitter-lesson-auto.json`, generated from Richard Sutton's
+approximately 1.1k-word article "The Bitter Lesson." This exercises the
+argument/essay extraction path rather than the short-story path.
+
+The final demo tree has five levels, with all visible concepts anchored:
+L0 4/4, L1 10/10, L2 18/18, L3 21/21, L4 21/21. Tested every concept from
+its `min_visible_level` to L4 and back via `window._sz` at 1280×720.
+Result: **42/42 preserved.** Console errors: 0. Full artifact:
+`verify_artifacts/2026-05-19_bitter_lesson_regression.json`. Visual
+evidence: `verify_artifacts/2026-05-19_bitter_lesson_L0.png` and
+`verify_artifacts/2026-05-19_bitter_lesson_L4.png`.
+
 ---
 
 ## Anti-reward-hacking checklist
@@ -332,7 +350,7 @@ Reject and look deeper.
 | Element       | Selector       | Should be                              |
 |---------------|----------------|----------------------------------------|
 | Canvas        | `#viewport`    | visible, full viewport                 |
-| File picker   | `#file-picker` | visible, two options                   |
+| File picker   | `#file-picker` | visible, three options                 |
 
 **Verification commands:**
 
@@ -361,3 +379,4 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-04-17 | **Scrollbar replaces edge-scroll.** Long-form corpora need user-driven panning that isn't "hover near top/bottom." Removed the edge-triggered auto-scroll block from `frame()`; added a canvas-drawn scrollbar in the right gutter (10px wide, 4px margin). Thumb height ∝ `screenH² / contentH`, position reflects `levelOffsets[currentLevel].y`. Mousedown on thumb captures drag; mousemove (window-level while dragging) updates offset proportionally; mouseup releases. Click on track outside thumb page-jumps ±0.8·screenH. Hidden when `contentH ≤ screenH` (e.g., L0 on short stories). Scrollbar area excluded from `isInTextArea` so hovering it doesn't re-grab hovered concepts. `isFrozen()` now also includes `sbDragging`. Debug surface extended: `window._sz.getScrollbarGeom / isOnScrollbarThumb / isOnScrollbarTrack / sbDragging`. Verified on `the-voting-problem-auto.json` L5 (contentH≈6004px, screenH=720): thumb drag moved offset from -2158 → -4601 (content scrolls up), track-click above thumb paged back up by 576px. No console errors. Visual evidence: `verify_artifacts/2026-04-17_scrollbar_L5.png`, `verify_artifacts/2026-04-17_scrollbar_L5_dragged.png`. |
 | 2026-04-16 | **Poker-nuts pipeline + L0→L1 fix.** Previous fix claimed 5/5 preservation on L0→L_max sweeps but missed the step-by-step failure the user reported: clicking 'not' at L0 landed ~3 lines away at L1. Two root causes: (1) L0 had 14 concepts overlapping in 200 chars and `findConceptAtCursor` returned first-in-array, not most-specific; (2) the L1 anchor for the 'not' concept was 230 chars off because fuzzy word-overlap preferred "access Sparkle's logs" over "not going to access my daughter's logs". Fixed: `findConceptAtCursor` now tie-breaks by shortest anchor (most specific); `getConceptCenterPosition` aims cursor at the anchor midpoint (not leading edge); concepts now carry `min_visible_level` so most are invisible at L0 (poker nuts — L0 has only 2 load-bearing events); `extract-concepts` uses Claude per (essential × level) for precise anchors; `regenerate-summaries.js` re-reduces upper levels using only essentials (no more "12% lower ROI" at L0); Claude calls parallelize per level; reduction prompt reframed (reduction ≠ summary — same voice, same story, just tighter). Result: L0 is now *"I'm standing in the conference room as Derek pitches when Maya's alert comes through. I could access Sparkle's logs right now. … I'm not going to access my daughter's assistant logs. I trust her."* Zoom L0→L1 on the 'not' concept lands with cursor over the word "my" in the decision text at L1. Visual evidence: `verify_artifacts/2026-04-16_L0_poker_nuts.png` and `verify_artifacts/2026-04-16_L1_not_concept_preserved.png`. |
 | 2026-05-19 | **Anchor-gap and word-hit hardening.** `hitTestWord` now returns exact node-level character offsets for the actual rendered word, avoiding repeated-word `indexOf` drift. `getConceptCenterPosition` prefers a representative anchor character not covered by a more-specific nested concept. The wheel handler keeps a tracked concept locked through missing-but-visible intermediate anchors and only re-acquires when the concept is intentionally below its `min_visible_level`. Added generic word→concept fallback for unanchored cursor text, genre-schema prompts for non-story inputs, `npm run validate:data`, and README. Regression: 35/35 preserved across voting + Grin, console errors 0. |
+| 2026-05-19 | **Bitter Lesson article corpus.** Added Richard Sutton's "The Bitter Lesson" as a generated argument/essay demo (`the-bitter-lesson-auto.json`). Hardened Lmax concept anchoring so extractor output with paraphrased snippets can recover literal source spans generically. `generate-tree.js --concepts` now accepts object-shaped concept sidecars. Final article regression: 42/42 concept transitions preserved, console errors 0. |

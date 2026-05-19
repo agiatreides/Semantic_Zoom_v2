@@ -462,19 +462,23 @@ function identifyAndAnchorAtLmax(tree, targetCount, genre) {
       console.warn(`  drop "${c.id}": nodeId ${c.nodeId} not at L${maxL}`)
       continue
     }
-    const idx = node.text.indexOf(c.snippet)
-    if (idx === -1) {
-      console.warn(`  drop "${c.id}": snippet not literally found in ${c.nodeId}`)
+    const anchor = literalAnchor(node.text, c.snippet) || fuzzyAnchor(node.text, c.snippet, c.label)
+    if (!anchor) {
+      console.warn(`  drop "${c.id}": snippet not found in ${c.nodeId}`)
       continue
     }
+    if (anchor.via !== 'literal') {
+      console.warn(`  "${c.id}": L${maxL} snippet recovered via ${anchor.via}`)
+    }
+    const actualSnippet = node.text.substring(anchor.charStart, anchor.charEnd)
     concepts.push({
       id: c.id.trim(),
       label: c.label.trim(),
       type: typeof c.type === 'string' ? c.type.trim() : undefined,
       collapse_axes: Array.isArray(c.collapse_axes) ? c.collapse_axes.filter(x => typeof x === 'string') : undefined,
-      snippet: c.snippet,
+      snippet: actualSnippet,
       min_visible_level: mvl,
-      lmaxAnchor: { nodeId: c.nodeId, charStart: idx, charEnd: idx + c.snippet.length },
+      lmaxAnchor: { nodeId: c.nodeId, charStart: anchor.charStart, charEnd: anchor.charEnd },
     })
   }
   console.log(`  identified ${concepts.length} events with valid L${maxL} anchors`)

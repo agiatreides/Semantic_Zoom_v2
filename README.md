@@ -8,6 +8,7 @@ The checked-in demo corpora run without any model calls:
 
 - `the-voting-problem-auto.json`
 - `architecture-of-the-grin-auto.json`
+- `the-bitter-lesson-auto.json`
 
 ## Run the Demo
 
@@ -62,4 +63,5 @@ generic tooling.
 - `src/text-layout.js` — line wrapping and measurement.
 - `tools/generate-tree.js` — text to multi-level tree.
 - `tools/extract-concepts.js` — concept/signal extraction and anchor placement.
+- `tools/rebuild-levels.js` — direct source-to-level rebuild for polished demo corpora.
 - `VERIFY.md` — regression contract for UI changes.

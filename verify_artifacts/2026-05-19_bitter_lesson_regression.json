@@ -1,0 +1,429 @@
+{
+  "date": "2026-05-19",
+  "file": "the-bitter-lesson-auto.json",
+  "passCount": 42,
+  "totalCount": 42,
+  "results": [
+    {
+      "id": "computation-wins-thesis",
+      "start": 0,
+      "end": 4,
+      "startConcept": "computation-wins-thesis",
+      "endConcept": "computation-wins-thesis",
+      "endLabel": "general computation methods win by large margin",
+      "tracked": "computation-wins-thesis",
+      "pass": true
+    },
+    {
+      "id": "computation-wins-thesis",
+      "start": 4,
+      "end": 0,
+      "startConcept": "computation-wins-thesis",
+      "endConcept": "computation-wins-thesis",
+      "endLabel": "general computation methods win by large margin",
+      "tracked": "computation-wins-thesis",
+      "pass": true
+    },
+    {
+      "id": "moores-law-driver",
+      "start": 1,
+      "end": 4,
+      "startConcept": "moores-law-driver",
+      "endConcept": "moores-law-driver",
+      "endLabel": "Moore's law makes computation exponentially cheaper over time",
+      "tracked": "moores-law-driver",
+      "pass": true
+    },
+    {
+      "id": "moores-law-driver",
+      "start": 4,
+      "end": 1,
+      "startConcept": "moores-law-driver",
+      "endConcept": "moores-law-driver",
+      "endLabel": "Moore's law makes computation exponentially cheaper over time",
+      "tracked": "moores-law-driver",
+      "pass": true
+    },
+    {
+      "id": "researchers-treat-compute-as-constant",
+      "start": 2,
+      "end": 4,
+      "startConcept": "researchers-treat-compute-as-constant",
+      "endConcept": "researchers-treat-compute-as-constant",
+      "endLabel": "researchers wrongly assume fixed computation budget",
+      "tracked": "researchers-treat-compute-as-constant",
+      "pass": true
+    },
+    {
+      "id": "researchers-treat-compute-as-constant",
+      "start": 4,
+      "end": 2,
+      "startConcept": "researchers-treat-compute-as-constant",
+      "endConcept": "researchers-treat-compute-as-constant",
+      "endLabel": "researchers wrongly assume fixed computation budget",
+      "tracked": "researchers-treat-compute-as-constant",
+      "pass": true
+    },
+    {
+      "id": "human-knowledge-complicates-methods",
+      "start": 2,
+      "end": 4,
+      "startConcept": "human-knowledge-complicates-methods",
+      "endConcept": "human-knowledge-complicates-methods",
+      "endLabel": "human knowledge makes methods less computationally scalable",
+      "tracked": "human-knowledge-complicates-methods",
+      "pass": true
+    },
+    {
+      "id": "human-knowledge-complicates-methods",
+      "start": 4,
+      "end": 2,
+      "startConcept": "human-knowledge-complicates-methods",
+      "endConcept": "human-knowledge-complicates-methods",
+      "endLabel": "human knowledge makes methods less computationally scalable",
+      "tracked": "human-knowledge-complicates-methods",
+      "pass": true
+    },
+    {
+      "id": "chess-search-beats-kasparov",
+      "start": 1,
+      "end": 4,
+      "startConcept": "chess-search-beats-kasparov",
+      "endConcept": "chess-search-beats-kasparov",
+      "endLabel": "deep search defeats world chess champion in 1997",
+      "tracked": "chess-search-beats-kasparov",
+      "pass": true
+    },
+    {
+      "id": "chess-search-beats-kasparov",
+      "start": 4,
+      "end": 1,
+      "startConcept": "chess-search-beats-kasparov",
+      "endConcept": "chess-search-beats-kasparov",
+      "endLabel": "deep search defeats world chess champion in 1997",
+      "tracked": "chess-search-beats-kasparov",
+      "pass": true
+    },
+    {
+      "id": "chess-researchers-reject-brute-force",
+      "start": 3,
+      "end": 4,
+      "startConcept": "chess-researchers-reject-brute-force",
+      "endConcept": "chess-researchers-reject-brute-force",
+      "endLabel": "chess community dismisses search as non-general strategy",
+      "tracked": "chess-researchers-reject-brute-force",
+      "pass": true
+    },
+    {
+      "id": "chess-researchers-reject-brute-force",
+      "start": 4,
+      "end": 3,
+      "startConcept": "chess-researchers-reject-brute-force",
+      "endConcept": "chess-researchers-reject-brute-force",
+      "endLabel": "chess community dismisses search as non-general strategy",
+      "tracked": "chess-researchers-reject-brute-force",
+      "pass": true
+    },
+    {
+      "id": "go-human-knowledge-irrelevant-at-scale",
+      "start": 2,
+      "end": 4,
+      "startConcept": "go-human-knowledge-irrelevant-at-scale",
+      "endConcept": "go-human-knowledge-irrelevant-at-scale",
+      "endLabel": "Go human knowledge efforts proved irrelevant at scale",
+      "tracked": "go-human-knowledge-irrelevant-at-scale",
+      "pass": true
+    },
+    {
+      "id": "go-human-knowledge-irrelevant-at-scale",
+      "start": 4,
+      "end": 2,
+      "startConcept": "go-human-knowledge-irrelevant-at-scale",
+      "endConcept": "go-human-knowledge-irrelevant-at-scale",
+      "endLabel": "Go human knowledge efforts proved irrelevant at scale",
+      "tracked": "go-human-knowledge-irrelevant-at-scale",
+      "pass": true
+    },
+    {
+      "id": "self-play-learning-enables-computation",
+      "start": 2,
+      "end": 4,
+      "startConcept": "self-play-learning-enables-computation",
+      "endConcept": "self-play-learning-enables-computation",
+      "endLabel": "self-play learning channels massive computation into value",
+      "tracked": "self-play-learning-enables-computation",
+      "pass": true
+    },
+    {
+      "id": "self-play-learning-enables-computation",
+      "start": 4,
+      "end": 2,
+      "startConcept": "self-play-learning-enables-computation",
+      "endConcept": "self-play-learning-enables-computation",
+      "endLabel": "self-play learning channels massive computation into value",
+      "tracked": "self-play-learning-enables-computation",
+      "pass": true
+    },
+    {
+      "id": "search-and-learning-two-key-classes",
+      "start": 1,
+      "end": 4,
+      "startConcept": "search-and-learning-two-key-classes",
+      "endConcept": "search-and-learning-two-key-classes",
+      "endLabel": "search and learning are the two essential computation techniques",
+      "tracked": "search-and-learning-two-key-classes",
+      "pass": true
+    },
+    {
+      "id": "search-and-learning-two-key-classes",
+      "start": 4,
+      "end": 1,
+      "startConcept": "search-and-learning-two-key-classes",
+      "endConcept": "search-and-learning-two-key-classes",
+      "endLabel": "search and learning are the two essential computation techniques",
+      "tracked": "search-and-learning-two-key-classes",
+      "pass": true
+    },
+    {
+      "id": "speech-hmms-beat-knowledge-methods",
+      "start": 2,
+      "end": 4,
+      "startConcept": "speech-hmms-beat-knowledge-methods",
+      "endConcept": "speech-hmms-beat-knowledge-methods",
+      "endLabel": "statistical HMMs beat DARPA knowledge-based speech entrants",
+      "tracked": "speech-hmms-beat-knowledge-methods",
+      "pass": true
+    },
+    {
+      "id": "speech-hmms-beat-knowledge-methods",
+      "start": 4,
+      "end": 2,
+      "startConcept": "speech-hmms-beat-knowledge-methods",
+      "endConcept": "speech-hmms-beat-knowledge-methods",
+      "endLabel": "statistical HMMs beat DARPA knowledge-based speech entrants",
+      "tracked": "speech-hmms-beat-knowledge-methods",
+      "pass": true
+    },
+    {
+      "id": "deep-learning-extends-pattern-further",
+      "start": 2,
+      "end": 4,
+      "startConcept": "deep-learning-extends-pattern-further",
+      "endConcept": "deep-learning-extends-pattern-further",
+      "endLabel": "deep learning reduces knowledge further and scales computation more",
+      "tracked": "deep-learning-extends-pattern-further",
+      "pass": true
+    },
+    {
+      "id": "deep-learning-extends-pattern-further",
+      "start": 4,
+      "end": 2,
+      "startConcept": "deep-learning-extends-pattern-further",
+      "endConcept": "deep-learning-extends-pattern-further",
+      "endLabel": "deep learning reduces knowledge further and scales computation more",
+      "tracked": "deep-learning-extends-pattern-further",
+      "pass": true
+    },
+    {
+      "id": "nlp-statistics-dominated-over-decades",
+      "start": 3,
+      "end": 4,
+      "startConcept": "nlp-statistics-dominated-over-decades",
+      "endConcept": "nlp-statistics-dominated-over-decades",
+      "endLabel": "statistics and computation took over all of NLP gradually",
+      "tracked": "nlp-statistics-dominated-over-decades",
+      "pass": true
+    },
+    {
+      "id": "nlp-statistics-dominated-over-decades",
+      "start": 4,
+      "end": 3,
+      "startConcept": "nlp-statistics-dominated-over-decades",
+      "endConcept": "nlp-statistics-dominated-over-decades",
+      "endLabel": "statistics and computation took over all of NLP gradually",
+      "tracked": "nlp-statistics-dominated-over-decades",
+      "pass": true
+    },
+    {
+      "id": "knowledge-encoding-proved-counterproductive",
+      "start": 2,
+      "end": 4,
+      "startConcept": "knowledge-encoding-proved-counterproductive",
+      "endConcept": "knowledge-encoding-proved-counterproductive",
+      "endLabel": "encoding researcher knowledge proved colossal waste of time",
+      "tracked": "knowledge-encoding-proved-counterproductive",
+      "pass": true
+    },
+    {
+      "id": "knowledge-encoding-proved-counterproductive",
+      "start": 4,
+      "end": 2,
+      "startConcept": "knowledge-encoding-proved-counterproductive",
+      "endConcept": "knowledge-encoding-proved-counterproductive",
+      "endLabel": "encoding researcher knowledge proved colossal waste of time",
+      "tracked": "knowledge-encoding-proved-counterproductive",
+      "pass": true
+    },
+    {
+      "id": "vision-sift-replaced-by-deep-learning",
+      "start": 3,
+      "end": 4,
+      "startConcept": "vision-sift-replaced-by-deep-learning",
+      "endConcept": "vision-sift-replaced-by-deep-learning",
+      "endLabel": "SIFT and edge detection discarded for deep convolution",
+      "tracked": "vision-sift-replaced-by-deep-learning",
+      "pass": true
+    },
+    {
+      "id": "vision-sift-replaced-by-deep-learning",
+      "start": 4,
+      "end": 3,
+      "startConcept": "vision-sift-replaced-by-deep-learning",
+      "endConcept": "vision-sift-replaced-by-deep-learning",
+      "endLabel": "SIFT and edge detection discarded for deep convolution",
+      "tracked": "vision-sift-replaced-by-deep-learning",
+      "pass": true
+    },
+    {
+      "id": "field-still-making-same-mistakes",
+      "start": 0,
+      "end": 4,
+      "startConcept": "field-still-making-same-mistakes",
+      "endConcept": "field-still-making-same-mistakes",
+      "endLabel": "AI field still repeating identical errors today",
+      "tracked": "field-still-making-same-mistakes",
+      "pass": true
+    },
+    {
+      "id": "field-still-making-same-mistakes",
+      "start": 4,
+      "end": 0,
+      "startConcept": "field-still-making-same-mistakes",
+      "endConcept": "field-still-making-same-mistakes",
+      "endLabel": "AI field still repeating identical errors today",
+      "tracked": "field-still-making-same-mistakes",
+      "pass": true
+    },
+    {
+      "id": "four-part-bitter-lesson-summary",
+      "start": 0,
+      "end": 4,
+      "startConcept": "four-part-bitter-lesson-summary",
+      "endConcept": "four-part-bitter-lesson-summary",
+      "endLabel": "four-part lesson crystallizes the historical pattern",
+      "tracked": "four-part-bitter-lesson-summary",
+      "pass": true
+    },
+    {
+      "id": "four-part-bitter-lesson-summary",
+      "start": 4,
+      "end": 0,
+      "startConcept": "four-part-bitter-lesson-summary",
+      "endConcept": "four-part-bitter-lesson-summary",
+      "endLabel": "four-part lesson crystallizes the historical pattern",
+      "tracked": "four-part-bitter-lesson-summary",
+      "pass": true
+    },
+    {
+      "id": "bitterness-over-human-centric-defeat",
+      "start": 2,
+      "end": 4,
+      "startConcept": "bitterness-over-human-centric-defeat",
+      "endConcept": "bitterness-over-human-centric-defeat",
+      "endLabel": "success arrives as defeat of a favored human-centric approach",
+      "tracked": "bitterness-over-human-centric-defeat",
+      "pass": true
+    },
+    {
+      "id": "bitterness-over-human-centric-defeat",
+      "start": 4,
+      "end": 2,
+      "startConcept": "bitterness-over-human-centric-defeat",
+      "endConcept": "bitterness-over-human-centric-defeat",
+      "endLabel": "success arrives as defeat of a favored human-centric approach",
+      "tracked": "bitterness-over-human-centric-defeat",
+      "pass": true
+    },
+    {
+      "id": "search-and-learning-scale-arbitrarily",
+      "start": 1,
+      "end": 4,
+      "startConcept": "search-and-learning-scale-arbitrarily",
+      "endConcept": "search-and-learning-scale-arbitrarily",
+      "endLabel": "only search and learning scale without apparent limit",
+      "tracked": "search-and-learning-scale-arbitrarily",
+      "pass": true
+    },
+    {
+      "id": "search-and-learning-scale-arbitrarily",
+      "start": 4,
+      "end": 1,
+      "startConcept": "search-and-learning-scale-arbitrarily",
+      "endConcept": "search-and-learning-scale-arbitrarily",
+      "endLabel": "only search and learning scale without apparent limit",
+      "tracked": "search-and-learning-scale-arbitrarily",
+      "pass": true
+    },
+    {
+      "id": "mind-contents-irredeemably-complex",
+      "start": 1,
+      "end": 4,
+      "startConcept": "mind-contents-irredeemably-complex",
+      "endConcept": "mind-contents-irredeemably-complex",
+      "endLabel": "mental content is too complex ever to fully encode",
+      "tracked": "mind-contents-irredeemably-complex",
+      "pass": true
+    },
+    {
+      "id": "mind-contents-irredeemably-complex",
+      "start": 4,
+      "end": 1,
+      "startConcept": "mind-contents-irredeemably-complex",
+      "endConcept": "mind-contents-irredeemably-complex",
+      "endLabel": "mental content is too complex ever to fully encode",
+      "tracked": "mind-contents-irredeemably-complex",
+      "pass": true
+    },
+    {
+      "id": "build-meta-methods-not-domain-knowledge",
+      "start": 0,
+      "end": 4,
+      "startConcept": "build-meta-methods-not-domain-knowledge",
+      "endConcept": "build-meta-methods-not-domain-knowledge",
+      "endLabel": "build meta-methods that discover complexity, not encode it",
+      "tracked": "build-meta-methods-not-domain-knowledge",
+      "pass": true
+    },
+    {
+      "id": "build-meta-methods-not-domain-knowledge",
+      "start": 4,
+      "end": 0,
+      "startConcept": "build-meta-methods-not-domain-knowledge",
+      "endConcept": "build-meta-methods-not-domain-knowledge",
+      "endLabel": "build meta-methods that discover complexity, not encode it",
+      "tracked": "build-meta-methods-not-domain-knowledge",
+      "pass": true
+    },
+    {
+      "id": "ai-should-discover-not-contain-discoveries",
+      "start": 1,
+      "end": 4,
+      "startConcept": "ai-should-discover-not-contain-discoveries",
+      "endConcept": "ai-should-discover-not-contain-discoveries",
+      "endLabel": "AI agents should discover like us, not contain our discoveries",
+      "tracked": "ai-should-discover-not-contain-discoveries",
+      "pass": true
+    },
+    {
+      "id": "ai-should-discover-not-contain-discoveries",
+      "start": 4,
+      "end": 1,
+      "startConcept": "ai-should-discover-not-contain-discoveries",
+      "endConcept": "ai-should-discover-not-contain-discoveries",
+      "endLabel": "AI agents should discover like us, not contain our discoveries",
+      "tracked": "ai-should-discover-not-contain-discoveries",
+      "pass": true
+    }
+  ],
+  "consoleErrors": []
+}

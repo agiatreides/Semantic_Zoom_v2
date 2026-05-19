@@ -426,14 +426,20 @@ if (conceptsFile) {
   const conceptsPath = path.resolve(projectRoot, conceptsFile)
   console.log(`\nStep 6.5: Re-reducing upper levels using ${path.relative(projectRoot, conceptsPath)}`)
   let allConcepts = []
+  let conceptMeta = {}
   try {
-    allConcepts = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
+    const conceptsRaw = JSON.parse(fs.readFileSync(conceptsPath, 'utf8'))
+    allConcepts = Array.isArray(conceptsRaw) ? conceptsRaw : (conceptsRaw.concepts || [])
+    conceptMeta = Array.isArray(conceptsRaw) ? {} : conceptsRaw
   } catch (e) {
     console.error(`  Failed to read concepts file: ${e.message}`)
     allConcepts = null
   }
 
   if (Array.isArray(allConcepts)) {
+    const characters = conceptMeta.characters || {}
+    const thematicThrust = typeof conceptMeta.thematic_thrust === 'string' ? conceptMeta.thematic_thrust : ''
+
     // Build childId → topDownLevels[L+1] node lookup once
     const nodeByIdAtLevel = {}  // `${L}:${id}` → node
     for (let L = 0; L < totalLevels; L++) {
@@ -467,7 +473,7 @@ if (conceptsFile) {
           continue
         } else {
           console.log(`    re-reducing ${node.id} (${childMembers.length} children → ~${targetWords} words, ${essentials.length} essentials)`)
-          newText = claudeSummarize(childMembers, targetWords, [], { essentials })
+          newText = claudeSummarize(childMembers, targetWords, [], { essentials, characters, thematicThrust })
           if (!newText) {
             console.log(`    re-reduce failed; keeping original text for ${node.id}`)
             continue
