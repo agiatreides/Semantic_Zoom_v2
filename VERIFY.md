@@ -263,6 +263,46 @@ logs` at Level 5.
   labels, or tokens. No allow-list, no per-token boost, no
   short-circuit on the canonical case.
 
+#### 2026-05-19 — current pass (exact word hit + anchor-gap lock)
+
+The current data uses regenerated concept IDs. Tested with Playwright against
+`window._sz` at 1280×720. Each target was scrolled into view, hovered, then
+zoomed both directions. Console errors: 0. Full artifact:
+`verify_artifacts/2026-05-19_zoom_regression.json`.
+
+Voting corpus (`the-voting-problem-auto.json`):
+
+| Target | min→max preserved | max→min preserved |
+|--------|-------------------|-------------------|
+| `tyler-accuses-maya-cheating` | YES | YES |
+| `verification-changes-relationship` | YES | YES |
+| `tom-refuses-logs-trusts-maya` | YES | YES |
+| `maya-notification-interrupts` | YES | YES |
+| `chip-gives-84-percent` | YES | YES |
+| `chip-optimization-not-wisdom` | YES | YES |
+| `closing-pretty-sure-got-it-right` | YES | YES |
+
+Grin corpus (`architecture-of-the-grin-auto.json`):
+
+| Target | min→max preserved | max→min preserved | gap case |
+|--------|-------------------|-------------------|----------|
+| `arthur-describes-tanaka-mourning` | YES | YES | L3→L5 YES |
+| `tanaka-warns-struggle-is-scaffolding` | YES | YES | L3→L5 YES |
+| `arthur-dismisses-chooses-gold` | YES | YES | L3→L5 YES |
+| `tanaka-arthur-not-eating-vibrating` | YES | YES | n/a |
+| `mother-memory-erased` | YES | YES | n/a |
+| `tanaka-lady-come-back` | YES | YES | n/a |
+| `system-log-narrative-anchor-discarded` | YES | YES | n/a |
+| `final-journal-only-good` | YES | YES | n/a |
+| `tanaka-converted-500m-tagline` | YES | YES | n/a |
+
+Result: **35/35 preserved.** The three gap cases cover concepts that are
+visible by `min_visible_level` but have no L4 anchor in the current Grin
+sidecar. The renderer now keeps the tracked concept locked through that
+missing-anchor level instead of permanently re-acquiring a sibling. Visual
+evidence: `verify_artifacts/2026-05-19_grin_anchor_gap_L4.png` and
+`verify_artifacts/2026-05-19_grin_anchor_gap_L6.png`.
+
 ---
 
 ## Anti-reward-hacking checklist
@@ -320,3 +360,4 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-04-17 | **Known-issue pass: harness parse-fail, Derek leak at L2, `not` drift at L2.** (1) `multi_word_regression.mjs` was hitting `parse_fail` on `logs` because `bgoto` returned before the module booted under cumulative browse-daemon latency — added a readiness poll (`window._sz.treeData && measuredLevels[0]` with 8s cap) so each word's test waits for boot. Also refreshed the default word list (current corpus L0 no longer has `cheated`/`Chip`/`84%`). (2) L2 cluster 2-1 "Derek pitches a pivot to the creator economy model" was leaking because `regenerate-summaries.js` trimmed no-essential clusters to their first sentence; now drops them entirely at `L <= halfway` (parents' `children` lists pruned, never empties a level). Applied as surgical deletion on the restored tree: L1 3→1 nodes, L2 5→2 nodes (kept 2-2 + 2-3, dropped thesis/Derek/closing). Added `--only-level N` and `--skip-drop` flags for targeted re-reduction. (3) `not` was drifting to `He` at L2 because the original L2 reduction of `tom_refuses` rephrased `"I'm not going to access my daughter's logs"` as `"He doesn't"` — no literal `not`, so word-match failed and cursor fell to the anchor midpoint. Plus an `tyler_assistant_presents_evidence` anchor [388,460] sat inside `tom_refuses` [384,471], tie-breaking to Tyler. Fixed: tightened `summarize.js` reduction prompt with explicit dialogue-preservation rule + tense/perspective-stickiness rule + two generic WRONG/RIGHT examples (no corpus-specific tokens). Re-reduced just L2 with the new prompt; new L2 text is `'I'm not going to access my daughter's logs.'` (first-person, verbatim quote). Re-extracted concept anchors. Final regression: `not` 6/6 concept stable + word tracked at L0/L1/**L2**/L4/L5; `logs` 6/6; `trust` 6/6; `daughter` 6/6. All four concepts in the `tom_refuses` orbit now preserve identity across every pairwise zoom. Visual evidence: `verify_artifacts/2026-04-17_not_L5_tracked.png`. |
 | 2026-04-17 | **Scrollbar replaces edge-scroll.** Long-form corpora need user-driven panning that isn't "hover near top/bottom." Removed the edge-triggered auto-scroll block from `frame()`; added a canvas-drawn scrollbar in the right gutter (10px wide, 4px margin). Thumb height ∝ `screenH² / contentH`, position reflects `levelOffsets[currentLevel].y`. Mousedown on thumb captures drag; mousemove (window-level while dragging) updates offset proportionally; mouseup releases. Click on track outside thumb page-jumps ±0.8·screenH. Hidden when `contentH ≤ screenH` (e.g., L0 on short stories). Scrollbar area excluded from `isInTextArea` so hovering it doesn't re-grab hovered concepts. `isFrozen()` now also includes `sbDragging`. Debug surface extended: `window._sz.getScrollbarGeom / isOnScrollbarThumb / isOnScrollbarTrack / sbDragging`. Verified on `the-voting-problem-auto.json` L5 (contentH≈6004px, screenH=720): thumb drag moved offset from -2158 → -4601 (content scrolls up), track-click above thumb paged back up by 576px. No console errors. Visual evidence: `verify_artifacts/2026-04-17_scrollbar_L5.png`, `verify_artifacts/2026-04-17_scrollbar_L5_dragged.png`. |
 | 2026-04-16 | **Poker-nuts pipeline + L0→L1 fix.** Previous fix claimed 5/5 preservation on L0→L_max sweeps but missed the step-by-step failure the user reported: clicking 'not' at L0 landed ~3 lines away at L1. Two root causes: (1) L0 had 14 concepts overlapping in 200 chars and `findConceptAtCursor` returned first-in-array, not most-specific; (2) the L1 anchor for the 'not' concept was 230 chars off because fuzzy word-overlap preferred "access Sparkle's logs" over "not going to access my daughter's logs". Fixed: `findConceptAtCursor` now tie-breaks by shortest anchor (most specific); `getConceptCenterPosition` aims cursor at the anchor midpoint (not leading edge); concepts now carry `min_visible_level` so most are invisible at L0 (poker nuts — L0 has only 2 load-bearing events); `extract-concepts` uses Claude per (essential × level) for precise anchors; `regenerate-summaries.js` re-reduces upper levels using only essentials (no more "12% lower ROI" at L0); Claude calls parallelize per level; reduction prompt reframed (reduction ≠ summary — same voice, same story, just tighter). Result: L0 is now *"I'm standing in the conference room as Derek pitches when Maya's alert comes through. I could access Sparkle's logs right now. … I'm not going to access my daughter's assistant logs. I trust her."* Zoom L0→L1 on the 'not' concept lands with cursor over the word "my" in the decision text at L1. Visual evidence: `verify_artifacts/2026-04-16_L0_poker_nuts.png` and `verify_artifacts/2026-04-16_L1_not_concept_preserved.png`. |
+| 2026-05-19 | **Anchor-gap and word-hit hardening.** `hitTestWord` now returns exact node-level character offsets for the actual rendered word, avoiding repeated-word `indexOf` drift. `getConceptCenterPosition` prefers a representative anchor character not covered by a more-specific nested concept. The wheel handler keeps a tracked concept locked through missing-but-visible intermediate anchors and only re-acquires when the concept is intentionally below its `min_visible_level`. Added generic word→concept fallback for unanchored cursor text, genre-schema prompts for non-story inputs, `npm run validate:data`, and README. Regression: 35/35 preserved across voting + Grin, console errors 0. |

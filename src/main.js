@@ -161,17 +161,8 @@ function findConceptAtCursor(level, offsets) {
   // glyph widths, which miscounts containment on short anchor spans.
   const hit = hitTestWord(level, offsets)
   if (hit) {
-    const hitNode = nodes.find(n => n.nodeId === hit.nodeId)
-    if (hitNode) {
-      let charsBeforeLine = 0
-      for (let li = 0; li < hit.lineIdx; li++) charsBeforeLine += hitNode.lines[li].text.length
-      const lineText = hitNode.lines[hit.lineIdx].text
-      const wordIdx = lineText.indexOf(hit.word)
-      if (wordIdx >= 0) {
-        cursorNodeId = hit.nodeId
-        cursorCharIdx = charsBeforeLine + wordIdx + Math.floor(hit.word.length / 2)
-      }
-    }
+    cursorNodeId = hit.nodeId
+    cursorCharIdx = Math.floor((hit.charStart + hit.charEnd) / 2)
   }
 
   if (!cursorNodeId) {
@@ -211,6 +202,13 @@ function findConceptAtCursor(level, offsets) {
   }
   if (containing) return containing.concept
 
+  // Pass 1.5: semantic word fallback. When the cursor is on unanchored
+  // text, the exact word under the cursor is still a strong intent signal.
+  // Match that word against each concept's label/snippet/anchor text, then
+  // prefer the closest current-level anchor when one exists.
+  const wordMatched = findConceptByWord(hit?.word, level, contentY)
+  if (wordMatched) return wordMatched
+
   // Pass 2: PHRASE-CHAIN PROJECTION.
   // The cursor sits on unanchored content (most of the story at L0/L1 under
   // the poker-nuts rule). Project the cursor's phrase through matchIn to
@@ -238,6 +236,88 @@ function findConceptAtCursor(level, offsets) {
     if (pMid >= anchor.charStart && pMid <= anchor.charEnd) return concept
   }
   return null
+}
+
+function cleanWord(word) {
+  return (word || '').replace(/^[^\w'-]+|[^\w'-]+$/g, '').toLowerCase()
+}
+
+function tokenizeWords(text) {
+  const words = []
+  const re = /[\w'-]+/g
+  let m
+  while ((m = re.exec(text || '')) !== null) words.push(m[0].toLowerCase())
+  return words
+}
+
+function wordMatchTier(target, words) {
+  const clean = cleanWord(target)
+  if (clean.length < 3 || words.length === 0) return null
+  if (words.includes(clean)) return 0
+  if (clean.length >= 4 && words.some(w => w.length >= 4 && w.startsWith(clean.substring(0, 4)))) return 1
+  if (clean.length >= 4 && words.some(w => w.length >= 4 && (w.includes(clean) || clean.includes(w)))) return 2
+  return null
+}
+
+function anchorText(concept, level) {
+  const anchor = concept.anchors?.[String(level)]
+  if (!anchor) return ''
+  const node = treeData?.levels?.[String(level)]?.nodes?.find(n => n.id === anchor.nodeId)
+  return node ? node.text.substring(anchor.charStart, anchor.charEnd) : ''
+}
+
+function conceptSearchWords(concept) {
+  const Lmax = Object.keys(measuredLevels).map(Number).reduce((a, b) => Math.max(a, b), 0)
+  const parts = [concept.label, concept.snippet, anchorText(concept, Lmax)]
+  return tokenizeWords(parts.filter(Boolean).join(' '))
+}
+
+function conceptAnchorYDistance(concept, level, contentY) {
+  if (!concept.anchors?.[String(level)]) return Infinity
+  const pos = getConceptCenterPosition(concept, level)
+  return pos ? Math.abs(pos.contentY - contentY) : Infinity
+}
+
+function findConceptByWord(word, level, contentY) {
+  const clean = cleanWord(word)
+  if (clean.length < 3) return null
+
+  const candidates = []
+  for (const concept of concepts) {
+    const tier = wordMatchTier(clean, conceptSearchWords(concept))
+    if (tier == null) continue
+    const distance = conceptAnchorYDistance(concept, level, contentY)
+    const visiblePenalty = concept.anchors?.[String(level)] ? 0 : 1
+    const minVisible = concept.min_visible_level ?? 0
+    const hiddenPenalty = level < minVisible ? 1 : 0
+    const span = concept.anchors?.[String(level)]
+      ? concept.anchors[String(level)].charEnd - concept.anchors[String(level)].charStart
+      : Infinity
+    const score = { tier, visiblePenalty, hiddenPenalty, distance, span }
+    candidates.push({ concept, score })
+  }
+
+  if (candidates.length === 0) return null
+
+  const hasCurrentAnchor = candidates.some(c => c.score.visiblePenalty === 0)
+  const eligible = hasCurrentAnchor ? candidates.filter(c => c.score.visiblePenalty === 0) : candidates
+  // If the word maps to several concepts and none has a current-level anchor,
+  // phrase projection has better local context than first-match ordering.
+  if (!hasCurrentAnchor && eligible.length > 1) return null
+
+  let best = null
+  for (const candidate of eligible) {
+    const { concept, score } = candidate
+    if (!best ||
+      score.tier < best.score.tier ||
+      (score.tier === best.score.tier && score.visiblePenalty < best.score.visiblePenalty) ||
+      (score.tier === best.score.tier && score.visiblePenalty === best.score.visiblePenalty && score.hiddenPenalty < best.score.hiddenPenalty) ||
+      (score.tier === best.score.tier && score.visiblePenalty === best.score.visiblePenalty && score.hiddenPenalty === best.score.hiddenPenalty && score.distance < best.score.distance) ||
+      (score.tier === best.score.tier && score.visiblePenalty === best.score.visiblePenalty && score.hiddenPenalty === best.score.hiddenPenalty && score.distance === best.score.distance && score.span < best.score.span)) {
+      best = { concept, score }
+    }
+  }
+  return best?.concept ?? null
 }
 
 function getConceptPosition(concept, level) {
@@ -285,9 +365,70 @@ function positionAtCharIdx(node, charIdx) {
   return { contentY: node.y + LINE_HEIGHT / 2, contentX: 0 }
 }
 
-// Position of the MIDDLE character of the anchor span. Aim for this from the
-// wheel handler so the cursor lands centered on the concept, not at its
-// leading edge where a neighboring concept's tail can grab it.
+function overlapPenaltyAtChar(concept, level, nodeId, charIdx) {
+  const target = concept.anchors[String(level)]
+  const targetSpan = target.charEnd - target.charStart
+  let count = 0
+  let weight = 0
+  for (const other of concepts) {
+    if (other === concept) continue
+    const a = other.anchors?.[String(level)]
+    if (!a || a.nodeId !== nodeId) continue
+    if (charIdx < a.charStart || charIdx > a.charEnd) continue
+    const span = a.charEnd - a.charStart
+    // Longer enclosing anchors will lose to this target in findConceptAtCursor.
+    // Penalize only anchors that are as specific or more specific.
+    if (span <= targetSpan) {
+      count++
+      weight += 1 / Math.max(1, span)
+    }
+  }
+  return { count, weight }
+}
+
+function preferredAnchorChar(concept, level, node) {
+  const anchor = concept.anchors[String(level)]
+  const start = anchor.charStart
+  const end = anchor.charEnd
+  const mid = Math.floor((start + end) / 2)
+  const candidates = new Set([
+    mid,
+    Math.floor(start + (end - start) * 0.25),
+    Math.floor(start + (end - start) * 0.4),
+    Math.floor(start + (end - start) * 0.6),
+    Math.floor(start + (end - start) * 0.75),
+    Math.min(end, start + 12),
+    Math.max(start, end - 12),
+  ])
+
+  const anchorText = node.text.substring(start, end)
+  const re = /[\w'-]+/g
+  let m
+  while ((m = re.exec(anchorText)) !== null) {
+    candidates.add(start + m.index + Math.floor(m[0].length / 2))
+  }
+
+  let best = null
+  for (const raw of candidates) {
+    const charIdx = Math.max(start, Math.min(end, raw))
+    const penalty = overlapPenaltyAtChar(concept, level, anchor.nodeId, charIdx)
+    const centerDist = Math.abs(charIdx - mid)
+    const edgeDist = Math.min(Math.abs(charIdx - start), Math.abs(end - charIdx))
+    const edgePenalty = edgeDist < 2 ? 1 : 0
+    const score = { overlapCount: penalty.count, overlapWeight: penalty.weight, edgePenalty, centerDist }
+    if (!best ||
+      score.overlapCount < best.score.overlapCount ||
+      (score.overlapCount === best.score.overlapCount && score.overlapWeight < best.score.overlapWeight) ||
+      (score.overlapCount === best.score.overlapCount && score.overlapWeight === best.score.overlapWeight && score.edgePenalty < best.score.edgePenalty) ||
+      (score.overlapCount === best.score.overlapCount && score.overlapWeight === best.score.overlapWeight && score.edgePenalty === best.score.edgePenalty && score.centerDist < best.score.centerDist)) {
+      best = { charIdx, score }
+    }
+  }
+  return best?.charIdx ?? mid
+}
+
+// Position of a representative character in the anchor span. Prefer the
+// center, but avoid positions covered by a more-specific nested concept.
 function getConceptCenterPosition(concept, level) {
   const anchor = concept.anchors[String(level)]
   if (!anchor) return null
@@ -295,8 +436,7 @@ function getConceptCenterPosition(concept, level) {
   if (!nodes) return null
   const node = nodes.find(n => n.nodeId === anchor.nodeId)
   if (!node) return null
-  const midChar = Math.floor((anchor.charStart + anchor.charEnd) / 2)
-  return positionAtCharIdx(node, midChar)
+  return positionAtCharIdx(node, preferredAnchorChar(concept, level, node))
 }
 
 // If `word` (or a stem-equivalent) appears inside the concept's anchor
@@ -392,6 +532,9 @@ function hitTestWord(level, offsets) {
   const lineIdx = Math.floor((contentY - hitNode.y) / LINE_HEIGHT)
   if (lineIdx < 0 || lineIdx >= hitNode.lines.length) return null
 
+  let charsBeforeLine = 0
+  for (let li = 0; li < lineIdx; li++) charsBeforeLine += hitNode.lines[li].text.length
+
   const regex = /(\S+)(\s*)/g
   let match, accWidth = 0
   while ((match = regex.exec(hitNode.lines[lineIdx].text)) !== null) {
@@ -401,6 +544,8 @@ function hitTestWord(level, offsets) {
     if (contentX >= accWidth && contentX < accWidth + ww) {
       return {
         word: wt, nodeId: hitNode.nodeId, lineIdx,
+        charStart: charsBeforeLine + match.index,
+        charEnd: charsBeforeLine + match.index + wt.length,
         screenRect: {
           x: baseLeftX + offsets.x + accWidth,
           y: hitNode.y + lineIdx * LINE_HEIGHT + offsets.y,
@@ -578,17 +723,25 @@ canvas.addEventListener('wheel', (e) => {
 
     let targetConcept = trackedConcept
     // If the tracked concept has no anchor at the new level, use the
-    // phrase-chain projection to place the cursor and re-acquire identity.
+    // phrase-chain projection to place the cursor. Only re-acquire identity
+    // when the concept is intentionally invisible at that level; if the data
+    // is missing an anchor for a concept that should be visible, keep the
+    // lock so it can snap back when the anchor reappears on the next level.
     if (targetConcept && !targetConcept.anchors[String(currentLevel)]) {
       if (projected) {
         levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
         placed = true
       }
-      const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
-      const reacquired = findConceptAtCursor(currentLevel, provisionalOff)
-      if (reacquired) {
-        trackedConcept = reacquired
-        targetConcept = reacquired
+      const intentionallyHidden = currentLevel < (targetConcept.min_visible_level ?? 0)
+      if (intentionallyHidden) {
+        const provisionalOff = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
+        const reacquired = findConceptAtCursor(currentLevel, provisionalOff)
+        if (reacquired) {
+          trackedConcept = reacquired
+          targetConcept = reacquired
+        } else {
+          targetConcept = null
+        }
       } else {
         targetConcept = null
       }
@@ -700,9 +853,12 @@ function drawHUD() {
   }
 
   if (hoveredWord) { ctx.fillStyle = 'rgba(120,180,255,0.5)'; ctx.fillText(`→ ${hoveredWord.word}`, 16, h - 48) }
-  // Prefer the live-detected concept; fall back to tracked so the label stays
-  // visible when the cursor is on unanchored content mid-zoom session.
-  const labelConcept = hoveredConcept || trackedConcept
+  // Prefer the live-detected concept, except while tracking through a level
+  // where the concept should be visible but its anchor is missing from data.
+  const trackedAnchorGap = trackedConcept &&
+    !trackedConcept.anchors?.[String(currentLevel)] &&
+    currentLevel >= (trackedConcept.min_visible_level ?? 0)
+  const labelConcept = trackedAnchorGap ? trackedConcept : (hoveredConcept || trackedConcept)
   if (labelConcept) {
     const dim = hoveredConcept ? 'rgba(255,200,100,0.5)' : 'rgba(255,200,100,0.25)'
     ctx.fillStyle = dim

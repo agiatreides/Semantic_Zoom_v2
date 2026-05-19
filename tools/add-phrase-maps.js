@@ -104,28 +104,57 @@ for (let L = 0; L < totalLevels; L++) {
   console.log(`  Level ${L}: ${flatPhrases.length} phrases`)
 }
 
-// Phase B: Compute cross-level matches
+// Phase B: Compute cross-level matches. Prefer tree-constrained matching
+// when parent/child links exist; fall back to global matching for rebuilt
+// trees that currently lack children.
 console.log('\nComputing cross-level matches...')
+const childrenOf = {}
+const parentOf = {}
+for (let L = 0; L < totalLevels - 1; L++) {
+  for (const node of tree.levels[String(L)].nodes) {
+    const children = Array.isArray(node.children) ? node.children : []
+    childrenOf[node.id] = children
+    for (const childId of children) parentOf[childId] = node.id
+  }
+}
+const hasAnyChildLinks = Object.values(childrenOf).some(children => children.length > 0)
+if (!hasAnyChildLinks) {
+  console.warn('  warning: no child links found; phrase matching will be global across adjacent levels')
+}
+
+function bestPhraseMatch(source, candidates) {
+  let bestIdx = -1, bestSim = -Infinity
+  for (const i of candidates) {
+    const sim = cosineSim(source.embedding, phrasesByLevel[source.targetLevel][i].embedding)
+    if (sim > bestSim) { bestSim = sim; bestIdx = i }
+  }
+  return bestIdx
+}
+
 for (let L = 0; L < totalLevels; L++) {
   for (const phrase of phrasesByLevel[L]) {
     if (L < totalLevels - 1) {
-      let bestIdx = -1, bestSim = -Infinity
-      for (let i = 0; i < phrasesByLevel[L + 1].length; i++) {
-        const sim = cosineSim(phrase.embedding, phrasesByLevel[L + 1][i].embedding)
-        if (sim > bestSim) { bestSim = sim; bestIdx = i }
-      }
-      phrase.matchIn = bestIdx
+      const allowedChildren = new Set(childrenOf[phrase.nodeId] || [])
+      const candidates = phrasesByLevel[L + 1]
+        .map((p, i) => ({ p, i }))
+        .filter(({ p }) => !hasAnyChildLinks || allowedChildren.has(p.nodeId))
+        .map(({ i }) => i)
+      phrase.targetLevel = L + 1
+      phrase.matchIn = candidates.length > 0 ? bestPhraseMatch(phrase, candidates) : -1
+      delete phrase.targetLevel
     } else {
       phrase.matchIn = -1
     }
 
     if (L > 0) {
-      let bestIdx = -1, bestSim = -Infinity
-      for (let i = 0; i < phrasesByLevel[L - 1].length; i++) {
-        const sim = cosineSim(phrase.embedding, phrasesByLevel[L - 1][i].embedding)
-        if (sim > bestSim) { bestSim = sim; bestIdx = i }
-      }
-      phrase.matchOut = bestIdx
+      const parentId = parentOf[phrase.nodeId]
+      const candidates = phrasesByLevel[L - 1]
+        .map((p, i) => ({ p, i }))
+        .filter(({ p }) => !hasAnyChildLinks || p.nodeId === parentId)
+        .map(({ i }) => i)
+      phrase.targetLevel = L - 1
+      phrase.matchOut = candidates.length > 0 ? bestPhraseMatch(phrase, candidates) : -1
+      delete phrase.targetLevel
     } else {
       phrase.matchOut = -1
     }

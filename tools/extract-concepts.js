@@ -251,37 +251,147 @@ ${nodeBlock}
 
 Return the JSON object.`
 
+function SCHEMA_SIGNAL_PROMPT({
+  genreName,
+  unitName,
+  schema,
+  typeList,
+  l0Shape,
+  biases,
+}) {
+  return (nodeBlock, totalWords, levelCount, targetCount, lMaxId) => `Extract the signal hierarchy from this ${genreName} for a semantic-zoom reader.
+
+Return ONE strict-JSON object with five fields:
+
+A. THEMATIC_THRUST — one sentence (10-25 words) answering "What is this piece centrally saying or doing?" Stay inside the document's own frame. No "the article discusses…" or "the paper explores…".
+
+B. CHARACTERS — cast, entities, and glossary dict. Every named person, organization, system, product, method, dataset, place, or technical term a cold reader wouldn't recognize. Value: 3-10 word role tag.
+
+C. EVENTS — approximately ${targetCount} ${unitName.toUpperCase()}S, in source order. Keep the field name "events" for downstream compatibility, but each item is a ${unitName}, not necessarily a story event. For each:
+  - id: kebab-case
+  - label: 3-10 word VERB- or CLAIM-DRIVEN phrase
+  - type: one of ${typeList.join(' | ')}
+  - nodeId: the L${levelCount - 1} node id (e.g. "${lMaxId}") where the ${unitName} lives
+  - snippet: 20-180 char VERBATIM quote from that node (must literally exist)
+  - min_visible_level: integer 0 to ${levelCount - 1} (0 = most compressed; ${levelCount - 1} = full text)
+  - collapse_axes: array of subset of ["structure","stakes","meaning","voice","method","evidence"] — the axes on which cutting this ${unitName} would break the piece
+
+D. VOICE_ANCHORS — up to 3 short passages whose diction carries the document's register. Each: { nodeId, snippet (verbatim), note (one sentence on voice/register) }. Empty array if no single passage carries voice.
+
+TARGET SCHEMA:
+${schema}
+
+POKER-NUTS ASSIGNMENT RULES:
+- min_visible_level = 0: cutting this ${unitName} breaks the piece's central structure. A cold reader seeing ONLY level-0 ${unitName}s must be able to follow the document's spine.
+- L0 shape for this genre: ${l0Shape}
+- min_visible_level = 1: still essential at L1; cutting weakens but doesn't break.
+- min_visible_level = ${levelCount - 1}: flavor, local detail, or secondary support.
+- Use the minimum visible level at which the ${unitName} must appear. Do not promote a detail merely because it is vivid.
+
+BIASES:
+${biases.map(b => `- ${b}`).join('\n')}
+- Quantitative claims and named methods/results are usually load-bearing.
+- Opening orientation and final implication/conclusion usually need to survive at L0 or L1.
+
+SAME-WORK CONSTRAINT:
+Every level should be the SAME piece told tighter, not a detached description of it. A research-paper reduction should still read like the paper's contribution; an article reduction should still read like the article's claims; a procedure reduction should still read like the procedure. If mentally stringing your L0 ${unitName}s together produces only a meta-summary, promote the missing structural ${unitName}.
+
+OUTPUT EXACTLY THIS SHAPE (strict JSON, no fences, no commentary, no preamble):
+
+{
+  "thematic_thrust": "<one sentence, 10-25 words>",
+  "characters": { "Name or term": "role descriptor", ... },
+  "events": [
+    {
+      "id": "...", "label": "...", "type": "...",
+      "nodeId": "...", "snippet": "...",
+      "min_visible_level": N,
+      "collapse_axes": ["structure","evidence",...]
+    }, ...
+  ],
+  "voice_anchors": [
+    { "nodeId": "...", "snippet": "...", "note": "..." }, ...
+  ]
+}
+
+NODES (level ${levelCount - 1}, ${totalWords} words total):
+${nodeBlock}
+
+Return the JSON object.`
+}
+
 // --------------------------------------------------------------------
 // PROMPT_REGISTRY — genre → prompt builder
 // --------------------------------------------------------------------
 //
-// Only short_story has a fully-tuned prompt. Other genres call the
-// narrative prompt and log a warning so operators know they're routing
-// through the fallback. See SIGNAL_HIERARCHY_REVIEW.md §16 for the
-// planned schema per genre.
-
-function stubWarn(genre, schema) {
-  console.warn(`[genre=${genre}] using short-story fallback prompt. Planned schema: ${schema}`)
-  console.warn(`  TODO: replace with ${genre}-specific prompt. See SIGNAL_HIERARCHY_REVIEW.md §16.`)
-}
+// short_story keeps the tuned beat/voice prompt. Non-fiction genres use
+// schema-specific signal prompts so papers, reference articles, essays, and
+// procedures do not get force-fit into a plot-event template.
 
 const PROMPT_REGISTRY = {
   short_story:      NARRATIVE_NUTS_PROMPT_V2,
 
   // Narrative-family — currently reuses the short-story prompt. Acceptable
   // because the shape is similar; needs its own tuning for longer arcs.
-  novella:          (...a) => { stubWarn('novella', 'narrative, multi-arc'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  novel_excerpt:    (...a) => { stubWarn('novel_excerpt', 'narrative, part-of-larger'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  biography_memoir: (...a) => { stubWarn('biography_memoir', 'narrative + reflection, real life'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  novella:          NARRATIVE_NUTS_PROMPT_V2,
+  novel_excerpt:    NARRATIVE_NUTS_PROMPT_V2,
+  biography_memoir: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'biography or memoir',
+    unitName: 'turning point',
+    schema: 'life context -> formative pressure -> pivotal decisions/events -> consequences -> reflective landing',
+    typeList: ['context', 'turning_point', 'decision', 'consequence', 'reflection', 'voice'],
+    l0Shape: 'person/context, defining pressure, pivotal turn, consequence, reflective landing',
+    biases: ['Life-writing can be chronological, but consequence and reflection matter as much as event order.'],
+  }),
 
-  // Argument / exposition / procedural / research / reference — these really
-  // need their own schemas. Stubs fall back to narrative with a warning.
-  essay:            (...a) => { stubWarn('essay', 'thesis → evidence → counter → rebuttal → conclusion'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  argument:         (...a) => { stubWarn('argument', 'thesis → evidence → counter → rebuttal → conclusion'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  exposition:       (...a) => { stubWarn('exposition', 'claim/definition → elaboration → implication'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  procedural:       (...a) => { stubWarn('procedural', 'prerequisites → critical steps → outcome test'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  research_paper:   (...a) => { stubWarn('research_paper', 'problem → method → result → significance'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
-  reference:        (...a) => { stubWarn('reference', 'topic → structured-facets'); return NARRATIVE_NUTS_PROMPT_V2(...a) },
+  essay: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'essay',
+    unitName: 'claim beat',
+    schema: 'opening frame -> thesis / central question -> key evidence or example -> complication -> landing',
+    typeList: ['frame', 'thesis', 'evidence', 'example', 'counterclaim', 'rebuttal', 'conclusion', 'voice'],
+    l0Shape: 'frame or question, thesis, one load-bearing support, complication if needed, landing',
+    biases: ['Personal anecdotes survive only when they carry the argument rather than decorate it.'],
+  }),
+  argument: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'argument',
+    unitName: 'claim beat',
+    schema: 'thesis -> core evidence -> counterclaim or risk -> rebuttal -> conclusion / call to action',
+    typeList: ['thesis', 'evidence', 'counterclaim', 'rebuttal', 'risk', 'conclusion'],
+    l0Shape: 'thesis, decisive evidence, necessary rebuttal, conclusion',
+    biases: ['Do not let vivid examples crowd out the actual argumentative hinge.'],
+  }),
+  exposition: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'expository article',
+    unitName: 'explanatory signal',
+    schema: 'topic / definition -> mechanism or structure -> important distinctions -> implications',
+    typeList: ['definition', 'mechanism', 'distinction', 'example', 'implication', 'context'],
+    l0Shape: 'topic, core definition/mechanism, one necessary distinction, implication',
+    biases: ['Definitions and distinctions are often more load-bearing than anecdotes.'],
+  }),
+  procedural: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'procedure or how-to',
+    unitName: 'procedure signal',
+    schema: 'goal -> prerequisites / materials -> critical steps -> checks / failure modes -> outcome',
+    typeList: ['goal', 'prerequisite', 'step', 'constraint', 'failure_mode', 'check', 'outcome'],
+    l0Shape: 'goal, prerequisites, skip-breaks-it steps, outcome check',
+    biases: ['A step is L0-essential if skipping it makes the procedure fail or unsafe.'],
+  }),
+  research_paper: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'research paper',
+    unitName: 'contribution signal',
+    schema: 'problem / gap -> method or intervention -> main result -> evidence strength -> significance / limitation',
+    typeList: ['problem', 'gap', 'method', 'dataset', 'result', 'evidence', 'limitation', 'significance'],
+    l0Shape: 'research gap, method, headline result, significance or limitation',
+    biases: ['Preserve exact quantitative results and named methods when they carry the contribution.'],
+  }),
+  reference: SCHEMA_SIGNAL_PROMPT({
+    genreName: 'reference article',
+    unitName: 'facet signal',
+    schema: 'topic definition -> key facets / taxonomy -> notable mechanisms or history -> current significance',
+    typeList: ['definition', 'facet', 'taxonomy', 'history', 'mechanism', 'example', 'significance'],
+    l0Shape: 'topic definition, dominant facets, why it matters',
+    biases: ['Reference prose has no plot; do not invent one. Preserve taxonomy and definitions.'],
+  }),
 
   default:          NARRATIVE_NUTS_PROMPT_V2,
 }
@@ -300,7 +410,7 @@ function identifyAndAnchorAtLmax(tree, targetCount, genre) {
 
   const lMaxId = nodes[0]?.id ?? `${maxL}-0`
   const promptBuilder = PROMPT_REGISTRY[genre] || PROMPT_REGISTRY.default
-  console.log(`Pass 1 [genre=${genre}]: identifying ~${targetCount} beats + glossary from L${maxL} (${totalWords} words)...`)
+  console.log(`Pass 1 [genre=${genre}]: identifying ~${targetCount} signals + glossary from L${maxL} (${totalWords} words)...`)
   const raw = callClaude(promptBuilder(nodeBlock, totalWords, tree.levelCount, targetCount, lMaxId), 'identify')
   const parsed = parseJsonResponse(raw, 'identify')
   // Support both the new rich shape and legacy bare-array / {events, characters}

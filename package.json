@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "generate": "node tools/generate-tree.js"
+    "generate": "node tools/generate-tree.js",
+    "validate:data": "node tools/validate-data.js"
   },
   "dependencies": {
     "@chenglou/pretext": "latest",
+    "@huggingface/transformers": "^3.8.1",
     "semantic-chunking": "^2.4.4",
     "skmeans": "^0.11.3"
   },
