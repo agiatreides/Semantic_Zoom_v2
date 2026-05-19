@@ -35,12 +35,17 @@ The Pretext server uses `import.meta.url` to fetch data files relative to `src/m
 | `architecture-of-the-grin-auto-concepts.json` | n/a | Concept anchors |
 | `the-bitter-lesson-auto.json`           | 5 (0–4) | Argument/article corpus |
 | `the-bitter-lesson-auto-concepts.json`  | n/a     | Concept anchors |
+| `ada-lovelace-wikipedia-auto.json`      | 6 (0–5) | Wikipedia/reference biography corpus |
+| `ada-lovelace-wikipedia-auto-concepts.json` | n/a | Concept anchors |
+| `fair-guiding-principles-excerpt-auto.json` | 6 (0–5) | Research-paper excerpt corpus |
+| `fair-guiding-principles-excerpt-auto-concepts.json` | n/a | Concept anchors |
 
 URL: `http://localhost:5181/?file=the-voting-problem-auto.json`
 
 To add a new corpus: drop a `.txt` in `data/`, run
-`generate-tree.js <file.txt>` then `extract-concepts.js <out.json>`,
-add the option to `index.html`.
+`npm run ingest:fast -- data/<file.txt>`, add the option to `index.html`,
+and preserve source/license attribution in `data/SOURCES.md` for borrowed
+texts.
 
 ---
 
@@ -355,6 +360,36 @@ the Bitter Lesson text from `y=-1128` to `y=-1548`. Console errors: 0.
 Full artifact: `verify_artifacts/2026-05-19_click_zoom_regression.json`.
 Visual evidence: `verify_artifacts/2026-05-19_click_zoom_controls.png`.
 
+#### 2026-05-19 — child links + expanded regression corpora
+
+Added model-free child-link repair for direct source-to-level corpora. The
+repair aligns adjacent levels by normalized cumulative word position, writes
+parent `children` arrays, and then rebuilds phrase maps so matchIn/matchOut
+can stay tree-constrained. Existing generated corpora were repaired with
+`--phrase-maps`; the validator no longer emits the "all non-leaf child links
+are empty" warning.
+
+Added two permanent non-story regression corpora:
+
+| Corpus | Source | Concepts | Transition result |
+|--------|--------|----------|-------------------|
+| `ada-lovelace-wikipedia-auto.json` | Wikipedia reference biography, 4,086-word extract | 20 | 40/40 |
+| `fair-guiding-principles-excerpt-auto.json` | Scientific Data research-paper excerpt, 4,774 words | 23 | 46/46 |
+
+Full five-corpus click regression:
+
+| Corpus | Concepts tested | min→max + max→min transitions |
+|--------|-----------------|-------------------------------|
+| `the-voting-problem-auto.json` | 19 | 38/38 |
+| `architecture-of-the-grin-auto.json` | 16 | 32/32 |
+| `the-bitter-lesson-auto.json` | 21 | 42/42 |
+| `ada-lovelace-wikipedia-auto.json` | 20 | 40/40 |
+| `fair-guiding-principles-excerpt-auto.json` | 23 | 46/46 |
+
+Result: **198/198 preserved.** Wheel-pan check stayed at L5 while moving
+the FAIR text from `y=-630` to `y=-1050`. Console errors: 0. Full artifact:
+`verify_artifacts/2026-05-19_expanded_corpus_regression.json`.
+
 ---
 
 ## Anti-reward-hacking checklist
@@ -384,7 +419,7 @@ Reject and look deeper.
 | Element       | Selector       | Should be                              |
 |---------------|----------------|----------------------------------------|
 | Canvas        | `#viewport`    | visible, full viewport                 |
-| File picker   | `#file-picker` | visible, three options                 |
+| File picker   | `#file-picker` | visible, five options                  |
 
 **Verification commands:**
 
@@ -415,3 +450,4 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-05-19 | **Anchor-gap and word-hit hardening.** `hitTestWord` now returns exact node-level character offsets for the actual rendered word, avoiding repeated-word `indexOf` drift. `getConceptCenterPosition` prefers a representative anchor character not covered by a more-specific nested concept. The wheel handler keeps a tracked concept locked through missing-but-visible intermediate anchors and only re-acquires when the concept is intentionally below its `min_visible_level`. Added generic word→concept fallback for unanchored cursor text, genre-schema prompts for non-story inputs, `npm run validate:data`, and README. Regression: 35/35 preserved across voting + Grin, console errors 0. |
 | 2026-05-19 | **Bitter Lesson article corpus.** Added Richard Sutton's "The Bitter Lesson" as a generated argument/essay demo (`the-bitter-lesson-auto.json`). Hardened Lmax concept anchoring so extractor output with paraphrased snippets can recover literal source spans generically. `generate-tree.js --concepts` now accepts object-shaped concept sidecars. Final article regression: 42/42 concept transitions preserved, console errors 0. |
 | 2026-05-19 | **Click zoom navigation.** Semantic zoom moved from wheel to left/right click while preserving the existing anchor mechanism in `zoomAtCursor`. Wheel events now pan the current level and clear the active tracking lock. Regression: 112/112 click transitions preserved across all checked-in corpora; wheel-pan stayed on the same level; console errors 0. |
+| 2026-05-19 | **Child-link repair + expanded corpora.** Added `tools/rebuild-child-links.js` and a shared linear alignment helper so rebuilt corpora preserve parent/child links before phrase maps are regenerated. Repaired existing generated corpora, added Ada Lovelace Wikipedia and FAIR research-paper excerpt corpora with source attribution, and verified 198/198 concept transitions across all five corpora; wheel-pan stayed on the same level; console errors 0. |

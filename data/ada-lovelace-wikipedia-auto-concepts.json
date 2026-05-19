@@ -1,0 +1,778 @@
+{
+  "genre": {
+    "genre": "reference",
+    "confidence": 0.95,
+    "secondary": "biography_memoir",
+    "reasoning": "Neutral Wikipedia-style entry with structured sections defining and elaborating on Ada Lovelace's life and contributions."
+  },
+  "thematic_thrust": "Ada Lovelace first articulated computation as general symbol manipulation beyond arithmetic in her 1843 Notes on Babbage's Analytical Engine.",
+  "characters": {
+    "Ada Lovelace": "English mathematician who translated and annotated Babbage's Analytical Engine work",
+    "Charles Babbage": "inventor of the Analytical Engine, 'father of computers'",
+    "Lord Byron": "Romantic poet, Ada's father, separated from family shortly after her birth",
+    "Lady Byron": "reformer Anne Isabella Milbanke, Ada's controlling mother, shaped her mathematical education",
+    "Mary Somerville": "19th-century scientific author who tutored Ada and introduced her to Babbage",
+    "Luigi Menabrea": "Italian engineer who transcribed Babbage's Turin lecture into French",
+    "Augustus De Morgan": "mathematician who tutored Ada in advanced calculus including Bernoulli numbers",
+    "William King (Earl of Lovelace)": "Ada's husband, created Earl of Lovelace in 1838",
+    "Charles Wheatstone": "scientist who commissioned Ada's English translation of Menabrea's paper",
+    "Analytical Engine": "Babbage's proposed mechanical general-purpose computer, never built, now recognized as Turing-complete",
+    "Difference Engine": "Babbage's earlier, simpler mechanical calculator",
+    "Note G": "Ada's seventh annotation, describing a Bernoulli numbers algorithm called the first published program",
+    "Bernoulli numbers": "mathematical sequence whose computation by the Engine forms Ada's celebrated algorithm",
+    "Taylor's Scientific Memoirs": "journal publishing Ada's 1843 translation and notes under initials AAL",
+    "poetical science": "Ada's self-described method integrating imaginative intuition with mathematical rigor",
+    "Doron Swade": "computing historian crediting Ada with the symbol-manipulation insight",
+    "Stephen Wolfram": "Idea Makers author defending Ada's Bernoulli computation as most sophisticated",
+    "Eugene Eric Kim": "scholar arguing the 'first programmer' label for Ada is incorrect",
+    "Betty Alexandra Toole": "Ada biographer who co-argued against the 'first programmer' label",
+    "Allan G. Bromley": "historian documenting Babbage's several dozen prior unpublished programs",
+    "Dorothy K. Stein": "critic viewing Ada's notes as culturally rather than technically significant",
+    "Bruce Collier": "historian noting Ada publicized but did not advance the Engine's design or theory",
+    "Walter Isaacson": "biographer linking Ada's symbol-manipulation insight to punchcard textile looms",
+    "Alan Turing": "mathematician who rebutted Ada's AI dismissal in 'Computing Machinery and Intelligence'",
+    "Benjamin Woolley": "historian theorizing Babbage valued Ada partly for her famous father's name",
+    "Plan 28": "John Graham-Cumming's project to construct the first complete Analytical Engine"
+  },
+  "voice_anchors": [
+    {
+      "nodeId": "5-7",
+      "snippet": "the curious transformations many formulae can undergo, the unsuspected and to a beginner apparently impossible identity of forms exceedingly dissimilar at first sight, is I think one of the chief difficulties in the early part of mathematical studies. I am often reminded of certain sprites and fairies one reads of",
+      "note": "Ada's own letter blends mathematical precision with fairy-tale imagery, the clearest specimen of 'poetical science' in her own hand."
+    },
+    {
+      "nodeId": "5-9",
+      "snippet": "Forget this world and all its troubles and if possible its multitudinous Charlatans—every thing in short but the Enchantress of Number.",
+      "note": "Babbage's hyperbolic salutation reveals the reverential register the article sustains toward Ada throughout."
+    },
+    {
+      "nodeId": "5-14",
+      "snippet": "that transition was made explicitly by Ada in that 1843 paper.",
+      "note": "Swade's declarative verdict supplies the article's closing authority — encyclopedic certainty, not hedged biography."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ada-lovelace-mathematician-definition",
+      "label": "Ada Lovelace: mathematician known for Babbage's computer",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-0",
+          "charStart": 44,
+          "charEnd": 191
+        },
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 90,
+          "charEnd": 138
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 121,
+          "charEnd": 268
+        },
+        "3": {
+          "nodeId": "3-0",
+          "charStart": 121,
+          "charEnd": 268
+        },
+        "4": {
+          "nodeId": "4-0",
+          "charStart": 121,
+          "charEnd": 268
+        },
+        "5": {
+          "nodeId": "5-0",
+          "charStart": 121,
+          "charEnd": 268
+        }
+      },
+      "snippet": "an English mathematician and writer chiefly known for work on Charles Babbage's proposed mechanical general-purpose computer, the analytical engine",
+      "type": "definition",
+      "collapse_axes": [
+        "structure"
+      ]
+    },
+    {
+      "id": "first-computer-programmer-claim",
+      "label": "Ada widely credited as first computer programmer",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-0",
+          "charStart": 193,
+          "charEnd": 252
+        },
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 243,
+          "charEnd": 302
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 515,
+          "charEnd": 574
+        },
+        "3": {
+          "nodeId": "3-0",
+          "charStart": 355,
+          "charEnd": 414
+        },
+        "4": {
+          "nodeId": "4-0",
+          "charStart": 355,
+          "charEnd": 414
+        },
+        "5": {
+          "nodeId": "5-0",
+          "charStart": 355,
+          "charEnd": 414
+        }
+      },
+      "snippet": "Lovelace is often considered the first computer programmer.",
+      "type": "significance",
+      "collapse_axes": [
+        "structure",
+        "stakes"
+      ]
+    },
+    {
+      "id": "analytical-engine-turing-complete",
+      "label": "Analytical Engine recognized as Turing-complete general-purpose computer",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 344,
+          "charEnd": 486
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 693,
+          "charEnd": 835
+        },
+        "3": {
+          "nodeId": "3-0",
+          "charStart": 533,
+          "charEnd": 675
+        },
+        "4": {
+          "nodeId": "4-0",
+          "charStart": 1629,
+          "charEnd": 1771
+        },
+        "5": {
+          "nodeId": "5-0",
+          "charStart": 1865,
+          "charEnd": 2007
+        }
+      },
+      "snippet": "it has been recognised as a Turing-complete general-purpose computer, which anticipated the essential features of a modern electronic computer",
+      "type": "definition",
+      "collapse_axes": [
+        "structure",
+        "evidence"
+      ]
+    },
+    {
+      "id": "symbol-manipulation-insight",
+      "label": "Lovelace first sees computing as symbol manipulation beyond numbers",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-1",
+          "charStart": 0,
+          "charEnd": 166
+        },
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 355,
+          "charEnd": 514
+        },
+        "3": {
+          "nodeId": "3-12",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "4": {
+          "nodeId": "4-1",
+          "charStart": 614,
+          "charEnd": 780
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 614,
+          "charEnd": 780
+        }
+      },
+      "snippet": "Lovelace was the first to point out the possibility of encoding information besides mere arithmetical figures, such as music, and manipulating it with such a machine.",
+      "type": "significance",
+      "collapse_axes": [
+        "structure",
+        "meaning",
+        "stakes"
+      ]
+    },
+    {
+      "id": "poetical-science-approach",
+      "label": "Ada's 'poetical science' integrates imagination with mathematics",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 451,
+          "charEnd": 499
+        },
+        "2": {
+          "nodeId": "2-2",
+          "charStart": 117,
+          "charEnd": 233
+        },
+        "3": {
+          "nodeId": "3-0",
+          "charStart": 1064,
+          "charEnd": 1159
+        },
+        "4": {
+          "nodeId": "4-1",
+          "charStart": 797,
+          "charEnd": 913
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 797,
+          "charEnd": 913
+        }
+      },
+      "snippet": "poetical science\" led her to ask questions about the analytical engine, examining how individuals and society relate",
+      "type": "definition",
+      "collapse_axes": [
+        "meaning",
+        "voice"
+      ]
+    },
+    {
+      "id": "babbage-introduction-somerville",
+      "label": "Somerville introduces Lovelace to Babbage in 1833",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-4",
+          "charStart": 0,
+          "charEnd": 93
+        },
+        "3": {
+          "nodeId": "3-6",
+          "charStart": 0,
+          "charEnd": 93
+        },
+        "4": {
+          "nodeId": "4-15",
+          "charStart": 0,
+          "charEnd": 93
+        },
+        "5": {
+          "nodeId": "5-9",
+          "charStart": 0,
+          "charEnd": 93
+        }
+      },
+      "snippet": "Lovelace first met Charles Babbage in June 1833, through their mutual friend Mary Somerville.",
+      "type": "history",
+      "collapse_axes": [
+        "structure"
+      ]
+    },
+    {
+      "id": "menabrea-lecture-transcription",
+      "label": "Babbage lectures at Turin; Menabrea transcribes into French",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-3",
+          "charStart": 88,
+          "charEnd": 210
+        },
+        "2": {
+          "nodeId": "2-5",
+          "charStart": 103,
+          "charEnd": 225
+        },
+        "3": {
+          "nodeId": "3-7",
+          "charStart": 103,
+          "charEnd": 225
+        },
+        "4": {
+          "nodeId": "4-16",
+          "charStart": 103,
+          "charEnd": 225
+        },
+        "5": {
+          "nodeId": "5-9",
+          "charStart": 772,
+          "charEnd": 894
+        }
+      },
+      "snippet": "Luigi Menabrea, a young Italian engineer and the future Prime Minister of Italy, transcribed Babbage's lecture into French",
+      "type": "history",
+      "collapse_axes": [
+        "structure",
+        "evidence"
+      ]
+    },
+    {
+      "id": "wheatstone-commissions-translation",
+      "label": "Wheatstone commissions Lovelace to translate Menabrea's paper",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-5",
+          "charStart": 333,
+          "charEnd": 434
+        },
+        "3": {
+          "nodeId": "3-7",
+          "charStart": 329,
+          "charEnd": 430
+        },
+        "4": {
+          "nodeId": "4-16",
+          "charStart": 333,
+          "charEnd": 434
+        },
+        "5": {
+          "nodeId": "5-9",
+          "charStart": 1002,
+          "charEnd": 1103
+        }
+      },
+      "snippet": "Babbage's friend Charles Wheatstone commissioned Lovelace to translate Menabrea's paper into English.",
+      "type": "history",
+      "collapse_axes": [
+        "structure"
+      ]
+    },
+    {
+      "id": "notes-a-through-g-published",
+      "label": "Lovelace augments translation with seven notes, three times longer",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-3",
+          "charStart": 312,
+          "charEnd": 447
+        },
+        "2": {
+          "nodeId": "2-5",
+          "charStart": 474,
+          "charEnd": 602
+        },
+        "3": {
+          "nodeId": "3-7",
+          "charStart": 470,
+          "charEnd": 598
+        },
+        "4": {
+          "nodeId": "4-16",
+          "charStart": 514,
+          "charEnd": 610
+        },
+        "5": {
+          "nodeId": "5-9",
+          "charStart": 1184,
+          "charEnd": 1280
+        }
+      },
+      "snippet": "She augmented the paper with seven notes, A to G, about three times longer than the translation.",
+      "type": "facet",
+      "collapse_axes": [
+        "structure",
+        "evidence"
+      ]
+    },
+    {
+      "id": "note-g-bernoulli-algorithm",
+      "label": "Note G describes Bernoulli algorithm: called first published program",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-2",
+          "charStart": 113,
+          "charEnd": 161
+        },
+        "1": {
+          "nodeId": "1-4",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "2": {
+          "nodeId": "2-6",
+          "charStart": 0,
+          "charEnd": 178
+        },
+        "3": {
+          "nodeId": "3-8",
+          "charStart": 0,
+          "charEnd": 178
+        },
+        "4": {
+          "nodeId": "4-19",
+          "charStart": 0,
+          "charEnd": 178
+        },
+        "5": {
+          "nodeId": "5-11",
+          "charStart": 76,
+          "charEnd": 254
+        }
+      },
+      "snippet": "Note G described, in complete detail, a method for calculating a sequence of Bernoulli numbers using the Analytical Engine, which might have run correctly had it ever been built.",
+      "type": "significance",
+      "collapse_axes": [
+        "structure",
+        "stakes",
+        "evidence"
+      ]
+    },
+    {
+      "id": "first-programmer-controversy",
+      "label": "Scholars dispute Ada's 'first programmer' claim; Babbage had prior programs",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-5",
+          "charStart": 62,
+          "charEnd": 185
+        },
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 205,
+          "charEnd": 337
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 188,
+          "charEnd": 320
+        },
+        "4": {
+          "nodeId": "4-20",
+          "charStart": 447,
+          "charEnd": 579
+        },
+        "5": {
+          "nodeId": "5-11",
+          "charStart": 1498,
+          "charEnd": 1630
+        }
+      },
+      "snippet": "Bromley notes several dozen sample programs prepared by Babbage between 1837 and 1840, all substantially predating Lovelace's notes.",
+      "type": "facet",
+      "collapse_axes": [
+        "stakes",
+        "evidence"
+      ]
+    },
+    {
+      "id": "wolfram-defends-lovelace",
+      "label": "Wolfram: Ada's Bernoulli computation most sophisticated; she was the driver",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-8",
+          "charStart": 444,
+          "charEnd": 588
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 973,
+          "charEnd": 1117
+        },
+        "4": {
+          "nodeId": "4-20",
+          "charStart": 1452,
+          "charEnd": 1596
+        },
+        "5": {
+          "nodeId": "5-12",
+          "charStart": 1041,
+          "charEnd": 1185
+        }
+      },
+      "snippet": "there's nothing as sophisticated—or as clean—as Ada's computation of the Bernoulli numbers. Babbage certainly helped and commented on Ada's work",
+      "type": "evidence",
+      "collapse_axes": [
+        "evidence"
+      ]
+    },
+    {
+      "id": "swade-credits-first-published",
+      "label": "Swade: Ada published first program; uniquely saw machine's full potential",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-8",
+          "charStart": 26,
+          "charEnd": 189
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 561,
+          "charEnd": 609
+        },
+        "4": {
+          "nodeId": "4-20",
+          "charStart": 1028,
+          "charEnd": 1191
+        },
+        "5": {
+          "nodeId": "5-12",
+          "charStart": 590,
+          "charEnd": 753
+        }
+      },
+      "snippet": "Ada only published the first computer program instead of actually writing it, but agrees that she was the only person to see the potential of the analytical engine",
+      "type": "facet",
+      "collapse_axes": [
+        "stakes"
+      ]
+    },
+    {
+      "id": "music-composition-example",
+      "label": "Ada illustrates insight: engine could compose music formally",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-9",
+          "charStart": 615,
+          "charEnd": 719
+        },
+        "3": {
+          "nodeId": "3-11",
+          "charStart": 370,
+          "charEnd": 474
+        },
+        "4": {
+          "nodeId": "4-22",
+          "charStart": 491,
+          "charEnd": 595
+        },
+        "5": {
+          "nodeId": "5-13",
+          "charStart": 491,
+          "charEnd": 595
+        }
+      },
+      "snippet": "the engine might compose elaborate and scientific pieces of music of any degree of complexity or extent.",
+      "type": "example",
+      "collapse_axes": [
+        "meaning",
+        "evidence"
+      ]
+    },
+    {
+      "id": "swade-symbol-vs-number-transition",
+      "label": "Swade: Ada's 1843 insight marks transition from calculation to computation",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-3",
+          "charStart": 229,
+          "charEnd": 319
+        },
+        "1": {
+          "nodeId": "1-6",
+          "charStart": 271,
+          "charEnd": 361
+        },
+        "2": {
+          "nodeId": "2-10",
+          "charStart": 330,
+          "charEnd": 420
+        },
+        "3": {
+          "nodeId": "3-13",
+          "charStart": 336,
+          "charEnd": 426
+        },
+        "4": {
+          "nodeId": "4-24",
+          "charStart": 320,
+          "charEnd": 410
+        },
+        "5": {
+          "nodeId": "5-14",
+          "charStart": 320,
+          "charEnd": 410
+        }
+      },
+      "snippet": "the machine could manipulate symbols of which number was one instance, according to rules.",
+      "type": "significance",
+      "collapse_axes": [
+        "structure",
+        "meaning",
+        "stakes"
+      ]
+    },
+    {
+      "id": "ai-dismissal-in-note-g",
+      "label": "Ada dismisses AI: engine originates nothing, only executes orders",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-7",
+          "charStart": 86,
+          "charEnd": 213
+        },
+        "2": {
+          "nodeId": "2-11",
+          "charStart": 86,
+          "charEnd": 213
+        },
+        "3": {
+          "nodeId": "3-14",
+          "charStart": 86,
+          "charEnd": 213
+        },
+        "4": {
+          "nodeId": "4-25",
+          "charStart": 86,
+          "charEnd": 213
+        },
+        "5": {
+          "nodeId": "5-14",
+          "charStart": 922,
+          "charEnd": 1049
+        }
+      },
+      "snippet": "The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform.",
+      "type": "facet",
+      "collapse_axes": [
+        "meaning",
+        "structure"
+      ]
+    },
+    {
+      "id": "mechanism-vs-logical-structure",
+      "label": "Lovelace distinguishes mechanical implementation from analytical structure",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-12",
+          "charStart": 0,
+          "charEnd": 613
+        },
+        "3": {
+          "nodeId": "3-15",
+          "charStart": 632,
+          "charEnd": 753
+        },
+        "4": {
+          "nodeId": "4-27",
+          "charStart": 757,
+          "charEnd": 878
+        },
+        "5": {
+          "nodeId": "5-15",
+          "charStart": 757,
+          "charEnd": 878
+        }
+      },
+      "snippet": "in the invention of a calculating engine, these two branches of the subject are equally essential fields of investigation",
+      "type": "taxonomy",
+      "collapse_axes": [
+        "method"
+      ]
+    },
+    {
+      "id": "mathematical-education-de-morgan",
+      "label": "De Morgan tutors Ada in advanced calculus; predicts first-rate eminence",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-3",
+          "charStart": 788,
+          "charEnd": 828
+        },
+        "3": {
+          "nodeId": "3-3",
+          "charStart": 415,
+          "charEnd": 455
+        },
+        "4": {
+          "nodeId": "4-9",
+          "charStart": 435,
+          "charEnd": 475
+        },
+        "5": {
+          "nodeId": "5-7",
+          "charStart": 492,
+          "charEnd": 532
+        }
+      },
+      "snippet": "the mathematician Augustus De Morgan ext",
+      "type": "history",
+      "collapse_axes": [
+        "evidence"
+      ]
+    },
+    {
+      "id": "byron-parentage-childhood",
+      "label": "Ada raised without father Byron; only legitimate child of famous poet",
+      "min_visible_level": 3,
+      "anchors": {
+        "3": {
+          "nodeId": "3-1",
+          "charStart": 377,
+          "charEnd": 477
+        },
+        "4": {
+          "nodeId": "4-2",
+          "charStart": 675,
+          "charEnd": 775
+        },
+        "5": {
+          "nodeId": "5-2",
+          "charStart": 328,
+          "charEnd": 428
+        }
+      },
+      "snippet": "Ada did not have a relationship with her father. He died in April 1824 when she was eight years old.",
+      "type": "history",
+      "collapse_axes": [
+        "structure"
+      ]
+    },
+    {
+      "id": "death-cervical-cancer-1852",
+      "label": "Ada dies at 36 of cervical cancer; buried beside Byron",
+      "min_visible_level": 3,
+      "anchors": {
+        "3": {
+          "nodeId": "3-16",
+          "charStart": 0,
+          "charEnd": 71
+        },
+        "4": {
+          "nodeId": "4-13",
+          "charStart": 0,
+          "charEnd": 71
+        },
+        "5": {
+          "nodeId": "5-8",
+          "charStart": 0,
+          "charEnd": 71
+        }
+      },
+      "snippet": "Lovelace died at the age of 36 on 27 November 1852 from cervical cancer",
+      "type": "history",
+      "collapse_axes": []
+    }
+  ]
+}

@@ -10,6 +10,8 @@ The checked-in demo corpora run without any model calls:
 - `the-voting-problem-auto.json`
 - `architecture-of-the-grin-auto.json`
 - `the-bitter-lesson-auto.json`
+- `ada-lovelace-wikipedia-auto.json`
+- `fair-guiding-principles-excerpt-auto.json`
 
 ## Run the Demo
 
@@ -69,6 +71,17 @@ The pipeline is intended to be fully automatic. Do not hand-author per-document
 concept files; stale or invalid anchors should be regenerated or repaired by
 generic tooling.
 
+## Repair Corpus Links
+
+Direct source-to-level rebuilds can repair child links without model calls:
+
+```bash
+npm run repair:links -- data/my-document-auto.json --phrase-maps
+```
+
+Use `--phrase-maps` when the renderer fallback should be refreshed after the
+new parent/child links are written.
+
 ## Core Files
 
 - `src/main.js` — input handling, zoom anchoring, hit-testing, debug API.
@@ -78,4 +91,5 @@ generic tooling.
 - `tools/ingest-fast.js` — one-command corpus ingest path.
 - `tools/extract-concepts.js` — concept/signal extraction and anchor placement.
 - `tools/rebuild-levels.js` — direct source-to-level rebuild for polished demo corpora.
+- `tools/rebuild-child-links.js` — model-free child-link repair for generated corpora.
 - `VERIFY.md` — regression contract for UI changes.

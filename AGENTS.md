@@ -101,7 +101,8 @@ Sources of truth:
 
 5. **Demo corpora today.** The checked-in options are
    `the-voting-problem-auto.json`, `architecture-of-the-grin-auto.json`,
-   and `the-bitter-lesson-auto.json`, each with a `*-concepts.json`
+   `the-bitter-lesson-auto.json`, `ada-lovelace-wikipedia-auto.json`, and
+   `fair-guiding-principles-excerpt-auto.json`, each with a `*-concepts.json`
    sidecar. Adding a new document = drop the `.txt` next to it, run the
    pipeline, add an option to `index.html`. Never patch data files by hand;
    if a concepts file is stale (anchors out of range), regenerate it.

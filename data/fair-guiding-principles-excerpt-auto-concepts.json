@@ -1,0 +1,869 @@
+{
+  "genre": {
+    "genre": "argument",
+    "confidence": 0.6,
+    "secondary": "exposition",
+    "reasoning": "Thesis-driven comment advocating for the FAIR principles, with substantial explanatory background."
+  },
+  "thematic_thrust": "Four foundational principles—FAIR—guide contemporary data publishing to enhance discovery and reuse by humans and machines.",
+  "characters": {
+    "FAIR Guiding Principles": "framework emphasizing Findability, Accessibility, Interoperability, Reusability",
+    "Researchers": "creators of scientific data seeking to share, cite, and reuse datasets",
+    "Funding agencies": "stakeholders requiring data stewardship and long-term management plans",
+    "Publishers": "organizations facilitating formal scholarly communication and data publication",
+    "Data repositories": "institutions storing and providing access to datasets globally",
+    "Computational agents": "automated systems tasked with autonomous data retrieval and integration",
+    "FORCE11": "Future of Research Communications and e-Scholarship community",
+    "Genbank": "specialized archive for genomic sequences",
+    "wwPDB": "Worldwide Protein Data Bank for 3D protein structures",
+    "UniProt": "comprehensive protein sequence and annotation resource",
+    "Dataverse": "open-source data repository software deployed globally",
+    "FAIRDOM": "FAIR data and model management facility for systems biology",
+    "ISA": "community metadata tracking framework for life science datasets",
+    "Open PHACTS": "data integration platform for drug discovery information",
+    "Machine-actionability": "autonomous capacity to interpret and appropriately act on digital objects",
+    "Metadata": "structured information describing content, context, and quality of data",
+    "Provenance": "documented record of data origin, processing, and dependencies",
+    "DOI": "persistent globally unique identifier for digital objects"
+  },
+  "voice_anchors": [
+    {
+      "nodeId": "5-4",
+      "snippet": "The reason that we often need several weeks (or months) of specialist technical effort to gather the data necessary to answer such research questions is not the lack of appropriate technology; the reason is, that we do not pay our valuable digital objects the careful attention they deserve when we create and preserve them.",
+      "note": "Diagnostic rebuttal: corrects naive assumption, elevates care and stewardship as moral imperatives"
+    },
+    {
+      "nodeId": "5-1",
+      "snippet": "good data management and stewardship, therefore, are high quality digital publications that facilitate and simplify this ongoing process of discovery, evaluation, and reuse in downstream studies.",
+      "note": "Purpose-driven definition: frames stewardship through downstream outcomes and community benefit"
+    },
+    {
+      "nodeId": "5-2",
+      "snippet": "One of the grand challenges of data-intensive science, therefore, is to improve knowledge discovery through assisting both humans, and their computational agents, in the discovery of, access to, and integration and analysis of, task-appropriate scientific data",
+      "note": "Systemic register: invokes grand challenges, balances human and machine as equal stakeholders"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "problem-ecosystem-barriers",
+      "label": "Current data ecosystem prevents research reuse",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-0",
+          "charStart": 4,
+          "charEnd": 52
+        },
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 4,
+          "charEnd": 52
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 193,
+          "charEnd": 241
+        },
+        "3": {
+          "nodeId": "3-2",
+          "charStart": 83,
+          "charEnd": 222
+        },
+        "4": {
+          "nodeId": "4-2",
+          "charStart": 199,
+          "charEnd": 338
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 254,
+          "charEnd": 393
+        }
+      },
+      "snippet": "existing digital ecosystem surrounding scholarly data publication prevents us from extracting maximum benefit from our research investments",
+      "type": "thesis",
+      "collapse_axes": [
+        "structure",
+        "stakes"
+      ]
+    },
+    {
+      "id": "solution-fair-principles",
+      "label": "FAIR principles guide data producers and publishers",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-1",
+          "charStart": 0,
+          "charEnd": 126
+        },
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 151,
+          "charEnd": 342
+        },
+        "2": {
+          "nodeId": "2-13",
+          "charStart": 0,
+          "charEnd": 140
+        },
+        "3": {
+          "nodeId": "3-3",
+          "charStart": 0,
+          "charEnd": 138
+        },
+        "4": {
+          "nodeId": "4-2",
+          "charStart": 1013,
+          "charEnd": 1153
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 1499,
+          "charEnd": 1639
+        }
+      },
+      "snippet": "four foundational principles—Findability, Accessibility, Interoperability, and Reusability—that serve to guide data producers and publishers",
+      "type": "evidence",
+      "collapse_axes": [
+        "structure"
+      ]
+    },
+    {
+      "id": "scope-algorithms-workflows",
+      "label": "Principles apply beyond data to tools and algorithms",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-1",
+          "charStart": 177,
+          "charEnd": 317
+        },
+        "3": {
+          "nodeId": "3-3",
+          "charStart": 139,
+          "charEnd": 279
+        },
+        "4": {
+          "nodeId": "4-2",
+          "charStart": 1295,
+          "charEnd": 1433
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 1825,
+          "charEnd": 1896
+        }
+      },
+      "snippet": "principles apply not only to ‘data’ in the conventional sense, but also",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "definition-undefined",
+      "label": "Good data management remains undefined and delegated",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 253,
+          "charEnd": 358
+        },
+        "2": {
+          "nodeId": "2-0",
+          "charStart": 850,
+          "charEnd": 964
+        },
+        "3": {
+          "nodeId": "3-2",
+          "charStart": 560,
+          "charEnd": 696
+        },
+        "4": {
+          "nodeId": "4-2",
+          "charStart": 860,
+          "charEnd": 954
+        },
+        "5": {
+          "nodeId": "5-1",
+          "charStart": 1101,
+          "charEnd": 1203
+        }
+      },
+      "snippet": "studies. What constitutes ‘good data management’ is, however, largely undefined, and is generally left",
+      "type": "evidence",
+      "collapse_axes": [
+        "stakes"
+      ]
+    },
+    {
+      "id": "stakeholders-human",
+      "label": "Multiple human stakeholders need data discovery and reuse",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 116,
+          "charEnd": 252
+        },
+        "3": {
+          "nodeId": "3-4",
+          "charStart": 44,
+          "charEnd": 119
+        },
+        "4": {
+          "nodeId": "4-3",
+          "charStart": 84,
+          "charEnd": 124
+        },
+        "5": {
+          "nodeId": "5-2",
+          "charStart": 98,
+          "charEnd": 138
+        }
+      },
+      "snippet": "researchers wanting to share, get credit",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "stakeholders-computational",
+      "label": "Computational agents are critical overlooked stakeholders",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 854,
+          "charEnd": 894
+        },
+        "2": {
+          "nodeId": "2-2",
+          "charStart": 391,
+          "charEnd": 636
+        },
+        "3": {
+          "nodeId": "3-4",
+          "charStart": 389,
+          "charEnd": 515
+        },
+        "4": {
+          "nodeId": "4-3",
+          "charStart": 498,
+          "charEnd": 644
+        },
+        "5": {
+          "nodeId": "5-2",
+          "charStart": 772,
+          "charEnd": 918
+        }
+      },
+      "snippet": "Similar problems are encountered by the applications and computational agents that we task to undertake data retrieval and analysis on our behalf.",
+      "type": "evidence",
+      "collapse_axes": [
+        "structure",
+        "evidence"
+      ]
+    },
+    {
+      "id": "special-purpose-limits",
+      "label": "Specialized repositories serve only specific data types",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-5",
+          "charStart": 627,
+          "charEnd": 775
+        },
+        "3": {
+          "nodeId": "3-5",
+          "charStart": 315,
+          "charEnd": 363
+        },
+        "4": {
+          "nodeId": "4-3",
+          "charStart": 1097,
+          "charEnd": 1234
+        },
+        "5": {
+          "nodeId": "5-2",
+          "charStart": 1393,
+          "charEnd": 1530
+        }
+      },
+      "snippet": "there are well-curated, deeply-integrated, special-purpose repositories such as Genbank, Worldwide Protein Data Bank (wwPDB), and UniProt",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "general-purpose-fragmentation",
+      "label": "General-purpose repositories fragment and decentralize data",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-0",
+          "charStart": 521,
+          "charEnd": 989
+        },
+        "2": {
+          "nodeId": "2-4",
+          "charStart": 195,
+          "charEnd": 574
+        },
+        "3": {
+          "nodeId": "3-6",
+          "charStart": 348,
+          "charEnd": 471
+        },
+        "4": {
+          "nodeId": "4-3",
+          "charStart": 2100,
+          "charEnd": 2220
+        },
+        "5": {
+          "nodeId": "5-3",
+          "charStart": 939,
+          "charEnd": 1072
+        }
+      },
+      "snippet": "The resulting data ecosystem, therefore, appears to be moving away from centralization, is becoming more diverse, and less integrated",
+      "type": "counterclaim",
+      "collapse_axes": [
+        "stakes"
+      ]
+    },
+    {
+      "id": "example-polyadenylation-researcher",
+      "label": "Researcher cannot locate domain-specific datasets",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-5",
+          "charStart": 0,
+          "charEnd": 425
+        },
+        "3": {
+          "nodeId": "3-7",
+          "charStart": 233,
+          "charEnd": 427
+        },
+        "4": {
+          "nodeId": "4-4",
+          "charStart": 212,
+          "charEnd": 260
+        },
+        "5": {
+          "nodeId": "5-3",
+          "charStart": 1511,
+          "charEnd": 1663
+        }
+      },
+      "snippet": "The researcher is interested in comparing the alternatively-polyadenylated genes in this local dataset, to other examples of alternative-polyadenylation",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "barrier-months-of-work",
+      "label": "Data integration requires months of specialist effort",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 454,
+          "charEnd": 538
+        },
+        "2": {
+          "nodeId": "2-6",
+          "charStart": 176,
+          "charEnd": 313
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 183,
+          "charEnd": 287
+        },
+        "4": {
+          "nodeId": "4-4",
+          "charStart": 1250,
+          "charEnd": 1350
+        },
+        "5": {
+          "nodeId": "5-4",
+          "charStart": 1137,
+          "charEnd": 1286
+        }
+      },
+      "snippet": "The reason that we often need several weeks (or months) of specialist technical effort to gather the data necessary to answer such research questions",
+      "type": "evidence",
+      "collapse_axes": [
+        "stakes"
+      ]
+    },
+    {
+      "id": "root-cause-insufficient-care",
+      "label": "Root cause: insufficient care in data stewardship",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-2",
+          "charStart": 72,
+          "charEnd": 182
+        },
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 539,
+          "charEnd": 685
+        },
+        "2": {
+          "nodeId": "2-6",
+          "charStart": 176,
+          "charEnd": 430
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 364,
+          "charEnd": 475
+        },
+        "4": {
+          "nodeId": "4-4",
+          "charStart": 1400,
+          "charEnd": 1550
+        },
+        "5": {
+          "nodeId": "5-4",
+          "charStart": 1330,
+          "charEnd": 1461
+        }
+      },
+      "snippet": "the reason is, that we do not pay our valuable digital objects the careful attention they deserve when we create and preserve them.",
+      "type": "rebuttal",
+      "collapse_axes": [
+        "meaning"
+      ]
+    },
+    {
+      "id": "goal-first-class-citizens",
+      "label": "Scholarly data must become first-class publication objects",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-3",
+          "charStart": 4,
+          "charEnd": 52
+        },
+        "1": {
+          "nodeId": "1-1",
+          "charStart": 686,
+          "charEnd": 895
+        },
+        "2": {
+          "nodeId": "2-6",
+          "charStart": 598,
+          "charEnd": 875
+        },
+        "3": {
+          "nodeId": "3-9",
+          "charStart": 612,
+          "charEnd": 660
+        },
+        "4": {
+          "nodeId": "4-4",
+          "charStart": 1822,
+          "charEnd": 1870
+        },
+        "5": {
+          "nodeId": "5-4",
+          "charStart": 1668,
+          "charEnd": 1741
+        }
+      },
+      "snippet": "goal is for scholarly digital objects of all kinds to become ‘first class",
+      "type": "conclusion",
+      "collapse_axes": [
+        "structure",
+        "stakes"
+      ]
+    },
+    {
+      "id": "leiden-workshop-2014",
+      "label": "Leiden 2014 workshop convened diverse stakeholders",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 22,
+          "charEnd": 62
+        },
+        "3": {
+          "nodeId": "3-10",
+          "charStart": 24,
+          "charEnd": 64
+        },
+        "4": {
+          "nodeId": "4-5",
+          "charStart": 24,
+          "charEnd": 64
+        },
+        "5": {
+          "nodeId": "5-5",
+          "charStart": 24,
+          "charEnd": 64
+        }
+      },
+      "snippet": "a workshop was held in Leiden, Netherlan",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "fair-emergence-deliberation",
+      "label": "FAIR principles emerged from stakeholder deliberation",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 0,
+          "charEnd": 256
+        },
+        "2": {
+          "nodeId": "2-7",
+          "charStart": 253,
+          "charEnd": 753
+        },
+        "3": {
+          "nodeId": "3-10",
+          "charStart": 302,
+          "charEnd": 467
+        },
+        "4": {
+          "nodeId": "4-5",
+          "charStart": 280,
+          "charEnd": 480
+        },
+        "5": {
+          "nodeId": "5-5",
+          "charStart": 279,
+          "charEnd": 450
+        }
+      },
+      "snippet": "From the deliberations at the workshop the notion emerged that, through the definition of, and widespread support for, a minimal set of community-agreed guiding principles",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "human-machine-distinct-barriers",
+      "label": "Humans and machines face fundamentally distinct data barriers",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 485,
+          "charEnd": 565
+        },
+        "2": {
+          "nodeId": "2-8",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "3": {
+          "nodeId": "3-11",
+          "charStart": 0,
+          "charEnd": 101
+        },
+        "4": {
+          "nodeId": "4-6",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "5": {
+          "nodeId": "5-7",
+          "charStart": 239,
+          "charEnd": 340
+        }
+      },
+      "snippet": "Humans and machines often face distinct barriers when attempting to find and process data on the Web.",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "human-semantic-intuition",
+      "label": "Humans possess semantic intuition; machines require explicit metadata",
+      "min_visible_level": 2,
+      "anchors": {
+        "2": {
+          "nodeId": "2-8",
+          "charStart": 131,
+          "charEnd": 208
+        },
+        "3": {
+          "nodeId": "3-11",
+          "charStart": 199,
+          "charEnd": 276
+        },
+        "4": {
+          "nodeId": "4-6",
+          "charStart": 93,
+          "charEnd": 213
+        },
+        "5": {
+          "nodeId": "5-7",
+          "charStart": 442,
+          "charEnd": 519
+        }
+      },
+      "snippet": "are capable of identifying and interpreting a wide variety of contextual cues",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "machine-actionability-spectrum",
+      "label": "Machine-actionability exists on a spectrum of capability",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 752,
+          "charEnd": 929
+        },
+        "2": {
+          "nodeId": "2-9",
+          "charStart": 462,
+          "charEnd": 717
+        },
+        "3": {
+          "nodeId": "3-13",
+          "charStart": 533,
+          "charEnd": 656
+        },
+        "4": {
+          "nodeId": "4-7",
+          "charStart": 620,
+          "charEnd": 740
+        },
+        "5": {
+          "nodeId": "5-8",
+          "charStart": 571,
+          "charEnd": 723
+        }
+      },
+      "snippet": "a machine may be capable of determining the data-type of a discovered digital object, but not capable of parsing it due to it being in an unknown format",
+      "type": "evidence",
+      "collapse_axes": [
+        "evidence",
+        "method"
+      ]
+    },
+    {
+      "id": "bespoke-parsers-unsustainable",
+      "label": "Bespoke parsers for each data type are unsustainable",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 752,
+          "charEnd": 1037
+        },
+        "2": {
+          "nodeId": "2-10",
+          "charStart": 119,
+          "charEnd": 235
+        },
+        "3": {
+          "nodeId": "3-14",
+          "charStart": 809,
+          "charEnd": 931
+        },
+        "4": {
+          "nodeId": "4-7",
+          "charStart": 2080,
+          "charEnd": 2180
+        },
+        "5": {
+          "nodeId": "5-9",
+          "charStart": 483,
+          "charEnd": 641
+        }
+      },
+      "snippet": "Creating bespoke parsers, in all computer languages, for all data-types and all analytical tools that require those data-types, is not a sustainable activity.",
+      "type": "rebuttal",
+      "collapse_axes": [
+        "method"
+      ]
+    },
+    {
+      "id": "fair-specifications-detailed",
+      "label": "FAIR specifies four detailed requirements with sub-principles",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-4",
+          "charStart": 4,
+          "charEnd": 565
+        },
+        "1": {
+          "nodeId": "1-2",
+          "charStart": 151,
+          "charEnd": 342
+        },
+        "2": {
+          "nodeId": "2-1",
+          "charStart": 0,
+          "charEnd": 176
+        },
+        "3": {
+          "nodeId": "3-15",
+          "charStart": 92,
+          "charEnd": 1176
+        },
+        "4": {
+          "nodeId": "4-9",
+          "charStart": 0,
+          "charEnd": 1111
+        },
+        "5": {
+          "nodeId": "5-12",
+          "charStart": 6,
+          "charEnd": 54
+        }
+      },
+      "snippet": "Findable:\nF1. (meta)data are assigned a globally",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "fair-domain-independent-modular",
+      "label": "FAIR is domain-independent and modular by design",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-3",
+          "charStart": 537,
+          "charEnd": 680
+        },
+        "2": {
+          "nodeId": "2-11",
+          "charStart": 184,
+          "charEnd": 375
+        },
+        "3": {
+          "nodeId": "3-17",
+          "charStart": 0,
+          "charEnd": 170
+        },
+        "4": {
+          "nodeId": "4-8",
+          "charStart": 460,
+          "charEnd": 508
+        },
+        "5": {
+          "nodeId": "5-10",
+          "charStart": 962,
+          "charEnd": 1104
+        }
+      },
+      "snippet": "FAIR differs in that it describes concise, domain-independent, high-level principles that can be applied to a wide range of scholarly outputs.",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "examples-multiple-implementations",
+      "label": "Diverse repositories demonstrate FAIR in practice",
+      "min_visible_level": 3,
+      "anchors": {
+        "3": {
+          "nodeId": "3-18",
+          "charStart": 244,
+          "charEnd": 619
+        },
+        "4": {
+          "nodeId": "4-11",
+          "charStart": 68,
+          "charEnd": 116
+        },
+        "5": {
+          "nodeId": "5-13",
+          "charStart": 12,
+          "charEnd": 150
+        }
+      },
+      "snippet": "Dataverse is an open-source data repository software installed in dozens of institutions globally to support public community repositories",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "community-convergence",
+      "label": "Broader community converging on shared FAIR vision",
+      "min_visible_level": 1,
+      "anchors": {
+        "1": {
+          "nodeId": "1-3",
+          "charStart": 903,
+          "charEnd": 996
+        },
+        "2": {
+          "nodeId": "2-12",
+          "charStart": 0,
+          "charEnd": 149
+        },
+        "3": {
+          "nodeId": "3-19",
+          "charStart": 410,
+          "charEnd": 567
+        },
+        "4": {
+          "nodeId": "4-17",
+          "charStart": 741,
+          "charEnd": 908
+        },
+        "5": {
+          "nodeId": "5-17",
+          "charStart": 1140,
+          "charEnd": 1307
+        }
+      },
+      "snippet": "Clearly, the broader community of stakeholders is coalescing around a set of common, dovetailed visions spanning all facets of the scholarly data publishing ecosystem.",
+      "type": "evidence",
+      "collapse_axes": []
+    },
+    {
+      "id": "call-action-implement",
+      "label": "Call for universal adoption and FAIR implementation",
+      "min_visible_level": 0,
+      "anchors": {
+        "0": {
+          "nodeId": "0-5",
+          "charStart": 0,
+          "charEnd": 48
+        },
+        "1": {
+          "nodeId": "1-3",
+          "charStart": 997,
+          "charEnd": 1206
+        },
+        "2": {
+          "nodeId": "2-13",
+          "charStart": 0,
+          "charEnd": 140
+        },
+        "3": {
+          "nodeId": "3-19",
+          "charStart": 1144,
+          "charEnd": 1192
+        },
+        "4": {
+          "nodeId": "4-18",
+          "charStart": 519,
+          "charEnd": 567
+        },
+        "5": {
+          "nodeId": "5-18",
+          "charStart": 0,
+          "charEnd": 137
+        }
+      },
+      "snippet": "We call on all data producers and publishers to examine and implement these principles, and actively participate with the FAIR initiative",
+      "type": "conclusion",
+      "collapse_axes": [
+        "structure"
+      ]
+    }
+  ]
+}

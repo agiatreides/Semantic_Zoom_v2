@@ -7,6 +7,7 @@
     "build": "vite build",
     "generate": "node tools/generate-tree.js",
     "ingest:fast": "node tools/ingest-fast.js",
+    "repair:links": "node tools/rebuild-child-links.js",
     "validate:data": "node tools/validate-data.js"
   },
   "dependencies": {

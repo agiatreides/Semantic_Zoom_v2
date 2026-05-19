@@ -27,6 +27,7 @@
 import fs from 'fs'
 import path from 'path'
 import { spawn, spawnSync } from 'child_process'
+import { rebuildLinearChildLinks } from './lib/child-links.js'
 
 // ---------- args ----------
 const args = process.argv.slice(2)
@@ -603,6 +604,11 @@ for (const r of results) {
 }
 
 // ---------- write ----------
+// Rebuild linear parent/child links before phrase maps so matchIn/matchOut can
+// stay tree-constrained after direct source-to-level regeneration.
+const childLinkResult = rebuildLinearChildLinks(tree)
+console.log(`\nRebuilt child links: ${childLinkResult.totalLinks} links`)
+
 // tree
 fs.writeFileSync(treePath, JSON.stringify(tree, null, 2))
 console.log(`\nWrote tree: ${path.relative(projectRoot, treePath)}`)
@@ -652,7 +658,7 @@ if (anyCollapse) {
 }
 
 // Phrase-chain maps. Regenerating the tree wipes any stale phrases, so
-// rebuild them here — the renderer's wheel handler uses matchIn/matchOut to
+// rebuild them here — the zoom fallback uses matchIn/matchOut to
 // disambiguate multi-mention anchors and to place the cursor when the
 // tracked concept has no anchor at the new level.
 console.log('\nBuilding phrase-chain maps...')
