@@ -89,6 +89,7 @@ The debug surface is available as `window._sz` while the app is running. See
 
 ## Data And Licensing
 
-Source attribution for checked-in corpora is in `data/SOURCES.md`. Generated
-JSON corpora are derived from the adjacent `.txt` files and inherit their
-source text licenses. The application code is MIT licensed.
+Source attribution for checked-in corpora is in `data/SOURCES.md`. Third-party
+package and model notices are in `THIRD_PARTY_NOTICES.md`. Generated JSON
+corpora are derived from the adjacent `.txt` files and inherit their source
+text licenses. The application code is MIT licensed.

@@ -1,5 +1,3 @@
-import skmeans from 'skmeans'
-
 /**
  * Cluster nodes into CONTIGUOUS groups.
  * For narrative text, parents must cover adjacent children (reading order).

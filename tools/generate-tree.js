@@ -9,9 +9,9 @@
  *   node tools/generate-tree.js <input.txt> [--output <output.json>] [--max-tokens N]
  *
  * Algorithm (bottom-up RAPTOR):
- *   1. Chunk text into semantic segments (semantic-chunking, ONNX embeddings)
+ *   1. Chunk text into contiguous source segments and embed them
  *   2. These segments become leaf nodes (bottom level)
- *   3. Cluster leaf nodes via k-means
+ *   3. Cluster leaf nodes into contiguous semantic groups
  *   4. Summarize each cluster (extractive) → parent level
  *   5. Re-embed summaries, cluster, summarize → repeat up the tree
  *   6. Stop when single root node remains
