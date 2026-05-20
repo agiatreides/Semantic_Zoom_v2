@@ -1,17 +1,11 @@
 # Semantic Zoom
 
+[![Semantic Zoom zooming through Rich Sutton's "The Bitter Lesson"](media/bitter-lesson-zoom.gif)](media/bitter-lesson-zoom.mp4)
+
 Canvas-based reader for zooming through prose without losing your place.
 Left-click a word to zoom into more detail, right-click to zoom out, and the
 text under the cursor stays anchored to the same idea. Drag, scroll, or use
 the right scrollbar to pan long levels.
-
-## Demo
-
-[![Semantic Zoom demo on The Bitter Lesson](media/bitter-lesson-zoom-poster.png)](media/bitter-lesson-zoom.mp4)
-
-The clip zooms into Rich Sutton's "The Bitter Lesson" from the phrase
-"plateaus and inhibits progress" while keeping the selected idea under the
-cursor. Click the image above to play the video.
 
 The checked-in corpora run entirely from static JSON:
 
