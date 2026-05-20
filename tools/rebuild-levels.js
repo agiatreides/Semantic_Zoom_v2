@@ -22,6 +22,7 @@
  * Usage:
  *   node tools/rebuild-levels.js <tree.json> <concepts.json>
  *   node tools/rebuild-levels.js <tree.json> <concepts.json> --only-level 0
+ *   node tools/rebuild-levels.js <tree.json> <concepts.json> --batch
  */
 
 import fs from 'fs'
@@ -40,6 +41,7 @@ const treePath = path.resolve(projectRoot, args[0])
 const conceptsPath = path.resolve(projectRoot, args[1])
 let onlyLevels = null  // null = all non-Lmax levels; else a Set of integers
 let anchorsOnly = false
+let batchGenerate = false
 for (let i = 2; i < args.length; i++) {
   if (args[i] === '--only-level' && args[i + 1]) {
     // Accept "0" or "1,2,3" — a single level or a comma-separated list.
@@ -47,6 +49,7 @@ for (let i = 2; i < args.length; i++) {
     onlyLevels = new Set(spec.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n)))
   }
   else if (args[i] === '--anchors-only') anchorsOnly = true
+  else if (args[i] === '--batch' || args[i] === '--batch-generate') batchGenerate = true
 }
 
 // ---------- claude ----------
@@ -397,6 +400,77 @@ ${LmaxText}
 Produce level ${L}. Approximately ${targetWords} words. Same voice, same POV, same tense, same register as the source. Cover every essential in source order. No headers, no bullet lists, no meta-commentary. Just the piece, at this grain.`
 }
 
+function buildBatchGeneratePrompt(levels) {
+  const sortedLevels = [...levels].sort((a, b) => a - b)
+  const levelSpecs = sortedLevels.map(L => {
+    const ratio = Math.round(ratioForLevel(L, Lmax) * 100)
+    const target = targetWordsForLevel(L)
+    const visible = concepts.filter(c => (c.min_visible_level ?? tree.levelCount) <= L)
+    return `L${L}: ~${ratio}% / ${target} words (${Math.round(target * 0.9)}-${Math.round(target * 1.10)} acceptable), include ${visible.length} visible essentials`
+  }).join('\n')
+
+  const essentialsBlock = concepts.map(e => {
+    const src = e.snippet ? ` source="${e.snippet.substring(0, 140)}${e.snippet.length > 140 ? '...' : ''}"` : ''
+    return `- minL${e.min_visible_level}: [${e.id}] ${e.label}${src}`
+  }).join('\n')
+
+  return `You are producing multiple levels for a semantic-zoom reader.
+
+The output must be the SAME piece at different compression levels: same voice,
+same POV, same tense, same register, source order preserved. This is
+distillation, not summary. Do not write "the author", "the essay argues", "the
+story opens", headings, bullets, or meta-commentary inside any level.
+
+Compression ladder:
+${levelSpecs}
+
+Word count is part of the product. Do not undershoot or overshoot the listed
+acceptable bands; a level that is too short or too long behaves like the wrong
+zoom level.
+
+Level intent:
+- L0 is the poker-nuts level: only the load-bearing spine, but still the piece.
+- L1 is hard compression with connective tissue and recognizable voice.
+- L2 restores scene/argument texture, but cuts repetition and side material.
+- L3 is about half the source.
+- L4 is near-full prose with real trimming.
+
+For each level, include only essentials whose minL is <= that level. Higher
+detail levels should naturally include everything visible at lower levels plus
+the newly visible details.
+
+Thematic compass: ${thematicThrust || '(not set)'}
+Genre: ${genreInfo.genre || 'unknown'}
+
+Essentials:
+${essentialsBlock || '(none)'}
+
+Source:
+"""
+${LmaxText}
+"""
+
+Return exactly these marked sections, one per requested level. The text inside
+each section is the level text itself. No markdown fences.
+
+${sortedLevels.map(L => `<<LEVEL ${L}>>\n[write level ${L} here]\n<<END LEVEL ${L}>>`).join('\n\n')}`
+}
+
+function parseBatchLevelTexts(raw, levels) {
+  const parsed = new Map()
+  if (!raw) return parsed
+  for (const L of levels) {
+    const re = new RegExp(`<<LEVEL\\s+${L}>>\\s*([\\s\\S]*?)\\s*<<END\\s+LEVEL\\s+${L}>>`, 'i')
+    const m = raw.match(re)
+    if (!m) continue
+    const cleaned = m[1]
+      .replace(/\n\s*\*?\s*\d+\s*words[\s\S]*$/im, '')
+      .trim()
+    if (cleaned) parsed.set(L, cleaned)
+  }
+  return parsed
+}
+
 // ---------- cold-reader verification prompt ----------
 function buildVerifyPrompt(levelText, L) {
   return `The text below is supposedly a compressed retelling of a longer story at detail level ${L} of a semantic-zoom reader.
@@ -463,6 +537,23 @@ for (let L = Lmax - 1; L >= 0; L--) {
   levelsToProcess.push(L)
 }
 
+const generatedTextByLevel = new Map()
+if (batchGenerate && !anchorsOnly && levelsToProcess.length > 1) {
+  const raw = await callClaudeAsync(buildBatchGeneratePrompt(levelsToProcess), 'gen:batch')
+  const parsed = parseBatchLevelTexts(raw, levelsToProcess)
+  for (const L of levelsToProcess) {
+    if (!parsed.has(L)) continue
+    generatedTextByLevel.set(L, parsed.get(L))
+    const wc = parsed.get(L).split(/\s+/).filter(Boolean).length
+    console.log(`  [gen:L${L}:batch] ${wc} words`)
+  }
+  if (generatedTextByLevel.size === 0) {
+    console.warn('  [gen:batch] no levels parsed; falling back to per-level generation')
+  } else if (generatedTextByLevel.size < levelsToProcess.length) {
+    console.warn(`  [gen:batch] parsed ${generatedTextByLevel.size}/${levelsToProcess.length} levels; missing levels will fall back`)
+  }
+}
+
 const anchorsByConcept = {}
 // seed with ALL existing anchors (so a partial run doesn't wipe out anchors
 // at levels it isn't processing). L_max anchors are canonical and always
@@ -497,6 +588,9 @@ async function processLevel(L) {
   if (anchorsOnly && existingNodes.length > 0) {
     text = existingNodes.map(n => n.text).join('\n\n')
     console.log(`  [L${L}] anchors-only: using existing ${existingNodes.length} nodes (${text.split(/\s+/).length} words)`)
+  } else if (generatedTextByLevel.has(L)) {
+    text = generatedTextByLevel.get(L)
+    console.log(`  [L${L}] using batch-generated text (${text.split(/\s+/).filter(Boolean).length} words)`)
   } else {
     // 1) GENERATE with adaptive-target retry (serial within a level, since
     //    each retry needs the prior draft's word count).

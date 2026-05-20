@@ -14,7 +14,7 @@
  * Usage:
  *   node tools/ingest-fast.js data/my-document.txt
  *   node tools/ingest-fast.js data/my-document.txt --levels 6 --concept-count 18
- *   MODEL=haiku node tools/ingest-fast.js data/my-document.txt
+ *   node tools/ingest-fast.js data/my-document.txt --effort medium --no-batch
  */
 
 import fs from 'fs'
@@ -30,6 +30,10 @@ let levelCount = 6
 let maxLeafWords = 320
 let conceptCount = null
 let seedOnly = false
+let batchGenerate = true
+let fuzzyAnchors = true
+let model = process.env.MODEL || 'sonnet'
+let effort = process.env.EFFORT || 'low'
 
 for (let i = 0; i < args.length; i++) {
   const arg = args[i]
@@ -37,12 +41,16 @@ for (let i = 0; i < args.length; i++) {
   else if (arg === '--levels' && args[i + 1]) levelCount = parseInt(args[++i], 10)
   else if (arg === '--max-leaf-words' && args[i + 1]) maxLeafWords = parseInt(args[++i], 10)
   else if (arg === '--concept-count' && args[i + 1]) conceptCount = parseInt(args[++i], 10)
+  else if (arg === '--model' && args[i + 1]) model = args[++i]
+  else if (arg === '--effort' && args[i + 1]) effort = args[++i]
+  else if (arg === '--no-batch') batchGenerate = false
+  else if (arg === '--no-fuzzy-anchors') fuzzyAnchors = false
   else if (arg === '--seed-only') seedOnly = true
   else if (!arg.startsWith('--')) inputFile = arg
 }
 
 if (!inputFile || args.includes('--help') || args.includes('-h')) {
-  console.error(`Usage: node tools/ingest-fast.js <input.txt> [--output out.json] [--levels N] [--max-leaf-words N] [--concept-count N] [--seed-only]`)
+  console.error(`Usage: node tools/ingest-fast.js <input.txt> [--output out.json] [--levels N] [--max-leaf-words N] [--concept-count N] [--model sonnet] [--effort low] [--no-batch] [--no-fuzzy-anchors] [--seed-only]`)
   process.exit(1)
 }
 if (!Number.isFinite(levelCount) || levelCount < 2) {
@@ -62,6 +70,12 @@ const conceptsPath = outputPath.replace(/\.json$/, '-concepts.json')
 
 function words(text) {
   return text.split(/\s+/).filter(Boolean)
+}
+
+function defaultConceptCount(totalWords) {
+  // A 2k-word prose piece does not need 20 tracked concepts. Fewer, stronger
+  // anchors make generation faster and usually improve the poker-nuts split.
+  return Math.max(8, Math.min(18, Math.round(totalWords / 180)))
 }
 
 function splitLongParagraph(paragraph, maxWords) {
@@ -132,31 +146,53 @@ function writeSeedTree() {
   fs.writeFileSync(outputPath, JSON.stringify(tree, null, 2))
   console.log(`Seed tree: ${path.relative(projectRoot, outputPath)}`)
   console.log(`  ${totalWords} source words -> ${tree.levels[String(Lmax)].nodes.length} L${Lmax} source nodes`)
+  return { totalWords }
 }
+
+const timings = []
+const childEnv = {
+  ...process.env,
+  MODEL: model,
+  EFFORT: effort,
+}
+if (fuzzyAnchors) childEnv.FAST_FUZZY_ANCHORS = childEnv.FAST_FUZZY_ANCHORS || '1'
+else childEnv.FAST_FUZZY_ANCHORS = '0'
 
 function runNode(script, scriptArgs, label) {
   console.log(`\n${label}`)
   console.log(`  node ${[script, ...scriptArgs].join(' ')}`)
+  const t0 = Date.now()
   const result = spawnSync('node', [script, ...scriptArgs], {
     cwd: projectRoot,
     stdio: 'inherit',
-    env: process.env,
+    env: childEnv,
   })
+  const seconds = (Date.now() - t0) / 1000
+  timings.push({ label, seconds })
+  console.log(`  done in ${seconds.toFixed(1)}s`)
   if (result.status !== 0) process.exit(result.status || 1)
 }
 
-writeSeedTree()
+const seed = writeSeedTree()
 if (seedOnly) process.exit(0)
+if (conceptCount == null) conceptCount = defaultConceptCount(seed.totalWords)
+
+console.log(`Fast defaults: model=${model}, effort=${effort}, batch=${batchGenerate ? 'on' : 'off'}, fuzzyAnchors=${fuzzyAnchors ? 'on' : 'off'}, conceptCount=${conceptCount}`)
 
 const relTree = path.relative(projectRoot, outputPath)
 const relConcepts = path.relative(projectRoot, conceptsPath)
 const extractArgs = [relTree, '--identify-only']
 if (conceptCount != null) extractArgs.push('--concept-count', String(conceptCount))
+const rebuildArgs = [relTree, relConcepts]
+if (batchGenerate) rebuildArgs.push('--batch')
 
 runNode('tools/extract-concepts.js', extractArgs, 'Identifying concepts at source level...')
-runNode('tools/rebuild-levels.js', [relTree, relConcepts], 'Generating zoom levels and anchors...')
+runNode('tools/rebuild-levels.js', rebuildArgs, 'Generating zoom levels and anchors...')
 runNode('tools/validate-data.js', [relTree], 'Validating generated corpus...')
 
 console.log(`\nDone.`)
 console.log(`Tree:     ${relTree}`)
 console.log(`Concepts: ${relConcepts}`)
+console.log('Timing:')
+for (const t of timings) console.log(`  ${t.label}: ${t.seconds.toFixed(1)}s`)
+console.log(`  total child steps: ${timings.reduce((sum, t) => sum + t.seconds, 0).toFixed(1)}s`)

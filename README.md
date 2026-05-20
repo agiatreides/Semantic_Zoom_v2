@@ -53,10 +53,16 @@ npm run ingest:fast -- data/my-document.txt
 
 Then add an option for `my-document-auto.json` in `index.html`.
 
-For faster draft passes, use Haiku:
+The default ingest path is optimized for speed while keeping Sonnet quality:
+Sonnet, low reasoning effort, one batched generation call for all zoom levels,
+conservative local fuzzy anchoring, and an automatic concept count scaled to
+document length. Use the timing lines at the end of the run to see where time
+went.
+
+For a slower compatibility pass that uses the older per-level generation shape:
 
 ```bash
-MODEL=haiku npm run ingest:fast -- data/my-document.txt
+npm run ingest:fast -- data/my-document.txt --effort medium --no-batch --no-fuzzy-anchors
 ```
 
 The older bottom-up pipeline is still available for experiments:
