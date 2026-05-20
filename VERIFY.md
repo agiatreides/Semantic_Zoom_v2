@@ -390,6 +390,36 @@ Result: **198/198 preserved.** Wheel-pan check stayed at L5 while moving
 the FAIR text from `y=-630` to `y=-1050`. Console errors: 0. Full artifact:
 `verify_artifacts/2026-05-19_expanded_corpus_regression.json`.
 
+#### 2026-05-20 — projected-word anchoring + drag pan
+
+Fixed a Bitter Lesson drift case where clicking L0 `plateaus` zoomed to the
+right semantic area at L1, then visually settled a word or two sideways. The
+zoom handler now treats the clicked word as the first landing target when the
+phrase-chain projection can resolve that word near the tracked concept's
+target-level anchor; concept-anchor center placement remains the fallback.
+The render loop no longer auto-eases horizontal offset back to center after a
+word landing or manual pan.
+
+Added click-drag panning on the canvas. Left press/release still zooms in, but
+left drag past a 5px threshold pans the current level, shows `grab`/`grabbing`
+cursor feedback, and suppresses the follow-up click so dragging does not zoom.
+
+Full five-corpus click regression:
+
+| Corpus | Concepts tested | min→max + max→min transitions |
+|--------|-----------------|-------------------------------|
+| `the-voting-problem-auto.json` | 19 | 38/38 |
+| `architecture-of-the-grin-auto.json` | 16 | 32/32 |
+| `the-bitter-lesson-auto.json` | 21 | 42/42 |
+| `ada-lovelace-wikipedia-auto.json` | 20 | 40/40 |
+| `fair-guiding-principles-excerpt-auto.json` | 23 | 46/46 |
+
+Result: **198/198 preserved.** Targeted `plateaus` check stayed on
+`plateaus;` after the transition settled and after an extra pause. Drag-pan
+check kept the same level, switched cursor from `grab` to `grabbing`, and
+preserved the manual x/y offset after release. Console errors: 0. Full
+artifact: `verify_artifacts/2026-05-20_word_drag_regression.json`.
+
 ---
 
 ## Anti-reward-hacking checklist
@@ -452,3 +482,4 @@ $B screenshot /tmp/verify_semzoom_v2_index.png
 | 2026-05-19 | **Click zoom navigation.** Semantic zoom moved from wheel to left/right click while preserving the existing anchor mechanism in `zoomAtCursor`. Wheel events now pan the current level and clear the active tracking lock. Regression: 112/112 click transitions preserved across all checked-in corpora; wheel-pan stayed on the same level; console errors 0. |
 | 2026-05-19 | **Child-link repair + expanded corpora.** Added `tools/rebuild-child-links.js` and a shared linear alignment helper so rebuilt corpora preserve parent/child links before phrase maps are regenerated. Repaired existing generated corpora, added Ada Lovelace Wikipedia and FAIR research-paper excerpt corpora with source attribution, and verified 198/198 concept transitions across all five corpora; wheel-pan stayed on the same level; console errors 0. |
 | 2026-05-20 | **Default fast ingest.** `tools/ingest-fast.js` now defaults to Sonnet with low effort, batched generation for all non-source zoom levels, conservative fuzzy anchor pre-placement, and document-length-scaled concept counts. Paul Graham scratch benchmark (`How to Disagree`, 1,530 words, not checked in): 153.7s end-to-end, 0 validation warnings. |
+| 2026-05-20 | **Projected-word anchoring + drag pan.** Click zoom now lands on the projected clicked word when it can be resolved near the tracked concept, keeps that tracked identity through narrow/overlapping target anchors, and removes horizontal auto-recentering. Added 5px-threshold canvas drag panning with `grab`/`grabbing` cursor feedback. Regression: 198/198 concept transitions, targeted `plateaus` word check, drag-pan check, and console errors 0. |

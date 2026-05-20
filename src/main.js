@@ -25,6 +25,7 @@ let lockTimer = 0
 const SB_WIDTH = 10
 const SB_RIGHT_MARGIN = 4
 const SB_MIN_THUMB = 30
+const DRAG_PAN_THRESHOLD = 5
 let sbHover = false
 let sbDragging = false
 let sbDragStartY = 0
@@ -187,6 +188,13 @@ function findConceptAtCursor(level, offsets) {
 
   const lvlStr = String(level)
 
+  // During a click-zoom session, the word under the cursor is the precise
+  // interaction target. If that word is still in the tracked concept's
+  // neighborhood, keep the tracked identity even when target-level anchors
+  // overlap or stop just short of the projected word.
+  const trackedAtWord = findTrackedConceptAtWord(level, cursorNodeId, cursorCharIdx, hit)
+  if (trackedAtWord) return trackedAtWord
+
   // Pass 1: exact char-range containment. Pick the SHORTEST containing anchor
   // when concepts overlap — most specific wins.
   let containing = null
@@ -255,6 +263,15 @@ function wordMatchTier(target, words) {
   if (clean.length >= 4 && words.some(w => w.length >= 4 && w.startsWith(clean.substring(0, 4)))) return 1
   if (clean.length >= 4 && words.some(w => w.length >= 4 && (w.includes(clean) || clean.includes(w)))) return 2
   return null
+}
+
+function wordsCompatible(a, b) {
+  const left = cleanWord(a)
+  const right = cleanWord(b)
+  if (left.length < 2 || right.length < 2) return false
+  if (left === right) return true
+  if (left.length >= 4 && right.length >= 4 && left.substring(0, 4) === right.substring(0, 4)) return true
+  return left.length >= 4 && right.length >= 4 && (left.includes(right) || right.includes(left))
 }
 
 function anchorText(concept, level) {
@@ -437,6 +454,127 @@ function getConceptCenterPosition(concept, level) {
   return positionAtCharIdx(node, preferredAnchorChar(concept, level, node))
 }
 
+function wordMatchCandidates(text, word, rangeStart = 0, rangeEnd = text.length) {
+  const clean = cleanWord(word)
+  if (clean.length < 2) return []
+
+  const boundedStart = Math.max(0, Math.min(text.length, rangeStart))
+  const boundedEnd = Math.max(boundedStart, Math.min(text.length, rangeEnd))
+  const slice = text.substring(boundedStart, boundedEnd)
+
+  const re = /[\w'-]+/g
+  const words = []
+  let m
+  while ((m = re.exec(slice)) !== null) {
+    words.push({
+      text: m[0],
+      textLc: m[0].toLowerCase(),
+      start: boundedStart + m.index,
+      end: boundedStart + m.index + m[0].length,
+    })
+  }
+  if (words.length === 0) return []
+
+  const exact = words.filter(w => w.textLc === clean)
+  if (exact.length) return exact
+
+  if (clean.length >= 4) {
+    const stem = clean.substring(0, 4)
+    const stemMatches = words.filter(w => w.textLc.length >= 4 && w.textLc.startsWith(stem))
+    if (stemMatches.length) return stemMatches
+
+    const subMatches = words.filter(w => w.textLc.length >= 4 && (w.textLc.includes(clean) || clean.includes(w.textLc)))
+    if (subMatches.length) return subMatches
+  }
+
+  return []
+}
+
+function pickWordPosition(level, nodeId, matches, hintCharAtLevel) {
+  const nodes = measuredLevels[level]
+  if (!nodes || matches.length === 0) return null
+  const node = nodes.find(n => n.nodeId === nodeId)
+  if (!node) return null
+
+  let best = matches[0]
+  if (matches.length > 1 && hintCharAtLevel != null) {
+    let bestDist = Infinity
+    for (const candidate of matches) {
+      const mid = Math.floor((candidate.start + candidate.end) / 2)
+      const dist = Math.abs(mid - hintCharAtLevel)
+      if (dist < bestDist) {
+        bestDist = dist
+        best = candidate
+      }
+    }
+  }
+
+  const charIdx = Math.floor((best.start + best.end) / 2)
+  return { ...positionAtCharIdx(node, charIdx), nodeId, charIdx }
+}
+
+function getWordPositionInNodeRange(level, nodeId, word, hintCharAtLevel, rangeStart, rangeEnd) {
+  if (!word || word.length < 2) return null
+  const node = treeData?.levels?.[String(level)]?.nodes?.find(n => n.id === nodeId)
+  if (!node) return null
+  const matches = wordMatchCandidates(node.text, word, rangeStart, rangeEnd)
+  return pickWordPosition(level, nodeId, matches, hintCharAtLevel)
+}
+
+function getProjectedPhraseWordPosition(level, word, projected) {
+  if (!projected) return null
+  const hint = Math.floor((projected.charStart + projected.charEnd) / 2)
+  return getWordPositionInNodeRange(level, projected.nodeId, word, hint, projected.charStart, projected.charEnd)
+}
+
+function getProjectedNodeWordPosition(level, word, projected) {
+  if (!projected) return null
+  const hint = Math.floor((projected.charStart + projected.charEnd) / 2)
+  return getWordPositionInNodeRange(level, projected.nodeId, word, hint, 0, Infinity)
+}
+
+function shouldUseProjectedWord(word) {
+  const clean = cleanWord(word)
+  return clean.length >= 4
+}
+
+function isNearConceptAnchor(pos, concept, level, maxDistance = 160) {
+  if (!pos || !concept) return false
+  const anchor = concept.anchors?.[String(level)]
+  if (!anchor || anchor.nodeId !== pos.nodeId || pos.charIdx == null) return false
+  if (pos.charIdx >= anchor.charStart && pos.charIdx <= anchor.charEnd) return true
+  return Math.min(Math.abs(pos.charIdx - anchor.charStart), Math.abs(pos.charIdx - anchor.charEnd)) <= maxDistance
+}
+
+function findTrackedConceptAtWord(level, cursorNodeId, cursorCharIdx, hit) {
+  if (!trackedConcept || !trackedWord || !hit?.word) return null
+  if (!wordsCompatible(hit.word, trackedWord)) return null
+  const pos = { nodeId: cursorNodeId, charIdx: cursorCharIdx }
+  return isNearConceptAnchor(pos, trackedConcept, level) ? trackedConcept : null
+}
+
+function getTrackedWordPosition(targetConcept, level, word, projected, hintCharAtLevel) {
+  if (!word) return null
+
+  const projectedPhraseWord = getProjectedPhraseWordPosition(level, word, projected)
+  if (projectedPhraseWord && (!targetConcept || isNearConceptAnchor(projectedPhraseWord, targetConcept, level))) {
+    return projectedPhraseWord
+  }
+
+  if (targetConcept) {
+    const anchorWord = getConceptWordPosition(targetConcept, level, word, hintCharAtLevel)
+    if (anchorWord) return anchorWord
+  }
+
+  if (!shouldUseProjectedWord(word)) return null
+  const projectedNodeWord = getProjectedNodeWordPosition(level, word, projected)
+  if (projectedNodeWord && (!targetConcept || isNearConceptAnchor(projectedNodeWord, targetConcept, level))) {
+    return projectedNodeWord
+  }
+
+  return null
+}
+
 // If `word` (or a stem-equivalent) appears inside the concept's anchor
 // text at `level`, return the screen-content-space position of that
 // occurrence. Otherwise null. The zoom handler prefers this over the
@@ -455,59 +593,7 @@ function getConceptWordPosition(concept, level, word, hintCharAtLevel) {
   if (!word || word.length < 2) return null
   const anchor = concept.anchors[String(level)]
   if (!anchor) return null
-  const nodes = measuredLevels[level]
-  if (!nodes) return null
-  const node = nodes.find(n => n.nodeId === anchor.nodeId)
-  if (!node) return null
-
-  const anchorText = node.text.substring(anchor.charStart, anchor.charEnd)
-  const clean = word.replace(/^[^\w'-]+|[^\w'-]+$/g, '').toLowerCase()
-  if (clean.length < 2) return null
-
-  const re = /[\w'-]+/g
-  const words = []
-  let m
-  while ((m = re.exec(anchorText)) !== null) {
-    words.push({ text: m[0], textLc: m[0].toLowerCase(), offset: m.index })
-  }
-  if (words.length === 0) return null
-
-  const pick = (matches) => {
-    if (matches.length === 0) return null
-    if (matches.length === 1 || hintCharAtLevel == null) {
-      const w = matches[0]
-      const mid = w.offset + Math.floor(w.text.length / 2)
-      return positionAtCharIdx(node, anchor.charStart + mid)
-    }
-    // Multiple matches: pick whichever absolute char index is closest to the hint.
-    let best = matches[0], bestDist = Infinity
-    for (const w of matches) {
-      const mid = anchor.charStart + w.offset + Math.floor(w.text.length / 2)
-      const dist = Math.abs(mid - hintCharAtLevel)
-      if (dist < bestDist) { bestDist = dist; best = w }
-    }
-    const mid = best.offset + Math.floor(best.text.length / 2)
-    return positionAtCharIdx(node, anchor.charStart + mid)
-  }
-
-  // Tier 1: exact
-  const exact = words.filter(w => w.textLc === clean)
-  if (exact.length) return pick(exact)
-
-  // Tier 2: stem via 4-char prefix
-  if (clean.length >= 4) {
-    const stem = clean.substring(0, 4)
-    const stemMatches = words.filter(w => w.textLc.length >= 4 && w.textLc.startsWith(stem))
-    if (stemMatches.length) return pick(stemMatches)
-  }
-
-  // Tier 3: substring containment
-  if (clean.length >= 4) {
-    const subMatches = words.filter(w => w.textLc.length >= 4 && (w.textLc.includes(clean) || clean.includes(w.textLc)))
-    if (subMatches.length) return pick(subMatches)
-  }
-
-  return null
+  return getWordPositionInNodeRange(level, anchor.nodeId, word, hintCharAtLevel, anchor.charStart, anchor.charEnd)
 }
 
 // ========== HIT TESTING ==========
@@ -642,13 +728,26 @@ function drawWordHighlight() {
 // ========== INPUT ==========
 
 let mouseDown = false, cursorInTextArea = false
+let viewDragArmed = false
+let viewDragging = false
+let viewDragStartX = 0
+let viewDragStartY = 0
+let viewDragStartOffset = { x: 0, y: 0 }
+let suppressClickZoom = false
 
 function isInTextArea(x, y) {
   const bx = (renderer.width - COLUMN_WIDTH) / 2
   if (x >= renderer.width - SB_RIGHT_MARGIN - SB_WIDTH - 4) return false
   return x >= bx - 20 && x <= bx + COLUMN_WIDTH + 20 && y >= 0 && y <= renderer.height
 }
-function isFrozen() { return mouseDown || sbDragging || !cursorInTextArea }
+function isFrozen() { return mouseDown || sbDragging || viewDragging || !cursorInTextArea }
+
+function updateCanvasCursor() {
+  if (viewDragging || sbDragging) canvas.style.cursor = 'grabbing'
+  else if (sbHover) canvas.style.cursor = 'pointer'
+  else if (cursorInTextArea) canvas.style.cursor = 'grab'
+  else canvas.style.cursor = 'default'
+}
 
 function updateHoverAtCursor() {
   const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
@@ -731,9 +830,7 @@ function zoomAtCursor(direction) {
     if (projected && projected.nodeId === anchor.nodeId) {
       hintChar = Math.floor((projected.charStart + projected.charEnd) / 2)
     }
-    const wordPos = trackedWord
-      ? getConceptWordPosition(targetConcept, currentLevel, trackedWord, hintChar)
-      : null
+    const wordPos = getTrackedWordPosition(targetConcept, currentLevel, trackedWord, projected, hintChar)
     const pos = wordPos || getConceptCenterPosition(targetConcept, currentLevel)
     if (pos) {
       levelOffsets[currentLevel] = clampOffset(currentLevel, {
@@ -747,7 +844,10 @@ function zoomAtCursor(direction) {
   // Last resort: pure phrase-chain placement (cursor wasn't on any
   // trackable concept AND the fallback above didn't fire).
   if (!placed && projected) {
-    levelOffsets[currentLevel] = clampOffset(currentLevel, { x: 0, y: mouseY - projected.y })
+    const wordPos = getTrackedWordPosition(null, currentLevel, trackedWord, projected, null)
+    levelOffsets[currentLevel] = clampOffset(currentLevel, wordPos
+      ? { x: mouseX - baseLeftX - wordPos.contentX, y: mouseY - wordPos.contentY }
+      : { x: 0, y: mouseY - projected.y })
   }
 
   offsetsLocked = true
@@ -777,15 +877,18 @@ function syncPointer(e) {
   mouseX = e.clientX
   mouseY = e.clientY
   cursorInTextArea = isInTextArea(mouseX, mouseY)
+  updateCanvasCursor()
 }
 
 canvas.addEventListener('mousedown', (e) => {
   syncPointer(e)
   const x = mouseX, y = mouseY
   if (e.button === 0 && isOnScrollbarThumb(x, y, currentLevel)) {
+    mouseDown = true
     sbDragging = true
     sbDragStartY = y
     sbDragStartOffsetY = (levelOffsets[currentLevel] ?? defaultOffset(currentLevel)).y
+    updateCanvasCursor()
     e.preventDefault()
     return
   }
@@ -796,17 +899,50 @@ canvas.addEventListener('mousedown', (e) => {
     const page = renderer.height * 0.8
     const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
     levelOffsets[currentLevel] = clampOffset(currentLevel, { x: off.x, y: off.y - dir * page })
+    updateHoverAtCursor()
+    updateCanvasCursor()
     e.preventDefault()
     return
   }
-  if (e.button === 0) mouseDown = true
+  if (e.button === 0) {
+    mouseDown = true
+    if (cursorInTextArea) {
+      viewDragArmed = true
+      viewDragging = false
+      suppressClickZoom = false
+      viewDragStartX = x
+      viewDragStartY = y
+      viewDragStartOffset = { ...(levelOffsets[currentLevel] ?? defaultOffset(currentLevel)) }
+    }
+    updateCanvasCursor()
+  }
   else if (e.button === 2) e.preventDefault()
 })
-canvas.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
-window.addEventListener('mouseup', () => { mouseDown = false; sbDragging = false })
+
+function finishPointerGesture() {
+  const wasViewDragging = viewDragging
+  mouseDown = false
+  sbDragging = false
+  viewDragArmed = false
+  viewDragging = false
+  if (wasViewDragging) {
+    suppressClickZoom = true
+    setTimeout(() => { suppressClickZoom = false }, 0)
+  }
+  updateHoverAtCursor()
+  updateCanvasCursor()
+}
+
+canvas.addEventListener('mouseup', finishPointerGesture)
+window.addEventListener('mouseup', finishPointerGesture)
 
 canvas.addEventListener('click', (e) => {
   if (e.button !== 0) return
+  if (suppressClickZoom) {
+    suppressClickZoom = false
+    e.preventDefault()
+    return
+  }
   syncPointer(e)
   if (zoomAtCursor(1)) e.preventDefault()
 })
@@ -825,10 +961,36 @@ canvas.addEventListener('wheel', (e) => {
 
 function onMouseMove(e) {
   const movedX = e.clientX, movedY = e.clientY
+  const movedDuringIdle = !mouseDown && !sbDragging && !viewDragging
   // Real cursor motion (>2px) ends the current zoom-tracking session so the
   // next click re-acquires whatever concept is now under the cursor.
-  if (!sbDragging && (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2)) { trackedConcept = null; trackedWord = null }
+  if (movedDuringIdle && (Math.abs(movedX - mouseX) > 2 || Math.abs(movedY - mouseY) > 2)) { trackedConcept = null; trackedWord = null }
   mouseX = movedX; mouseY = movedY
+
+  if (viewDragArmed && !sbDragging) {
+    const dx = movedX - viewDragStartX
+    const dy = movedY - viewDragStartY
+    if (!viewDragging && Math.hypot(dx, dy) >= DRAG_PAN_THRESHOLD) {
+      viewDragging = true
+      suppressClickZoom = true
+      trackedConcept = null
+      trackedWord = null
+      offsetsLocked = false
+      lockTimer = 0
+    }
+    if (viewDragging) {
+      levelOffsets[currentLevel] = clampOffset(currentLevel, {
+        x: viewDragStartOffset.x + dx,
+        y: viewDragStartOffset.y + dy
+      })
+      cursorInTextArea = isInTextArea(mouseX, mouseY)
+      hoveredWord = null
+      hoveredConcept = null
+      updateCanvasCursor()
+      e.preventDefault()
+      return
+    }
+  }
 
   if (sbDragging) {
     const g = getScrollbarGeom(currentLevel)
@@ -840,11 +1002,13 @@ function onMouseMove(e) {
       const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
       levelOffsets[currentLevel] = clampOffset(currentLevel, { x: off.x, y: newY })
     }
+    updateCanvasCursor()
     return
   }
 
   sbHover = isOnScrollbarThumb(movedX, movedY, currentLevel) || isOnScrollbarTrack(movedX, movedY, currentLevel)
   cursorInTextArea = isInTextArea(mouseX, mouseY)
+  updateCanvasCursor()
   if (isFrozen() || offsetsLocked) return
 
   const off = levelOffsets[currentLevel] ?? defaultOffset(currentLevel)
@@ -852,9 +1016,19 @@ function onMouseMove(e) {
   hoveredConcept = findConceptAtCursor(currentLevel, off)
 }
 canvas.addEventListener('mousemove', onMouseMove)
-window.addEventListener('mousemove', (e) => { if (sbDragging) onMouseMove(e) })
+window.addEventListener('mousemove', (e) => { if (sbDragging || viewDragging || viewDragArmed) onMouseMove(e) })
 
-canvas.addEventListener('mouseleave', () => { if (!sbDragging) { cursorInTextArea = false; hoveredWord = null; hoveredConcept = null; trackedConcept = null; trackedWord = null; sbHover = false } })
+canvas.addEventListener('mouseleave', () => {
+  if (!sbDragging && !viewDragging) {
+    cursorInTextArea = false
+    hoveredWord = null
+    hoveredConcept = null
+    trackedConcept = null
+    trackedWord = null
+    sbHover = false
+    updateCanvasCursor()
+  }
+})
 window.addEventListener('resize', () => renderer.resize())
 
 // ========== HUD ==========
@@ -908,7 +1082,7 @@ function drawHUD() {
   }
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.2)'
-  ctx.fillText('Left click: zoom in  |  Right click: zoom out  |  Scroll: pan', w - 16, h - 12)
+  ctx.fillText('Left click: zoom in  |  Right click: zoom out  |  Drag/scroll: pan', w - 16, h - 12)
   ctx.restore()
 }
 
@@ -929,18 +1103,11 @@ function frame() {
 
   if (!offsetsLocked && !isTransitioning) {
     const off = levelOffsets[currentLevel]
-    // Only auto-center X when there's no active concept-tracking session.
-    // During tracking, offset.x was set intentionally by the zoom handler
-    // to land the cursor on the target word — easing it toward 0 would
-    // slide the text out from under the cursor (the "zoom, pause, then
-    // side-scroll" visual jank).
-    if (off && !trackedConcept) {
-      if (Math.abs(off.x) > 0.5) off.x *= 0.95
-      else off.x = 0
+    if (off) {
+      hoveredWord = hitTestWord(currentLevel, off)
+      // Only re-detect concept if not locked (concept stays locked through zoom until mouse moves)
+      hoveredConcept = findConceptAtCursor(currentLevel, off)
     }
-    hoveredWord = hitTestWord(currentLevel, off)
-    // Only re-detect concept if not locked (concept stays locked through zoom until mouse moves)
-    hoveredConcept = findConceptAtCursor(currentLevel, off)
   }
 
   const baseLevel = Math.floor(displayLevel)
@@ -1096,4 +1263,5 @@ window._sz = {
   isOnScrollbarThumb,
   isOnScrollbarTrack,
   get sbDragging() { return sbDragging },
+  get viewDragging() { return viewDragging },
 }

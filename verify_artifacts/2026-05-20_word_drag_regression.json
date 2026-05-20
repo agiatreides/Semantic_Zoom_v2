@@ -1,0 +1,79 @@
+{
+  "date": "2026-05-20",
+  "corpora": [
+    "the-voting-problem-auto.json",
+    "architecture-of-the-grin-auto.json",
+    "the-bitter-lesson-auto.json",
+    "ada-lovelace-wikipedia-auto.json",
+    "fair-guiding-principles-excerpt-auto.json"
+  ],
+  "total": 198,
+  "passed": 198,
+  "failed": 0,
+  "failures": [],
+  "plateauDrag": {
+    "before": {
+      "concept": "field-still-making-same-mistakes",
+      "word": "plateaus",
+      "tracked": null,
+      "trackedWord": null,
+      "level": 0,
+      "display": 0,
+      "off": {
+        "x": 0,
+        "y": 276
+      }
+    },
+    "after": {
+      "concept": "field-still-making-same-mistakes",
+      "word": "plateaus;",
+      "tracked": "field-still-making-same-mistakes",
+      "trackedWord": "plateaus",
+      "level": 1,
+      "display": 0.9809908439173786,
+      "off": {
+        "x": 47.068359375,
+        "y": -24
+      }
+    },
+    "later": {
+      "concept": "field-still-making-same-mistakes",
+      "word": "plateaus;",
+      "tracked": "field-still-making-same-mistakes",
+      "trackedWord": "plateaus",
+      "level": 1,
+      "display": 1,
+      "off": {
+        "x": 47.068359375,
+        "y": -24
+      }
+    },
+    "plateauOk": true,
+    "dragBefore": {
+      "level": 1,
+      "off": {
+        "x": 47.068359375,
+        "y": -24
+      }
+    },
+    "duringDrag": {
+      "dragging": true,
+      "cursor": "grabbing",
+      "off": {
+        "x": 137.068359375,
+        "y": 31
+      }
+    },
+    "dragAfter": {
+      "level": 1,
+      "dragging": false,
+      "cursor": "grab",
+      "off": {
+        "x": 137.068359375,
+        "y": 31
+      }
+    },
+    "dragOk": true
+  },
+  "consoleErrors": []
+}
