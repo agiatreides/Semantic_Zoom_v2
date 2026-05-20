@@ -7,3 +7,4 @@ data/_*.json
 *.log
 bench/
 verify_artifacts/
+.gstack/
