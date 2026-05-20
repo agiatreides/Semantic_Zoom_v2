@@ -47,6 +47,7 @@ layout code:
 
 - `the-voting-problem-auto.json`
 - `architecture-of-the-grin-auto.json`
+- `the-bitter-lesson-auto.json`
 - `ada-lovelace-wikipedia-auto.json`
 - `fair-guiding-principles-excerpt-auto.json`
 
@@ -104,18 +105,19 @@ The current publication-cleanup smoke was run on 2026-05-20:
 |--------|----------|--------------------------------------|
 | `the-voting-problem-auto.json` | 19 | smoke passed |
 | `architecture-of-the-grin-auto.json` | 16 | smoke passed |
+| `the-bitter-lesson-auto.json` | 21 | smoke passed |
 | `ada-lovelace-wikipedia-auto.json` | 20 | smoke passed |
 | `fair-guiding-principles-excerpt-auto.json` | 23 | smoke passed |
 
-Each smoke opened the corpus, confirmed the four public picker entries,
+Each smoke opened the corpus, confirmed the public picker entries,
 left-clicked the first visible concept to zoom in, right-clicked back out,
 checked that wheel scrolling and drag panning do not change levels, and
 checked for console errors.
 
 For zoom, hit-testing, or layout changes, run a full anchor-path regression
 over every visible concept in both directions. The expected full matrix is
-38 paths for Voting Problem, 32 for Architecture of the Grin, 40 for Ada
-Lovelace, and 46 for the FAIR excerpt.
+38 paths for Voting Problem, 32 for Architecture of the Grin, 42 for Bitter
+Lesson, 40 for Ada Lovelace, and 46 for the FAIR excerpt.
 
 ## Anti-Reward-Hacking Checklist
 

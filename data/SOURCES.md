@@ -18,6 +18,14 @@ The demo reads prebuilt JSON so it can run without model calls. Each
 
 ## External Texts
 
+### `the-bitter-lesson.txt`
+
+- Source: Rich Sutton, "The Bitter Lesson" (2019),
+  <http://www.incompleteideas.net/IncIdeas/BitterLesson.html>
+- License/status: public domain, per project maintainer confirmation.
+  Attribution retained.
+- Retrieved: 2026-05-20
+
 ### `ada-lovelace-wikipedia.txt`
 
 - Source: "Ada Lovelace", Wikipedia,

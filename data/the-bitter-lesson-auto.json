@@ -1,0 +1,5285 @@
+{
+  "title": "The bitter lesson",
+  "levelCount": 5,
+  "levels": {
+    "0": {
+      "nodes": [
+        {
+          "id": "0-0",
+          "text": "The biggest lesson from 70 years of AI research: general methods that leverage computation win, by a large margin. Researchers have always tried to build in human knowledge—it helps short-term, is personally satisfying, but plateaus and inhibits progress. We are still making the same mistakes. The bitter lesson: search and learning win. Build meta-methods that discover complexity, not encode it.",
+          "children": [
+            "1-0",
+            "1-1",
+            "1-2",
+            "1-3"
+          ],
+          "phrases": [
+            {
+              "text": "The biggest lesson from 70 years",
+              "charStart": 0,
+              "charEnd": 32,
+              "matchIn": 0,
+              "matchOut": -1
+            },
+            {
+              "text": "from 70 years of AI research:",
+              "charStart": 19,
+              "charEnd": 48,
+              "matchIn": 1,
+              "matchOut": -1
+            },
+            {
+              "text": "general methods that leverage computation win,",
+              "charStart": 49,
+              "charEnd": 95,
+              "matchIn": 2,
+              "matchOut": -1
+            },
+            {
+              "text": "by a large margin.",
+              "charStart": 96,
+              "charEnd": 114,
+              "matchIn": 4,
+              "matchOut": -1
+            },
+            {
+              "text": "Researchers have always tried to build",
+              "charStart": 115,
+              "charEnd": 153,
+              "matchIn": 34,
+              "matchOut": -1
+            },
+            {
+              "text": "tried to build in human knowledge",
+              "charStart": 139,
+              "charEnd": 172,
+              "matchIn": 9,
+              "matchOut": -1
+            },
+            {
+              "text": "it helps short-term,",
+              "charStart": 173,
+              "charEnd": 193,
+              "matchIn": 36,
+              "matchOut": -1
+            },
+            {
+              "text": "is personally satisfying,",
+              "charStart": 194,
+              "charEnd": 219,
+              "matchIn": 44,
+              "matchOut": -1
+            },
+            {
+              "text": "but plateaus and inhibits progress.",
+              "charStart": 220,
+              "charEnd": 255,
+              "matchIn": 37,
+              "matchOut": -1
+            },
+            {
+              "text": "We are still making the same",
+              "charStart": 256,
+              "charEnd": 284,
+              "matchIn": 32,
+              "matchOut": -1
+            },
+            {
+              "text": "making the same mistakes.",
+              "charStart": 269,
+              "charEnd": 294,
+              "matchIn": 33,
+              "matchOut": -1
+            },
+            {
+              "text": "The bitter lesson:",
+              "charStart": 295,
+              "charEnd": 313,
+              "matchIn": 33,
+              "matchOut": -1
+            },
+            {
+              "text": "search and learning win.",
+              "charStart": 314,
+              "charEnd": 338,
+              "matchIn": 43,
+              "matchOut": -1
+            },
+            {
+              "text": "Build meta-methods that discover complexity,",
+              "charStart": 339,
+              "charEnd": 383,
+              "matchIn": 49,
+              "matchOut": -1
+            },
+            {
+              "text": "not encode it.",
+              "charStart": 384,
+              "charEnd": 398,
+              "matchIn": 10,
+              "matchOut": -1
+            }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "nodes": [
+        {
+          "id": "1-0",
+          "text": "The biggest lesson from 70 years of AI research: general methods leveraging computation are ultimately the most effective, by a large margin. Moore's law means exponentially falling cost per unit of computation. Researchers seek short-term gains by leveraging human knowledge, but only the leveraging of computation matters in the long run.",
+          "children": [
+            "2-0"
+          ],
+          "phrases": [
+            {
+              "text": "The biggest lesson from 70 years",
+              "charStart": 0,
+              "charEnd": 32,
+              "matchIn": 0,
+              "matchOut": 0
+            },
+            {
+              "text": "from 70 years of AI research:",
+              "charStart": 19,
+              "charEnd": 48,
+              "matchIn": 1,
+              "matchOut": 1
+            },
+            {
+              "text": "general methods leveraging computation are ultimately",
+              "charStart": 49,
+              "charEnd": 102,
+              "matchIn": 2,
+              "matchOut": 2
+            },
+            {
+              "text": "computation are ultimately the most effective,",
+              "charStart": 76,
+              "charEnd": 122,
+              "matchIn": 2,
+              "matchOut": 2
+            },
+            {
+              "text": "by a large margin.",
+              "charStart": 123,
+              "charEnd": 141,
+              "matchIn": 4,
+              "matchOut": 3
+            },
+            {
+              "text": "Moore's law means exponentially falling cost",
+              "charStart": 142,
+              "charEnd": 186,
+              "matchIn": 6,
+              "matchOut": 2
+            },
+            {
+              "text": "exponentially falling cost per unit of",
+              "charStart": 160,
+              "charEnd": 198,
+              "matchIn": 6,
+              "matchOut": 2
+            },
+            {
+              "text": "per unit of computation.",
+              "charStart": 187,
+              "charEnd": 211,
+              "matchIn": 7,
+              "matchOut": 2
+            },
+            {
+              "text": "Researchers seek short-term gains by leveraging",
+              "charStart": 212,
+              "charEnd": 259,
+              "matchIn": 13,
+              "matchOut": 6
+            },
+            {
+              "text": "gains by leveraging human knowledge,",
+              "charStart": 240,
+              "charEnd": 276,
+              "matchIn": 10,
+              "matchOut": 5
+            },
+            {
+              "text": "but only the leveraging of computation",
+              "charStart": 277,
+              "charEnd": 315,
+              "matchIn": 2,
+              "matchOut": 2
+            },
+            {
+              "text": "leveraging of computation matters in the",
+              "charStart": 290,
+              "charEnd": 330,
+              "matchIn": 2,
+              "matchOut": 2
+            },
+            {
+              "text": "matters in the long run.",
+              "charStart": 316,
+              "charEnd": 340,
+              "matchIn": 15,
+              "matchOut": 3
+            }
+          ]
+        },
+        {
+          "id": "1-1",
+          "text": "In chess, the methods that defeated Kasparov in 1997 were based on massive, deep search. The human-knowledge researchers were not good losers—they said \"brute force\" search was not a general strategy, not how people played. The same pattern repeated in Go, speech recognition, and vision. Search and learning are the two most important classes of techniques for utilizing massive computation.",
+          "children": [
+            "2-1",
+            "2-2"
+          ],
+          "phrases": [
+            {
+              "text": "In chess,",
+              "charStart": 0,
+              "charEnd": 9,
+              "matchIn": 19,
+              "matchOut": 12
+            },
+            {
+              "text": "the methods that defeated Kasparov in",
+              "charStart": 10,
+              "charEnd": 47,
+              "matchIn": 20,
+              "matchOut": 2
+            },
+            {
+              "text": "defeated Kasparov in 1997 were based",
+              "charStart": 27,
+              "charEnd": 63,
+              "matchIn": 21,
+              "matchOut": 1
+            },
+            {
+              "text": "1997 were based on massive,",
+              "charStart": 48,
+              "charEnd": 75,
+              "matchIn": 22,
+              "matchOut": 4
+            },
+            {
+              "text": "deep search.",
+              "charStart": 76,
+              "charEnd": 88,
+              "matchIn": 23,
+              "matchOut": 12
+            },
+            {
+              "text": "The human-knowledge researchers were not good",
+              "charStart": 89,
+              "charEnd": 134,
+              "matchIn": 51,
+              "matchOut": 5
+            },
+            {
+              "text": "were not good losers",
+              "charStart": 121,
+              "charEnd": 141,
+              "matchIn": 26,
+              "matchOut": 11
+            },
+            {
+              "text": "they said \"brute force\" search was",
+              "charStart": 142,
+              "charEnd": 176,
+              "matchIn": 30,
+              "matchOut": 12
+            },
+            {
+              "text": "force\" search was not a general",
+              "charStart": 159,
+              "charEnd": 190,
+              "matchIn": 31,
+              "matchOut": 12
+            },
+            {
+              "text": "not a general strategy,",
+              "charStart": 177,
+              "charEnd": 200,
+              "matchIn": 31,
+              "matchOut": 2
+            },
+            {
+              "text": "not how people played.",
+              "charStart": 201,
+              "charEnd": 223,
+              "matchIn": 32,
+              "matchOut": 5
+            },
+            {
+              "text": "The same pattern repeated in Go,",
+              "charStart": 224,
+              "charEnd": 256,
+              "matchIn": 35,
+              "matchOut": 10
+            },
+            {
+              "text": "speech recognition,",
+              "charStart": 257,
+              "charEnd": 276,
+              "matchIn": 49,
+              "matchOut": 12
+            },
+            {
+              "text": "and vision.",
+              "charStart": 277,
+              "charEnd": 288,
+              "matchIn": 50,
+              "matchOut": 8
+            },
+            {
+              "text": "Search and learning are the two",
+              "charStart": 289,
+              "charEnd": 320,
+              "matchIn": 47,
+              "matchOut": 12
+            },
+            {
+              "text": "are the two most important classes",
+              "charStart": 309,
+              "charEnd": 343,
+              "matchIn": 48,
+              "matchOut": 0
+            },
+            {
+              "text": "most important classes of techniques for",
+              "charStart": 321,
+              "charEnd": 361,
+              "matchIn": 48,
+              "matchOut": 2
+            },
+            {
+              "text": "of techniques for utilizing massive computation.",
+              "charStart": 344,
+              "charEnd": 392,
+              "matchIn": 45,
+              "matchOut": 2
+            }
+          ]
+        },
+        {
+          "id": "1-2",
+          "text": "As a field, we still have not thoroughly learned the bitter lesson: 1) researchers build knowledge into their agents; 2) it helps short-term; 3) it plateaus; 4) breakthrough comes by scaling computation through search and learning.",
+          "children": [
+            "2-3"
+          ],
+          "phrases": [
+            {
+              "text": "As a field,",
+              "charStart": 0,
+              "charEnd": 11,
+              "matchIn": 57,
+              "matchOut": 5
+            },
+            {
+              "text": "we still have not thoroughly learned",
+              "charStart": 12,
+              "charEnd": 48,
+              "matchIn": 63,
+              "matchOut": 0
+            },
+            {
+              "text": "not thoroughly learned the bitter lesson:",
+              "charStart": 26,
+              "charEnd": 67,
+              "matchIn": 63,
+              "matchOut": 11
+            },
+            {
+              "text": "1) researchers build knowledge into their",
+              "charStart": 68,
+              "charEnd": 109,
+              "matchIn": 55,
+              "matchOut": 5
+            },
+            {
+              "text": "knowledge into their agents;",
+              "charStart": 89,
+              "charEnd": 117,
+              "matchIn": 55,
+              "matchOut": 5
+            },
+            {
+              "text": "2) it helps short-term;",
+              "charStart": 118,
+              "charEnd": 141,
+              "matchIn": 65,
+              "matchOut": 6
+            },
+            {
+              "text": "3) it plateaus;",
+              "charStart": 142,
+              "charEnd": 157,
+              "matchIn": 64,
+              "matchOut": 8
+            },
+            {
+              "text": "4) breakthrough comes by scaling computation",
+              "charStart": 158,
+              "charEnd": 202,
+              "matchIn": 64,
+              "matchOut": 2
+            },
+            {
+              "text": "by scaling computation through search and",
+              "charStart": 180,
+              "charEnd": 221,
+              "matchIn": 64,
+              "matchOut": 2
+            },
+            {
+              "text": "through search and learning.",
+              "charStart": 203,
+              "charEnd": 231,
+              "matchIn": 62,
+              "matchOut": 12
+            }
+          ]
+        },
+        {
+          "id": "1-3",
+          "text": "The two methods that scale arbitrarily are search and learning. The contents of minds are tremendously, irredeemably complex—we should stop trying to find simple ways to think about them. Build only meta-methods that find and capture this complexity. We want AI agents that can discover like we can, not which contain what we have discovered.",
+          "children": [
+            "2-4",
+            "2-5"
+          ],
+          "phrases": [
+            {
+              "text": "The two methods that scale arbitrarily",
+              "charStart": 0,
+              "charEnd": 38,
+              "matchIn": 88,
+              "matchOut": 2
+            },
+            {
+              "text": "that scale arbitrarily are search and",
+              "charStart": 16,
+              "charEnd": 53,
+              "matchIn": 88,
+              "matchOut": 12
+            },
+            {
+              "text": "are search and learning.",
+              "charStart": 39,
+              "charEnd": 63,
+              "matchIn": 87,
+              "matchOut": 12
+            },
+            {
+              "text": "The contents of minds are tremendously,",
+              "charStart": 64,
+              "charEnd": 103,
+              "matchIn": 89,
+              "matchOut": 0
+            },
+            {
+              "text": "irredeemably complex",
+              "charStart": 104,
+              "charEnd": 124,
+              "matchIn": 90,
+              "matchOut": 5
+            },
+            {
+              "text": "we should stop trying to find",
+              "charStart": 125,
+              "charEnd": 154,
+              "matchIn": 93,
+              "matchOut": 5
+            },
+            {
+              "text": "trying to find simple ways to",
+              "charStart": 140,
+              "charEnd": 169,
+              "matchIn": 93,
+              "matchOut": 2
+            },
+            {
+              "text": "simple ways to think about them.",
+              "charStart": 155,
+              "charEnd": 187,
+              "matchIn": 90,
+              "matchOut": 2
+            },
+            {
+              "text": "Build only meta-methods that find and",
+              "charStart": 188,
+              "charEnd": 225,
+              "matchIn": 92,
+              "matchOut": 13
+            },
+            {
+              "text": "that find and capture this complexity.",
+              "charStart": 212,
+              "charEnd": 250,
+              "matchIn": 93,
+              "matchOut": 13
+            },
+            {
+              "text": "We want AI agents that can",
+              "charStart": 251,
+              "charEnd": 277,
+              "matchIn": 94,
+              "matchOut": 1
+            },
+            {
+              "text": "agents that can discover like we",
+              "charStart": 262,
+              "charEnd": 294,
+              "matchIn": 95,
+              "matchOut": 1
+            },
+            {
+              "text": "discover like we can,",
+              "charStart": 278,
+              "charEnd": 299,
+              "matchIn": 96,
+              "matchOut": 5
+            },
+            {
+              "text": "not which contain what we have",
+              "charStart": 300,
+              "charEnd": 330,
+              "matchIn": 97,
+              "matchOut": 8
+            },
+            {
+              "text": "what we have discovered.",
+              "charStart": 318,
+              "charEnd": 342,
+              "matchIn": 98,
+              "matchOut": 5
+            }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "nodes": [
+        {
+          "id": "2-0",
+          "text": "The biggest lesson from 70 years of AI research: general methods that leverage computation are the most effective, by a large margin. The reason is Moore's law — exponential fall in cost per unit of computation. Most AI research proceeds as if computation were fixed, making human knowledge the only lever. But massively more computation becomes available over time. Researchers pursue short-term gains through domain knowledge; in the long run, computation is all that matters. Human-knowledge methods complicate approaches in ways that resist scaling.",
+          "children": [
+            "3-0"
+          ],
+          "phrases": [
+            {
+              "text": "The biggest lesson from 70 years",
+              "charStart": 0,
+              "charEnd": 32,
+              "matchIn": 0,
+              "matchOut": 0
+            },
+            {
+              "text": "from 70 years of AI research:",
+              "charStart": 19,
+              "charEnd": 48,
+              "matchIn": 1,
+              "matchOut": 1
+            },
+            {
+              "text": "general methods that leverage computation are",
+              "charStart": 49,
+              "charEnd": 94,
+              "matchIn": 3,
+              "matchOut": 2
+            },
+            {
+              "text": "leverage computation are the most effective,",
+              "charStart": 70,
+              "charEnd": 114,
+              "matchIn": 4,
+              "matchOut": 3
+            },
+            {
+              "text": "by a large margin.",
+              "charStart": 115,
+              "charEnd": 133,
+              "matchIn": 6,
+              "matchOut": 4
+            },
+            {
+              "text": "The reason is Moore's law",
+              "charStart": 134,
+              "charEnd": 159,
+              "matchIn": 7,
+              "matchOut": 5
+            },
+            {
+              "text": "exponential fall in cost per unit",
+              "charStart": 162,
+              "charEnd": 195,
+              "matchIn": 8,
+              "matchOut": 6
+            },
+            {
+              "text": "cost per unit of computation.",
+              "charStart": 182,
+              "charEnd": 211,
+              "matchIn": 9,
+              "matchOut": 7
+            },
+            {
+              "text": "Most AI research proceeds as if",
+              "charStart": 212,
+              "charEnd": 243,
+              "matchIn": 10,
+              "matchOut": 1
+            },
+            {
+              "text": "proceeds as if computation were fixed,",
+              "charStart": 229,
+              "charEnd": 267,
+              "matchIn": 12,
+              "matchOut": 11
+            },
+            {
+              "text": "making human knowledge the only lever.",
+              "charStart": 268,
+              "charEnd": 306,
+              "matchIn": 13,
+              "matchOut": 9
+            },
+            {
+              "text": "But massively more computation becomes available",
+              "charStart": 307,
+              "charEnd": 355,
+              "matchIn": 19,
+              "matchOut": 10
+            },
+            {
+              "text": "computation becomes available over time.",
+              "charStart": 326,
+              "charEnd": 366,
+              "matchIn": 19,
+              "matchOut": 11
+            },
+            {
+              "text": "Researchers pursue short-term gains through domain",
+              "charStart": 367,
+              "charEnd": 417,
+              "matchIn": 21,
+              "matchOut": 8
+            },
+            {
+              "text": "gains through domain knowledge;",
+              "charStart": 397,
+              "charEnd": 428,
+              "matchIn": 22,
+              "matchOut": 9
+            },
+            {
+              "text": "in the long run,",
+              "charStart": 429,
+              "charEnd": 445,
+              "matchIn": 25,
+              "matchOut": 12
+            },
+            {
+              "text": "computation is all that matters.",
+              "charStart": 446,
+              "charEnd": 478,
+              "matchIn": 25,
+              "matchOut": 3
+            },
+            {
+              "text": "Human-knowledge methods complicate approaches in ways",
+              "charStart": 479,
+              "charEnd": 532,
+              "matchIn": 30,
+              "matchOut": 9
+            },
+            {
+              "text": "approaches in ways that resist scaling.",
+              "charStart": 514,
+              "charEnd": 553,
+              "matchIn": 34,
+              "matchOut": 10
+            }
+          ]
+        },
+        {
+          "id": "2-1",
+          "text": "In computer chess, the methods that defeated Kasparov in 1997 were based on massive, deep search. Most chess researchers had pursued human-understanding methods and were not good losers when a search-based approach proved vastly more effective. They called it brute force, said it wasn't general, said it wasn't how people played chess. They wanted their approach to win.",
+          "children": [
+            "3-1"
+          ],
+          "phrases": [
+            {
+              "text": "In computer chess,",
+              "charStart": 0,
+              "charEnd": 18,
+              "matchIn": 39,
+              "matchOut": 13
+            },
+            {
+              "text": "the methods that defeated Kasparov in",
+              "charStart": 19,
+              "charEnd": 56,
+              "matchIn": 40,
+              "matchOut": 14
+            },
+            {
+              "text": "defeated Kasparov in 1997 were based",
+              "charStart": 36,
+              "charEnd": 72,
+              "matchIn": 41,
+              "matchOut": 15
+            },
+            {
+              "text": "1997 were based on massive,",
+              "charStart": 57,
+              "charEnd": 84,
+              "matchIn": 42,
+              "matchOut": 16
+            },
+            {
+              "text": "deep search.",
+              "charStart": 85,
+              "charEnd": 97,
+              "matchIn": 43,
+              "matchOut": 17
+            },
+            {
+              "text": "Most chess researchers had pursued human-understanding",
+              "charStart": 98,
+              "charEnd": 152,
+              "matchIn": 44,
+              "matchOut": 13
+            },
+            {
+              "text": "had pursued human-understanding methods and were",
+              "charStart": 121,
+              "charEnd": 169,
+              "matchIn": 45,
+              "matchOut": 18
+            },
+            {
+              "text": "methods and were not good losers",
+              "charStart": 153,
+              "charEnd": 185,
+              "matchIn": 58,
+              "matchOut": 19
+            },
+            {
+              "text": "not good losers when a search-based",
+              "charStart": 170,
+              "charEnd": 205,
+              "matchIn": 52,
+              "matchOut": 19
+            },
+            {
+              "text": "when a search-based approach proved vastly",
+              "charStart": 186,
+              "charEnd": 228,
+              "matchIn": 48,
+              "matchOut": 27
+            },
+            {
+              "text": "approach proved vastly more effective.",
+              "charStart": 206,
+              "charEnd": 244,
+              "matchIn": 49,
+              "matchOut": 29
+            },
+            {
+              "text": "They called it brute force,",
+              "charStart": 245,
+              "charEnd": 272,
+              "matchIn": 51,
+              "matchOut": 20
+            },
+            {
+              "text": "said it wasn't general,",
+              "charStart": 273,
+              "charEnd": 296,
+              "matchIn": 53,
+              "matchOut": 21
+            },
+            {
+              "text": "said it wasn't how people played",
+              "charStart": 297,
+              "charEnd": 329,
+              "matchIn": 55,
+              "matchOut": 23
+            },
+            {
+              "text": "how people played chess.",
+              "charStart": 312,
+              "charEnd": 336,
+              "matchIn": 56,
+              "matchOut": 13
+            },
+            {
+              "text": "They wanted their approach to win.",
+              "charStart": 337,
+              "charEnd": 371,
+              "matchIn": 57,
+              "matchOut": 22
+            }
+          ]
+        },
+        {
+          "id": "2-2",
+          "text": "Computer Go repeated the pattern 20 years later. Enormous effort went into exploiting human knowledge and the game's special features; all proved irrelevant once search was applied at scale. Learning by self-play proved equally important — it, too, enables massive computation to be brought to bear. Search and learning are the two most important techniques in AI, and in both games, researchers found far greater success only by embracing them.",
+          "children": [
+            "3-2",
+            "3-3"
+          ],
+          "phrases": [
+            {
+              "text": "Computer Go repeated the pattern 20",
+              "charStart": 0,
+              "charEnd": 35,
+              "matchIn": 61,
+              "matchOut": 24
+            },
+            {
+              "text": "the pattern 20 years later.",
+              "charStart": 21,
+              "charEnd": 48,
+              "matchIn": 63,
+              "matchOut": 24
+            },
+            {
+              "text": "Enormous effort went into exploiting human",
+              "charStart": 49,
+              "charEnd": 91,
+              "matchIn": 65,
+              "matchOut": 18
+            },
+            {
+              "text": "into exploiting human knowledge and the",
+              "charStart": 70,
+              "charEnd": 109,
+              "matchIn": 66,
+              "matchOut": 18
+            },
+            {
+              "text": "knowledge and the game's special features;",
+              "charStart": 92,
+              "charEnd": 134,
+              "matchIn": 68,
+              "matchOut": 27
+            },
+            {
+              "text": "all proved irrelevant once search was",
+              "charStart": 135,
+              "charEnd": 172,
+              "matchIn": 64,
+              "matchOut": 21
+            },
+            {
+              "text": "once search was applied at scale.",
+              "charStart": 157,
+              "charEnd": 190,
+              "matchIn": 71,
+              "matchOut": 20
+            },
+            {
+              "text": "Learning by self-play proved equally important",
+              "charStart": 191,
+              "charEnd": 237,
+              "matchIn": 72,
+              "matchOut": 27
+            },
+            {
+              "text": "it,",
+              "charStart": 240,
+              "charEnd": 243,
+              "matchIn": 109,
+              "matchOut": 25
+            },
+            {
+              "text": "too,",
+              "charStart": 244,
+              "charEnd": 248,
+              "matchIn": 70,
+              "matchOut": 26
+            },
+            {
+              "text": "enables massive computation to be brought",
+              "charStart": 249,
+              "charEnd": 290,
+              "matchIn": 82,
+              "matchOut": 30
+            },
+            {
+              "text": "to be brought to bear.",
+              "charStart": 277,
+              "charEnd": 299,
+              "matchIn": 75,
+              "matchOut": 26
+            },
+            {
+              "text": "Search and learning are the two",
+              "charStart": 300,
+              "charEnd": 331,
+              "matchIn": 79,
+              "matchOut": 27
+            },
+            {
+              "text": "are the two most important techniques",
+              "charStart": 320,
+              "charEnd": 357,
+              "matchIn": 81,
+              "matchOut": 29
+            },
+            {
+              "text": "most important techniques in AI,",
+              "charStart": 332,
+              "charEnd": 364,
+              "matchIn": 81,
+              "matchOut": 29
+            },
+            {
+              "text": "and in both games,",
+              "charStart": 365,
+              "charEnd": 383,
+              "matchIn": 78,
+              "matchOut": 13
+            },
+            {
+              "text": "researchers found far greater success only",
+              "charStart": 384,
+              "charEnd": 426,
+              "matchIn": 88,
+              "matchOut": 18
+            },
+            {
+              "text": "greater success only by embracing them.",
+              "charStart": 406,
+              "charEnd": 445,
+              "matchIn": 88,
+              "matchOut": 22
+            }
+          ]
+        },
+        {
+          "id": "2-3",
+          "text": "In speech recognition, a DARPA competition in the 1970s pitted human-knowledge methods — phonemes, words, vocal tract structure — against statistical methods based on hidden Markov models. The statistical methods won. Deep learning is the latest step: even less human knowledge, even more computation, dramatically better results. Researchers always tried to build systems that worked the way their own minds worked. It proved counterproductive — a colossal waste of time.",
+          "children": [
+            "3-4"
+          ],
+          "phrases": [
+            {
+              "text": "In speech recognition,",
+              "charStart": 0,
+              "charEnd": 22,
+              "matchIn": 123,
+              "matchOut": 40
+            },
+            {
+              "text": "a DARPA competition in the 1970s",
+              "charStart": 23,
+              "charEnd": 55,
+              "matchIn": 124,
+              "matchOut": 31
+            },
+            {
+              "text": "in the 1970s pitted human-knowledge methods",
+              "charStart": 43,
+              "charEnd": 86,
+              "matchIn": 124,
+              "matchOut": 34
+            },
+            {
+              "text": "phonemes,",
+              "charStart": 89,
+              "charEnd": 98,
+              "matchIn": 126,
+              "matchOut": 31
+            },
+            {
+              "text": "words,",
+              "charStart": 99,
+              "charEnd": 105,
+              "matchIn": 123,
+              "matchOut": 31
+            },
+            {
+              "text": "vocal tract structure",
+              "charStart": 106,
+              "charEnd": 127,
+              "matchIn": 127,
+              "matchOut": 40
+            },
+            {
+              "text": "against statistical methods based on hidden",
+              "charStart": 130,
+              "charEnd": 173,
+              "matchIn": 124,
+              "matchOut": 38
+            },
+            {
+              "text": "based on hidden Markov models.",
+              "charStart": 158,
+              "charEnd": 188,
+              "matchIn": 123,
+              "matchOut": 40
+            },
+            {
+              "text": "The statistical methods won.",
+              "charStart": 189,
+              "charEnd": 217,
+              "matchIn": 124,
+              "matchOut": 40
+            },
+            {
+              "text": "Deep learning is the latest step:",
+              "charStart": 218,
+              "charEnd": 251,
+              "matchIn": 128,
+              "matchOut": 40
+            },
+            {
+              "text": "even less human knowledge,",
+              "charStart": 252,
+              "charEnd": 278,
+              "matchIn": 125,
+              "matchOut": 32
+            },
+            {
+              "text": "even more computation,",
+              "charStart": 279,
+              "charEnd": 301,
+              "matchIn": 125,
+              "matchOut": 38
+            },
+            {
+              "text": "dramatically better results.",
+              "charStart": 302,
+              "charEnd": 330,
+              "matchIn": 132,
+              "matchOut": 36
+            },
+            {
+              "text": "Researchers always tried to build systems",
+              "charStart": 331,
+              "charEnd": 372,
+              "matchIn": 124,
+              "matchOut": 34
+            },
+            {
+              "text": "to build systems that worked the",
+              "charStart": 356,
+              "charEnd": 388,
+              "matchIn": 124,
+              "matchOut": 34
+            },
+            {
+              "text": "that worked the way their own",
+              "charStart": 373,
+              "charEnd": 402,
+              "matchIn": 132,
+              "matchOut": 33
+            },
+            {
+              "text": "way their own minds worked.",
+              "charStart": 389,
+              "charEnd": 416,
+              "matchIn": 124,
+              "matchOut": 35
+            },
+            {
+              "text": "It proved counterproductive",
+              "charStart": 417,
+              "charEnd": 444,
+              "matchIn": 124,
+              "matchOut": 32
+            },
+            {
+              "text": "a colossal waste of time.",
+              "charStart": 447,
+              "charEnd": 472,
+              "matchIn": 129,
+              "matchOut": 32
+            }
+          ]
+        },
+        {
+          "id": "2-4",
+          "text": "The field still has not learned this. The bitter lesson rests on four observations: researchers try to build knowledge into their agents; it helps in the short term and is personally satisfying; in the long run it plateaus and inhibits progress; breakthrough arrives through search and learning. The success is tinged with bitterness — it is success over a favored, human-centric approach.",
+          "children": [
+            "3-5",
+            "3-6"
+          ],
+          "phrases": [
+            {
+              "text": "The field still has not learned",
+              "charStart": 0,
+              "charEnd": 31,
+              "matchIn": 135,
+              "matchOut": 43
+            },
+            {
+              "text": "has not learned this.",
+              "charStart": 16,
+              "charEnd": 37,
+              "matchIn": 136,
+              "matchOut": 43
+            },
+            {
+              "text": "The bitter lesson rests on four",
+              "charStart": 38,
+              "charEnd": 69,
+              "matchIn": 148,
+              "matchOut": 45
+            },
+            {
+              "text": "rests on four observations:",
+              "charStart": 56,
+              "charEnd": 83,
+              "matchIn": 149,
+              "matchOut": 55
+            },
+            {
+              "text": "researchers try to build knowledge into",
+              "charStart": 84,
+              "charEnd": 123,
+              "matchIn": 151,
+              "matchOut": 43
+            },
+            {
+              "text": "build knowledge into their agents;",
+              "charStart": 103,
+              "charEnd": 137,
+              "matchIn": 152,
+              "matchOut": 52
+            },
+            {
+              "text": "it helps in the short term",
+              "charStart": 138,
+              "charEnd": 164,
+              "matchIn": 153,
+              "matchOut": 43
+            },
+            {
+              "text": "the short term and is personally",
+              "charStart": 150,
+              "charEnd": 182,
+              "matchIn": 154,
+              "matchOut": 43
+            },
+            {
+              "text": "and is personally satisfying;",
+              "charStart": 165,
+              "charEnd": 194,
+              "matchIn": 155,
+              "matchOut": 44
+            },
+            {
+              "text": "in the long run it plateaus",
+              "charStart": 195,
+              "charEnd": 222,
+              "matchIn": 157,
+              "matchOut": 41
+            },
+            {
+              "text": "run it plateaus and inhibits progress;",
+              "charStart": 207,
+              "charEnd": 245,
+              "matchIn": 158,
+              "matchOut": 53
+            },
+            {
+              "text": "breakthrough arrives through search and learning.",
+              "charStart": 246,
+              "charEnd": 295,
+              "matchIn": 159,
+              "matchOut": 43
+            },
+            {
+              "text": "The success is tinged with bitterness",
+              "charStart": 296,
+              "charEnd": 333,
+              "matchIn": 164,
+              "matchOut": 44
+            },
+            {
+              "text": "it is success over a favored,",
+              "charStart": 336,
+              "charEnd": 365,
+              "matchIn": 167,
+              "matchOut": 43
+            },
+            {
+              "text": "human-centric approach.",
+              "charStart": 366,
+              "charEnd": 389,
+              "matchIn": 168,
+              "matchOut": 41
+            }
+          ]
+        },
+        {
+          "id": "2-5",
+          "text": "Search and learning are the methods that scale arbitrarily. The actual contents of minds are irredeemably complex — stop trying to encode them. Build meta-methods that find and capture that complexity instead. We want AI agents that can discover like we can, not agents containing what we have already discovered. Building in our discoveries makes the discovering process harder to see.",
+          "children": [
+            "3-7"
+          ],
+          "phrases": [
+            {
+              "text": "Search and learning are the methods",
+              "charStart": 0,
+              "charEnd": 35,
+              "matchIn": 199,
+              "matchOut": 43
+            },
+            {
+              "text": "are the methods that scale arbitrarily.",
+              "charStart": 20,
+              "charEnd": 59,
+              "matchIn": 197,
+              "matchOut": 41
+            },
+            {
+              "text": "The actual contents of minds are",
+              "charStart": 60,
+              "charEnd": 92,
+              "matchIn": 180,
+              "matchOut": 44
+            },
+            {
+              "text": "of minds are irredeemably complex",
+              "charStart": 80,
+              "charEnd": 113,
+              "matchIn": 182,
+              "matchOut": 45
+            },
+            {
+              "text": "stop trying to encode them.",
+              "charStart": 116,
+              "charEnd": 143,
+              "matchIn": 191,
+              "matchOut": 46
+            },
+            {
+              "text": "Build meta-methods that find and capture",
+              "charStart": 144,
+              "charEnd": 184,
+              "matchIn": 195,
+              "matchOut": 49
+            },
+            {
+              "text": "find and capture that complexity instead.",
+              "charStart": 168,
+              "charEnd": 209,
+              "matchIn": 196,
+              "matchOut": 50
+            },
+            {
+              "text": "We want AI agents that can",
+              "charStart": 210,
+              "charEnd": 236,
+              "matchIn": 201,
+              "matchOut": 51
+            },
+            {
+              "text": "agents that can discover like we",
+              "charStart": 221,
+              "charEnd": 253,
+              "matchIn": 202,
+              "matchOut": 52
+            },
+            {
+              "text": "discover like we can,",
+              "charStart": 237,
+              "charEnd": 258,
+              "matchIn": 203,
+              "matchOut": 53
+            },
+            {
+              "text": "not agents containing what we have",
+              "charStart": 259,
+              "charEnd": 293,
+              "matchIn": 202,
+              "matchOut": 52
+            },
+            {
+              "text": "what we have already discovered.",
+              "charStart": 281,
+              "charEnd": 313,
+              "matchIn": 205,
+              "matchOut": 55
+            },
+            {
+              "text": "Building in our discoveries makes the",
+              "charStart": 314,
+              "charEnd": 351,
+              "matchIn": 206,
+              "matchOut": 53
+            },
+            {
+              "text": "discoveries makes the discovering process harder",
+              "charStart": 330,
+              "charEnd": 378,
+              "matchIn": 207,
+              "matchOut": 53
+            },
+            {
+              "text": "discovering process harder to see.",
+              "charStart": 352,
+              "charEnd": 386,
+              "matchIn": 209,
+              "matchOut": 50
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "nodes": [
+        {
+          "id": "3-0",
+          "text": "The biggest lesson from 70 years of AI research is that general methods leveraging computation are ultimately the most effective, and by a large margin. The reason is Moore's law — the continued exponentially falling cost per unit of computation. Most AI research has been conducted as if computation were constant, making human knowledge one of the only levers for improvement. But over a slightly longer horizon than a typical research project, massively more computation becomes available. Researchers, seeking short-term gains, leverage domain knowledge — but the only thing that matters in the long run is computation. These two approaches need not conflict, but in practice they do: time on one is time not on the other, and human-knowledge methods tend to complicate things in ways that make them less suited to general computational scaling. There have been many examples of researchers learning this lesson late, and bitterly.",
+          "children": [
+            "4-0",
+            "4-1",
+            "4-2",
+            "4-3",
+            "4-4"
+          ],
+          "phrases": [
+            {
+              "text": "The biggest lesson from 70 years",
+              "charStart": 0,
+              "charEnd": 32,
+              "matchIn": 5,
+              "matchOut": 0
+            },
+            {
+              "text": "from 70 years of AI research",
+              "charStart": 19,
+              "charEnd": 47,
+              "matchIn": 8,
+              "matchOut": 1
+            },
+            {
+              "text": "of AI research is that general",
+              "charStart": 33,
+              "charEnd": 63,
+              "matchIn": 8,
+              "matchOut": 8
+            },
+            {
+              "text": "is that general methods leveraging computation",
+              "charStart": 48,
+              "charEnd": 94,
+              "matchIn": 9,
+              "matchOut": 2
+            },
+            {
+              "text": "methods leveraging computation are ultimately the",
+              "charStart": 64,
+              "charEnd": 113,
+              "matchIn": 42,
+              "matchOut": 2
+            },
+            {
+              "text": "are ultimately the most effective,",
+              "charStart": 95,
+              "charEnd": 129,
+              "matchIn": 11,
+              "matchOut": 3
+            },
+            {
+              "text": "and by a large margin.",
+              "charStart": 130,
+              "charEnd": 152,
+              "matchIn": 13,
+              "matchOut": 4
+            },
+            {
+              "text": "The reason is Moore's law",
+              "charStart": 153,
+              "charEnd": 178,
+              "matchIn": 15,
+              "matchOut": 5
+            },
+            {
+              "text": "the continued exponentially falling cost per",
+              "charStart": 181,
+              "charEnd": 225,
+              "matchIn": 18,
+              "matchOut": 6
+            },
+            {
+              "text": "falling cost per unit of computation.",
+              "charStart": 209,
+              "charEnd": 246,
+              "matchIn": 18,
+              "matchOut": 7
+            },
+            {
+              "text": "Most AI research has been conducted",
+              "charStart": 247,
+              "charEnd": 282,
+              "matchIn": 19,
+              "matchOut": 8
+            },
+            {
+              "text": "has been conducted as if computation",
+              "charStart": 264,
+              "charEnd": 300,
+              "matchIn": 20,
+              "matchOut": 16
+            },
+            {
+              "text": "as if computation were constant,",
+              "charStart": 283,
+              "charEnd": 315,
+              "matchIn": 20,
+              "matchOut": 16
+            },
+            {
+              "text": "making human knowledge one of the",
+              "charStart": 316,
+              "charEnd": 349,
+              "matchIn": 24,
+              "matchOut": 10
+            },
+            {
+              "text": "one of the only levers for",
+              "charStart": 339,
+              "charEnd": 365,
+              "matchIn": 26,
+              "matchOut": 10
+            },
+            {
+              "text": "only levers for improvement.",
+              "charStart": 350,
+              "charEnd": 378,
+              "matchIn": 27,
+              "matchOut": 10
+            },
+            {
+              "text": "But over a slightly longer horizon",
+              "charStart": 379,
+              "charEnd": 413,
+              "matchIn": 28,
+              "matchOut": 4
+            },
+            {
+              "text": "slightly longer horizon than a typical",
+              "charStart": 390,
+              "charEnd": 428,
+              "matchIn": 28,
+              "matchOut": 4
+            },
+            {
+              "text": "than a typical research project,",
+              "charStart": 414,
+              "charEnd": 446,
+              "matchIn": 30,
+              "matchOut": 8
+            },
+            {
+              "text": "massively more computation becomes available.",
+              "charStart": 447,
+              "charEnd": 492,
+              "matchIn": 31,
+              "matchOut": 11
+            },
+            {
+              "text": "Researchers,",
+              "charStart": 493,
+              "charEnd": 505,
+              "matchIn": 30,
+              "matchOut": 13
+            },
+            {
+              "text": "seeking short-term gains,",
+              "charStart": 506,
+              "charEnd": 531,
+              "matchIn": 50,
+              "matchOut": 13
+            },
+            {
+              "text": "leverage domain knowledge",
+              "charStart": 532,
+              "charEnd": 557,
+              "matchIn": 24,
+              "matchOut": 14
+            },
+            {
+              "text": "but the only thing that matters",
+              "charStart": 560,
+              "charEnd": 591,
+              "matchIn": 39,
+              "matchOut": 16
+            },
+            {
+              "text": "thing that matters in the long",
+              "charStart": 573,
+              "charEnd": 603,
+              "matchIn": 40,
+              "matchOut": 15
+            },
+            {
+              "text": "in the long run is computation.",
+              "charStart": 592,
+              "charEnd": 623,
+              "matchIn": 31,
+              "matchOut": 12
+            },
+            {
+              "text": "These two approaches need not conflict,",
+              "charStart": 624,
+              "charEnd": 663,
+              "matchIn": 51,
+              "matchOut": 17
+            },
+            {
+              "text": "but in practice they do:",
+              "charStart": 664,
+              "charEnd": 688,
+              "matchIn": 46,
+              "matchOut": 15
+            },
+            {
+              "text": "time on one is time not",
+              "charStart": 689,
+              "charEnd": 712,
+              "matchIn": 48,
+              "matchOut": 12
+            },
+            {
+              "text": "is time not on the other,",
+              "charStart": 701,
+              "charEnd": 726,
+              "matchIn": 48,
+              "matchOut": 12
+            },
+            {
+              "text": "and human-knowledge methods tend to complicate",
+              "charStart": 727,
+              "charEnd": 773,
+              "matchIn": 52,
+              "matchOut": 17
+            },
+            {
+              "text": "tend to complicate things in ways",
+              "charStart": 755,
+              "charEnd": 788,
+              "matchIn": 53,
+              "matchOut": 17
+            },
+            {
+              "text": "things in ways that make them",
+              "charStart": 774,
+              "charEnd": 803,
+              "matchIn": 54,
+              "matchOut": 18
+            },
+            {
+              "text": "that make them less suited to",
+              "charStart": 789,
+              "charEnd": 818,
+              "matchIn": 54,
+              "matchOut": 5
+            },
+            {
+              "text": "less suited to general computational scaling.",
+              "charStart": 804,
+              "charEnd": 849,
+              "matchIn": 56,
+              "matchOut": 18
+            },
+            {
+              "text": "There have been many examples of",
+              "charStart": 850,
+              "charEnd": 882,
+              "matchIn": 64,
+              "matchOut": 2
+            },
+            {
+              "text": "many examples of researchers learning this",
+              "charStart": 866,
+              "charEnd": 908,
+              "matchIn": 59,
+              "matchOut": 13
+            },
+            {
+              "text": "researchers learning this lesson late,",
+              "charStart": 883,
+              "charEnd": 921,
+              "matchIn": 59,
+              "matchOut": 13
+            },
+            {
+              "text": "and bitterly.",
+              "charStart": 922,
+              "charEnd": 935,
+              "matchIn": 13,
+              "matchOut": 4
+            }
+          ]
+        },
+        {
+          "id": "3-1",
+          "text": "In computer chess, the methods that defeated Kasparov in 1997 were based on massive, deep search. Most chess researchers had pursued methods leveraging human understanding of chess's special structure. When a simpler search-based approach proved vastly more effective, they were not good losers. They said brute-force search may have won, but it was not a general strategy, and it was not how people played chess. They wanted human-knowledge methods to win and were disappointed when they did not.",
+          "children": [
+            "4-5"
+          ],
+          "phrases": [
+            {
+              "text": "In computer chess,",
+              "charStart": 0,
+              "charEnd": 18,
+              "matchIn": 65,
+              "matchOut": 19
+            },
+            {
+              "text": "the methods that defeated Kasparov in",
+              "charStart": 19,
+              "charEnd": 56,
+              "matchIn": 68,
+              "matchOut": 20
+            },
+            {
+              "text": "defeated Kasparov in 1997 were based",
+              "charStart": 36,
+              "charEnd": 72,
+              "matchIn": 68,
+              "matchOut": 21
+            },
+            {
+              "text": "1997 were based on massive,",
+              "charStart": 57,
+              "charEnd": 84,
+              "matchIn": 70,
+              "matchOut": 22
+            },
+            {
+              "text": "deep search.",
+              "charStart": 85,
+              "charEnd": 97,
+              "matchIn": 71,
+              "matchOut": 23
+            },
+            {
+              "text": "Most chess researchers had pursued methods",
+              "charStart": 98,
+              "charEnd": 140,
+              "matchIn": 84,
+              "matchOut": 24
+            },
+            {
+              "text": "had pursued methods leveraging human understanding",
+              "charStart": 121,
+              "charEnd": 171,
+              "matchIn": 77,
+              "matchOut": 25
+            },
+            {
+              "text": "leveraging human understanding of chess's special",
+              "charStart": 141,
+              "charEnd": 190,
+              "matchIn": 78,
+              "matchOut": 24
+            },
+            {
+              "text": "of chess's special structure.",
+              "charStart": 172,
+              "charEnd": 201,
+              "matchIn": 78,
+              "matchOut": 19
+            },
+            {
+              "text": "When a simpler search-based approach proved",
+              "charStart": 202,
+              "charEnd": 245,
+              "matchIn": 80,
+              "matchOut": 28
+            },
+            {
+              "text": "search-based approach proved vastly more effective,",
+              "charStart": 217,
+              "charEnd": 268,
+              "matchIn": 80,
+              "matchOut": 28
+            },
+            {
+              "text": "they were not good losers.",
+              "charStart": 269,
+              "charEnd": 295,
+              "matchIn": 86,
+              "matchOut": 26
+            },
+            {
+              "text": "They said brute-force search may have",
+              "charStart": 296,
+              "charEnd": 333,
+              "matchIn": 87,
+              "matchOut": 30
+            },
+            {
+              "text": "search may have won,",
+              "charStart": 318,
+              "charEnd": 338,
+              "matchIn": 88,
+              "matchOut": 27
+            },
+            {
+              "text": "but it was not a general",
+              "charStart": 339,
+              "charEnd": 363,
+              "matchIn": 90,
+              "matchOut": 31
+            },
+            {
+              "text": "not a general strategy,",
+              "charStart": 350,
+              "charEnd": 373,
+              "matchIn": 91,
+              "matchOut": 31
+            },
+            {
+              "text": "and it was not how people",
+              "charStart": 374,
+              "charEnd": 399,
+              "matchIn": 93,
+              "matchOut": 32
+            },
+            {
+              "text": "not how people played chess.",
+              "charStart": 385,
+              "charEnd": 413,
+              "matchIn": 94,
+              "matchOut": 33
+            },
+            {
+              "text": "They wanted human-knowledge methods to win",
+              "charStart": 414,
+              "charEnd": 456,
+              "matchIn": 84,
+              "matchOut": 25
+            },
+            {
+              "text": "methods to win and were disappointed",
+              "charStart": 442,
+              "charEnd": 478,
+              "matchIn": 97,
+              "matchOut": 26
+            },
+            {
+              "text": "and were disappointed when they did",
+              "charStart": 457,
+              "charEnd": 492,
+              "matchIn": 98,
+              "matchOut": 34
+            },
+            {
+              "text": "when they did not.",
+              "charStart": 479,
+              "charEnd": 497,
+              "matchIn": 98,
+              "matchOut": 34
+            }
+          ]
+        },
+        {
+          "id": "3-2",
+          "text": "A similar pattern emerged in computer Go, delayed by 20 years. Enormous efforts went into avoiding search by exploiting human knowledge and the special features of the game — and all of it proved irrelevant, or worse, once search was applied at scale. Learning by self-play was also crucial: it enabled massive computation to be brought to bear on learning a value function, as it was in many other games. Search and learning are the two most important classes of techniques for utilizing massive computation. In Go, as in chess, researchers first directed effort toward human understanding, and only much later found greater success by embracing search and learning.",
+          "children": [
+            "4-6"
+          ],
+          "phrases": [
+            {
+              "text": "A similar pattern emerged in computer",
+              "charStart": 0,
+              "charEnd": 37,
+              "matchIn": 128,
+              "matchOut": 35
+            },
+            {
+              "text": "emerged in computer Go,",
+              "charStart": 18,
+              "charEnd": 41,
+              "matchIn": 101,
+              "matchOut": 45
+            },
+            {
+              "text": "delayed by 20 years.",
+              "charStart": 42,
+              "charEnd": 62,
+              "matchIn": 103,
+              "matchOut": 36
+            },
+            {
+              "text": "Enormous efforts went into avoiding search",
+              "charStart": 63,
+              "charEnd": 105,
+              "matchIn": 105,
+              "matchOut": 41
+            },
+            {
+              "text": "into avoiding search by exploiting human",
+              "charStart": 85,
+              "charEnd": 125,
+              "matchIn": 105,
+              "matchOut": 38
+            },
+            {
+              "text": "by exploiting human knowledge and the",
+              "charStart": 106,
+              "charEnd": 143,
+              "matchIn": 106,
+              "matchOut": 38
+            },
+            {
+              "text": "knowledge and the special features of",
+              "charStart": 126,
+              "charEnd": 163,
+              "matchIn": 106,
+              "matchOut": 39
+            },
+            {
+              "text": "special features of the game",
+              "charStart": 144,
+              "charEnd": 172,
+              "matchIn": 108,
+              "matchOut": 39
+            },
+            {
+              "text": "and all of it proved irrelevant,",
+              "charStart": 175,
+              "charEnd": 207,
+              "matchIn": 109,
+              "matchOut": 40
+            },
+            {
+              "text": "or worse,",
+              "charStart": 208,
+              "charEnd": 217,
+              "matchIn": 110,
+              "matchOut": 44
+            },
+            {
+              "text": "once search was applied at scale.",
+              "charStart": 218,
+              "charEnd": 251,
+              "matchIn": 111,
+              "matchOut": 41
+            },
+            {
+              "text": "Learning by self-play was also crucial:",
+              "charStart": 252,
+              "charEnd": 291,
+              "matchIn": 115,
+              "matchOut": 42
+            },
+            {
+              "text": "it enabled massive computation to be",
+              "charStart": 292,
+              "charEnd": 328,
+              "matchIn": 128,
+              "matchOut": 45
+            },
+            {
+              "text": "computation to be brought to bear",
+              "charStart": 311,
+              "charEnd": 344,
+              "matchIn": 129,
+              "matchOut": 45
+            },
+            {
+              "text": "brought to bear on learning a",
+              "charStart": 329,
+              "charEnd": 358,
+              "matchIn": 114,
+              "matchOut": 46
+            },
+            {
+              "text": "on learning a value function,",
+              "charStart": 345,
+              "charEnd": 374,
+              "matchIn": 117,
+              "matchOut": 47
+            },
+            {
+              "text": "as it was in many other",
+              "charStart": 375,
+              "charEnd": 398,
+              "matchIn": 137,
+              "matchOut": 50
+            },
+            {
+              "text": "in many other games.",
+              "charStart": 385,
+              "charEnd": 405,
+              "matchIn": 118,
+              "matchOut": 50
+            },
+            {
+              "text": "Search and learning are the two",
+              "charStart": 406,
+              "charEnd": 437,
+              "matchIn": 131,
+              "matchOut": 47
+            },
+            {
+              "text": "are the two most important classes",
+              "charStart": 426,
+              "charEnd": 460,
+              "matchIn": 131,
+              "matchOut": 48
+            },
+            {
+              "text": "most important classes of techniques for",
+              "charStart": 438,
+              "charEnd": 478,
+              "matchIn": 132,
+              "matchOut": 48
+            },
+            {
+              "text": "of techniques for utilizing massive computation.",
+              "charStart": 461,
+              "charEnd": 509,
+              "matchIn": 128,
+              "matchOut": 45
+            },
+            {
+              "text": "In Go,",
+              "charStart": 510,
+              "charEnd": 516,
+              "matchIn": 136,
+              "matchOut": 50
+            },
+            {
+              "text": "as in chess,",
+              "charStart": 517,
+              "charEnd": 529,
+              "matchIn": 138,
+              "matchOut": 50
+            },
+            {
+              "text": "researchers first directed effort toward human",
+              "charStart": 530,
+              "charEnd": 576,
+              "matchIn": 139,
+              "matchOut": 37
+            },
+            {
+              "text": "effort toward human understanding,",
+              "charStart": 557,
+              "charEnd": 591,
+              "matchIn": 140,
+              "matchOut": 38
+            },
+            {
+              "text": "and only much later found greater",
+              "charStart": 592,
+              "charEnd": 625,
+              "matchIn": 143,
+              "matchOut": 51
+            },
+            {
+              "text": "later found greater success by embracing",
+              "charStart": 606,
+              "charEnd": 646,
+              "matchIn": 144,
+              "matchOut": 52
+            },
+            {
+              "text": "success by embracing search and learning.",
+              "charStart": 626,
+              "charEnd": 667,
+              "matchIn": 145,
+              "matchOut": 47
+            }
+          ]
+        },
+        {
+          "id": "3-3",
+          "text": "In speech recognition, a DARPA competition in the 1970s pitted knowledge-based methods against newer statistical methods — hidden Markov models — that did more computation. The statistical methods won. This triggered a major change across natural language processing, where statistics and computation came to dominate the field over decades. The rise of deep learning in speech is the most recent step in the same direction: even less human knowledge, even more computation, learning on huge training sets, dramatically better results. Researchers always tried to build systems that worked the way they thought their own minds worked — and it proved counterproductive, a colossal waste of time, when Moore's law made massive computation available and a means was found to use it.",
+          "children": [
+            "4-7"
+          ],
+          "phrases": [
+            {
+              "text": "In speech recognition,",
+              "charStart": 0,
+              "charEnd": 22,
+              "matchIn": 147,
+              "matchOut": 49
+            },
+            {
+              "text": "a DARPA competition in the 1970s",
+              "charStart": 23,
+              "charEnd": 55,
+              "matchIn": 150,
+              "matchOut": 39
+            },
+            {
+              "text": "in the 1970s pitted knowledge-based methods",
+              "charStart": 43,
+              "charEnd": 86,
+              "matchIn": 168,
+              "matchOut": 38
+            },
+            {
+              "text": "pitted knowledge-based methods against newer statistical",
+              "charStart": 56,
+              "charEnd": 112,
+              "matchIn": 168,
+              "matchOut": 39
+            },
+            {
+              "text": "against newer statistical methods",
+              "charStart": 87,
+              "charEnd": 120,
+              "matchIn": 167,
+              "matchOut": 51
+            },
+            {
+              "text": "hidden Markov models",
+              "charStart": 123,
+              "charEnd": 143,
+              "matchIn": 165,
+              "matchOut": 49
+            },
+            {
+              "text": "that did more computation.",
+              "charStart": 146,
+              "charEnd": 172,
+              "matchIn": 185,
+              "matchOut": 45
+            },
+            {
+              "text": "The statistical methods won.",
+              "charStart": 173,
+              "charEnd": 201,
+              "matchIn": 167,
+              "matchOut": 51
+            },
+            {
+              "text": "This triggered a major change across",
+              "charStart": 202,
+              "charEnd": 238,
+              "matchIn": 169,
+              "matchOut": 36
+            },
+            {
+              "text": "major change across natural language processing,",
+              "charStart": 219,
+              "charEnd": 267,
+              "matchIn": 171,
+              "matchOut": 38
+            },
+            {
+              "text": "where statistics and computation came to",
+              "charStart": 268,
+              "charEnd": 308,
+              "matchIn": 174,
+              "matchOut": 45
+            },
+            {
+              "text": "computation came to dominate the field",
+              "charStart": 289,
+              "charEnd": 327,
+              "matchIn": 174,
+              "matchOut": 45
+            },
+            {
+              "text": "dominate the field over decades.",
+              "charStart": 309,
+              "charEnd": 341,
+              "matchIn": 175,
+              "matchOut": 52
+            },
+            {
+              "text": "The rise of deep learning in",
+              "charStart": 342,
+              "charEnd": 370,
+              "matchIn": 177,
+              "matchOut": 38
+            },
+            {
+              "text": "deep learning in speech is the",
+              "charStart": 354,
+              "charEnd": 384,
+              "matchIn": 177,
+              "matchOut": 49
+            },
+            {
+              "text": "speech is the most recent step",
+              "charStart": 371,
+              "charEnd": 401,
+              "matchIn": 179,
+              "matchOut": 49
+            },
+            {
+              "text": "most recent step in the same",
+              "charStart": 385,
+              "charEnd": 413,
+              "matchIn": 179,
+              "matchOut": 36
+            },
+            {
+              "text": "in the same direction:",
+              "charStart": 402,
+              "charEnd": 424,
+              "matchIn": 181,
+              "matchOut": 36
+            },
+            {
+              "text": "even less human knowledge,",
+              "charStart": 425,
+              "charEnd": 451,
+              "matchIn": 184,
+              "matchOut": 38
+            },
+            {
+              "text": "even more computation,",
+              "charStart": 452,
+              "charEnd": 474,
+              "matchIn": 185,
+              "matchOut": 45
+            },
+            {
+              "text": "learning on huge training sets,",
+              "charStart": 475,
+              "charEnd": 506,
+              "matchIn": 187,
+              "matchOut": 47
+            },
+            {
+              "text": "dramatically better results.",
+              "charStart": 507,
+              "charEnd": 535,
+              "matchIn": 167,
+              "matchOut": 51
+            },
+            {
+              "text": "Researchers always tried to build systems",
+              "charStart": 536,
+              "charEnd": 577,
+              "matchIn": 191,
+              "matchOut": 51
+            },
+            {
+              "text": "to build systems that worked the",
+              "charStart": 561,
+              "charEnd": 593,
+              "matchIn": 192,
+              "matchOut": 45
+            },
+            {
+              "text": "that worked the way they thought",
+              "charStart": 578,
+              "charEnd": 610,
+              "matchIn": 193,
+              "matchOut": 52
+            },
+            {
+              "text": "way they thought their own minds",
+              "charStart": 594,
+              "charEnd": 626,
+              "matchIn": 195,
+              "matchOut": 37
+            },
+            {
+              "text": "their own minds worked",
+              "charStart": 611,
+              "charEnd": 633,
+              "matchIn": 195,
+              "matchOut": 42
+            },
+            {
+              "text": "and it proved counterproductive,",
+              "charStart": 636,
+              "charEnd": 668,
+              "matchIn": 199,
+              "matchOut": 40
+            },
+            {
+              "text": "a colossal waste of time,",
+              "charStart": 669,
+              "charEnd": 694,
+              "matchIn": 200,
+              "matchOut": 37
+            },
+            {
+              "text": "when Moore's law made massive computation",
+              "charStart": 695,
+              "charEnd": 736,
+              "matchIn": 204,
+              "matchOut": 45
+            },
+            {
+              "text": "made massive computation available and a",
+              "charStart": 712,
+              "charEnd": 752,
+              "matchIn": 204,
+              "matchOut": 45
+            },
+            {
+              "text": "available and a means was found",
+              "charStart": 737,
+              "charEnd": 768,
+              "matchIn": 205,
+              "matchOut": 40
+            },
+            {
+              "text": "means was found to use it.",
+              "charStart": 753,
+              "charEnd": 779,
+              "matchIn": 205,
+              "matchOut": 41
+            }
+          ]
+        },
+        {
+          "id": "3-4",
+          "text": "In computer vision, early methods conceived of the problem in terms of edges, generalized cylinders, SIFT features. Today all of that is discarded. Deep-learning neural networks use only convolution and certain invariances, and perform much better.",
+          "children": [
+            "4-8"
+          ],
+          "phrases": [
+            {
+              "text": "In computer vision,",
+              "charStart": 0,
+              "charEnd": 19,
+              "matchIn": 208,
+              "matchOut": 53
+            },
+            {
+              "text": "early methods conceived of the problem",
+              "charStart": 20,
+              "charEnd": 58,
+              "matchIn": 210,
+              "matchOut": 55
+            },
+            {
+              "text": "of the problem in terms of",
+              "charStart": 44,
+              "charEnd": 70,
+              "matchIn": 208,
+              "matchOut": 64
+            },
+            {
+              "text": "in terms of edges,",
+              "charStart": 59,
+              "charEnd": 77,
+              "matchIn": 212,
+              "matchOut": 53
+            },
+            {
+              "text": "generalized cylinders,",
+              "charStart": 78,
+              "charEnd": 100,
+              "matchIn": 213,
+              "matchOut": 58
+            },
+            {
+              "text": "SIFT features.",
+              "charStart": 101,
+              "charEnd": 115,
+              "matchIn": 214,
+              "matchOut": 62
+            },
+            {
+              "text": "Today all of that is discarded.",
+              "charStart": 116,
+              "charEnd": 147,
+              "matchIn": 215,
+              "matchOut": 71
+            },
+            {
+              "text": "Deep-learning neural networks use only convolution",
+              "charStart": 148,
+              "charEnd": 198,
+              "matchIn": 217,
+              "matchOut": 62
+            },
+            {
+              "text": "use only convolution and certain invariances,",
+              "charStart": 178,
+              "charEnd": 223,
+              "matchIn": 218,
+              "matchOut": 53
+            },
+            {
+              "text": "and perform much better.",
+              "charStart": 224,
+              "charEnd": 248,
+              "matchIn": 221,
+              "matchOut": 65
+            }
+          ]
+        },
+        {
+          "id": "3-5",
+          "text": "This is a big lesson. As a field, we still have not thoroughly learned it — we continue to make the same mistakes. To resist them, we have to understand their appeal. We have to learn the bitter lesson that building in how we think we think does not work in the long run. The lesson rests on four historical observations: AI researchers have often tried to build knowledge into their agents; this always helps in the short term and is personally satisfying; but in the long run it plateaus and even inhibits progress; and breakthrough progress eventually arrives by an opposing approach based on scaling computation through search and learning. That success is tinged with bitterness because it is success over a favored, human-centric approach.",
+          "children": [
+            "4-8",
+            "4-9"
+          ],
+          "phrases": [
+            {
+              "text": "This is a big lesson.",
+              "charStart": 0,
+              "charEnd": 21,
+              "matchIn": 222,
+              "matchOut": 73
+            },
+            {
+              "text": "As a field,",
+              "charStart": 22,
+              "charEnd": 33,
+              "matchIn": 223,
+              "matchOut": 72
+            },
+            {
+              "text": "we still have not thoroughly learned",
+              "charStart": 34,
+              "charEnd": 70,
+              "matchIn": 224,
+              "matchOut": 72
+            },
+            {
+              "text": "not thoroughly learned it",
+              "charStart": 48,
+              "charEnd": 73,
+              "matchIn": 224,
+              "matchOut": 73
+            },
+            {
+              "text": "we continue to make the same",
+              "charStart": 76,
+              "charEnd": 104,
+              "matchIn": 226,
+              "matchOut": 81
+            },
+            {
+              "text": "make the same mistakes.",
+              "charStart": 91,
+              "charEnd": 114,
+              "matchIn": 228,
+              "matchOut": 82
+            },
+            {
+              "text": "To resist them,",
+              "charStart": 115,
+              "charEnd": 130,
+              "matchIn": 231,
+              "matchOut": 84
+            },
+            {
+              "text": "we have to understand their appeal.",
+              "charStart": 131,
+              "charEnd": 166,
+              "matchIn": 232,
+              "matchOut": 84
+            },
+            {
+              "text": "We have to learn the bitter",
+              "charStart": 167,
+              "charEnd": 194,
+              "matchIn": 235,
+              "matchOut": 74
+            },
+            {
+              "text": "learn the bitter lesson that building",
+              "charStart": 178,
+              "charEnd": 215,
+              "matchIn": 236,
+              "matchOut": 74
+            },
+            {
+              "text": "lesson that building in how we",
+              "charStart": 195,
+              "charEnd": 225,
+              "matchIn": 237,
+              "matchOut": 74
+            },
+            {
+              "text": "in how we think we think",
+              "charStart": 216,
+              "charEnd": 240,
+              "matchIn": 238,
+              "matchOut": 86
+            },
+            {
+              "text": "think we think does not work",
+              "charStart": 226,
+              "charEnd": 254,
+              "matchIn": 239,
+              "matchOut": 72
+            },
+            {
+              "text": "does not work in the long",
+              "charStart": 241,
+              "charEnd": 266,
+              "matchIn": 240,
+              "matchOut": 79
+            },
+            {
+              "text": "in the long run.",
+              "charStart": 255,
+              "charEnd": 271,
+              "matchIn": 240,
+              "matchOut": 81
+            },
+            {
+              "text": "The lesson rests on four historical",
+              "charStart": 272,
+              "charEnd": 307,
+              "matchIn": 237,
+              "matchOut": 74
+            },
+            {
+              "text": "on four historical observations:",
+              "charStart": 289,
+              "charEnd": 321,
+              "matchIn": 242,
+              "matchOut": 75
+            },
+            {
+              "text": "AI researchers have often tried to",
+              "charStart": 322,
+              "charEnd": 356,
+              "matchIn": 244,
+              "matchOut": 76
+            },
+            {
+              "text": "often tried to build knowledge into",
+              "charStart": 342,
+              "charEnd": 377,
+              "matchIn": 245,
+              "matchOut": 76
+            },
+            {
+              "text": "build knowledge into their agents;",
+              "charStart": 357,
+              "charEnd": 391,
+              "matchIn": 246,
+              "matchOut": 77
+            },
+            {
+              "text": "this always helps in the short",
+              "charStart": 392,
+              "charEnd": 422,
+              "matchIn": 247,
+              "matchOut": 78
+            },
+            {
+              "text": "in the short term and is",
+              "charStart": 410,
+              "charEnd": 434,
+              "matchIn": 248,
+              "matchOut": 79
+            },
+            {
+              "text": "term and is personally satisfying;",
+              "charStart": 423,
+              "charEnd": 457,
+              "matchIn": 249,
+              "matchOut": 80
+            },
+            {
+              "text": "but in the long run it",
+              "charStart": 458,
+              "charEnd": 480,
+              "matchIn": 240,
+              "matchOut": 81
+            },
+            {
+              "text": "long run it plateaus and even",
+              "charStart": 469,
+              "charEnd": 498,
+              "matchIn": 252,
+              "matchOut": 81
+            },
+            {
+              "text": "plateaus and even inhibits progress;",
+              "charStart": 481,
+              "charEnd": 517,
+              "matchIn": 253,
+              "matchOut": 82
+            },
+            {
+              "text": "and breakthrough progress eventually arrives by",
+              "charStart": 518,
+              "charEnd": 565,
+              "matchIn": 256,
+              "matchOut": 83
+            },
+            {
+              "text": "eventually arrives by an opposing approach",
+              "charStart": 544,
+              "charEnd": 586,
+              "matchIn": 257,
+              "matchOut": 86
+            },
+            {
+              "text": "an opposing approach based on scaling",
+              "charStart": 566,
+              "charEnd": 603,
+              "matchIn": 258,
+              "matchOut": 86
+            },
+            {
+              "text": "based on scaling computation through search",
+              "charStart": 587,
+              "charEnd": 630,
+              "matchIn": 258,
+              "matchOut": 86
+            },
+            {
+              "text": "computation through search and learning.",
+              "charStart": 604,
+              "charEnd": 644,
+              "matchIn": 258,
+              "matchOut": 83
+            },
+            {
+              "text": "That success is tinged with bitterness",
+              "charStart": 645,
+              "charEnd": 683,
+              "matchIn": 261,
+              "matchOut": 84
+            },
+            {
+              "text": "tinged with bitterness because it is",
+              "charStart": 661,
+              "charEnd": 697,
+              "matchIn": 261,
+              "matchOut": 84
+            },
+            {
+              "text": "because it is success over a",
+              "charStart": 684,
+              "charEnd": 712,
+              "matchIn": 260,
+              "matchOut": 85
+            },
+            {
+              "text": "success over a favored,",
+              "charStart": 698,
+              "charEnd": 721,
+              "matchIn": 264,
+              "matchOut": 85
+            },
+            {
+              "text": "human-centric approach.",
+              "charStart": 722,
+              "charEnd": 745,
+              "matchIn": 265,
+              "matchOut": 86
+            }
+          ]
+        },
+        {
+          "id": "3-6",
+          "text": "One thing to learn from this: the great power of general-purpose methods that continue to scale with increased computation even as computation becomes very great. The two methods that seem to scale arbitrarily are search and learning.",
+          "children": [
+            "4-10"
+          ],
+          "phrases": [
+            {
+              "text": "One thing to learn from this:",
+              "charStart": 0,
+              "charEnd": 29,
+              "matchIn": 266,
+              "matchOut": 73
+            },
+            {
+              "text": "the great power of general-purpose methods",
+              "charStart": 30,
+              "charEnd": 72,
+              "matchIn": 270,
+              "matchOut": 86
+            },
+            {
+              "text": "of general-purpose methods that continue to",
+              "charStart": 46,
+              "charEnd": 89,
+              "matchIn": 270,
+              "matchOut": 86
+            },
+            {
+              "text": "that continue to scale with increased",
+              "charStart": 73,
+              "charEnd": 110,
+              "matchIn": 276,
+              "matchOut": 81
+            },
+            {
+              "text": "scale with increased computation even as",
+              "charStart": 90,
+              "charEnd": 130,
+              "matchIn": 277,
+              "matchOut": 81
+            },
+            {
+              "text": "computation even as computation becomes very",
+              "charStart": 111,
+              "charEnd": 155,
+              "matchIn": 273,
+              "matchOut": 81
+            },
+            {
+              "text": "computation becomes very great.",
+              "charStart": 131,
+              "charEnd": 162,
+              "matchIn": 272,
+              "matchOut": 83
+            },
+            {
+              "text": "The two methods that seem to",
+              "charStart": 163,
+              "charEnd": 191,
+              "matchIn": 275,
+              "matchOut": 86
+            },
+            {
+              "text": "that seem to scale arbitrarily are",
+              "charStart": 179,
+              "charEnd": 213,
+              "matchIn": 276,
+              "matchOut": 81
+            },
+            {
+              "text": "scale arbitrarily are search and learning.",
+              "charStart": 192,
+              "charEnd": 234,
+              "matchIn": 278,
+              "matchOut": 83
+            }
+          ]
+        },
+        {
+          "id": "3-7",
+          "text": "The second point: the actual contents of minds are tremendously, irredeemably complex. We should stop trying to find simple ways to think about space, objects, multiple agents, symmetries. These are part of the arbitrary, intrinsically complex outside world. They are not what should be built in; instead we should build only the meta-methods that can find and capture this complexity. The search for good approximations should be by our methods, not by us. We want AI agents that can discover like we can, not which contain what we have discovered. Building in our discoveries only makes it harder to see how the discovering process can be done.",
+          "children": [
+            "4-11",
+            "4-12"
+          ],
+          "phrases": [
+            {
+              "text": "The second point:",
+              "charStart": 0,
+              "charEnd": 17,
+              "matchIn": 279,
+              "matchOut": 101
+            },
+            {
+              "text": "the actual contents of minds are",
+              "charStart": 18,
+              "charEnd": 50,
+              "matchIn": 283,
+              "matchOut": 89
+            },
+            {
+              "text": "of minds are tremendously,",
+              "charStart": 38,
+              "charEnd": 64,
+              "matchIn": 284,
+              "matchOut": 89
+            },
+            {
+              "text": "irredeemably complex.",
+              "charStart": 65,
+              "charEnd": 86,
+              "matchIn": 285,
+              "matchOut": 90
+            },
+            {
+              "text": "We should stop trying to find",
+              "charStart": 87,
+              "charEnd": 116,
+              "matchIn": 287,
+              "matchOut": 93
+            },
+            {
+              "text": "trying to find simple ways to",
+              "charStart": 102,
+              "charEnd": 131,
+              "matchIn": 288,
+              "matchOut": 93
+            },
+            {
+              "text": "simple ways to think about space,",
+              "charStart": 117,
+              "charEnd": 150,
+              "matchIn": 293,
+              "matchOut": 89
+            },
+            {
+              "text": "objects,",
+              "charStart": 151,
+              "charEnd": 159,
+              "matchIn": 294,
+              "matchOut": 89
+            },
+            {
+              "text": "multiple agents,",
+              "charStart": 160,
+              "charEnd": 176,
+              "matchIn": 296,
+              "matchOut": 97
+            },
+            {
+              "text": "symmetries.",
+              "charStart": 177,
+              "charEnd": 188,
+              "matchIn": 297,
+              "matchOut": 90
+            },
+            {
+              "text": "These are part of the arbitrary,",
+              "charStart": 189,
+              "charEnd": 221,
+              "matchIn": 299,
+              "matchOut": 97
+            },
+            {
+              "text": "intrinsically complex outside world.",
+              "charStart": 222,
+              "charEnd": 258,
+              "matchIn": 300,
+              "matchOut": 90
+            },
+            {
+              "text": "They are not what should be",
+              "charStart": 259,
+              "charEnd": 286,
+              "matchIn": 302,
+              "matchOut": 89
+            },
+            {
+              "text": "what should be built in;",
+              "charStart": 272,
+              "charEnd": 296,
+              "matchIn": 303,
+              "matchOut": 99
+            },
+            {
+              "text": "instead we should build only the",
+              "charStart": 297,
+              "charEnd": 329,
+              "matchIn": 306,
+              "matchOut": 99
+            },
+            {
+              "text": "build only the meta-methods that can",
+              "charStart": 315,
+              "charEnd": 351,
+              "matchIn": 308,
+              "matchOut": 92
+            },
+            {
+              "text": "meta-methods that can find and capture",
+              "charStart": 330,
+              "charEnd": 368,
+              "matchIn": 308,
+              "matchOut": 92
+            },
+            {
+              "text": "find and capture this complexity.",
+              "charStart": 352,
+              "charEnd": 385,
+              "matchIn": 309,
+              "matchOut": 93
+            },
+            {
+              "text": "The search for good approximations should",
+              "charStart": 386,
+              "charEnd": 427,
+              "matchIn": 312,
+              "matchOut": 88
+            },
+            {
+              "text": "good approximations should be by our",
+              "charStart": 401,
+              "charEnd": 437,
+              "matchIn": 312,
+              "matchOut": 88
+            },
+            {
+              "text": "be by our methods,",
+              "charStart": 428,
+              "charEnd": 446,
+              "matchIn": 315,
+              "matchOut": 87
+            },
+            {
+              "text": "not by us.",
+              "charStart": 447,
+              "charEnd": 457,
+              "matchIn": 316,
+              "matchOut": 97
+            },
+            {
+              "text": "We want AI agents that can",
+              "charStart": 458,
+              "charEnd": 484,
+              "matchIn": 317,
+              "matchOut": 94
+            },
+            {
+              "text": "agents that can discover like we",
+              "charStart": 469,
+              "charEnd": 501,
+              "matchIn": 318,
+              "matchOut": 95
+            },
+            {
+              "text": "discover like we can,",
+              "charStart": 485,
+              "charEnd": 506,
+              "matchIn": 319,
+              "matchOut": 96
+            },
+            {
+              "text": "not which contain what we have",
+              "charStart": 507,
+              "charEnd": 537,
+              "matchIn": 320,
+              "matchOut": 97
+            },
+            {
+              "text": "what we have discovered.",
+              "charStart": 525,
+              "charEnd": 549,
+              "matchIn": 321,
+              "matchOut": 98
+            },
+            {
+              "text": "Building in our discoveries only makes",
+              "charStart": 550,
+              "charEnd": 588,
+              "matchIn": 322,
+              "matchOut": 99
+            },
+            {
+              "text": "discoveries only makes it harder to",
+              "charStart": 566,
+              "charEnd": 601,
+              "matchIn": 323,
+              "matchOut": 100
+            },
+            {
+              "text": "it harder to see how the",
+              "charStart": 589,
+              "charEnd": 613,
+              "matchIn": 324,
+              "matchOut": 101
+            },
+            {
+              "text": "see how the discovering process can",
+              "charStart": 602,
+              "charEnd": 637,
+              "matchIn": 325,
+              "matchOut": 101
+            },
+            {
+              "text": "discovering process can be done.",
+              "charStart": 614,
+              "charEnd": 646,
+              "matchIn": 325,
+              "matchOut": 101
+            }
+          ]
+        }
+      ]
+    },
+    "4": {
+      "nodes": [
+        {
+          "id": "4-0",
+          "text": "The Bitter Lesson",
+          "children": [],
+          "phrases": [
+            {
+              "text": "The Bitter Lesson",
+              "charStart": 0,
+              "charEnd": 17,
+              "matchIn": -1,
+              "matchOut": 0
+            }
+          ]
+        },
+        {
+          "id": "4-1",
+          "text": "The Bitter Lesson",
+          "children": [],
+          "phrases": [
+            {
+              "text": "The Bitter Lesson",
+              "charStart": 0,
+              "charEnd": 17,
+              "matchIn": -1,
+              "matchOut": 0
+            }
+          ]
+        },
+        {
+          "id": "4-2",
+          "text": "Rich Sutton",
+          "children": [],
+          "phrases": [
+            {
+              "text": "Rich Sutton",
+              "charStart": 0,
+              "charEnd": 11,
+              "matchIn": -1,
+              "matchOut": 6
+            }
+          ]
+        },
+        {
+          "id": "4-3",
+          "text": "March 13, 2019",
+          "children": [],
+          "phrases": [
+            {
+              "text": "March 13,",
+              "charStart": 0,
+              "charEnd": 9,
+              "matchIn": -1,
+              "matchOut": 20
+            },
+            {
+              "text": "2019",
+              "charStart": 10,
+              "charEnd": 14,
+              "matchIn": -1,
+              "matchOut": 20
+            }
+          ]
+        },
+        {
+          "id": "4-4",
+          "text": "The biggest lesson that can be read from 70 years of AI research is\nthat general methods that leverage computation are ultimately the most\neffective, and by a large margin. The ultimate reason for this is\nMoore's law, or rather its generalization of continued exponentially\nfalling cost per unit of computation. Most AI research has been\nconducted as if the computation available to the agent were constant\n(in which case leveraging human knowledge would be one of the only ways\nto improve performance) but, over a slightly longer time than a typical\nresearch project, massively more computation inevitably becomes\navailable. Seeking an improvement that makes a difference in the\nshorter term, researchers seek to leverage their human knowledge of the\ndomain, but the only thing that matters in the long run is the\nleveraging of computation. These two need not run counter to each\nother, but in practice they tend to. Time spent on one is time not\nspent on the other. There are psychological commitments to investment\nin one approach or the other. And the human-knowledge approach tends to\ncomplicate methods in ways that make them less suited to taking\nadvantage of general methods leveraging computation.  There were\nmany examples of AI researchers' belated learning of this bitter\nlesson,\nand it is instructive to review some of the most prominent.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "The biggest lesson that can be",
+              "charStart": 0,
+              "charEnd": 30,
+              "matchIn": -1,
+              "matchOut": 0
+            },
+            {
+              "text": "that can be read from 70",
+              "charStart": 19,
+              "charEnd": 43,
+              "matchIn": -1,
+              "matchOut": 0
+            },
+            {
+              "text": "read from 70 years of AI",
+              "charStart": 31,
+              "charEnd": 55,
+              "matchIn": -1,
+              "matchOut": 1
+            },
+            {
+              "text": "years of AI research is",
+              "charStart": 44,
+              "charEnd": 67,
+              "matchIn": -1,
+              "matchOut": 10
+            },
+            {
+              "text": "that general methods that leverage computation",
+              "charStart": 68,
+              "charEnd": 114,
+              "matchIn": -1,
+              "matchOut": 3
+            },
+            {
+              "text": "that leverage computation are ultimately the",
+              "charStart": 89,
+              "charEnd": 133,
+              "matchIn": -1,
+              "matchOut": 4
+            },
+            {
+              "text": "are ultimately the most",
+              "charStart": 115,
+              "charEnd": 138,
+              "matchIn": -1,
+              "matchOut": 5
+            },
+            {
+              "text": "effective,",
+              "charStart": 139,
+              "charEnd": 149,
+              "matchIn": -1,
+              "matchOut": 5
+            },
+            {
+              "text": "and by a large margin.",
+              "charStart": 150,
+              "charEnd": 172,
+              "matchIn": -1,
+              "matchOut": 6
+            },
+            {
+              "text": "The ultimate reason for this is",
+              "charStart": 173,
+              "charEnd": 204,
+              "matchIn": -1,
+              "matchOut": 7
+            },
+            {
+              "text": "Moore's law,",
+              "charStart": 205,
+              "charEnd": 217,
+              "matchIn": -1,
+              "matchOut": 7
+            },
+            {
+              "text": "or rather its generalization of continued",
+              "charStart": 218,
+              "charEnd": 259,
+              "matchIn": -1,
+              "matchOut": 31
+            },
+            {
+              "text": "generalization of continued exponentially",
+              "charStart": 232,
+              "charEnd": 273,
+              "matchIn": -1,
+              "matchOut": 8
+            },
+            {
+              "text": "falling cost per unit of computation.",
+              "charStart": 274,
+              "charEnd": 311,
+              "matchIn": -1,
+              "matchOut": 9
+            },
+            {
+              "text": "Most AI research has been",
+              "charStart": 312,
+              "charEnd": 337,
+              "matchIn": -1,
+              "matchOut": 10
+            },
+            {
+              "text": "conducted as if the computation available",
+              "charStart": 338,
+              "charEnd": 379,
+              "matchIn": -1,
+              "matchOut": 11
+            },
+            {
+              "text": "the computation available to the agent",
+              "charStart": 354,
+              "charEnd": 392,
+              "matchIn": -1,
+              "matchOut": 25
+            },
+            {
+              "text": "to the agent were constant",
+              "charStart": 380,
+              "charEnd": 406,
+              "matchIn": -1,
+              "matchOut": 12
+            },
+            {
+              "text": "(in which case leveraging human knowledge",
+              "charStart": 407,
+              "charEnd": 448,
+              "matchIn": -1,
+              "matchOut": 13
+            },
+            {
+              "text": "leveraging human knowledge would be one",
+              "charStart": 422,
+              "charEnd": 461,
+              "matchIn": -1,
+              "matchOut": 13
+            },
+            {
+              "text": "would be one of the only",
+              "charStart": 449,
+              "charEnd": 473,
+              "matchIn": -1,
+              "matchOut": 14
+            },
+            {
+              "text": "of the only ways",
+              "charStart": 462,
+              "charEnd": 478,
+              "matchIn": -1,
+              "matchOut": 32
+            },
+            {
+              "text": "to improve performance) but,",
+              "charStart": 479,
+              "charEnd": 507,
+              "matchIn": -1,
+              "matchOut": 15
+            },
+            {
+              "text": "over a slightly longer time than",
+              "charStart": 508,
+              "charEnd": 540,
+              "matchIn": -1,
+              "matchOut": 16
+            },
+            {
+              "text": "longer time than a typical",
+              "charStart": 524,
+              "charEnd": 550,
+              "matchIn": -1,
+              "matchOut": 17
+            },
+            {
+              "text": "research project,",
+              "charStart": 551,
+              "charEnd": 568,
+              "matchIn": -1,
+              "matchOut": 20
+            },
+            {
+              "text": "massively more computation inevitably becomes",
+              "charStart": 569,
+              "charEnd": 614,
+              "matchIn": -1,
+              "matchOut": 19
+            },
+            {
+              "text": "available.",
+              "charStart": 615,
+              "charEnd": 625,
+              "matchIn": -1,
+              "matchOut": 19
+            },
+            {
+              "text": "Seeking an improvement that makes a",
+              "charStart": 626,
+              "charEnd": 661,
+              "matchIn": -1,
+              "matchOut": 15
+            },
+            {
+              "text": "that makes a difference in the",
+              "charStart": 649,
+              "charEnd": 679,
+              "matchIn": -1,
+              "matchOut": 23
+            },
+            {
+              "text": "shorter term,",
+              "charStart": 680,
+              "charEnd": 693,
+              "matchIn": -1,
+              "matchOut": 21
+            },
+            {
+              "text": "researchers seek to leverage their human",
+              "charStart": 694,
+              "charEnd": 734,
+              "matchIn": -1,
+              "matchOut": 20
+            },
+            {
+              "text": "leverage their human knowledge of the",
+              "charStart": 714,
+              "charEnd": 751,
+              "matchIn": -1,
+              "matchOut": 13
+            },
+            {
+              "text": "domain,",
+              "charStart": 752,
+              "charEnd": 759,
+              "matchIn": -1,
+              "matchOut": 22
+            },
+            {
+              "text": "but the only thing that matters",
+              "charStart": 760,
+              "charEnd": 791,
+              "matchIn": -1,
+              "matchOut": 23
+            },
+            {
+              "text": "thing that matters in the long",
+              "charStart": 773,
+              "charEnd": 803,
+              "matchIn": -1,
+              "matchOut": 24
+            },
+            {
+              "text": "in the long run is the",
+              "charStart": 792,
+              "charEnd": 814,
+              "matchIn": -1,
+              "matchOut": 25
+            },
+            {
+              "text": "leveraging of computation.",
+              "charStart": 815,
+              "charEnd": 841,
+              "matchIn": -1,
+              "matchOut": 4
+            },
+            {
+              "text": "These two need not run counter",
+              "charStart": 842,
+              "charEnd": 872,
+              "matchIn": -1,
+              "matchOut": 26
+            },
+            {
+              "text": "not run counter to each",
+              "charStart": 857,
+              "charEnd": 880,
+              "matchIn": -1,
+              "matchOut": 12
+            },
+            {
+              "text": "other,",
+              "charStart": 881,
+              "charEnd": 887,
+              "matchIn": -1,
+              "matchOut": 35
+            },
+            {
+              "text": "but in practice they tend to.",
+              "charStart": 888,
+              "charEnd": 917,
+              "matchIn": -1,
+              "matchOut": 27
+            },
+            {
+              "text": "Time spent on one is time",
+              "charStart": 918,
+              "charEnd": 943,
+              "matchIn": -1,
+              "matchOut": 28
+            },
+            {
+              "text": "one is time not",
+              "charStart": 932,
+              "charEnd": 947,
+              "matchIn": -1,
+              "matchOut": 28
+            },
+            {
+              "text": "spent on the other.",
+              "charStart": 948,
+              "charEnd": 967,
+              "matchIn": -1,
+              "matchOut": 29
+            },
+            {
+              "text": "There are psychological commitments to investment",
+              "charStart": 968,
+              "charEnd": 1017,
+              "matchIn": -1,
+              "matchOut": 21
+            },
+            {
+              "text": "in one approach or the other.",
+              "charStart": 1018,
+              "charEnd": 1047,
+              "matchIn": -1,
+              "matchOut": 26
+            },
+            {
+              "text": "And the human-knowledge approach tends to",
+              "charStart": 1048,
+              "charEnd": 1089,
+              "matchIn": -1,
+              "matchOut": 30
+            },
+            {
+              "text": "complicate methods in ways that make",
+              "charStart": 1090,
+              "charEnd": 1126,
+              "matchIn": -1,
+              "matchOut": 31
+            },
+            {
+              "text": "ways that make them less suited",
+              "charStart": 1112,
+              "charEnd": 1143,
+              "matchIn": -1,
+              "matchOut": 33
+            },
+            {
+              "text": "them less suited to taking",
+              "charStart": 1127,
+              "charEnd": 1153,
+              "matchIn": -1,
+              "matchOut": 33
+            },
+            {
+              "text": "advantage of general methods leveraging computation.",
+              "charStart": 1154,
+              "charEnd": 1206,
+              "matchIn": -1,
+              "matchOut": 3
+            },
+            {
+              "text": "There were",
+              "charStart": 1208,
+              "charEnd": 1218,
+              "matchIn": -1,
+              "matchOut": 35
+            },
+            {
+              "text": "many examples of AI researchers' belated",
+              "charStart": 1219,
+              "charEnd": 1259,
+              "matchIn": -1,
+              "matchOut": 10
+            },
+            {
+              "text": "AI researchers' belated learning of this",
+              "charStart": 1236,
+              "charEnd": 1276,
+              "matchIn": -1,
+              "matchOut": 1
+            },
+            {
+              "text": "learning of this bitter",
+              "charStart": 1260,
+              "charEnd": 1283,
+              "matchIn": -1,
+              "matchOut": 36
+            },
+            {
+              "text": "lesson,",
+              "charStart": 1284,
+              "charEnd": 1291,
+              "matchIn": -1,
+              "matchOut": 37
+            },
+            {
+              "text": "and it is instructive to review",
+              "charStart": 1292,
+              "charEnd": 1323,
+              "matchIn": -1,
+              "matchOut": 36
+            },
+            {
+              "text": "instructive to review some of the",
+              "charStart": 1302,
+              "charEnd": 1335,
+              "matchIn": -1,
+              "matchOut": 36
+            },
+            {
+              "text": "some of the most prominent.",
+              "charStart": 1324,
+              "charEnd": 1351,
+              "matchIn": -1,
+              "matchOut": 35
+            }
+          ]
+        },
+        {
+          "id": "4-5",
+          "text": "In computer chess, the methods that defeated the world champion,\nKasparov, in 1997, were based on massive, deep search. At the time,\nthis was looked upon with dismay by the majority of computer-chess\nresearchers who had pursued methods that leveraged human understanding\nof the special structure of chess. When a simpler, search-based\napproach with special hardware and software proved vastly more\neffective, these human-knowledge-based chess researchers were not good\nlosers. They said that ``brute force\" search may have won this time,\nbut it was not a general strategy, and anyway it was not how people\nplayed chess. These researchers wanted methods based on human input to\nwin and were disappointed when they did not.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "In computer chess,",
+              "charStart": 0,
+              "charEnd": 18,
+              "matchIn": -1,
+              "matchOut": 39
+            },
+            {
+              "text": "the methods that defeated the world",
+              "charStart": 19,
+              "charEnd": 54,
+              "matchIn": -1,
+              "matchOut": 40
+            },
+            {
+              "text": "defeated the world champion,",
+              "charStart": 36,
+              "charEnd": 64,
+              "matchIn": -1,
+              "matchOut": 58
+            },
+            {
+              "text": "Kasparov,",
+              "charStart": 65,
+              "charEnd": 74,
+              "matchIn": -1,
+              "matchOut": 41
+            },
+            {
+              "text": "in 1997,",
+              "charStart": 75,
+              "charEnd": 83,
+              "matchIn": -1,
+              "matchOut": 42
+            },
+            {
+              "text": "were based on massive,",
+              "charStart": 84,
+              "charEnd": 106,
+              "matchIn": -1,
+              "matchOut": 42
+            },
+            {
+              "text": "deep search.",
+              "charStart": 107,
+              "charEnd": 119,
+              "matchIn": -1,
+              "matchOut": 43
+            },
+            {
+              "text": "At the time,",
+              "charStart": 120,
+              "charEnd": 132,
+              "matchIn": -1,
+              "matchOut": 60
+            },
+            {
+              "text": "this was looked upon with dismay",
+              "charStart": 133,
+              "charEnd": 165,
+              "matchIn": -1,
+              "matchOut": 59
+            },
+            {
+              "text": "upon with dismay by the majority",
+              "charStart": 149,
+              "charEnd": 181,
+              "matchIn": -1,
+              "matchOut": 59
+            },
+            {
+              "text": "by the majority of computer-chess",
+              "charStart": 166,
+              "charEnd": 199,
+              "matchIn": -1,
+              "matchOut": 39
+            },
+            {
+              "text": "researchers who had pursued methods that",
+              "charStart": 200,
+              "charEnd": 240,
+              "matchIn": -1,
+              "matchOut": 44
+            },
+            {
+              "text": "pursued methods that leveraged human understanding",
+              "charStart": 220,
+              "charEnd": 270,
+              "matchIn": -1,
+              "matchOut": 45
+            },
+            {
+              "text": "of the special structure of chess.",
+              "charStart": 271,
+              "charEnd": 305,
+              "matchIn": -1,
+              "matchOut": 47
+            },
+            {
+              "text": "When a simpler,",
+              "charStart": 306,
+              "charEnd": 321,
+              "matchIn": -1,
+              "matchOut": 48
+            },
+            {
+              "text": "search-based",
+              "charStart": 322,
+              "charEnd": 334,
+              "matchIn": -1,
+              "matchOut": 49
+            },
+            {
+              "text": "approach with special hardware and software",
+              "charStart": 335,
+              "charEnd": 378,
+              "matchIn": -1,
+              "matchOut": 49
+            },
+            {
+              "text": "hardware and software proved vastly more",
+              "charStart": 357,
+              "charEnd": 397,
+              "matchIn": -1,
+              "matchOut": 48
+            },
+            {
+              "text": "effective,",
+              "charStart": 398,
+              "charEnd": 408,
+              "matchIn": -1,
+              "matchOut": 54
+            },
+            {
+              "text": "these human-knowledge-based chess researchers were not",
+              "charStart": 409,
+              "charEnd": 463,
+              "matchIn": -1,
+              "matchOut": 44
+            },
+            {
+              "text": "researchers were not good",
+              "charStart": 443,
+              "charEnd": 468,
+              "matchIn": -1,
+              "matchOut": 44
+            },
+            {
+              "text": "losers.",
+              "charStart": 469,
+              "charEnd": 476,
+              "matchIn": -1,
+              "matchOut": 50
+            },
+            {
+              "text": "They said that ``brute force\" search",
+              "charStart": 477,
+              "charEnd": 513,
+              "matchIn": -1,
+              "matchOut": 51
+            },
+            {
+              "text": "``brute force\" search may have won",
+              "charStart": 492,
+              "charEnd": 526,
+              "matchIn": -1,
+              "matchOut": 51
+            },
+            {
+              "text": "may have won this time,",
+              "charStart": 514,
+              "charEnd": 537,
+              "matchIn": -1,
+              "matchOut": 52
+            },
+            {
+              "text": "but it was not a general",
+              "charStart": 538,
+              "charEnd": 562,
+              "matchIn": -1,
+              "matchOut": 53
+            },
+            {
+              "text": "not a general strategy,",
+              "charStart": 549,
+              "charEnd": 572,
+              "matchIn": -1,
+              "matchOut": 54
+            },
+            {
+              "text": "and anyway it was not how",
+              "charStart": 573,
+              "charEnd": 598,
+              "matchIn": -1,
+              "matchOut": 55
+            },
+            {
+              "text": "was not how people",
+              "charStart": 587,
+              "charEnd": 605,
+              "matchIn": -1,
+              "matchOut": 55
+            },
+            {
+              "text": "played chess.",
+              "charStart": 606,
+              "charEnd": 619,
+              "matchIn": -1,
+              "matchOut": 56
+            },
+            {
+              "text": "These researchers wanted methods based on",
+              "charStart": 620,
+              "charEnd": 661,
+              "matchIn": -1,
+              "matchOut": 44
+            },
+            {
+              "text": "methods based on human input to",
+              "charStart": 645,
+              "charEnd": 676,
+              "matchIn": -1,
+              "matchOut": 45
+            },
+            {
+              "text": "win and were disappointed when they",
+              "charStart": 677,
+              "charEnd": 712,
+              "matchIn": -1,
+              "matchOut": 59
+            },
+            {
+              "text": "disappointed when they did not.",
+              "charStart": 690,
+              "charEnd": 721,
+              "matchIn": -1,
+              "matchOut": 59
+            }
+          ]
+        },
+        {
+          "id": "4-6",
+          "text": "A similar pattern of research progress was seen in computer Go, only\ndelayed by a further 20 years. Enormous initial efforts went into\navoiding search by taking advantage of human knowledge, or of the\nspecial features of the game, but all those efforts proved irrelevant,\nor worse, once search was applied effectively at scale. Also important\nwas the use of learning by self play to learn a value function (as it\nwas in many other games and even in chess, although learning did not\nplay a big role in the 1997 program that first beat a world champion).\nLearning by self play, and learning in general, is like search in that\nit enables massive computation to be brought to bear. Search and\nlearning are the two most important classes of techniques for utilizing\nmassive amounts of computation in AI research. In computer Go, as in\ncomputer chess, researchers' initial effort was directed towards\nutilizing human understanding (so that less search was needed) and only\nmuch later was much greater success had by embracing search and\nlearning.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "A similar pattern of research progress",
+              "charStart": 0,
+              "charEnd": 38,
+              "matchIn": -1,
+              "matchOut": 85
+            },
+            {
+              "text": "of research progress was seen in",
+              "charStart": 18,
+              "charEnd": 50,
+              "matchIn": -1,
+              "matchOut": 85
+            },
+            {
+              "text": "was seen in computer Go,",
+              "charStart": 39,
+              "charEnd": 63,
+              "matchIn": -1,
+              "matchOut": 62
+            },
+            {
+              "text": "only",
+              "charStart": 64,
+              "charEnd": 68,
+              "matchIn": -1,
+              "matchOut": 87
+            },
+            {
+              "text": "delayed by a further 20 years.",
+              "charStart": 69,
+              "charEnd": 99,
+              "matchIn": -1,
+              "matchOut": 63
+            },
+            {
+              "text": "Enormous initial efforts went into",
+              "charStart": 100,
+              "charEnd": 134,
+              "matchIn": -1,
+              "matchOut": 64
+            },
+            {
+              "text": "avoiding search by taking advantage of",
+              "charStart": 135,
+              "charEnd": 173,
+              "matchIn": -1,
+              "matchOut": 65
+            },
+            {
+              "text": "taking advantage of human knowledge,",
+              "charStart": 154,
+              "charEnd": 190,
+              "matchIn": -1,
+              "matchOut": 66
+            },
+            {
+              "text": "or of the",
+              "charStart": 191,
+              "charEnd": 200,
+              "matchIn": -1,
+              "matchOut": 70
+            },
+            {
+              "text": "special features of the game,",
+              "charStart": 201,
+              "charEnd": 230,
+              "matchIn": -1,
+              "matchOut": 68
+            },
+            {
+              "text": "but all those efforts proved irrelevant,",
+              "charStart": 231,
+              "charEnd": 271,
+              "matchIn": -1,
+              "matchOut": 69
+            },
+            {
+              "text": "or worse,",
+              "charStart": 272,
+              "charEnd": 281,
+              "matchIn": -1,
+              "matchOut": 70
+            },
+            {
+              "text": "once search was applied effectively at",
+              "charStart": 282,
+              "charEnd": 320,
+              "matchIn": -1,
+              "matchOut": 71
+            },
+            {
+              "text": "applied effectively at scale.",
+              "charStart": 298,
+              "charEnd": 327,
+              "matchIn": -1,
+              "matchOut": 71
+            },
+            {
+              "text": "Also important",
+              "charStart": 328,
+              "charEnd": 342,
+              "matchIn": -1,
+              "matchOut": 69
+            },
+            {
+              "text": "was the use of learning by",
+              "charStart": 343,
+              "charEnd": 369,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "of learning by self play to",
+              "charStart": 355,
+              "charEnd": 382,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "self play to learn a value",
+              "charStart": 370,
+              "charEnd": 396,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "learn a value function (as it",
+              "charStart": 383,
+              "charEnd": 412,
+              "matchIn": -1,
+              "matchOut": 76
+            },
+            {
+              "text": "was in many other games and",
+              "charStart": 413,
+              "charEnd": 440,
+              "matchIn": -1,
+              "matchOut": 78
+            },
+            {
+              "text": "other games and even in chess,",
+              "charStart": 425,
+              "charEnd": 455,
+              "matchIn": -1,
+              "matchOut": 84
+            },
+            {
+              "text": "although learning did not",
+              "charStart": 456,
+              "charEnd": 481,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "play a big role in the",
+              "charStart": 482,
+              "charEnd": 504,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "role in the 1997 program that",
+              "charStart": 493,
+              "charEnd": 522,
+              "matchIn": -1,
+              "matchOut": 86
+            },
+            {
+              "text": "1997 program that first beat a",
+              "charStart": 505,
+              "charEnd": 535,
+              "matchIn": -1,
+              "matchOut": 75
+            },
+            {
+              "text": "first beat a world champion).",
+              "charStart": 523,
+              "charEnd": 552,
+              "matchIn": -1,
+              "matchOut": 78
+            },
+            {
+              "text": "Learning by self play,",
+              "charStart": 553,
+              "charEnd": 575,
+              "matchIn": -1,
+              "matchOut": 72
+            },
+            {
+              "text": "and learning in general,",
+              "charStart": 576,
+              "charEnd": 600,
+              "matchIn": -1,
+              "matchOut": 79
+            },
+            {
+              "text": "is like search in that",
+              "charStart": 601,
+              "charEnd": 623,
+              "matchIn": -1,
+              "matchOut": 79
+            },
+            {
+              "text": "it enables massive computation to be",
+              "charStart": 624,
+              "charEnd": 660,
+              "matchIn": -1,
+              "matchOut": 73
+            },
+            {
+              "text": "computation to be brought to bear.",
+              "charStart": 643,
+              "charEnd": 677,
+              "matchIn": -1,
+              "matchOut": 74
+            },
+            {
+              "text": "Search and",
+              "charStart": 678,
+              "charEnd": 688,
+              "matchIn": -1,
+              "matchOut": 79
+            },
+            {
+              "text": "learning are the two most important",
+              "charStart": 689,
+              "charEnd": 724,
+              "matchIn": -1,
+              "matchOut": 79
+            },
+            {
+              "text": "two most important classes of techniques",
+              "charStart": 706,
+              "charEnd": 746,
+              "matchIn": -1,
+              "matchOut": 81
+            },
+            {
+              "text": "classes of techniques for utilizing",
+              "charStart": 725,
+              "charEnd": 760,
+              "matchIn": -1,
+              "matchOut": 81
+            },
+            {
+              "text": "massive amounts of computation in AI",
+              "charStart": 761,
+              "charEnd": 797,
+              "matchIn": -1,
+              "matchOut": 82
+            },
+            {
+              "text": "computation in AI research.",
+              "charStart": 780,
+              "charEnd": 807,
+              "matchIn": -1,
+              "matchOut": 82
+            },
+            {
+              "text": "In computer Go,",
+              "charStart": 808,
+              "charEnd": 823,
+              "matchIn": -1,
+              "matchOut": 83
+            },
+            {
+              "text": "as in",
+              "charStart": 824,
+              "charEnd": 829,
+              "matchIn": -1,
+              "matchOut": 77
+            },
+            {
+              "text": "computer chess,",
+              "charStart": 830,
+              "charEnd": 845,
+              "matchIn": -1,
+              "matchOut": 84
+            },
+            {
+              "text": "researchers' initial effort was directed towards",
+              "charStart": 846,
+              "charEnd": 894,
+              "matchIn": -1,
+              "matchOut": 85
+            },
+            {
+              "text": "utilizing human understanding (so that less",
+              "charStart": 895,
+              "charEnd": 938,
+              "matchIn": -1,
+              "matchOut": 86
+            },
+            {
+              "text": "(so that less search was needed)",
+              "charStart": 925,
+              "charEnd": 957,
+              "matchIn": -1,
+              "matchOut": 64
+            },
+            {
+              "text": "search was needed) and only",
+              "charStart": 939,
+              "charEnd": 966,
+              "matchIn": -1,
+              "matchOut": 64
+            },
+            {
+              "text": "much later was much greater success",
+              "charStart": 967,
+              "charEnd": 1002,
+              "matchIn": -1,
+              "matchOut": 88
+            },
+            {
+              "text": "much greater success had by embracing",
+              "charStart": 982,
+              "charEnd": 1019,
+              "matchIn": -1,
+              "matchOut": 88
+            },
+            {
+              "text": "had by embracing search and",
+              "charStart": 1003,
+              "charEnd": 1030,
+              "matchIn": -1,
+              "matchOut": 88
+            },
+            {
+              "text": "learning.",
+              "charStart": 1031,
+              "charEnd": 1040,
+              "matchIn": -1,
+              "matchOut": 79
+            }
+          ]
+        },
+        {
+          "id": "4-7",
+          "text": "In speech recognition, there was an early competition, sponsored by\nDARPA, in the 1970s. Entrants included a host of special methods that\ntook\nadvantage of human knowledge---knowledge of words, of phonemes, of the\nhuman vocal tract, etc. On the other side were newer methods that were\nmore statistical in nature and did much more computation, based on\nhidden Markov models (HMMs). Again, the statistical methods won out\nover the human-knowledge-based methods. This led to a major change in\nall of natural language processing, gradually over decades, where\nstatistics and computation came to dominate the field. The recent rise\nof deep learning in speech recognition is the most recent step in this\nconsistent direction. Deep learning methods rely even less on human\nknowledge, and use even more computation, together with learning on\nhuge training sets, to produce dramatically better speech recognition\nsystems. As in the games, researchers always tried to make systems that\nworked the way the researchers thought their own minds worked---they\ntried to put that knowledge in their systems---but it proved ultimately\ncounterproductive, and a colossal waste of researcher's time, when,\nthrough Moore's law, massive computation became available and a means\nwas found to put it to good use.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "In speech recognition,",
+              "charStart": 0,
+              "charEnd": 22,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "there was an early competition,",
+              "charStart": 23,
+              "charEnd": 54,
+              "matchIn": -1,
+              "matchOut": 91
+            },
+            {
+              "text": "sponsored by",
+              "charStart": 55,
+              "charEnd": 67,
+              "matchIn": -1,
+              "matchOut": 97
+            },
+            {
+              "text": "DARPA,",
+              "charStart": 68,
+              "charEnd": 74,
+              "matchIn": -1,
+              "matchOut": 91
+            },
+            {
+              "text": "in the 1970s.",
+              "charStart": 75,
+              "charEnd": 88,
+              "matchIn": -1,
+              "matchOut": 91
+            },
+            {
+              "text": "Entrants included a host of special",
+              "charStart": 89,
+              "charEnd": 124,
+              "matchIn": -1,
+              "matchOut": 121
+            },
+            {
+              "text": "host of special methods that",
+              "charStart": 109,
+              "charEnd": 137,
+              "matchIn": -1,
+              "matchOut": 94
+            },
+            {
+              "text": "took",
+              "charStart": 138,
+              "charEnd": 142,
+              "matchIn": -1,
+              "matchOut": 121
+            },
+            {
+              "text": "advantage of human knowledge---knowledge of words,",
+              "charStart": 143,
+              "charEnd": 193,
+              "matchIn": -1,
+              "matchOut": 108
+            },
+            {
+              "text": "of phonemes,",
+              "charStart": 194,
+              "charEnd": 206,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "of the",
+              "charStart": 207,
+              "charEnd": 213,
+              "matchIn": -1,
+              "matchOut": 118
+            },
+            {
+              "text": "human vocal tract,",
+              "charStart": 214,
+              "charEnd": 232,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "etc.",
+              "charStart": 233,
+              "charEnd": 237,
+              "matchIn": -1,
+              "matchOut": 97
+            },
+            {
+              "text": "On the other side were newer",
+              "charStart": 238,
+              "charEnd": 266,
+              "matchIn": -1,
+              "matchOut": 107
+            },
+            {
+              "text": "side were newer methods that were",
+              "charStart": 251,
+              "charEnd": 284,
+              "matchIn": -1,
+              "matchOut": 107
+            },
+            {
+              "text": "more statistical in nature and did",
+              "charStart": 285,
+              "charEnd": 319,
+              "matchIn": -1,
+              "matchOut": 94
+            },
+            {
+              "text": "nature and did much more computation,",
+              "charStart": 305,
+              "charEnd": 342,
+              "matchIn": -1,
+              "matchOut": 101
+            },
+            {
+              "text": "based on",
+              "charStart": 343,
+              "charEnd": 351,
+              "matchIn": -1,
+              "matchOut": 109
+            },
+            {
+              "text": "hidden Markov models (HMMs).",
+              "charStart": 352,
+              "charEnd": 380,
+              "matchIn": -1,
+              "matchOut": 95
+            },
+            {
+              "text": "Again,",
+              "charStart": 381,
+              "charEnd": 387,
+              "matchIn": -1,
+              "matchOut": 109
+            },
+            {
+              "text": "the statistical methods won out",
+              "charStart": 388,
+              "charEnd": 419,
+              "matchIn": -1,
+              "matchOut": 97
+            },
+            {
+              "text": "over the human-knowledge-based methods.",
+              "charStart": 420,
+              "charEnd": 459,
+              "matchIn": -1,
+              "matchOut": 92
+            },
+            {
+              "text": "This led to a major change",
+              "charStart": 460,
+              "charEnd": 486,
+              "matchIn": -1,
+              "matchOut": 98
+            },
+            {
+              "text": "a major change in",
+              "charStart": 472,
+              "charEnd": 489,
+              "matchIn": -1,
+              "matchOut": 98
+            },
+            {
+              "text": "all of natural language processing,",
+              "charStart": 490,
+              "charEnd": 525,
+              "matchIn": -1,
+              "matchOut": 99
+            },
+            {
+              "text": "gradually over decades,",
+              "charStart": 526,
+              "charEnd": 549,
+              "matchIn": -1,
+              "matchOut": 102
+            },
+            {
+              "text": "where",
+              "charStart": 550,
+              "charEnd": 555,
+              "matchIn": -1,
+              "matchOut": 107
+            },
+            {
+              "text": "statistics and computation came to dominate",
+              "charStart": 556,
+              "charEnd": 599,
+              "matchIn": -1,
+              "matchOut": 100
+            },
+            {
+              "text": "came to dominate the field.",
+              "charStart": 583,
+              "charEnd": 610,
+              "matchIn": -1,
+              "matchOut": 102
+            },
+            {
+              "text": "The recent rise",
+              "charStart": 611,
+              "charEnd": 626,
+              "matchIn": -1,
+              "matchOut": 106
+            },
+            {
+              "text": "of deep learning in speech recognition",
+              "charStart": 627,
+              "charEnd": 665,
+              "matchIn": -1,
+              "matchOut": 104
+            },
+            {
+              "text": "in speech recognition is the most",
+              "charStart": 644,
+              "charEnd": 677,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "is the most recent step in",
+              "charStart": 666,
+              "charEnd": 692,
+              "matchIn": -1,
+              "matchOut": 106
+            },
+            {
+              "text": "recent step in this",
+              "charStart": 678,
+              "charEnd": 697,
+              "matchIn": -1,
+              "matchOut": 106
+            },
+            {
+              "text": "consistent direction.",
+              "charStart": 698,
+              "charEnd": 719,
+              "matchIn": -1,
+              "matchOut": 107
+            },
+            {
+              "text": "Deep learning methods rely even less",
+              "charStart": 720,
+              "charEnd": 756,
+              "matchIn": -1,
+              "matchOut": 103
+            },
+            {
+              "text": "rely even less on human",
+              "charStart": 742,
+              "charEnd": 765,
+              "matchIn": -1,
+              "matchOut": 108
+            },
+            {
+              "text": "knowledge,",
+              "charStart": 766,
+              "charEnd": 776,
+              "matchIn": -1,
+              "matchOut": 108
+            },
+            {
+              "text": "and use even more computation,",
+              "charStart": 777,
+              "charEnd": 807,
+              "matchIn": -1,
+              "matchOut": 109
+            },
+            {
+              "text": "together with learning on",
+              "charStart": 808,
+              "charEnd": 833,
+              "matchIn": -1,
+              "matchOut": 110
+            },
+            {
+              "text": "huge training sets,",
+              "charStart": 834,
+              "charEnd": 853,
+              "matchIn": -1,
+              "matchOut": 110
+            },
+            {
+              "text": "to produce dramatically better speech recognition",
+              "charStart": 854,
+              "charEnd": 903,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "systems.",
+              "charStart": 904,
+              "charEnd": 912,
+              "matchIn": -1,
+              "matchOut": 113
+            },
+            {
+              "text": "As in the games,",
+              "charStart": 913,
+              "charEnd": 929,
+              "matchIn": -1,
+              "matchOut": 90
+            },
+            {
+              "text": "researchers always tried to make systems",
+              "charStart": 930,
+              "charEnd": 970,
+              "matchIn": -1,
+              "matchOut": 112
+            },
+            {
+              "text": "to make systems that",
+              "charStart": 955,
+              "charEnd": 975,
+              "matchIn": -1,
+              "matchOut": 113
+            },
+            {
+              "text": "worked the way the researchers thought",
+              "charStart": 976,
+              "charEnd": 1014,
+              "matchIn": -1,
+              "matchOut": 112
+            },
+            {
+              "text": "the researchers thought their own minds",
+              "charStart": 991,
+              "charEnd": 1030,
+              "matchIn": -1,
+              "matchOut": 115
+            },
+            {
+              "text": "their own minds worked---they",
+              "charStart": 1015,
+              "charEnd": 1044,
+              "matchIn": -1,
+              "matchOut": 116
+            },
+            {
+              "text": "tried to put that knowledge in",
+              "charStart": 1045,
+              "charEnd": 1075,
+              "matchIn": -1,
+              "matchOut": 108
+            },
+            {
+              "text": "that knowledge in their systems---but it",
+              "charStart": 1058,
+              "charEnd": 1098,
+              "matchIn": -1,
+              "matchOut": 108
+            },
+            {
+              "text": "their systems---but it proved ultimately",
+              "charStart": 1076,
+              "charEnd": 1116,
+              "matchIn": -1,
+              "matchOut": 112
+            },
+            {
+              "text": "counterproductive,",
+              "charStart": 1117,
+              "charEnd": 1135,
+              "matchIn": -1,
+              "matchOut": 117
+            },
+            {
+              "text": "and a colossal waste of researcher's",
+              "charStart": 1136,
+              "charEnd": 1172,
+              "matchIn": -1,
+              "matchOut": 118
+            },
+            {
+              "text": "waste of researcher's time,",
+              "charStart": 1151,
+              "charEnd": 1178,
+              "matchIn": -1,
+              "matchOut": 118
+            },
+            {
+              "text": "when,",
+              "charStart": 1179,
+              "charEnd": 1184,
+              "matchIn": -1,
+              "matchOut": 107
+            },
+            {
+              "text": "through Moore's law,",
+              "charStart": 1185,
+              "charEnd": 1205,
+              "matchIn": -1,
+              "matchOut": 119
+            },
+            {
+              "text": "massive computation became available and a",
+              "charStart": 1206,
+              "charEnd": 1248,
+              "matchIn": -1,
+              "matchOut": 120
+            },
+            {
+              "text": "available and a means",
+              "charStart": 1233,
+              "charEnd": 1254,
+              "matchIn": -1,
+              "matchOut": 121
+            },
+            {
+              "text": "was found to put it to",
+              "charStart": 1255,
+              "charEnd": 1277,
+              "matchIn": -1,
+              "matchOut": 122
+            },
+            {
+              "text": "put it to good use.",
+              "charStart": 1268,
+              "charEnd": 1287,
+              "matchIn": -1,
+              "matchOut": 122
+            }
+          ]
+        },
+        {
+          "id": "4-8",
+          "text": "In computer vision, there has been a similar pattern. Early methods\nconceived of vision as searching for edges, or generalized cylinders,\nor in terms of SIFT features. But today all this is discarded. Modern\ndeep-learning neural networks use only the notions of convolution and\ncertain kinds of invariances, and perform much better.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "In computer vision,",
+              "charStart": 0,
+              "charEnd": 19,
+              "matchIn": -1,
+              "matchOut": 163
+            },
+            {
+              "text": "there has been a similar pattern.",
+              "charStart": 20,
+              "charEnd": 53,
+              "matchIn": -1,
+              "matchOut": 137
+            },
+            {
+              "text": "Early methods",
+              "charStart": 54,
+              "charEnd": 67,
+              "matchIn": -1,
+              "matchOut": 168
+            },
+            {
+              "text": "conceived of vision as searching for",
+              "charStart": 68,
+              "charEnd": 104,
+              "matchIn": -1,
+              "matchOut": 151
+            },
+            {
+              "text": "as searching for edges,",
+              "charStart": 88,
+              "charEnd": 111,
+              "matchIn": -1,
+              "matchOut": 162
+            },
+            {
+              "text": "or generalized cylinders,",
+              "charStart": 112,
+              "charEnd": 137,
+              "matchIn": -1,
+              "matchOut": 155
+            },
+            {
+              "text": "or in terms of SIFT features.",
+              "charStart": 138,
+              "charEnd": 167,
+              "matchIn": -1,
+              "matchOut": 162
+            },
+            {
+              "text": "But today all this is discarded.",
+              "charStart": 168,
+              "charEnd": 200,
+              "matchIn": -1,
+              "matchOut": 156
+            },
+            {
+              "text": "Modern",
+              "charStart": 201,
+              "charEnd": 207,
+              "matchIn": -1,
+              "matchOut": 148
+            },
+            {
+              "text": "deep-learning neural networks use only the",
+              "charStart": 208,
+              "charEnd": 250,
+              "matchIn": -1,
+              "matchOut": 150
+            },
+            {
+              "text": "use only the notions of convolution",
+              "charStart": 238,
+              "charEnd": 273,
+              "matchIn": -1,
+              "matchOut": 163
+            },
+            {
+              "text": "notions of convolution and",
+              "charStart": 251,
+              "charEnd": 277,
+              "matchIn": -1,
+              "matchOut": 134
+            },
+            {
+              "text": "certain kinds of invariances,",
+              "charStart": 278,
+              "charEnd": 307,
+              "matchIn": -1,
+              "matchOut": 134
+            },
+            {
+              "text": "and perform much better.",
+              "charStart": 308,
+              "charEnd": 332,
+              "matchIn": -1,
+              "matchOut": 164
+            }
+          ]
+        },
+        {
+          "id": "4-9",
+          "text": "This is a big lesson. As a field, we still have not thoroughly learned\nit, as we are continuing to make the same kind of mistakes. To see\nthis, and to effectively resist it, we have to understand the appeal of\nthese mistakes. We have to learn the bitter lesson that building in how\nwe think we think does not work in the long run. The bitter lesson is\nbased on the historical observations that 1) AI researchers have often\ntried to build knowledge into their agents, 2) this always helps in the\nshort term, and is personally satisfying to the researcher, but 3) in\nthe long run it plateaus and even inhibits further progress, and 4)\nbreakthrough progress eventually arrives by an opposing approach based\non scaling computation by search and learning. The eventual success is\ntinged with bitterness, and often incompletely digested, because it is\nsuccess over a favored, human-centric approach.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "This is a big lesson.",
+              "charStart": 0,
+              "charEnd": 21,
+              "matchIn": -1,
+              "matchOut": 133
+            },
+            {
+              "text": "As a field,",
+              "charStart": 22,
+              "charEnd": 33,
+              "matchIn": -1,
+              "matchOut": 134
+            },
+            {
+              "text": "we still have not thoroughly learned",
+              "charStart": 34,
+              "charEnd": 70,
+              "matchIn": -1,
+              "matchOut": 135
+            },
+            {
+              "text": "it,",
+              "charStart": 71,
+              "charEnd": 74,
+              "matchIn": -1,
+              "matchOut": 134
+            },
+            {
+              "text": "as we are continuing to make",
+              "charStart": 75,
+              "charEnd": 103,
+              "matchIn": -1,
+              "matchOut": 137
+            },
+            {
+              "text": "continuing to make the same kind",
+              "charStart": 85,
+              "charEnd": 117,
+              "matchIn": -1,
+              "matchOut": 137
+            },
+            {
+              "text": "the same kind of mistakes.",
+              "charStart": 104,
+              "charEnd": 130,
+              "matchIn": -1,
+              "matchOut": 138
+            },
+            {
+              "text": "To see",
+              "charStart": 131,
+              "charEnd": 137,
+              "matchIn": -1,
+              "matchOut": 139
+            },
+            {
+              "text": "this,",
+              "charStart": 138,
+              "charEnd": 143,
+              "matchIn": -1,
+              "matchOut": 134
+            },
+            {
+              "text": "and to effectively resist it,",
+              "charStart": 144,
+              "charEnd": 173,
+              "matchIn": -1,
+              "matchOut": 139
+            },
+            {
+              "text": "we have to understand the appeal",
+              "charStart": 174,
+              "charEnd": 206,
+              "matchIn": -1,
+              "matchOut": 140
+            },
+            {
+              "text": "understand the appeal of",
+              "charStart": 185,
+              "charEnd": 209,
+              "matchIn": -1,
+              "matchOut": 140
+            },
+            {
+              "text": "these mistakes.",
+              "charStart": 210,
+              "charEnd": 225,
+              "matchIn": -1,
+              "matchOut": 138
+            },
+            {
+              "text": "We have to learn the bitter",
+              "charStart": 226,
+              "charEnd": 253,
+              "matchIn": -1,
+              "matchOut": 141
+            },
+            {
+              "text": "learn the bitter lesson that building",
+              "charStart": 237,
+              "charEnd": 274,
+              "matchIn": -1,
+              "matchOut": 142
+            },
+            {
+              "text": "lesson that building in how",
+              "charStart": 254,
+              "charEnd": 281,
+              "matchIn": -1,
+              "matchOut": 143
+            },
+            {
+              "text": "we think we think does not",
+              "charStart": 282,
+              "charEnd": 308,
+              "matchIn": -1,
+              "matchOut": 145
+            },
+            {
+              "text": "think does not work in the",
+              "charStart": 294,
+              "charEnd": 320,
+              "matchIn": -1,
+              "matchOut": 145
+            },
+            {
+              "text": "work in the long run.",
+              "charStart": 309,
+              "charEnd": 330,
+              "matchIn": -1,
+              "matchOut": 147
+            },
+            {
+              "text": "The bitter lesson is",
+              "charStart": 331,
+              "charEnd": 351,
+              "matchIn": -1,
+              "matchOut": 142
+            },
+            {
+              "text": "based on the historical observations that",
+              "charStart": 352,
+              "charEnd": 393,
+              "matchIn": -1,
+              "matchOut": 149
+            },
+            {
+              "text": "historical observations that 1) AI researchers",
+              "charStart": 365,
+              "charEnd": 411,
+              "matchIn": -1,
+              "matchOut": 150
+            },
+            {
+              "text": "1) AI researchers have often",
+              "charStart": 394,
+              "charEnd": 422,
+              "matchIn": -1,
+              "matchOut": 150
+            },
+            {
+              "text": "tried to build knowledge into their",
+              "charStart": 423,
+              "charEnd": 458,
+              "matchIn": -1,
+              "matchOut": 151
+            },
+            {
+              "text": "knowledge into their agents,",
+              "charStart": 438,
+              "charEnd": 466,
+              "matchIn": -1,
+              "matchOut": 152
+            },
+            {
+              "text": "2) this always helps in the",
+              "charStart": 467,
+              "charEnd": 494,
+              "matchIn": -1,
+              "matchOut": 153
+            },
+            {
+              "text": "short term,",
+              "charStart": 495,
+              "charEnd": 506,
+              "matchIn": -1,
+              "matchOut": 154
+            },
+            {
+              "text": "and is personally satisfying to the",
+              "charStart": 507,
+              "charEnd": 542,
+              "matchIn": -1,
+              "matchOut": 155
+            },
+            {
+              "text": "satisfying to the researcher,",
+              "charStart": 525,
+              "charEnd": 554,
+              "matchIn": -1,
+              "matchOut": 155
+            },
+            {
+              "text": "but 3) in",
+              "charStart": 555,
+              "charEnd": 564,
+              "matchIn": -1,
+              "matchOut": 156
+            },
+            {
+              "text": "the long run it plateaus and",
+              "charStart": 565,
+              "charEnd": 593,
+              "matchIn": -1,
+              "matchOut": 157
+            },
+            {
+              "text": "it plateaus and even inhibits further",
+              "charStart": 578,
+              "charEnd": 615,
+              "matchIn": -1,
+              "matchOut": 158
+            },
+            {
+              "text": "even inhibits further progress,",
+              "charStart": 594,
+              "charEnd": 625,
+              "matchIn": -1,
+              "matchOut": 158
+            },
+            {
+              "text": "and 4)",
+              "charStart": 626,
+              "charEnd": 632,
+              "matchIn": -1,
+              "matchOut": 148
+            },
+            {
+              "text": "breakthrough progress eventually arrives by an",
+              "charStart": 633,
+              "charEnd": 679,
+              "matchIn": -1,
+              "matchOut": 159
+            },
+            {
+              "text": "arrives by an opposing approach based",
+              "charStart": 666,
+              "charEnd": 703,
+              "matchIn": -1,
+              "matchOut": 160
+            },
+            {
+              "text": "on scaling computation by search and",
+              "charStart": 704,
+              "charEnd": 740,
+              "matchIn": -1,
+              "matchOut": 162
+            },
+            {
+              "text": "by search and learning.",
+              "charStart": 727,
+              "charEnd": 750,
+              "matchIn": -1,
+              "matchOut": 163
+            },
+            {
+              "text": "The eventual success is",
+              "charStart": 751,
+              "charEnd": 774,
+              "matchIn": -1,
+              "matchOut": 159
+            },
+            {
+              "text": "tinged with bitterness,",
+              "charStart": 775,
+              "charEnd": 798,
+              "matchIn": -1,
+              "matchOut": 165
+            },
+            {
+              "text": "and often incompletely digested,",
+              "charStart": 799,
+              "charEnd": 831,
+              "matchIn": -1,
+              "matchOut": 155
+            },
+            {
+              "text": "because it is",
+              "charStart": 832,
+              "charEnd": 845,
+              "matchIn": -1,
+              "matchOut": 166
+            },
+            {
+              "text": "success over a favored,",
+              "charStart": 846,
+              "charEnd": 869,
+              "matchIn": -1,
+              "matchOut": 167
+            },
+            {
+              "text": "human-centric approach.",
+              "charStart": 870,
+              "charEnd": 893,
+              "matchIn": -1,
+              "matchOut": 168
+            }
+          ]
+        },
+        {
+          "id": "4-10",
+          "text": "One thing that should be learned from the bitter lesson is the great\npower of general purpose methods, of methods that continue to scale\nwith increased computation even as the available computation becomes\nvery great. The two methods that seem to scale arbitrarily in this way\nare search and learning.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "One thing that should be learned",
+              "charStart": 0,
+              "charEnd": 32,
+              "matchIn": -1,
+              "matchOut": 169
+            },
+            {
+              "text": "should be learned from the bitter",
+              "charStart": 15,
+              "charEnd": 48,
+              "matchIn": -1,
+              "matchOut": 169
+            },
+            {
+              "text": "from the bitter lesson is the",
+              "charStart": 33,
+              "charEnd": 62,
+              "matchIn": -1,
+              "matchOut": 169
+            },
+            {
+              "text": "lesson is the great",
+              "charStart": 49,
+              "charEnd": 68,
+              "matchIn": -1,
+              "matchOut": 169
+            },
+            {
+              "text": "power of general purpose methods,",
+              "charStart": 69,
+              "charEnd": 102,
+              "matchIn": -1,
+              "matchOut": 170
+            },
+            {
+              "text": "of methods that continue to scale",
+              "charStart": 103,
+              "charEnd": 136,
+              "matchIn": -1,
+              "matchOut": 171
+            },
+            {
+              "text": "with increased computation even as the",
+              "charStart": 137,
+              "charEnd": 175,
+              "matchIn": -1,
+              "matchOut": 175
+            },
+            {
+              "text": "even as the available computation becomes",
+              "charStart": 164,
+              "charEnd": 205,
+              "matchIn": -1,
+              "matchOut": 174
+            },
+            {
+              "text": "very great.",
+              "charStart": 206,
+              "charEnd": 217,
+              "matchIn": -1,
+              "matchOut": 175
+            },
+            {
+              "text": "The two methods that seem to",
+              "charStart": 218,
+              "charEnd": 246,
+              "matchIn": -1,
+              "matchOut": 176
+            },
+            {
+              "text": "that seem to scale arbitrarily in",
+              "charStart": 234,
+              "charEnd": 267,
+              "matchIn": -1,
+              "matchOut": 177
+            },
+            {
+              "text": "scale arbitrarily in this way",
+              "charStart": 247,
+              "charEnd": 276,
+              "matchIn": -1,
+              "matchOut": 173
+            },
+            {
+              "text": "are search and learning.",
+              "charStart": 277,
+              "charEnd": 301,
+              "matchIn": -1,
+              "matchOut": 178
+            }
+          ]
+        },
+        {
+          "id": "4-11",
+          "text": "The second general point to be learned from the bitter lesson is that\nthe actual contents of minds are tremendously, irredeemably complex; we\nshould stop trying to find simple ways to think about the contents of\nminds, such as simple ways to think about space, objects, multiple\nagents, or symmetries. All these are part of the arbitrary,\nintrinsically-complex, outside world. They are not what should be built\nin, as their complexity is endless; instead we should build in only the\nmeta-methods that can find and capture this arbitrary complexity.\nEssential to these methods is that they can find good approximations,\nbut the search for them should be by our methods, not by us. We want AI\nagents that can discover like we can, not which contain what we have\ndiscovered. Building in our discoveries only makes it harder to see how\nthe discovering process can be done.",
+          "children": [],
+          "phrases": [
+            {
+              "text": "The second general point to be",
+              "charStart": 0,
+              "charEnd": 30,
+              "matchIn": -1,
+              "matchOut": 179
+            },
+            {
+              "text": "point to be learned from the",
+              "charStart": 19,
+              "charEnd": 47,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "learned from the bitter lesson is",
+              "charStart": 31,
+              "charEnd": 64,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "bitter lesson is that",
+              "charStart": 48,
+              "charEnd": 69,
+              "matchIn": -1,
+              "matchOut": 179
+            },
+            {
+              "text": "the actual contents of minds are",
+              "charStart": 70,
+              "charEnd": 102,
+              "matchIn": -1,
+              "matchOut": 180
+            },
+            {
+              "text": "of minds are tremendously,",
+              "charStart": 90,
+              "charEnd": 116,
+              "matchIn": -1,
+              "matchOut": 181
+            },
+            {
+              "text": "irredeemably complex;",
+              "charStart": 117,
+              "charEnd": 138,
+              "matchIn": -1,
+              "matchOut": 182
+            },
+            {
+              "text": "we",
+              "charStart": 139,
+              "charEnd": 141,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "should stop trying to find simple",
+              "charStart": 142,
+              "charEnd": 175,
+              "matchIn": -1,
+              "matchOut": 183
+            },
+            {
+              "text": "to find simple ways to think",
+              "charStart": 161,
+              "charEnd": 189,
+              "matchIn": -1,
+              "matchOut": 185
+            },
+            {
+              "text": "ways to think about the contents",
+              "charStart": 176,
+              "charEnd": 208,
+              "matchIn": -1,
+              "matchOut": 180
+            },
+            {
+              "text": "about the contents of",
+              "charStart": 190,
+              "charEnd": 211,
+              "matchIn": -1,
+              "matchOut": 180
+            },
+            {
+              "text": "minds,",
+              "charStart": 212,
+              "charEnd": 218,
+              "matchIn": -1,
+              "matchOut": 181
+            },
+            {
+              "text": "such as simple ways to think",
+              "charStart": 219,
+              "charEnd": 247,
+              "matchIn": -1,
+              "matchOut": 185
+            },
+            {
+              "text": "ways to think about space,",
+              "charStart": 234,
+              "charEnd": 260,
+              "matchIn": -1,
+              "matchOut": 185
+            },
+            {
+              "text": "objects,",
+              "charStart": 261,
+              "charEnd": 269,
+              "matchIn": -1,
+              "matchOut": 186
+            },
+            {
+              "text": "multiple",
+              "charStart": 270,
+              "charEnd": 278,
+              "matchIn": -1,
+              "matchOut": 187
+            },
+            {
+              "text": "agents,",
+              "charStart": 279,
+              "charEnd": 286,
+              "matchIn": -1,
+              "matchOut": 187
+            },
+            {
+              "text": "or symmetries.",
+              "charStart": 287,
+              "charEnd": 301,
+              "matchIn": -1,
+              "matchOut": 188
+            },
+            {
+              "text": "All these are part of the",
+              "charStart": 302,
+              "charEnd": 327,
+              "matchIn": -1,
+              "matchOut": 189
+            },
+            {
+              "text": "part of the arbitrary,",
+              "charStart": 316,
+              "charEnd": 338,
+              "matchIn": -1,
+              "matchOut": 189
+            },
+            {
+              "text": "intrinsically-complex,",
+              "charStart": 339,
+              "charEnd": 361,
+              "matchIn": -1,
+              "matchOut": 190
+            },
+            {
+              "text": "outside world.",
+              "charStart": 362,
+              "charEnd": 376,
+              "matchIn": -1,
+              "matchOut": 190
+            },
+            {
+              "text": "They are not what should be",
+              "charStart": 377,
+              "charEnd": 404,
+              "matchIn": -1,
+              "matchOut": 191
+            },
+            {
+              "text": "what should be built",
+              "charStart": 390,
+              "charEnd": 410,
+              "matchIn": -1,
+              "matchOut": 192
+            },
+            {
+              "text": "in,",
+              "charStart": 411,
+              "charEnd": 414,
+              "matchIn": -1,
+              "matchOut": 186
+            },
+            {
+              "text": "as their complexity is endless;",
+              "charStart": 415,
+              "charEnd": 446,
+              "matchIn": -1,
+              "matchOut": 196
+            },
+            {
+              "text": "instead we should build in only",
+              "charStart": 447,
+              "charEnd": 478,
+              "matchIn": -1,
+              "matchOut": 193
+            },
+            {
+              "text": "build in only the",
+              "charStart": 465,
+              "charEnd": 482,
+              "matchIn": -1,
+              "matchOut": 193
+            },
+            {
+              "text": "meta-methods that can find and capture",
+              "charStart": 483,
+              "charEnd": 521,
+              "matchIn": -1,
+              "matchOut": 195
+            },
+            {
+              "text": "find and capture this arbitrary complexity.",
+              "charStart": 505,
+              "charEnd": 548,
+              "matchIn": -1,
+              "matchOut": 196
+            },
+            {
+              "text": "Essential to these methods is that",
+              "charStart": 549,
+              "charEnd": 583,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "methods is that they can find",
+              "charStart": 568,
+              "charEnd": 597,
+              "matchIn": -1,
+              "matchOut": 209
+            },
+            {
+              "text": "they can find good approximations,",
+              "charStart": 584,
+              "charEnd": 618,
+              "matchIn": -1,
+              "matchOut": 197
+            },
+            {
+              "text": "but the search for them should",
+              "charStart": 619,
+              "charEnd": 649,
+              "matchIn": -1,
+              "matchOut": 183
+            },
+            {
+              "text": "for them should be by our",
+              "charStart": 634,
+              "charEnd": 659,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "be by our methods,",
+              "charStart": 650,
+              "charEnd": 668,
+              "matchIn": -1,
+              "matchOut": 199
+            },
+            {
+              "text": "not by us.",
+              "charStart": 669,
+              "charEnd": 679,
+              "matchIn": -1,
+              "matchOut": 200
+            },
+            {
+              "text": "We want AI",
+              "charStart": 680,
+              "charEnd": 690,
+              "matchIn": -1,
+              "matchOut": 201
+            },
+            {
+              "text": "agents that can discover like we",
+              "charStart": 691,
+              "charEnd": 723,
+              "matchIn": -1,
+              "matchOut": 202
+            },
+            {
+              "text": "discover like we can,",
+              "charStart": 707,
+              "charEnd": 728,
+              "matchIn": -1,
+              "matchOut": 203
+            },
+            {
+              "text": "not which contain what we have",
+              "charStart": 729,
+              "charEnd": 759,
+              "matchIn": -1,
+              "matchOut": 204
+            },
+            {
+              "text": "discovered.",
+              "charStart": 760,
+              "charEnd": 771,
+              "matchIn": -1,
+              "matchOut": 205
+            },
+            {
+              "text": "Building in our discoveries only makes",
+              "charStart": 772,
+              "charEnd": 810,
+              "matchIn": -1,
+              "matchOut": 206
+            },
+            {
+              "text": "discoveries only makes it harder to",
+              "charStart": 788,
+              "charEnd": 823,
+              "matchIn": -1,
+              "matchOut": 207
+            },
+            {
+              "text": "it harder to see how",
+              "charStart": 811,
+              "charEnd": 831,
+              "matchIn": -1,
+              "matchOut": 208
+            },
+            {
+              "text": "the discovering process can be done.",
+              "charStart": 832,
+              "charEnd": 868,
+              "matchIn": -1,
+              "matchOut": 210
+            }
+          ]
+        },
+        {
+          "id": "4-12",
+          "text": "Source: http://www.incompleteideas.net/IncIdeas/BitterLesson.html",
+          "children": [],
+          "phrases": [
+            {
+              "text": "Source:",
+              "charStart": 0,
+              "charEnd": 7,
+              "matchIn": -1,
+              "matchOut": 179
+            },
+            {
+              "text": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html",
+              "charStart": 8,
+              "charEnd": 65,
+              "matchIn": -1,
+              "matchOut": 182
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
