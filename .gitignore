@@ -1,5 +1,9 @@
 node_modules/
 models/
 dist/
-package-lock.json
 data/_*.json
+.env
+.env.*
+*.log
+bench/
+verify_artifacts/

@@ -3,10 +3,10 @@
  * Classify a document's primary mode so extract-concepts.js can route
  * to the right analytical schema.
  *
- * Per SIGNAL_HIERARCHY_REVIEW.md §15: one cheap Claude call per document,
- * returns one of ten genres. extract-concepts.js routes each genre to a
- * schema-specific signal prompt, with narrative-family genres sharing the
- * tuned short-story prompt where appropriate.
+ * One cheap Claude call per document returns one of ten genres.
+ * extract-concepts.js routes each genre to a schema-specific signal prompt,
+ * with narrative-family genres sharing the tuned short-story prompt where
+ * appropriate.
  *
  * Usage:
  *   node tools/classify-genre.js <tree.json>

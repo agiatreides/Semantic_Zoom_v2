@@ -55,10 +55,8 @@ for (let i = 2; i < args.length; i++) {
 // ---------- claude ----------
 // --effort medium: compression needs judgment (flourish vs load-bearing) but
 // not the Opus-style deep reasoning that was the hidden per-call time sink
-// at default effort. `--bare` would strip more context but also breaks Pro
-// Max OAuth auth, so we eat the project-context load cost per subprocess.
-// --exclude-dynamic-system-prompt-sections at least keeps the prompt-cache
-// reusable across calls (cwd/env/memory moved to first user message).
+// at default effort. --exclude-dynamic-system-prompt-sections keeps prompt
+// context steadier across calls.
 // Sonnet is the pipeline default: voice fidelity > Haiku, ~1 min slower, hits
 // every word-count band. Override with MODEL=haiku for long documents where
 // the speed gap matters more than voice.

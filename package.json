@@ -1,9 +1,12 @@
 {
-  "name": "semantic-zoom-v2",
+  "name": "semantic-zoom",
   "version": "0.1.0",
+  "description": "Canvas semantic-zoom reader for prose.",
   "type": "module",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5181",
+    "test": "npm run validate:data && npm run build",
     "build": "vite build",
     "generate": "node tools/generate-tree.js",
     "ingest:fast": "node tools/ingest-fast.js",
@@ -11,12 +14,16 @@
     "validate:data": "node tools/validate-data.js"
   },
   "dependencies": {
-    "@chenglou/pretext": "latest",
+    "@chenglou/pretext": "^0.0.7",
     "@huggingface/transformers": "^3.8.1",
     "semantic-chunking": "^2.4.4",
     "skmeans": "^0.11.3"
   },
   "devDependencies": {
-    "vite": "^6"
+    "vite": "^6.4.2"
+  },
+  "overrides": {
+    "postcss": "^8.5.15",
+    "protobufjs": "^7.6.0"
   }
 }

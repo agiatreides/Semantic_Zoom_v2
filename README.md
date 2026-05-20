@@ -1,101 +1,94 @@
-# Semantic Zoom v2
+# Semantic Zoom
 
-Canvas reader for semantic zooming over prose. Hover an idea, left-click to
-zoom in, right-click to zoom out, and the text changes detail level while
-the cursor stays anchored to the same concept. The wheel scrolls the current
-level normally.
+Canvas-based reader for zooming through prose without losing your place.
+Left-click a word to zoom into more detail, right-click to zoom out, and the
+text under the cursor stays anchored to the same idea. Drag, scroll, or use
+the right scrollbar to pan long levels.
 
-The checked-in demo corpora run without any model calls:
+The checked-in corpora run entirely from static JSON:
 
-- `the-voting-problem-auto.json`
-- `architecture-of-the-grin-auto.json`
-- `the-bitter-lesson-auto.json`
-- `ada-lovelace-wikipedia-auto.json`
-- `fair-guiding-principles-excerpt-auto.json`
+- `the-voting-problem-auto.json` - synthetic short story
+- `architecture-of-the-grin-auto.json` - synthetic short story
+- `ada-lovelace-wikipedia-auto.json` - reference biography excerpt
+- `fair-guiding-principles-excerpt-auto.json` - research-paper excerpt
 
-## Run the Demo
+## Quickstart
 
 ```bash
 npm install
-npm run dev -- --port 5181
+npm run dev
 ```
 
 Open `http://localhost:5181/?file=the-voting-problem-auto.json`.
 
-Use the picker in the upper-right corner to switch corpora. Left-click over
-text to zoom in, right-click over text to zoom out, and use the wheel or
-right scrollbar to pan long levels.
+Use the picker in the upper-right corner to switch corpora.
 
-## Validate Data
+## Controls
 
-```bash
-npm run validate:data
-```
+- Left click over text: zoom in.
+- Right click over text: zoom out.
+- Drag on the text area: pan the current level.
+- Mouse wheel or trackpad scroll: pan normally.
+- Right scrollbar: drag or page through long levels.
 
-The validator checks tree shape, phrase links, concept-anchor bounds, and
-visible concepts that are missing anchors. Warnings are useful: missing
-visible anchors can still render, but they are likely places to inspect if
-cursor anchoring feels unstable.
-
-Use strict mode when preparing release data:
+## Validate
 
 ```bash
-node tools/validate-data.js --strict
+npm test
 ```
 
-## Generate a New Corpus
+This runs the corpus validator and a production build. The validator checks
+tree shape, phrase links, concept-anchor bounds, and missing visible anchors.
+Warnings identify data quality issues worth inspecting, but only validation
+errors fail the command.
 
-Drop a `.txt` file in `data/`, then run the fast ingest path:
+## Generate A Corpus
+
+The demo data is prebuilt. Generating new corpora is optional and requires a
+local `claude` CLI in `PATH`.
 
 ```bash
 npm run ingest:fast -- data/my-document.txt
 ```
 
-Then add an option for `my-document-auto.json` in `index.html`.
+Then add the generated `my-document-auto.json` file to the picker in
+`index.html`.
 
-The default ingest path is optimized for speed while keeping Sonnet quality:
-Sonnet, low reasoning effort, one batched generation call for all zoom levels,
-conservative local fuzzy anchoring, and an automatic concept count scaled to
-document length. Use the timing lines at the end of the run to see where time
-went.
-
-For a slower compatibility pass that uses the older per-level generation shape:
+Useful options:
 
 ```bash
-npm run ingest:fast -- data/my-document.txt --effort medium --no-batch --no-fuzzy-anchors
-```
-
-The older bottom-up pipeline is still available for experiments:
-
-```bash
-node tools/generate-tree.js data/my-document.txt
-node tools/extract-concepts.js data/my-document-auto.json
-node tools/rebuild-levels.js data/my-document-auto.json data/my-document-auto-concepts.json
-```
-
-The pipeline is intended to be fully automatic. Do not hand-author per-document
-concept files; stale or invalid anchors should be regenerated or repaired by
-generic tooling.
-
-## Repair Corpus Links
-
-Direct source-to-level rebuilds can repair child links without model calls:
-
-```bash
+npm run ingest:fast -- data/my-document.txt --levels 6 --concept-count 16
+npm run ingest:fast -- data/my-document.txt --effort medium --no-batch
 npm run repair:links -- data/my-document-auto.json --phrase-maps
 ```
 
-Use `--phrase-maps` when the renderer fallback should be refreshed after the
-new parent/child links are written.
+The pipeline is intended to be automatic. Do not hand-author per-document
+concept files; stale or invalid anchors should be regenerated or repaired by
+generic tooling.
 
-## Core Files
+## Architecture
 
-- `src/main.js` — input handling, zoom anchoring, hit-testing, debug API.
-- `src/renderer.js` — canvas rendering.
-- `src/text-layout.js` — line wrapping and measurement.
-- `tools/generate-tree.js` — text to multi-level tree.
-- `tools/ingest-fast.js` — one-command corpus ingest path.
-- `tools/extract-concepts.js` — concept/signal extraction and anchor placement.
-- `tools/rebuild-levels.js` — direct source-to-level rebuild for polished demo corpora.
-- `tools/rebuild-child-links.js` — model-free child-link repair for generated corpora.
-- `VERIFY.md` — regression contract for UI changes.
+- `src/main.js` - app boot, input handling, zoom anchoring, hit testing,
+  debug API.
+- `src/renderer.js` - canvas drawing.
+- `src/text-layout.js` - line wrapping and measurement.
+- `tools/ingest-fast.js` - one-command corpus ingest path.
+- `tools/extract-concepts.js` - concept extraction and anchor placement.
+- `tools/rebuild-levels.js` - source-to-level rebuild for polished corpora.
+- `tools/rebuild-child-links.js` - model-free parent/child link repair.
+- `tools/validate-data.js` - static corpus validation.
+
+The runtime uses two anchor layers:
+
+- `concepts[].anchors[level]` preserves semantic identity across zooms.
+- `nodes[].phrases[].matchIn/matchOut` provides a phrase-chain fallback and
+  helps choose the best surviving word when text changes between levels.
+
+The debug surface is available as `window._sz` while the app is running. See
+`VERIFY.md` for the invariants and browser-check procedure.
+
+## Data And Licensing
+
+Source attribution for checked-in corpora is in `data/SOURCES.md`. Generated
+JSON corpora are derived from the adjacent `.txt` files and inherit their
+source text licenses. The application code is MIT licensed.

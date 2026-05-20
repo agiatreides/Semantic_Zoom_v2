@@ -5,7 +5,7 @@
  * Takes a tree.json and produces a sibling <basename>-concepts.json with
  * per-level anchors for each major event (= a verb-driven thing that
  * happens in the narrative). Required by the renderer's concept-anchored
- * zoom (src/main.js wheel handler).
+ * zoom (src/main.js click handler).
  *
  * Each concept also carries a `min_visible_level`: the most-compressed
  * zoom level at which it must remain visible. Above that level the
@@ -35,10 +35,9 @@
  *
  * Why this design:
  *   - Off-the-shelf salience methods (TextRank, LexRank, embedding
- *     centrality) reward TYPICALITY which is anti-correlated with plot
- *     pivots. Pivotal events are often the LEAST typical sentences.
- *     Claude does narrative-counterfactual reasoning ("does the story
- *     break without this?") that no pre-baked ranker provides.
+ *     centrality) reward TYPICALITY, which is often anti-correlated with
+ *     plot pivots. The model is used for counterfactual salience: would
+ *     the document break without this?
  *   - Fuzzy-substring fails for load-bearing concepts when the parent's
  *     reduction rephrases. Claude in the loop only for those.
  *
@@ -177,8 +176,7 @@ function parseJsonResponse(raw, label) {
 // (Field name "events" kept for backward compat — content is beats.)
 // --------------------------------------------------------------------
 //
-// See SIGNAL_HIERARCHY_REVIEW.md §13-14 for the rationale behind this
-// prompt. Short summary:
+// Prompt design summary:
 //   - "beat" (not "event") — covers actions, dialogue, reveals, inner
 //     shifts, tonal pivots, voice-carrying passages.
 //   - Multi-axis poker-nuts test: plot / stakes / meaning / voice. A
