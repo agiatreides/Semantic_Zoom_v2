@@ -335,6 +335,23 @@ function findConceptByWord(word, level, contentY) {
   return best?.concept ?? null
 }
 
+// Concept whose anchor at `level` covers an exact character position. When
+// nested anchors overlap, the most specific (smallest span) wins, matching
+// findConceptAtCursor's specificity preference. Used to re-acquire the zoom
+// lock when the tracked word moves between concepts across levels.
+function conceptCoveringChar(level, nodeId, charIdx) {
+  if (nodeId == null || charIdx == null) return null
+  let best = null
+  for (const concept of concepts) {
+    const a = concept.anchors?.[String(level)]
+    if (!a || a.nodeId !== nodeId) continue
+    if (charIdx < a.charStart || charIdx >= a.charEnd) continue
+    const span = a.charEnd - a.charStart
+    if (!best || span < best.span) best = { concept, span }
+  }
+  return best ? best.concept : null
+}
+
 function getConceptPosition(concept, level) {
   const anchor = concept.anchors[String(level)]
   if (!anchor) return null
@@ -787,6 +804,7 @@ function zoomAtCursor(direction) {
   const projected = (targetIdx != null && targetIdx >= 0)
     ? phrasesAtLevel[currentLevel]?.[targetIdx] ?? null
     : null
+  let placedWord = null
 
   if (!trackedConcept) {
     trackedConcept = findConceptAtCursor(prevLevel, oldOff)
@@ -838,6 +856,7 @@ function zoomAtCursor(direction) {
         y: mouseY - pos.contentY
       })
       placed = true
+      if (wordPos) placedWord = wordPos
     }
   }
 
@@ -845,9 +864,20 @@ function zoomAtCursor(direction) {
   // trackable concept AND the fallback above didn't fire).
   if (!placed && projected) {
     const wordPos = getTrackedWordPosition(null, currentLevel, trackedWord, projected, null)
+    if (wordPos) placedWord = wordPos
     levelOffsets[currentLevel] = clampOffset(currentLevel, wordPos
       ? { x: mouseX - baseLeftX - wordPos.contentX, y: mouseY - wordPos.contentY }
       : { x: 0, y: mouseY - projected.y })
+  }
+
+  // Keep the concept lock on the idea the user is tracking. The same idea can
+  // be summarised under a different concept at each level — a word migrates
+  // out of one anchor and into another between levels — so when the tracked
+  // word was located, re-acquire identity from the concept that actually
+  // covers it now instead of freezing on the concept picked at the first zoom.
+  if (placedWord && placedWord.nodeId != null && placedWord.charIdx != null) {
+    const covering = conceptCoveringChar(currentLevel, placedWord.nodeId, placedWord.charIdx)
+    if (covering) trackedConcept = covering
   }
 
   offsetsLocked = true
