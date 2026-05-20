@@ -7,11 +7,12 @@ the right scrollbar to pan long levels.
 
 ## Demo
 
-[![Semantic Zoom demo on The Bitter Lesson](media/bitter-lesson-zoom-poster.png)](media/bitter-lesson-zoom.mp4)
+<video src="https://github.com/agiatreides/Semantic_Zoom_v2/raw/main/media/bitter-lesson-zoom.mp4" poster="https://github.com/agiatreides/Semantic_Zoom_v2/raw/main/media/bitter-lesson-zoom-poster.png" controls muted playsinline width="760"></video>
 
 The clip zooms into Rich Sutton's "The Bitter Lesson" from the phrase
 "plateaus and inhibits progress" while keeping the selected idea under the
-cursor.
+cursor. [Download the clip](media/bitter-lesson-zoom.mp4) if the player does
+not load.
 
 The checked-in corpora run entirely from static JSON:
 
